@@ -1,0 +1,37 @@
+# AGENTS
+
+This repository keeps one canonical agent instruction file: `AGENTS.md`.
+
+## Scope
+
+- Describe the repository in 1-2 lines.
+- State what good changes optimize for here: stability, fast iteration, backwards compatibility, simplicity, or something else specific.
+
+## Workflow
+
+- Read nearby code before editing.
+- Prefer the smallest coherent change.
+- Run the narrowest validation command that actually covers the edited surface.
+- Do not overwrite generated or user-authored files without checking how they are produced.
+
+## Commands
+
+- Setup: `[fill in real setup command]`
+- Test: `[fill in real test command]`
+- Lint: `[fill in real lint command]`
+- Build: `[fill in real build command]`
+- Targeted validation: `[fill in the fastest repo-specific validation path]`
+
+## Conventions
+
+- Languages/frameworks: `[fill in]`
+- Formatting/linting rules: `[fill in]`
+- Generated files or codegen entrypoints: `[fill in or delete]`
+- Areas that need extra care: `[migrations, deploys, public APIs, auth, etc.]`
+
+## AI Layout
+
+- `AGENTS.md` is canonical.
+- `CLAUDE.md` and `GEMINI.md` should point here.
+- Shared skills live in `.skills/`.
+- Repo-local agents live in `agents/` when the repo uses them.

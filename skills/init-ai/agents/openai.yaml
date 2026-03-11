@@ -1,0 +1,4 @@
+interface:
+  display_name: "Init AI"
+  short_description: "Bootstrap repo AI scaffolding"
+  default_prompt: "Use $init-ai to initialize this repository for agentic use."
