@@ -16,7 +16,9 @@ Prefer the smallest change that preserves the chart's current structure and nami
 3. Decide whether the change belongs in `values.yaml`, a template, `_helpers.tpl`, or dependency metadata.
 4. Make the smallest coherent edit.
 5. Run `./scripts/validate.sh <chart-dir> [helm args...]`.
-6. If validation fails, fix the chart before stopping.
+6. Always compare `HEAD` versus the working tree with `./scripts/diff-render.sh <chart-dir> [helm args...]` before presenting the result to the user.
+7. If validation fails, fix the chart before stopping.
+8. Report the render diff back to the user. If the diff is large, summarize the meaningful changes instead of pasting the whole thing.
 
 ## Editing Rules
 
@@ -67,6 +69,10 @@ Prefer the smallest change that preserves the chart's current structure and nami
 - Use `./scripts/validate.sh <chart-dir>` after every meaningful change.
 - Pass the same `-f`, `--set`, `--values`, `--namespace`, or other Helm arguments the user cares about so validation matches the intended render path.
 - Treat `helm lint` and `helm template` as the minimum bar.
+- Always compare `HEAD` to the working tree with `./scripts/diff-render.sh <chart-dir> [helm args...]` before finalizing an edit.
+- If the diff is short, show the key lines directly.
+- If the diff is large, summarize it by resource and behavior: for example `Deployment replicas changed`, `Service port added`, `ConfigMap keys updated`, `Ingress annotations changed`.
+- Call out unexpected render changes explicitly instead of burying them in a long diff.
 
 For chart-editing patterns and guardrails, read [references/chart-best-practices.md](./references/chart-best-practices.md).
 
@@ -75,6 +81,7 @@ For chart-editing patterns and guardrails, read [references/chart-best-practices
 ### scripts/
 
 - `scripts/validate.sh`: run `helm lint` and `helm template` against a chart, forwarding additional Helm arguments to both commands.
+- `scripts/diff-render.sh`: render the chart from `HEAD` and from the working tree with the same Helm arguments, then print a unified diff of the rendered manifests.
 
 ### references/
 

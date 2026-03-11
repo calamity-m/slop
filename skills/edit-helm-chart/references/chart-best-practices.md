@@ -52,3 +52,6 @@ Use this file when deciding where a change should live or when a chart starts ge
 - Run lint after each meaningful change.
 - Render the chart with the same values files or `--set` overrides that matter in practice.
 - If a chart has multiple environments, validate the environment touched by the edit instead of pretending the defaults are enough.
+- Always render `HEAD` and the working tree with the same Helm inputs and diff the outputs instead of guessing.
+- When reporting results to the user, do not dump a giant manifest diff unless it is genuinely small enough to read.
+- Prefer a concise summary grouped by changed resource kinds and the behavior that changed.
