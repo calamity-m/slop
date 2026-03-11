@@ -1,0 +1,4 @@
+interface:
+  display_name: "Grug Review"
+  short_description: "Pragmatic simplicity-first review"
+  default_prompt: "Use $grug-review to review this change with a strong bias toward simplicity and against unnecessary abstraction."
