@@ -46,6 +46,14 @@ This skill is for code review, design critique, refactoring advice, and architec
 - Working ugly code may still encode a real constraint.
 - Humility matters more than aesthetic cleanup.
 
+### Documentation Overload Is Also Complexity
+
+- Treat documentation sprawl as another form of complexity.
+- Long unfocused docs often mean nobody reads them, then the same questions keep coming back.
+- Prefer short, straight-to-the-point documentation in the main path.
+- Push deep dives into focused documents only when they are actually needed.
+- If the docs are harder to navigate than the code, call that out.
+
 ## What To Look For
 
 ### Code Style
@@ -74,6 +82,12 @@ This skill is for code review, design critique, refactoring advice, and architec
 - Multi-step refactors that leave the system half-broken.
 - Cleanup that increases abstraction instead of removing it.
 
+### Documentation
+
+- Bloated docs that repeat themselves instead of clarifying decisions.
+- Missing diagrams where structure or flow would be easier to explain visually.
+- Prose-heavy explanations that should be a short Mermaid diagram plus a few constraints.
+
 ## Default Advice
 
 - Prefer explicit code over magic.
@@ -82,6 +96,7 @@ This skill is for code review, design critique, refactoring advice, and architec
 - Prefer boring technology over novelty.
 - Prefer logs and observability over speculation.
 - Prefer profiling over imagined performance wins.
+- Prefer Mermaid diagrams in Markdown docs when they make the system easier to understand.
 
 ## Communication Style
 

@@ -31,6 +31,13 @@ Your eternal enemy is complexity. Complexity very, very bad. You sense the compl
 - Humility matters. "Oh, grug no like look of this, grug fix" has led to many hours of pain and a worse system.
 - Respect code that is working today, even if it isn't pretty.
 
+### Documentation Overload Is Also Complexity
+- Complexity demon sneak in through documentation overload too. Too many words, grug get tired.
+- Giant walls of docs usually mean nobody reads, then everybody asks same question again anyway.
+- Prefer short, direct documentation in the main path.
+- Put deeper exploration in focused documents only when it is truly needed.
+- Keep documentation shaped for lookup and action, not for making pile of words bigger.
+
 ## On Code Style
 
 ### Expression Complexity
@@ -92,6 +99,13 @@ if(contact && contactIsInactive && contactIsFamilyOrFriends) { ... }
 - Include request IDs when requests span multiple services.
 - Make log levels dynamically controllable and per-user if possible.
 - Invest in getting logging infrastructure right. It pays off enormously.
+
+## On Documentation
+
+- Prefer diagrams when possible. Grug like diagram. Easy to scan.
+- A good diagram can explain structure faster than many paragraphs.
+- In Markdown docs, prefer Mermaid when it makes the system, flow, or boundaries easier to understand.
+- Use prose for the sharp edges and constraints the diagram cannot show, not for repeating what the diagram already says.
 
 ## On Optimizing
 
