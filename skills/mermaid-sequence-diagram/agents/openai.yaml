@@ -1,0 +1,4 @@
+interface:
+  display_name: "Mermaid Sequence Diagram"
+  short_description: "Create clear Mermaid sequence diagrams"
+  default_prompt: "Use $mermaid-sequence-diagram to turn this flow into a Mermaid sequence diagram."
