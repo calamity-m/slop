@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rust Ownership Reviewer"
+  short_description: "Review Rust ownership and performance tradeoffs"
+  default_prompt: "Use $rust-ownership-reviewer to review this Rust code for ownership, borrowing, cloning, and performance tradeoffs."

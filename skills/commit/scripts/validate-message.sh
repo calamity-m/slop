@@ -3,47 +3,35 @@
 set -euo pipefail
 
 usage() {
-  cat <<'EOF'
-Usage:
-  validate-message.sh "<subject>" ["<body>"]
-
-Validate a commit message against:
-  <type>(scope): short
-
-The optional body should be short and plain.
-EOF
+    echo "usage: $0 <subject> [body]" >&2
+    exit 2
 }
 
-if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
-  usage
-  exit 0
-fi
+[[ $# -ge 1 && $# -le 2 ]] || usage
 
-if [[ $# -lt 1 || $# -gt 2 ]]; then
-  usage >&2
-  exit 2
-fi
+subject=$1
+body=${2-}
 
-subject="$1"
-body="${2:-}"
-
-if [[ ! "$subject" =~ ^[a-z][a-z0-9-]*\([a-z0-9][a-z0-9-]*\):\ .+$ ]]; then
-  echo "error: subject must match <type>(scope): short" >&2
-  exit 1
+if [[ ! $subject =~ ^[a-z]+\([a-z0-9-]+\):\ [[:graph:]].*$ ]]; then
+    echo "invalid subject: expected <type>(<scope>): short" >&2
+    exit 1
 fi
 
 if [[ ${#subject} -gt 72 ]]; then
-  echo "error: subject is too long (${#subject} > 72)" >&2
-  exit 1
+    echo "invalid subject: keep it at 72 characters or fewer" >&2
+    exit 1
 fi
 
-if [[ -n "$body" ]]; then
-  while IFS= read -r line; do
-    if [[ ${#line} -gt 72 ]]; then
-      echo "error: body line is too long (${#line} > 72)" >&2
-      exit 1
+if [[ -n $body ]]; then
+    if [[ $body == *$'\n'* ]]; then
+        echo "invalid body: use a short single paragraph" >&2
+        exit 1
     fi
-  done <<<"$body"
+
+    if [[ ${#body} -gt 200 ]]; then
+        echo "invalid body: keep it concise (200 characters or fewer)" >&2
+        exit 1
+    fi
 fi
 
-echo "valid: commit message matches the expected format"
+exit 0
