@@ -36,18 +36,18 @@ See [`agents/README.md`](./agents/README.md) for the agent-specific index.
 
 ## Install skills
 
-Install this repo into a shared config directory and link both Claude and
-Codex to the shared `skills/` tree:
+Install the contents of this repo's `skills/` directory into a shared config
+directory and link both Claude and Codex to that shared skill tree:
 
 ```bash
 ./skills.sh
 ```
 
-By default that installs into `~/.config/skills/<repo-name>` and creates:
+By default that installs into `~/.config/skills` and creates:
 
 ```bash
-${CODEX_HOME:-$HOME/.codex}/skills -> ~/.config/skills/<repo-name>/skills
-${CLAUDE_HOME:-$HOME/.claude}/skills -> ~/.config/skills/<repo-name>/skills
+${CODEX_HOME:-$HOME/.codex}/skills -> ~/.config/skills
+${CLAUDE_HOME:-$HOME/.claude}/skills -> ~/.config/skills
 ```
 
 To replace conflicting existing links or paths:

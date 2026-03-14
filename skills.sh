@@ -7,13 +7,13 @@ usage() {
 Usage:
   skills.sh [--force] [install-dir]
 
-Copy this repository into a shared config directory and link tool-specific
-user skill directories to the installed shared skills.
+Copy the contents of this repository's skills/ directory into a shared config
+directory and link tool-specific user skill directories to that shared tree.
 
 Defaults:
-  install-dir   $HOME/.config/skills/<repo-name>
-  Codex link    ${CODEX_HOME:-$HOME/.codex}/skills -> <install-dir>/skills
-  Claude link   ${CLAUDE_HOME:-$HOME/.claude}/skills -> <install-dir>/skills
+  install-dir   $HOME/.config/skills
+  Codex link    ${CODEX_HOME:-$HOME/.codex}/skills -> <install-dir>
+  Claude link   ${CLAUDE_HOME:-$HOME/.claude}/skills -> <install-dir>
 
 The script is conservative by default and will not replace existing
 non-symlink files or directories unless --force is passed.
@@ -55,10 +55,10 @@ done
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$script_dir"
-repo_name="$(basename "$repo_root")"
+skills_root="$repo_root/skills"
 
 if [[ -z "$install_dir" ]]; then
-  install_dir="$HOME/.config/skills/$repo_name"
+  install_dir="$HOME/.config/skills"
 fi
 
 install_dir_parent="$(dirname "$install_dir")"
@@ -81,7 +81,7 @@ ensure_dir() {
   log "created directory $path"
 }
 
-copy_repo_contents() {
+copy_skill_contents() {
   local source_root="$1"
   local target_root="$2"
   local entry=""
@@ -112,7 +112,7 @@ copy_repo_contents() {
   done
   shopt -u dotglob nullglob
 
-  log "copied repository contents to $target_root"
+  log "copied skill contents to $target_root"
 }
 
 ensure_symlink() {
@@ -154,12 +154,12 @@ ensure_symlink() {
   log "linked $path -> $target"
 }
 
-copy_repo_contents "$repo_root" "$install_dir"
+copy_skill_contents "$skills_root" "$install_dir"
 ensure_dir "$codex_root" || true
 ensure_dir "$claude_root" || true
 
-ensure_symlink "$codex_root/skills" "$install_dir/skills" || true
-ensure_symlink "$claude_root/skills" "$install_dir/skills" || true
+ensure_symlink "$codex_root/skills" "$install_dir" || true
+ensure_symlink "$claude_root/skills" "$install_dir" || true
 
 log "skills install complete"
 log "shared install: $install_dir"
