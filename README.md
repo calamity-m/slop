@@ -34,18 +34,24 @@ See [`agents/README.md`](./agents/README.md) for the agent-specific index.
 
 - [`grug-brain`](./agents/grug-brain.md): pragmatic code review, refactoring guidance, and architecture advice with a strong bias against unnecessary complexity
 
-## Copy skills
+## Install skills
 
-Copy repo skills to Claude user skills:
+Install this repo into a shared config directory and link both Claude and
+Codex to the shared `skills/` tree:
 
 ```bash
-mkdir -p "$HOME/.claude/skills"
-cp -R ./skills/. "$HOME/.claude/skills/"
+./skills.sh
 ```
 
-Copy repo skills to Codex user skills:
+By default that installs into `~/.config/skills/<repo-name>` and creates:
 
 ```bash
-mkdir -p "${CODEX_HOME:-$HOME/.codex}/skills"
-cp -R ./skills/. "${CODEX_HOME:-$HOME/.codex}/skills/"
+${CODEX_HOME:-$HOME/.codex}/skills -> ~/.config/skills/<repo-name>/skills
+${CLAUDE_HOME:-$HOME/.claude}/skills -> ~/.config/skills/<repo-name>/skills
+```
+
+To replace conflicting existing links or paths:
+
+```bash
+./skills.sh --force
 ```
