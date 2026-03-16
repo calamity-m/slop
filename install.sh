@@ -12,6 +12,7 @@ Symlink dotfiles from this repository into $HOME.
 Creates:
   ~/.config/skills  -> <repo>/.config/skills
   ~/.config/agents  -> <repo>/.config/agents
+  ~/.config/nvim    -> <repo>/.config/nvim
 
 Tool-specific links (skills only):
   ${CLAUDE_HOME:-~/.claude}/skills -> ~/.config/skills
@@ -114,6 +115,7 @@ ensure_symlink() {
 ensure_dir "$HOME/.config" || true
 ensure_symlink "$HOME/.config/skills" "$repo_dir/.config/skills" || true
 ensure_symlink "$HOME/.config/agents" "$repo_dir/.config/agents" || true
+ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 
 # Tool-specific skill symlinks
 ensure_dir "$claude_root" || true
@@ -125,5 +127,6 @@ log ""
 log "install complete"
 log "  skills: ~/.config/skills -> $repo_dir/.config/skills"
 log "  agents: ~/.config/agents -> $repo_dir/.config/agents"
+log "  nvim:   ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  claude: $claude_root/skills -> ~/.config/skills"
 log "  codex:  $codex_root/skills -> ~/.config/skills"

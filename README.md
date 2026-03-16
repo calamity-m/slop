@@ -17,6 +17,7 @@ Why does nobody have a standard for any of these things, forcing me to make a me
 
 - `.config/skills/`: reusable skills for repo and user-level agent setups
 - `.config/agents/`: agent definitions and agent-specific docs
+- `.config/nvim/`: neovim configuration
 
 ## Skills
 
@@ -48,6 +49,7 @@ This creates symlinks so edits in the repo are immediately reflected:
 ```
 ~/.config/skills -> <repo>/.config/skills
 ~/.config/agents -> <repo>/.config/agents
+~/.config/nvim   -> <repo>/.config/nvim
 ~/.claude/skills -> ~/.config/skills
 ~/.codex/skills  -> ~/.config/skills
 ```
