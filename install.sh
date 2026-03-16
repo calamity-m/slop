@@ -1,0 +1,129 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage:
+  install.sh [--force]
+
+Symlink dotfiles from this repository into $HOME.
+
+Creates:
+  ~/.config/skills  -> <repo>/.config/skills
+  ~/.config/agents  -> <repo>/.config/agents
+
+Tool-specific links (skills only):
+  ${CLAUDE_HOME:-~/.claude}/skills -> ~/.config/skills
+  ${CODEX_HOME:-~/.codex}/skills  -> ~/.config/skills
+
+The script is conservative by default and will not replace existing
+non-symlink files or directories unless --force is passed.
+EOF
+}
+
+log() {
+  printf '%s\n' "$*"
+}
+
+warn() {
+  printf 'warning: %s\n' "$*" >&2
+}
+
+force=0
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --force)
+      force=1
+      shift
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "error: unknown flag: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+done
+
+repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+codex_root="${CODEX_HOME:-$HOME/.codex}"
+claude_root="${CLAUDE_HOME:-$HOME/.claude}"
+
+ensure_dir() {
+  local path="$1"
+
+  if [[ -d "$path" ]]; then
+    return 0
+  fi
+
+  if [[ -e "$path" ]]; then
+    warn "skipping directory creation for $path because a non-directory already exists"
+    return 1
+  fi
+
+  mkdir -p "$path"
+  log "created directory $path"
+}
+
+ensure_symlink() {
+  local path="$1"
+  local target="$2"
+
+  if [[ -L "$path" ]]; then
+    local current
+    current="$(readlink "$path")"
+    if [[ "$current" == "$target" ]]; then
+      log "ok $path -> $target"
+      return 0
+    fi
+
+    if [[ "$force" -eq 1 ]]; then
+      rm -f "$path"
+      ln -s "$target" "$path"
+      log "relinked $path -> $target"
+      return 0
+    fi
+
+    warn "skipping $path because it already links to $current (use --force to replace)"
+    return 1
+  fi
+
+  if [[ -e "$path" ]]; then
+    if [[ "$force" -eq 1 ]]; then
+      rm -rf "$path"
+      ln -s "$target" "$path"
+      log "replaced $path with symlink to $target"
+      return 0
+    fi
+
+    warn "skipping $path because it already exists (use --force to replace)"
+    return 1
+  fi
+
+  ln -s "$target" "$path"
+  log "linked $path -> $target"
+}
+
+# Link .config entries into ~/.config
+ensure_dir "$HOME/.config" || true
+ensure_symlink "$HOME/.config/skills" "$repo_dir/.config/skills" || true
+ensure_symlink "$HOME/.config/agents" "$repo_dir/.config/agents" || true
+
+# Tool-specific skill symlinks
+ensure_dir "$claude_root" || true
+ensure_dir "$codex_root" || true
+ensure_symlink "$claude_root/skills" "$HOME/.config/skills" || true
+ensure_symlink "$codex_root/skills" "$HOME/.config/skills" || true
+
+log ""
+log "install complete"
+log "  skills: ~/.config/skills -> $repo_dir/.config/skills"
+log "  agents: ~/.config/agents -> $repo_dir/.config/agents"
+log "  claude: $claude_root/skills -> ~/.config/skills"
+log "  codex:  $codex_root/skills -> ~/.config/skills"
