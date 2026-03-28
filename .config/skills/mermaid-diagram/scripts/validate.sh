@@ -9,7 +9,7 @@ Usage:
   validate.sh -    # read Mermaid source from stdin
 
 Validate a Mermaid diagram by asking Mermaid CLI to render it via `npx`.
-The input should be raw Mermaid source beginning with `sequenceDiagram`.
+Supported diagram types: sequenceDiagram, flowchart, graph.
 EOF
 }
 
@@ -46,8 +46,17 @@ else
   cp "$1" "$input_file"
 fi
 
-if ! grep -Eq '^[[:space:]]*sequenceDiagram([[:space:]]|$)' "$input_file"; then
-  echo "error: input does not appear to be a Mermaid sequence diagram" >&2
+# Detect diagram type
+diagram_type=""
+if grep -Eq '^[[:space:]]*sequenceDiagram([[:space:]]|$)' "$input_file"; then
+  diagram_type="sequence"
+elif grep -Eq '^[[:space:]]*(flowchart|graph)[[:space:]]' "$input_file"; then
+  diagram_type="flowchart"
+fi
+
+if [[ -z "$diagram_type" ]]; then
+  echo "error: input does not appear to be a supported Mermaid diagram type" >&2
+  echo "Supported types: sequenceDiagram, flowchart, graph" >&2
   exit 1
 fi
 
@@ -63,9 +72,9 @@ fi
 runner="npx @mermaid-js/mermaid-cli"
 
 if run_npx_mmdc; then
-  echo "valid: Mermaid CLI rendered the diagram successfully with $runner"
+  echo "valid: Mermaid CLI rendered the $diagram_type diagram successfully with $runner"
   exit 0
 fi
 
-echo "error: Mermaid CLI failed to render the diagram via $runner" >&2
+echo "error: Mermaid CLI failed to render the $diagram_type diagram via $runner" >&2
 exit 1

@@ -1,11 +1,11 @@
-# Mermaid Sequence Diagram Best Practices
+# Mermaid Diagram Best Practices
 
-Use this file when writing or cleaning up diagrams, especially when labels or notes contain parser-sensitive text.
+Use this file when writing or cleaning up diagrams of any type, especially when labels or notes contain parser-sensitive text.
 
 ## Keep the Diagram Boring
 
-- Prefer short participant names and short message labels.
-- Show the happy path first, then add `alt`, `opt`, `loop`, or `par` only when they materially help.
+- Prefer short participant/node names and short message/edge labels.
+- Show the happy path first, then add control-flow only when it materially helps.
 - Split one overloaded diagram into two smaller ones when the flow has more than one main concern.
 
 ## Keep Text Safe
@@ -26,7 +26,7 @@ Use this file when writing or cleaning up diagrams, especially when labels or no
   - shorten the visible text and move the full URL into surrounding prose
   - escape parser-sensitive characters such as `#` and `;`
 
-Example:
+Sequence example:
 
 ```mermaid
 sequenceDiagram
@@ -37,9 +37,18 @@ sequenceDiagram
     Note over Docs: Review "end" marker handling before publishing
 ```
 
+Flowchart example:
+
+```mermaid
+flowchart TD
+    A[Fetch config] --> B{Valid?}
+    B -->|Yes| C[Apply config]
+    B -->|No| D["Parse error #35;42"]
+```
+
 ## Readability
 
-- Use aliases for long actor labels.
-- Keep one message per line.
+- Use aliases for long actor or node labels.
+- Keep one message or edge per line.
 - Prefer explicit verbs like `Validate token` or `Persist order`.
 - Use notes sparingly. If the note is doing the real work, the flow may need to be simpler.
