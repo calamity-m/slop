@@ -1,0 +1,127 @@
+# Codex Execution Plans (ExecPlans)
+
+This document defines what an ExecPlan is in this repository. An ExecPlan is a self-contained execution and design document that a coding agent can follow to deliver a working change from research through validation.
+
+Treat the reader as someone who only has the current working tree and the single ExecPlan file being executed. They should not need prior chats, memory, or hidden context to succeed.
+
+## How to use ExecPlans and PLANS.md
+
+When authoring an ExecPlan, follow this file exactly. If you have not read it recently, re-read it before drafting or revising a plan.
+
+When implementing an ExecPlan, do not stop to ask for generic "next steps" between milestones. Continue to the next milestone, update the plan as progress happens, and resolve ordinary ambiguities directly in the plan.
+
+When discussing or revising an ExecPlan, record the decision in the plan so the reason for the change is preserved for the next contributor.
+
+When requirements are uncertain, include proof-of-concept or prototyping milestones that can validate feasibility before a larger implementation is committed.
+
+## Requirements
+
+NON-NEGOTIABLE REQUIREMENTS:
+
+- Every ExecPlan must be fully self-contained.
+- Every ExecPlan is a living document and must be updated as progress and discoveries happen.
+- Every ExecPlan must let a complete novice implement the change end-to-end in this repository.
+- Every ExecPlan must describe observable, working behavior rather than only source edits.
+- Every ExecPlan must define non-obvious terms in plain language.
+
+Start with purpose and user-visible intent. Explain why the work matters, what someone can do after the change, and how to see it working.
+
+State every assumption you rely on. Name the files, commands, functions, and modules precisely. Embed needed background in the plan rather than pointing the reader to outside material.
+
+## Formatting
+
+When an ExecPlan is shown inline in another document or chat response, it should be one fenced code block labeled `md`.
+
+When an ExecPlan is written directly to its own `.md` file, omit the outer triple backticks.
+
+Write in plain prose. Prefer sentences over lists except where lists are clearer. Checklists are required in `Progress` and optional elsewhere only when they genuinely help.
+
+Use normal Markdown headings with two blank lines after headings.
+
+## Guidelines
+
+Keep the plan outcome-focused. Phrase acceptance as behavior a human can observe, not as an internal implementation detail.
+
+Name repository paths explicitly. If multiple subsystems are involved, orient the reader before giving steps.
+
+Be safe and idempotent. If a step can fail halfway, explain how to retry or recover. Prefer additive, testable changes.
+
+Validation is mandatory. State the exact test or verification commands and describe what success looks like.
+
+Capture concise evidence when useful, such as short command output, logs, or file-scoped diffs.
+
+## Milestones
+
+Milestones should read like a story of the work, not bureaucracy. Each milestone should describe:
+
+- what scope it covers
+- what new thing exists after it
+- how to verify it
+
+Each milestone must be independently verifiable and should move the overall goal forward.
+
+## Living Plans And Design Decisions
+
+- Keep `Progress`, `Surprises & Discoveries`, `Decision Log`, and `Outcomes & Retrospective` up to date.
+- Record important design choices and why they were made.
+- Record notable bugs, performance observations, or surprising behavior with brief evidence.
+- If implementation direction changes, explain the change in `Decision Log` and reflect it in `Progress`.
+
+## Skeleton Of A Good ExecPlan
+
+# <Short, action-oriented description>
+
+This ExecPlan is a living document. The sections `Progress`, `Surprises & Discoveries`, `Decision Log`, and `Outcomes & Retrospective` must be kept up to date as work proceeds.
+
+This plan follows `__PLANS_PATH__` from the repository root and must stay aligned with that file.
+
+## Purpose / Big Picture
+
+Explain what someone gains after this change and how they can see it working.
+
+## Progress
+
+- [ ] Add timestamped progress items here.
+
+## Surprises & Discoveries
+
+- Observation: ...
+  Evidence: ...
+
+## Decision Log
+
+- Decision: ...
+  Rationale: ...
+  Date/Author: ...
+
+## Outcomes & Retrospective
+
+Summarize outcomes, gaps, and lessons learned at major milestones or completion.
+
+## Context and Orientation
+
+Describe the current repository state relevant to the task. Name the key files and modules by full path.
+
+## Plan of Work
+
+Describe the sequence of edits and additions in prose, naming the files and locations to change.
+
+## Concrete Steps
+
+State the exact commands to run, the working directory, and short expected outputs where useful.
+
+## Validation and Acceptance
+
+Describe how to exercise the system and what observable behavior proves success.
+
+## Idempotence and Recovery
+
+Explain safe re-run behavior, cleanup, rollback, or retry steps.
+
+## Artifacts and Notes
+
+Include concise supporting snippets, logs, or diffs when they materially help.
+
+## Interfaces and Dependencies
+
+Name the libraries, modules, services, types, and function signatures that must exist or be used by the end of the work.
