@@ -27,14 +27,4 @@ if [[ -z $body ]]; then
     exit 1
 fi
 
-if [[ $body == *$'\n'* ]]; then
-    echo "invalid body: use a short single paragraph" >&2
-    exit 1
-fi
-
-if [[ ${#body} -gt 500 ]]; then
-    echo "invalid body: keep it concise (500 characters or fewer)" >&2
-    exit 1
-fi
-
 exit 0

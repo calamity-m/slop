@@ -36,7 +36,8 @@ If unrelated changes are mixed together, split them into separate commits instea
 - Use lowercase for `type` and `scope`.
 - Prefer an imperative short description such as `add validator`, `enforce render diffs`, or `document quoting rules`.
 - Always include a body explaining why the change was made.
-- Keep the body short, direct, and focused on why or notable behavior.
+- For multi-concern commits, use the body to explain each distinct change.
+- Keep the body direct and focused on why or notable behavior.
 
 ## Preferred Types
 
@@ -50,10 +51,11 @@ If unrelated changes are mixed together, split them into separate commits instea
 ## Staging Rules
 
 - Decide whether one or more commits should be created based on both staged and unstaged files, not just whatever happens to be staged already.
-- Do not commit unrelated changes together.
+- **Never use partial staging (`git add -p` / `git add --patch`).** Always stage whole files. Do not split a single file across multiple commits.
+- If separate files contain unrelated changes, split them into separate commits.
+- If unrelated changes live in the same file, commit them together and use the body to describe each concern.
 - Do not stage generated output unless the repo clearly tracks it.
-- Prefer more clean commits over one giant mixed commit.
-- If the diff contains two different ideas, split it.
+- Prefer smaller focused commits when files can be cleanly separated. When they cannot, use a larger commit with a detailed body explaining the included changes.
 
 ## Reporting Back
 

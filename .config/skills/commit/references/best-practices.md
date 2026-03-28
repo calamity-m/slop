@@ -6,9 +6,10 @@ Use this file when deciding how to split a change or how to name a commit.
 
 - One commit should capture one idea.
 - Decide whether the current staged and unstaged changes should become one commit or multiple commits before committing anything.
-- If part of the diff could be reverted independently, it probably deserves its own commit.
-- Do not bundle cleanup, refactors, and feature work together unless they are inseparable.
-- Prefer more small coherent commits over one giant commit.
+- **Never use partial staging (`git add -p`).** Always stage whole files. Do not split a single file across multiple commits.
+- If separate files contain unrelated changes, split them into separate commits.
+- If unrelated changes live in the same file, commit them together and use the body to describe each concern.
+- Prefer smaller focused commits when files can be cleanly separated. When they cannot, use a larger commit with a detailed body.
 
 ## Choose a Good Type
 
@@ -34,8 +35,8 @@ Use this file when deciding how to split a change or how to name a commit.
 - Good: `docs(edit-helm-chart): require render diffs`
 - Bad: `updated lots of stuff`
 
-## Keep the Body Short
+## Write a Useful Body
 
-- Add a body only when it helps.
-- Use the body for why, notable constraints, or important side effects.
-- Keep it short enough that someone scanning `git log` does not get buried.
+- Always include a body explaining why the change was made.
+- For multi-concern commits (when a file contains unrelated changes), use the body to describe each distinct change.
+- Keep it focused on why or notable behavior.
