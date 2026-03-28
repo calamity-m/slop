@@ -1,0 +1,4 @@
+interface:
+  display_name: "Code Review"
+  short_description: "Review code for consistency, correctness, security, API design, and testability"
+  default_prompt: "Use $code-review to review this code for consistency with repo conventions, correctness, security, API design, and testability."
