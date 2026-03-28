@@ -1,0 +1,4 @@
+interface:
+  display_name: "ExecPlan Writer"
+  short_description: "Draft and review living ExecPlans"
+  default_prompt: "Use $exec-plan-writer to draft and iteratively review an ExecPlan for this task."
