@@ -1,6 +1,6 @@
 ---
 name: commit
-description: "Review local git changes, group them into the smallest coherent commit, and write a conventional-style commit message in the format type(scope): short with an optional short body. Use this skill when the user asks to commit changes, wants help choosing a commit message, wants cleaner commit structure, or asks to stage only the relevant files before committing."
+description: "Review local git changes, group them into the smallest coherent commit, and write a conventional-style commit message in the format type(scope): short with a required short body. Use this skill when the user asks to commit changes, wants help choosing a commit message, wants cleaner commit structure, or asks to stage only the relevant files before committing."
 ---
 
 # Commit
@@ -13,7 +13,7 @@ Use the exact subject format:
 <type>(scope): short
 ```
 
-Add an optional short body only when it helps explain why the change exists.
+Always include a short body that explains why the change exists.
 
 ## Workflow
 
@@ -22,7 +22,7 @@ Add an optional short body only when it helps explain why the change exists.
 3. Identify the smallest logical unit of change.
 4. Stage only the files that belong in that unit.
 5. Write a subject in the required format.
-6. Validate the message with `./scripts/validate-message.sh "<subject>" ["<body>"]`.
+6. Validate the message using the skill's own `scripts/validate-message.sh` — this script lives in the skill directory, not in the repository being committed. Run it as: `<skill-dir>/scripts/validate-message.sh "<subject>" "<body>"`.
 7. Commit only after the message and staged file set both make sense.
 
 If unrelated changes are mixed together, split them into separate commits instead of hiding them behind a vague message.
@@ -35,7 +35,7 @@ If unrelated changes are mixed together, split them into separate commits instea
 - If the change genuinely spans the repo and no narrower scope fits, use `general` as the scope.
 - Use lowercase for `type` and `scope`.
 - Prefer an imperative short description such as `add validator`, `enforce render diffs`, or `document quoting rules`.
-- Add a body only when the intent is not obvious from the subject and diff.
+- Always include a body explaining why the change was made.
 - Keep the body short, direct, and focused on why or notable behavior.
 
 ## Preferred Types
@@ -67,7 +67,7 @@ For naming examples and commit-splitting guidance, read [references/best-practic
 
 ### scripts/
 
-- `scripts/validate-message.sh`: check that the commit subject matches `<type>(scope): short` and that the optional body stays short.
+- `scripts/validate-message.sh`: check that the commit subject matches `<type>(scope): short` and that the required body stays short. **This script is part of the skill directory, not the target repository** — always resolve its path relative to where this skill is installed, never relative to the repo being committed.
 
 ### references/
 
