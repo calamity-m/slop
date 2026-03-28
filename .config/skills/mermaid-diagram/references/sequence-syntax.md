@@ -101,12 +101,44 @@ Use this sparingly. `alt` is more familiar and often good enough.
 
 ## Activation
 
+Mermaid supports both explicit activation statements and shorthand activation markers on arrows.
+
+### Explicit `activate` / `deactivate`
+
+```mermaid
+sequenceDiagram
+    participant App
+    participant API
+
+    App->>API: Start request
+    activate API
+    API-->>App: Response
+    deactivate API
+```
+
+Use explicit statements when the activation lifetime is important but the `+` / `-` arrow suffixes would make a dense sequence harder to scan.
+
+### Arrow suffix shorthand
+
 ```mermaid
 sequenceDiagram
     participant API
     participant DB
     API->>+DB: Begin query
     DB-->>-API: Rows
+```
+
+### Stacked activations
+
+```mermaid
+sequenceDiagram
+    participant Scheduler
+    participant Worker
+
+    Scheduler->>+Worker: Run batch
+    Worker->>+Worker: Process next item
+    Worker-->>-Worker: Item done
+    Worker-->>-Scheduler: Batch done
 ```
 
 Activation bars can help for nested calls, but they add visual noise. Skip them unless call duration or nesting matters.
