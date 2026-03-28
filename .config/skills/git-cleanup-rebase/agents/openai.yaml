@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Cleanup Rebase"
+  short_description: "Squash feature branches for review"
+  default_prompt: "Use $git-cleanup-rebase to clean up this feature branch into clear reviewable commits before I open a merge request."
