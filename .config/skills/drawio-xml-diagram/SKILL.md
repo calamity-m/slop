@@ -1,11 +1,11 @@
 ---
 name: drawio-xml-diagram
-description: Create or repair raw draw.io / diagrams.net XML diagrams in `mxGraphModel` or uncompressed `.drawio` form. Use when the user wants draw.io XML, diagrams.net source, `mxGraphModel`, `.drawio` source, or a diagram that will be pasted into or uploaded to a draw.io instance, especially when it must reuse icon libraries already installed in that instance.
+description: Create, edit or repair raw draw.io / diagrams.net XML diagrams in `mxGraphModel` or uncompressed `.drawio` form. Use when the user wants draw.io XML, diagrams.net source, `mxGraphModel`, `.drawio` source, or a diagram that will be pasted into or uploaded to a draw.io instance, especially when it must reuse icon libraries already installed in that instance.
 ---
 
 # Draw.io XML Diagram
 
-Create valid, uncompressed draw.io XML that a user can paste into `Extras > Edit Diagram` or save as `.drawio` / `.xml` and open in draw.io.
+Create or edit valid, uncompressed draw.io XML that a user can paste into `Extras > Edit Diagram` or save as `.drawio` / `.xml` and open in draw.io.
 
 Default to a single-page bare `<mxGraphModel>` document. Use full `<mxfile>` wrapping only when the user explicitly needs multiple pages, file-level `vars`, or a literal `.drawio` wrapper.
 
@@ -105,6 +105,7 @@ If shell execution is not available, do this checklist manually:
 ## References
 
 - Read [references/xml-rules.md](./references/xml-rules.md) for the canonical XML shape, containment rules, and style heuristics.
+- Read [references/editing-guide.md](./references/editing-guide.md) when modifying an existing diagram: adding, removing, moving, or restyling elements.
 - Read [references/icon-discovery.md](./references/icon-discovery.md) when the user wants AWS, Kubernetes, Azure, GCP, or internal icon libraries.
 - Read [references/examples.md](./references/examples.md) for small working XML examples and a custom-icon handoff template.
 - Use [references/mxfile.xsd](./references/mxfile.xsd) as the bundled schema reference.
@@ -118,6 +119,7 @@ If shell execution is not available, do this checklist manually:
 ### references/
 
 - `references/xml-rules.md`: compact draw.io XML rules and generation heuristics.
+- `references/editing-guide.md`: guidelines for modifying existing diagrams — adding, removing, moving, restyling, and fixing elements.
 - `references/icon-discovery.md`: how to ask for and extract exact icon/style identifiers from the user's draw.io instance.
 - `references/examples.md`: concise example diagrams and a template for user-supplied icon styles.
 - `references/mxfile.xsd`: official draw.io XML schema copied from `https://www.drawio.com/assets/mxfile.xsd`.
