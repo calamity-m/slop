@@ -13,23 +13,49 @@ This skill is not the setup skill. It assumes the repo either already has `PLANS
 
 1. Read `AGENTS.md` and the repository's shared `PLANS.md` file if they exist.
 2. If the repo has no shared `PLANS.md`, create one from the bundled template or stop and tell the user to run `$exec-plan-setup` first. Do not draft against an implicit or unwritten standard.
-3. Gather only the repo context needed to write the plan: the task, relevant files, architectural constraints, and validation commands.
-4. Create the first plan draft with:
+3. **Discovery & Clarification** — Before drafting anything, engage the user in a focused conversation to surface missing context, resolve ambiguity, and agree on requirements. See the dedicated section below for the rules governing this phase. Do not skip it.
+4. Gather only the repo context needed to write the plan: the task, relevant files, architectural constraints, and validation commands.
+5. Create the first plan draft with:
 
 ```bash
 python3 <skill-dir>/scripts/new-execplan.py --repo-root <repo-root> --plans-path <plans-path> --output <execplan-path> --title "<title>"
 ```
 
-5. Replace the template placeholders with real repository-specific content.
-6. Validate the structure with:
+6. Replace the template placeholders with real repository-specific content. Fill in the `Requirements` section with the high-level requirements synthesized from the discovery conversation.
+7. Validate the structure with:
 
 ```bash
 python3 <skill-dir>/scripts/validate-execplan.py --repo-root <repo-root> --plans-path <plans-path> --execplan <execplan-path>
 ```
 
-7. Run the required review loop using fresh no-context sub-agents.
-8. After every review pass, update the ExecPlan itself. Treat the plan as the living record.
-9. Run the final `AGENTS.md` adherence review and update the plan again before finishing.
+8. Run the required review loop using fresh no-context sub-agents.
+9. After every review pass, update the ExecPlan itself. Treat the plan as the living record.
+10. Run the final `AGENTS.md` adherence review and update the plan again before finishing.
+
+## Discovery & Clarification (Mandatory)
+
+Before writing a single line of the ExecPlan, the agent must engage the user in a structured discovery conversation. The goal is to arrive at a shared, explicit understanding of requirements before any drafting begins.
+
+### Rules
+
+- **Always ask questions first.** Never jump straight to drafting. Even when the user's prompt seems clear, probe for what might be missing.
+- **Assume the user has forgotten something.** Most initial requests omit constraints, edge cases, affected systems, or acceptance criteria that only surface when asked about directly. Actively look for these gaps.
+- **Clarify language that invites assumptions.** Vague verbs ("improve", "clean up", "handle"), unqualified scope ("the API", "the tests"), and implicit priorities ("make it better") must be pinned down before they become plan assumptions.
+- **Surface the "why".** Ask what problem this solves, who it affects, and what success looks like from the user's perspective. Plans written without understanding intent drift into busywork.
+- **Propose and confirm requirements.** After the conversation, synthesize a short list of high-level requirements and present them to the user for confirmation before drafting. These requirements become the `## Requirements` section of the ExecPlan.
+
+### What to ask about
+
+- **Scope boundaries**: What is in scope and what is explicitly out of scope?
+- **Constraints**: Performance budgets, backward compatibility, deployment windows, feature flags, security considerations.
+- **Affected systems**: Which services, modules, or teams are touched? Are there downstream consumers?
+- **Acceptance criteria**: How will the user know this is done? What observable behavior proves success?
+- **Prior art**: Has this been attempted before? Are there related issues, RFCs, or conversations?
+- **Risk tolerance**: Is this a "move fast" situation or a "measure twice, cut once" situation?
+
+### When to stop asking
+
+Stop when you can write down a requirements list that the user agrees with. If the user explicitly says "just draft it, I'll correct as we go", respect that — but still fill in the `## Requirements` section with your best-effort synthesis and flag which items are assumptions.
 
 ## Non-Negotiable Review Rules
 

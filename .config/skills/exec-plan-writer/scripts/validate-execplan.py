@@ -9,6 +9,7 @@ from pathlib import Path
 
 EXECPLAN_HEADINGS = [
     "## Purpose / Big Picture",
+    "## Requirements",
     "## Progress",
     "## Surprises & Discoveries",
     "## Decision Log",

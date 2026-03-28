@@ -14,6 +14,8 @@ When discussing or revising an ExecPlan, record the decision in the plan so the 
 
 When requirements are uncertain, include proof-of-concept or prototyping milestones that can validate feasibility before a larger implementation is committed.
 
+Before drafting an ExecPlan, always engage the user in a discovery conversation. Ask questions to surface missing context, clarify ambiguous language, and agree on requirements. Synthesize the results into the plan's `## Requirements` section. Never jump straight to drafting.
+
 ## Requirements
 
 NON-NEGOTIABLE REQUIREMENTS:
@@ -78,6 +80,13 @@ This plan follows `__PLANS_PATH__` from the repository root and must stay aligne
 ## Purpose / Big Picture
 
 Explain what someone gains after this change and how they can see it working.
+
+## Requirements
+
+High-level requirements synthesized from the discovery conversation with the user. Each requirement should be a short, testable statement. Flag any items that are assumptions rather than confirmed requirements.
+
+- Requirement 1
+- Requirement 2
 
 ## Progress
 

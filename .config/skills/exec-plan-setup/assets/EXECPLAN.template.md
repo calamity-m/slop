@@ -8,6 +8,13 @@ This plan follows `__PLANS_PATH__` from the repository root and must stay aligne
 
 Explain what someone gains after this change and how they can see it working.
 
+## Requirements
+
+High-level requirements synthesized from the discovery conversation with the user. Each requirement should be a short, testable statement. Flag any items that are assumptions rather than confirmed requirements.
+
+- Requirement 1
+- Requirement 2
+
 ## Progress
 
 - [ ] Add timestamped progress items here.
