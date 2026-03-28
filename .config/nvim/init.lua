@@ -187,6 +187,7 @@ require("neo-tree").setup({
 		width = 30,
 	},
 	filesystem = {
+		hijack_netrw_behavior = "disabled",
 		follow_current_file = {
 			enabled = true,
 			leave_dirs_open = false,
@@ -416,6 +417,17 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		require("conform").format({ bufnr = args.buf })
 	end,
 })
+
+-- ===============
+-- COMMAND ALIASES
+-- ===============
+
+local typos = { "W", "Q", "Wq", "WQ", "Wa", "WA", "Qa", "QA", "Wqa", "WQA", "WQa", "WqA" }
+for _, cmd in ipairs(typos) do
+	vim.api.nvim_create_user_command(cmd, function(opts)
+		vim.cmd(cmd:lower() .. (opts.bang and "!" or ""))
+	end, { bang = true })
+end
 
 -- ===============
 -- KEYMAPS
