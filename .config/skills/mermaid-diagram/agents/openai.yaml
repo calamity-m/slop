@@ -1,4 +1,4 @@
 interface:
   display_name: "Mermaid Diagram"
-  short_description: "Create clear Mermaid diagrams (sequence, flowchart, and more)"
-  default_prompt: "Use $mermaid-diagram to turn this into a Mermaid diagram."
+  short_description: "Create clear Mermaid diagrams, including ERDs"
+  default_prompt: "Use $mermaid-diagram to turn this into a Mermaid sequence, flowchart, or ERD diagram."
