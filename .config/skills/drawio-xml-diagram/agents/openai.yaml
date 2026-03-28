@@ -1,0 +1,4 @@
+interface:
+  display_name: "draw.io XML Diagram"
+  short_description: "Create raw draw.io XML diagrams"
+  default_prompt: "Use $drawio-xml-diagram to turn this request into draw.io XML I can paste into diagrams.net."
