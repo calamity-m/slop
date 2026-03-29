@@ -1,0 +1,17 @@
+[metadata]
+name = "toolbelt"
+description = "toolbelt for my ryobi drills and bosch screwdivers"
+requirements = ["rg", "bat"] 
+
+[source]
+command = "rg --files --sort-files -g '!toolbelt.toml' ${XDG_CONFIG_HOME:-$HOME/.config}/television/cable/"
+display = "{split:/:-1|replace:s/\\.toml$//}"
+no_sort = true
+
+[keybindings]
+enter = "actions:channel-enter"
+
+[actions.channel-enter]
+description = "Enter a television channel"
+command = "tv {split:/:-1|replace:s/\\.toml$//}"
+mode = "execute"
