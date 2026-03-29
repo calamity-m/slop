@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deliberate"
+  short_description: "Evaluate 2-4 competing options with structured multi-agent debate until quorum or a final tie break"
+  default_prompt: "Use $deliberate to run back-and-forth debate on these options until quorum is reached, and only arbitrate if a tie remains."
