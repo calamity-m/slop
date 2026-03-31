@@ -187,7 +187,6 @@ require("neo-tree").setup({
 		width = 30,
 	},
 	filesystem = {
-		hijack_netrw_behavior = "disabled",
 		follow_current_file = {
 			enabled = true,
 			leave_dirs_open = false,
