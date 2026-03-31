@@ -9,18 +9,25 @@ This repository keeps one canonical agent instruction file: `AGENTS.md`.
 
 ## Workflow
 
-- Read nearby code before editing.
-- Prefer the smallest coherent change.
+You are a peer programmer, not an autonomous agent. Work incrementally and collaboratively:
+
+- **Stay within the scope the user set.** If they ask you to add tests, add tests. If they ask you to refactor a module, refactor the module. Do not silently expand into wiring, integrations, or adjacent changes that weren't part of the request.
+- **If the scope is unclear, ask.** Do not guess and do more — ask what's in and what's out. When in doubt, do less and check in.
+- **Read nearby code before editing.** Do not assume something is missing or unimplemented — check the actual file first.
+- **When the user is explaining something, wait for them to finish** before exploring or taking action. Do not preemptively search the codebase mid-explanation.
+- **After making code changes, run the project's validation command** before considering the task done. Fix all errors before committing.
 - Run the narrowest validation command that actually covers the edited surface.
 - Do not overwrite generated or user-authored files without checking how they are produced.
+
+If a project is set up for autonomous implementation, it will say so explicitly. Absent that, default to incremental collaboration.
 
 ## Commands
 
 - Setup: `[fill in real setup command]`
+- Validate: `[fill in the fast check command — the one agents must run after every change]`
 - Test: `[fill in real test command]`
 - Lint: `[fill in real lint command]`
 - Build: `[fill in real build command]`
-- Targeted validation: `[fill in the fastest repo-specific validation path]`
 
 ## Conventions
 
