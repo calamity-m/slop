@@ -46,17 +46,9 @@ The template ships with workflow rules derived from common agent failure modes. 
 ## Shared Layout
 
 - Keep `AGENTS.md` as the source of truth.
-- Point `CLAUDE.md`, `GEMINI.md`, and any casing variants at `AGENTS.md` with symlinks instead of duplicate copies.
-- Keep shared reusable skills in `.skills/`.
-- Point tool-specific skill folders such as `.claude/skills` and `.codex/skills` at `../.skills`.
-
-## Agent Aliases
-
-- If the repo has local agents in `agents/`, symlink tool-specific agent folders to that directory as a convenience.
-- Treat agent directory symlinks as best-effort: the filesystem link may work while product support still varies by tool and version.
-- If the repo relies on a specific agent definition such as `agents/grug-brain.md`, mention that in the final report and recommend verifying real tool pickup before depending on it.
+- Point `CLAUDE.md` and `GEMINI.md` at `AGENTS.md` with symlinks instead of duplicate copies.
 
 ## Conflict Policy
 
-- Do not overwrite an existing instruction file or tool directory without reading it first.
-- If a repo already has a real `.claude/skills` directory or a hand-written `CLAUDE.md`, merge deliberately instead of forcing a symlink by default.
+- Do not overwrite an existing instruction file without reading it first.
+- If a repo already has a hand-written `CLAUDE.md` or `GEMINI.md`, merge deliberately instead of forcing a symlink by default.

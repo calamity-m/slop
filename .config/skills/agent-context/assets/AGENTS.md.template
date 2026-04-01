@@ -40,5 +40,3 @@ If a project is set up for autonomous implementation, it will say so explicitly.
 
 - `AGENTS.md` is canonical.
 - `CLAUDE.md` and `GEMINI.md` should point here.
-- Shared skills live in `.skills/`.
-- Repo-local agents live in `agents/` when the repo uses them.

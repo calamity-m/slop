@@ -7,12 +7,9 @@ usage() {
 Usage:
   init-repo.sh [--force] [repo-root]
 
-Initialize a repository for shared AI-agent use by creating:
+Initialize repository agent context by creating:
   - AGENTS.md from the bundled template when missing
-  - CLAUDE/GEMINI aliases pointing to AGENTS.md
-  - .skills/ as the canonical shared skill directory
-  - .claude/.codex/.gemini/.opencode skill aliases to .skills
-  - optional agent directory aliases when ./agents exists
+  - CLAUDE.md and GEMINI.md aliases pointing to AGENTS.md
 
 The script is conservative by default and will not replace existing
 non-symlink files or directories unless --force is passed.
@@ -48,8 +45,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 template_path="$script_dir/../assets/AGENTS.md.template"
 repo_root="$(cd "$repo_root" && pwd)"
 
-tool_dirs=(".claude" ".codex" ".gemini" ".opencode")
-agent_aliases=("CLAUDE.md" "GEMINI.md" "CLAUDE.MD" "GEMINI.MD")
+agent_aliases=("CLAUDE.md" "GEMINI.md")
 
 log() {
   printf '%s\n' "$*"
@@ -57,22 +53,6 @@ log() {
 
 warn() {
   printf 'warning: %s\n' "$*" >&2
-}
-
-ensure_dir() {
-  local path="$1"
-
-  if [[ -d "$path" ]]; then
-    return 0
-  fi
-
-  if [[ -e "$path" ]]; then
-    warn "skipping directory creation for $path because a non-directory already exists"
-    return 1
-  fi
-
-  mkdir -p "$path"
-  log "created directory $path"
 }
 
 install_template_if_missing() {
@@ -127,24 +107,9 @@ ensure_symlink() {
 }
 
 install_template_if_missing "$repo_root/AGENTS.md"
-ensure_dir "$repo_root/.skills" || true
 
 for alias_name in "${agent_aliases[@]}"; do
   ensure_symlink "$repo_root/$alias_name" "AGENTS.md" || true
 done
 
-for tool_dir in "${tool_dirs[@]}"; do
-  ensure_dir "$repo_root/$tool_dir" || continue
-  ensure_symlink "$repo_root/$tool_dir/skills" "../.skills" || true
-done
-
-if [[ -d "$repo_root/agents" ]]; then
-  for tool_dir in "${tool_dirs[@]}"; do
-    ensure_dir "$repo_root/$tool_dir" || continue
-    ensure_symlink "$repo_root/$tool_dir/agents" "../agents" || true
-  done
-else
-  log "skipped agent directory aliases because $repo_root/agents does not exist"
-fi
-
-log "init-ai bootstrap complete for $repo_root"
+log "agent-context bootstrap complete for $repo_root"
