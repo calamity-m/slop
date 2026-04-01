@@ -1,4 +1,0 @@
-interface:
-  display_name: "ExecPlan Setup"
-  short_description: "Set up AGENTS.md and PLANS.md"
-  default_prompt: "Use $exec-plan-setup to add the ExecPlan / PLANS.md workflow to this repository."
