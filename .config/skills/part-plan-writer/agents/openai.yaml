@@ -1,0 +1,4 @@
+interface:
+  display_name: "Part Plan Writer"
+  short_description: "Draft tracked multi-part plans"
+  default_prompt: "Use $part-plan-writer to create a tracked implementation plan with a shared context file and numbered parts."
