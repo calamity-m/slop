@@ -92,6 +92,7 @@ vim.pack.add({
 	{ src = "https://github.com/akinsho/bufferline.nvim" },
 	{ src = "https://github.com/folke/noice.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
+	{ src = "https://github.com/petertriho/nvim-scrollbar" },
 
 	-- syntax / editing
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -102,6 +103,9 @@ vim.pack.add({
 	-- lsp / formatting
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/stevearc/conform.nvim" },
+
+	-- git
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 })
 
 -- ===============
@@ -176,6 +180,9 @@ wk.add({
 	{ "<leader>s", group = "Symbols" },
 	{ "<leader>t", group = "Tabs" },
 	{ "<leader>m", group = "Multicursor" },
+	{ "<leader>G", group = "Git" },
+	{ "<leader>Gt", group = "Git Toggles" },
+	{ "<leader>f", group = "Fzf" },
 })
 
 -- ===============
@@ -187,6 +194,7 @@ require("neo-tree").setup({
 		width = 30,
 	},
 	filesystem = {
+		use_libuv_file_watcher = true,
 		follow_current_file = {
 			enabled = true,
 			leave_dirs_open = false,
@@ -256,6 +264,13 @@ require("noice").setup({
 		inc_rename = true,
 	},
 })
+
+-- ===============
+-- NVIM-SCROLLBAR
+-- ===============
+
+require("scrollbar").setup()
+require("scrollbar.handlers.gitsigns").setup()
 
 -- ===============
 -- FZF-LUA
@@ -418,6 +433,80 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 })
 
 -- ===============
+-- gitsigns
+-- ===============
+
+require("gitsigns").setup({
+	current_line_blame = true,
+	current_line_blame_opts = {
+		delay = 100,
+	},
+	word_diff = false,
+	on_attach = function(bufnr)
+		local gitsigns = require("gitsigns")
+
+		local function map(mode, l, r, opts)
+			opts = opts or {}
+			opts.buffer = bufnr
+			vim.keymap.set(mode, l, r, opts)
+		end
+
+		-- Navigation
+		map("n", "]c", function()
+			if vim.wo.diff then
+				vim.cmd.normal({ "]c", bang = true })
+			else
+				gitsigns.nav_hunk("next")
+			end
+		end, { desc = "Git Next Hunk" })
+
+		map("n", "[c", function()
+			if vim.wo.diff then
+				vim.cmd.normal({ "[c", bang = true })
+			else
+				gitsigns.nav_hunk("prev")
+			end
+		end, { desc = "Git Previous Hunk" })
+
+		-- Actions
+		map("n", "<leader>Gs", gitsigns.stage_hunk, { desc = "Git Stage Hunk" })
+		map("n", "<leader>Gr", gitsigns.reset_hunk, { desc = "Git Reset Hunk" })
+
+		map("v", "<leader>hs", function()
+			gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+		end, { desc = "Git Stage Selection" })
+
+		map("v", "<leader>hr", function()
+			gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+		end, { desc = "Git Reset Selection" })
+
+		map("n", "<leader>GS", gitsigns.stage_buffer, { desc = "Git Stage Buffer" })
+		map("n", "<leader>GR", gitsigns.reset_buffer, { desc = "Git Reset Buffer" })
+		map("n", "<leader>Gp", gitsigns.preview_hunk, { desc = "Git Preview Hunk" })
+		map("n", "<leader>Gi", gitsigns.preview_hunk_inline, { desc = "Git Preview Hunk Inline" })
+
+		map("n", "<leader>Gb", function()
+			gitsigns.blame_line({ full = true })
+		end, { desc = "Git Blame Line" })
+
+		map("n", "<leader>Gd", gitsigns.diffthis, { desc = "Git Diff This" })
+
+		map("n", "<leader>GD", function()
+			gitsigns.diffthis("~")
+		end, { desc = "Git Diff This ~" })
+
+		map("n", "<leader>GQ", function()
+			gitsigns.setqflist("all")
+		end, { desc = "Git Hunks to Quickfix (All)" })
+		map("n", "<leader>hq", gitsigns.setqflist, { desc = "Git Hunks to Quickfix" })
+
+		-- Toggles
+		map("n", "<leader>Gtb", gitsigns.toggle_current_line_blame, { desc = "Git Toggle Line Blame" })
+		map("n", "<leader>Gtw", gitsigns.toggle_word_diff, { desc = "Git Toggle Word Diff" })
+	end,
+})
+
+-- ===============
 -- COMMAND ALIASES
 -- ===============
 
@@ -470,7 +559,6 @@ map("n", "<leader>o", "<cmd>Neotree focus filesystem left<CR>", { desc = "Explor
 
 -- useful extra sources
 map("n", "<leader>be", "<cmd>Neotree show buffers right<CR>", { desc = "Buffer Explorer" })
-map("n", "<leader>ge", "<cmd>Neotree show git_status float<CR>", { desc = "Git Explorer" })
 
 -- reveal current file in the tree
 map("n", "<leader>er", "<cmd>Neotree reveal filesystem left<CR>", { desc = "Explorer Reveal Current File" })
