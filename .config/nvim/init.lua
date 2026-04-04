@@ -93,6 +93,8 @@ vim.pack.add({
 	{ src = "https://github.com/folke/noice.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/petertriho/nvim-scrollbar" },
+	{ src = "https://github.com/RRethy/vim-illuminate" },
+	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 
 	-- syntax / editing
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -271,6 +273,12 @@ require("noice").setup({
 
 require("scrollbar").setup()
 require("scrollbar.handlers.gitsigns").setup()
+
+-- ===============
+-- NVIM-LUALINE
+-- ===============
+
+require("lualine").setup()
 
 -- ===============
 -- FZF-LUA
