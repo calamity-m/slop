@@ -63,16 +63,9 @@ For Phase 1, each advocate must produce:
 {
   "option": "<assigned option>",
   "thesis": "<why this option is best>",
-  "arguments": [
-    "<strong point 1>",
-    "<strong point 2>"
-  ],
-  "assumptions": [
-    "<what must be true>"
-  ],
-  "risks": [
-    "<biggest downside>"
-  ]
+  "arguments": ["<strong point 1>", "<strong point 2>"],
+  "assumptions": ["<what must be true>"],
+  "risks": ["<biggest downside>"]
 }
 ```
 
@@ -81,12 +74,8 @@ For Phase 2, each advocate must add:
 ```json
 {
   "strongest_competitor": "<best competing option>",
-  "critique": [
-    "<weakness in that competing option>"
-  ],
-  "self_flaws": [
-    "<weakness in this advocate's own case>"
-  ]
+  "critique": ["<weakness in that competing option>"],
+  "self_flaws": ["<weakness in this advocate's own case>"]
 }
 ```
 
@@ -96,9 +85,7 @@ For each revision round after the initial pass, each advocate must add:
 {
   "position": "yes | no",
   "confidence": "low | medium | high",
-  "revised_reasoning": [
-    "<updated reasoning>"
-  ]
+  "revised_reasoning": ["<updated reasoning>"]
 }
 ```
 
@@ -120,18 +107,10 @@ Return exactly this JSON shape:
   "decision": "<winning option>",
   "reasoning": "<why it won>",
   "runner_up": "<second best option>",
-  "tradeoffs": [
-    "<key tradeoff 1>",
-    "<key tradeoff 2>"
-  ],
-  "risks": [
-    "<risk 1>",
-    "<risk 2>"
-  ],
+  "tradeoffs": ["<key tradeoff 1>", "<key tradeoff 2>"],
+  "risks": ["<risk 1>", "<risk 2>"],
   "confidence": "low | medium | high",
-  "when_to_reconsider": [
-    "<condition that would change decision>"
-  ]
+  "when_to_reconsider": ["<condition that would change decision>"]
 }
 ```
 

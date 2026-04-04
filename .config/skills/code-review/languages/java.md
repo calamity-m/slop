@@ -50,6 +50,7 @@ Java 16+ `record` types are the right default for immutable data carriers, DTOs,
 When recommending a record, state what boilerplate it eliminates (`equals`, `hashCode`, `toString`, accessor methods, constructor).
 
 Do not recommend records when:
+
 - The class is a JPA/Hibernate entity — records do not work with proxy-based lazy loading
 - The class needs to be mutated after construction
 - The class extends another class (records implicitly extend `Record` and cannot extend others)

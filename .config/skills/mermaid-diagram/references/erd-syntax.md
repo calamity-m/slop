@@ -36,21 +36,21 @@ Examples:
 
 ## Cardinality Tokens
 
-| Meaning | Left side | Right side |
-|---|---|---|
-| Exactly one | `||` | `||` |
-| Zero or one | `|o` | `o|` |
-| One or more | `}|` | `|{` |
-| Zero or more | `}o` | `o{` |
+| Meaning      | Left side | Right side |
+| ------------ | --------- | ---------- | --- | --- | --- | --- |
+| Exactly one  | `         |            | `   | `   |     | `   |
+| Zero or one  | `         | o`         | `o  | `   |
+| One or more  | `}        | `          | `   | {`  |
+| Zero or more | `}o`      | `o{`       |
 
 The token closest to each entity describes the optionality/cardinality on that side.
 
 ## Connectors
 
-| Syntax | Meaning |
-|---|---|
-| `--` | Identifying / strong relationship |
-| `..` | Non-identifying / looser relationship |
+| Syntax | Meaning                               |
+| ------ | ------------------------------------- |
+| `--`   | Identifying / strong relationship     |
+| `..`   | Non-identifying / looser relationship |
 
 Use `--` by default. Use `..` only when that distinction matters to the reader.
 

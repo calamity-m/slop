@@ -7,6 +7,7 @@ Review Rust code with a bias toward ownership clarity, borrowing correctness, an
 Do not treat every `clone()`, `Arc<_>`, `Box<_>`, borrow, or allocation as equally important.
 
 Always evaluate cost in context:
+
 - Cloning a `String` only to build an error while returning early is usually low value to optimize.
 - Cloning or heap-wrapping data that is retained in memory, copied in hot loops, or referenced millions of times is high value to review.
 
@@ -24,6 +25,7 @@ State the tradeoff explicitly for every ownership finding.
 ## Hotspot Patterns
 
 Search for these before judging:
+
 - `clone(`
 - `Arc<`
 - `Rc<`

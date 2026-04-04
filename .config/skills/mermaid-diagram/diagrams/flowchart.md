@@ -11,27 +11,27 @@ Use `TD` unless the flow is clearly horizontal in nature.
 
 ## Node Shapes
 
-| Syntax | Shape | Typical use |
-|---|---|---|
-| `A[Text]` | Rectangle | Action / step |
-| `A(Text)` | Rounded rectangle | Start / end |
-| `A{Text}` | Diamond | Decision / condition |
-| `A([Text])` | Stadium | Terminal / event |
-| `A[[Text]]` | Subroutine | Subprocess / external call |
-| `A((Text))` | Circle | Connector / junction |
+| Syntax      | Shape             | Typical use                |
+| ----------- | ----------------- | -------------------------- |
+| `A[Text]`   | Rectangle         | Action / step              |
+| `A(Text)`   | Rounded rectangle | Start / end                |
+| `A{Text}`   | Diamond           | Decision / condition       |
+| `A([Text])` | Stadium           | Terminal / event           |
+| `A[[Text]]` | Subroutine        | Subprocess / external call |
+| `A((Text))` | Circle            | Connector / junction       |
 
 Keep node IDs short (`A`, `B`, `C` or meaningful abbreviations). Put readable text inside the shape brackets.
 
 ## Edge Syntax
 
-| Syntax | Style |
-|---|---|
-| `A --> B` | Solid arrow |
-| `A --- B` | Solid line (no arrow) |
-| `A -.-> B` | Dotted arrow |
-| `A ==> B` | Thick arrow |
-| `A -->\|label\| B` | Arrow with label |
-| `A --label--> B` | Alternative label syntax |
+| Syntax             | Style                    |
+| ------------------ | ------------------------ |
+| `A --> B`          | Solid arrow              |
+| `A --- B`          | Solid line (no arrow)    |
+| `A -.-> B`         | Dotted arrow             |
+| `A ==> B`          | Thick arrow              |
+| `A -->\|label\| B` | Arrow with label         |
+| `A --label--> B`   | Alternative label syntax |
 
 Prefer `-->` for normal flow. Use `-.->` for optional or async paths. Use `==>` sparingly for emphasis.
 

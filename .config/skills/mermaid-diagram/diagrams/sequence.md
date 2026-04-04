@@ -15,12 +15,12 @@ Start with `sequenceDiagram`.
 
 ## Arrow Styles
 
-| Arrow | Meaning |
-|---|---|
-| `->>` | Message / request |
-| `-->>` | Return / response |
-| `-x` | Stop or failed delivery |
-| `--x` | Failed return or terminated response |
+| Arrow  | Meaning                              |
+| ------ | ------------------------------------ |
+| `->>`  | Message / request                    |
+| `-->>` | Return / response                    |
+| `-x`   | Stop or failed delivery              |
+| `--x`  | Failed return or terminated response |
 
 Prefer `->>` and `-->>` unless a failure marker makes the diagram materially clearer.
 

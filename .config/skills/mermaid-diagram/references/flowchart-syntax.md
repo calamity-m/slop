@@ -11,12 +11,12 @@ flowchart TD
 
 ## Direction Keywords
 
-| Keyword | Direction |
-|---|---|
+| Keyword     | Direction     |
+| ----------- | ------------- |
 | `TD` / `TB` | Top to bottom |
-| `LR` | Left to right |
-| `RL` | Right to left |
-| `BT` | Bottom to top |
+| `LR`        | Left to right |
+| `RL`        | Right to left |
+| `BT`        | Bottom to top |
 
 Prefer `TD` for process flows and `LR` for pipelines or timelines.
 
@@ -34,29 +34,29 @@ flowchart TD
     H[(Database)]
 ```
 
-| Syntax | Shape | Typical use |
-|---|---|---|
-| `[Text]` | Rectangle | Action / step |
-| `(Text)` | Rounded rectangle | Start / end |
-| `{Text}` | Diamond | Decision / condition |
-| `([Text])` | Stadium | Terminal / event |
-| `[[Text]]` | Subroutine | Subprocess / external call |
-| `((Text))` | Circle | Connector / junction |
-| `>Text]` | Asymmetric | Flag / signal |
-| `[(Text)]` | Cylinder / database | Data store |
+| Syntax     | Shape               | Typical use                |
+| ---------- | ------------------- | -------------------------- |
+| `[Text]`   | Rectangle           | Action / step              |
+| `(Text)`   | Rounded rectangle   | Start / end                |
+| `{Text}`   | Diamond             | Decision / condition       |
+| `([Text])` | Stadium             | Terminal / event           |
+| `[[Text]]` | Subroutine          | Subprocess / external call |
+| `((Text))` | Circle              | Connector / junction       |
+| `>Text]`   | Asymmetric          | Flag / signal              |
+| `[(Text)]` | Cylinder / database | Data store                 |
 
 ## Edge Types
 
 ### Without labels
 
-| Syntax | Style |
-|---|---|
-| `-->` | Solid arrow |
-| `---` | Solid line (no arrow) |
-| `-.->` | Dotted arrow |
-| `-.-` | Dotted line |
-| `==>` | Thick arrow |
-| `===` | Thick line |
+| Syntax | Style                 |
+| ------ | --------------------- |
+| `-->`  | Solid arrow           |
+| `---`  | Solid line (no arrow) |
+| `-.->` | Dotted arrow          |
+| `-.-`  | Dotted line           |
+| `==>`  | Thick arrow           |
+| `===`  | Thick line            |
 
 ### With labels
 

@@ -40,7 +40,7 @@ The fastest path from `git clone` to seeing it work. Numbered steps. Include act
 
 One short paragraph or a few bullet points. What's the value proposition? Why does this exist instead of using $ALTERNATIVE? What's the core design decision? This section earns the reader's attention — don't waste it.
 
-## Further Reading *(optional)*
+## Further Reading _(optional)_
 
 A short list of links to deeper docs, architecture decisions, API references, or contributing guides. Only include if those docs actually exist in the repo or are hosted somewhere. Do not create placeholder links.
 ```

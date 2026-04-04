@@ -42,9 +42,10 @@ python3 <skill-dir>/scripts/validate_plan_bundle.py --repo-root <repo-root> --bu
 8. Run the review loop on every substantive plan. Use fresh no-context sub-agents. Pass raw artifacts, not your conclusions.
 9. Update `plans/<slug>/README.md` after each review pass. Record findings, accepted or rejected changes, and the resulting review status.
 10. If implementation starts from the plan, keep the plan files alive:
-   - update the active part file after material progress, discoveries, validation results, or scope changes
-   - update the task `README.md` when part status, sequencing, blockers, or acceptance changes
-   - do not leave important decisions only in chat
+
+- update the active part file after material progress, discoveries, validation results, or scope changes
+- update the task `README.md` when part status, sequencing, blockers, or acceptance changes
+- do not leave important decisions only in chat
 
 ## Required Review Passes
 

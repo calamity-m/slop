@@ -280,6 +280,7 @@ require("scrollbar.handlers.gitsigns").setup()
 -- ===============
 
 require("lualine").setup({
+	extensions = { "neo-tree" },
 	options = {
 		theme = "kanagawa",
 	},
@@ -405,6 +406,7 @@ vim.lsp.enable({
 	"gopls",
 	"lua_ls",
 	"ty",
+	"oxfmt",
 })
 
 -- ===============

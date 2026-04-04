@@ -50,13 +50,13 @@ Sometimes you need to filter structured data and `jq`/`awk` isn't expressive eno
 
 ## Features
 
-| Feature | Status |
-|---------|--------|
-| CSV support | ✅ |
-| JSON support | ✅ |
-| Parquet support | 🚧 |
-| XML support | 📋 |
-| YAML support | 📋 |
+| Feature         | Status |
+| --------------- | ------ |
+| CSV support     | ✅     |
+| JSON support    | ✅     |
+| Parquet support | 🚧     |
+| XML support     | 📋     |
+| YAML support    | 📋     |
 
 ## Installation
 
@@ -98,7 +98,7 @@ Please read CODE_OF_CONDUCT.md...
 MIT — see LICENSE file.
 ```
 
-**Why this fails:** Five badges, a TOC (meaning the README is too long), a feature table with roadmap items that don't exist yet, six install paths when one would do, and three sections that just point to files that already exist in the repo. The reader still doesn't know *why* they'd use this over alternatives.
+**Why this fails:** Five badges, a TOC (meaning the README is too long), a feature table with roadmap items that don't exist yet, six install paths when one would do, and three sections that just point to files that already exist in the repo. The reader still doesn't know _why_ they'd use this over alternatives.
 
 ---
 

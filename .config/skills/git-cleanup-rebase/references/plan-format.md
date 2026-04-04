@@ -21,9 +21,7 @@ Use `git log --reverse --format='%H %s' <base>..HEAD` before drafting it.
     },
     {
       "subject": "refactor(ui): simplify empty state rendering",
-      "commits": [
-        "3333333333333333333333333333333333333333"
-      ]
+      "commits": ["3333333333333333333333333333333333333333"]
     }
   ]
 }

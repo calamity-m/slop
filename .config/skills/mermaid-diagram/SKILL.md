@@ -23,11 +23,11 @@ If the source flow is ambiguous, state the assumption before the diagram.
 
 ## Triage — Choosing a Diagram Type
 
-| Signal in user request | Diagram type |
-|---|---|
-| Interactions between actors/systems, message flows, API calls, request/response, handshakes, async jobs, webhooks | **sequence** |
-| Decision trees, process flows, branching logic, steps with conditions, workflow routing, state transitions | **flowchart** |
-| Tables, entities, schema relationships, foreign keys, cardinality, one-to-many/many-to-many data modeling | **erd** |
+| Signal in user request                                                                                            | Diagram type  |
+| ----------------------------------------------------------------------------------------------------------------- | ------------- |
+| Interactions between actors/systems, message flows, API calls, request/response, handshakes, async jobs, webhooks | **sequence**  |
+| Decision trees, process flows, branching logic, steps with conditions, workflow routing, state transitions        | **flowchart** |
+| Tables, entities, schema relationships, foreign keys, cardinality, one-to-many/many-to-many data modeling         | **erd**       |
 
 If the request fits both (e.g. a flow with both actor interactions and branching decisions), prefer the type that best serves the primary concern. If truly ambiguous, ask.
 

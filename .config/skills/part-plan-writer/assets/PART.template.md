@@ -1,4 +1,4 @@
-# Part __PART_NUMBER__ - __PART_NAME__
+# Part **PART_NUMBER** - **PART_NAME**
 
 Status: planned
 Parent: [`README.md`](__MASTER_PLAN_LINK__)

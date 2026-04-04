@@ -16,12 +16,12 @@ Start with `erDiagram`.
 
 ## Relationship Patterns
 
-| Relationship | Example |
-|---|---|
-| One to many | `CUSTOMER ||--o{ ORDER : places` |
-| One to one | `USER ||--|| PROFILE : has` |
-| Many to many | `USER }o--o{ TEAM : joins` |
-| Optional to one | `ORDER }o--o| COUPON : uses` |
+| Relationship    | Example                    |
+| --------------- | -------------------------- | -------------- | -------------------- | --- | -------------- |
+| One to many     | `CUSTOMER                  |                | --o{ ORDER : places` |
+| One to one      | `USER                      |                | --                   |     | PROFILE : has` |
+| Many to many    | `USER }o--o{ TEAM : joins` |
+| Optional to one | `ORDER }o--o               | COUPON : uses` |
 
 Use solid `--` relationships by default. Use dotted `..` only when the identifying vs non-identifying distinction matters.
 

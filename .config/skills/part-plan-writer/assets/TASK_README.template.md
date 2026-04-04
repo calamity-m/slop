@@ -1,8 +1,8 @@
-# __TITLE__
+# **TITLE**
 
 Status: planned
 Review status: draft
-Part count: __PART_COUNT__
+Part count: **PART_COUNT**
 Context: [`PLAN_CONTEXT.md`](__CONTEXT_LINK__)
 
 This task plan is a living document. Update this file when part status, blockers, sequencing, or acceptance changes. Update the active part file after material implementation progress.
@@ -19,8 +19,9 @@ Describe what this task delivers, why it matters, and what a reader can observe 
 ## Part Tracker
 
 | Part | File | Status | Notes |
-| --- | --- | --- | --- |
-__PART_ROWS__
+| ---- | ---- | ------ | ----- |
+
+**PART_ROWS**
 
 ## Global Progress Log
 
