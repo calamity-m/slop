@@ -423,7 +423,12 @@ require("conform").setup({
 		},
 		python = { "ruff" },
 		rust = { "rustfmt" },
-		javascript = { "prettierd", "prettier", stop_after_first = true },
+		javascript = { "oxfmt" },
+		javascriptreact = { "oxfmt" },
+		typescript = { "oxfmt" },
+		typescriptreact = { "oxfmt" },
+		json = { "oxfmt" },
+		vue = { "oxfmt" },
 	},
 
 	default_format_opts = {
