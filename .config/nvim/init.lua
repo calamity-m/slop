@@ -74,7 +74,8 @@ vim.pack.add({
 	{ src = "https://github.com/webhooked/kanso.nvim" },
 }, { confirm = false })
 
-vim.cmd.colorscheme("kanagawa-dragon")
+require("kanagawa").load("dragon")
+
 -- ===============
 -- PLUGINS
 -- ===============
@@ -278,7 +279,11 @@ require("scrollbar.handlers.gitsigns").setup()
 -- NVIM-LUALINE
 -- ===============
 
-require("lualine").setup()
+require("lualine").setup({
+	options = {
+		theme = "kanagawa",
+	},
+})
 
 -- ===============
 -- FZF-LUA
