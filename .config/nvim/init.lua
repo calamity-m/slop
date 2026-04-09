@@ -102,6 +102,7 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 	{ src = "https://github.com/smjonas/inc-rename.nvim" },
 	{ src = "https://github.com/jake-stewart/multicursor.nvim" },
+	{ src = "https://github.com/saghen/blink.indent" },
 
 	-- lsp / formatting
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
@@ -132,7 +133,7 @@ require("nvim-treesitter").install({
 })
 
 -- ===============
--- BLINK
+-- BLINK CMP
 -- ===============
 
 require("blink.cmp").setup({
@@ -149,6 +150,51 @@ require("blink.cmp").setup({
 	},
 	fuzzy = {
 		implementation = "prefer_rust_with_warning",
+	},
+})
+
+-- ===============
+-- BLINK INDENT
+-- ===============
+vim.api.nvim_create_autocmd("ColorScheme", {
+	callback = function()
+		-- ultra subtle base
+		vim.api.nvim_set_hl(0, "BlinkIndent", { fg = "#191922" })
+
+		-- kanagawa rainbow
+		vim.api.nvim_set_hl(0, "BlinkIndentRed", { fg = "#C34043" })
+		vim.api.nvim_set_hl(0, "BlinkIndentYellow", { fg = "#C0A36E" })
+		vim.api.nvim_set_hl(0, "BlinkIndentBlue", { fg = "#7E9CD8" })
+		vim.api.nvim_set_hl(0, "BlinkIndentTeal", { fg = "#6A9589" })
+		vim.api.nvim_set_hl(0, "BlinkIndentViolet", { fg = "#957FB8" })
+		vim.api.nvim_set_hl(0, "BlinkIndentOrange", { fg = "#FFA066" })
+	end,
+})
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+-- 	callback = function()
+-- 		vim.api.nvim_set_hl(0, "BlinkIndent", { fg = "#1F1F28" }) -- almost invisible
+-- 		vim.api.nvim_set_hl(0, "BlinkIndentScope", { fg = "#727169" }) -- soft contrast
+-- 	end,
+-- })
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+-- 	callback = function()
+-- 		vim.api.nvim_set_hl(0, "BlinkIndent", { link = "NonText" })
+-- 		vim.api.nvim_set_hl(0, "BlinkIndentChar", { link = "Whitespace" })
+-- 		vim.api.nvim_set_hl(0, "BlinkIndentScope", { link = "Comment" })
+-- 	end,
+-- })
+
+require("blink.indent").setup({
+	static = {
+		enabled = false,
+		char = "╎",
+		highlights = { "BlinkIndent" },
+	},
+	scope = {
+		char = "╎",
+		highlights = {
+			"BlinkIndent",
+		},
 	},
 })
 
@@ -743,6 +789,15 @@ mc.addKeymapLayer(function(layerSet)
 		end
 	end)
 end)
+
+-- -----------------
+-- Indent toggle
+-- -----------------
+
+local indent = require("blink.indent")
+map("n", "<C-n>", function()
+	indent.enable(not indent.is_enabled())
+end, { desc = "Toggle indent guides" })
 
 -- -----------------
 -- Black hole register helpers
