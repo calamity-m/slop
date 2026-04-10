@@ -98,11 +98,11 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
 
 	-- syntax / editing
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter" },
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 	{ src = "https://github.com/smjonas/inc-rename.nvim" },
 	{ src = "https://github.com/jake-stewart/multicursor.nvim" },
 	{ src = "https://github.com/saghen/blink.indent" },
+	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 
 	-- lsp / formatting
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
@@ -116,20 +116,27 @@ vim.pack.add({
 -- TREESITTER
 -- ===============
 
-require("nvim-treesitter").setup({})
-
-require("nvim-treesitter").install({
+require("tree-sitter-manager").setup({
+	"bash",
+	"lua",
+	"python",
 	"rust",
 	"javascript",
 	"zig",
 	"python",
 	"go",
 	"markdown",
-	"lua",
 	"json",
 	"toml",
 	"typescript",
 	"tsx",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "*",
+	callback = function()
+		pcall(vim.treesitter.start)
+	end,
 })
 
 -- ===============
