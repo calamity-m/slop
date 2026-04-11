@@ -1,4 +1,0 @@
-interface:
-  display_name: "Edit Helm Chart"
-  short_description: "Edit and validate Helm charts"
-  default_prompt: "Use $edit-helm-chart to update this Helm chart and validate the result."

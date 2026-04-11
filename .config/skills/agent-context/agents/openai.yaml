@@ -1,4 +1,0 @@
-interface:
-  display_name: "Agent Context"
-  short_description: "Create and maintain repo agent context"
-  default_prompt: "Use $agent-context to create or improve this repository's AGENTS.md and related aliases."
