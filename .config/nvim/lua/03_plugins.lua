@@ -1,0 +1,46 @@
+vim.pack.add({
+	{ src = "https://github.com/nvim-lua/plenary.nvim" },
+	{ src = "https://github.com/MunifTanjim/nui.nvim" },
+	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
+	{ src = "https://github.com/rcarriga/nvim-notify" },
+	{ src = "https://github.com/folke/which-key.nvim" },
+	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
+	{ src = "https://github.com/akinsho/bufferline.nvim" },
+	{ src = "https://github.com/folke/noice.nvim" },
+	{ src = "https://github.com/ibhagwan/fzf-lua" },
+	{ src = "https://github.com/petertriho/nvim-scrollbar" },
+	{ src = "https://github.com/RRethy/vim-illuminate" },
+	{ src = "https://github.com/nvim-lualine/lualine.nvim" },
+	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
+	{ src = "https://github.com/smjonas/inc-rename.nvim" },
+	{ src = "https://github.com/jake-stewart/multicursor.nvim" },
+	{ src = "https://github.com/saghen/blink.indent" },
+	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
+	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/rachartier/tiny-code-action.nvim" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+})
+
+local plugin_modules = {
+	"plugins.treesitter",
+	"plugins.blink_cmp",
+	"plugins.blink_indent",
+	"plugins.inc_rename",
+	"plugins.multicursor",
+	"plugins.which_key",
+	"plugins.neo_tree",
+	"plugins.bufferline",
+	"plugins.noice",
+	"plugins.fzf_lua",
+	"plugins.scrollbar",
+	"plugins.lualine",
+	"plugins.lsp",
+	"plugins.conform",
+	"plugins.tiny_code_action",
+	"plugins.gitsigns",
+}
+
+for _, module in ipairs(plugin_modules) do
+	require(module)
+end
