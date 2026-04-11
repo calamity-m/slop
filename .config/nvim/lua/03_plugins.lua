@@ -21,6 +21,8 @@ vim.pack.add({
 	{ src = "https://github.com/rachartier/tiny-code-action.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" },
+	{ src = "https://github.com/nvzone/volt" },
+	{ src = "https://github.com/nvzone/floaterm" },
 })
 
 local plugin_modules = {
@@ -41,6 +43,7 @@ local plugin_modules = {
 	"plugins.tiny_code_action",
 	"plugins.gitsigns",
 	"plugins.haunt",
+	"plugins.floaterm",
 }
 
 for _, module in ipairs(plugin_modules) do
