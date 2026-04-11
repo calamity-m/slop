@@ -1,0 +1,4 @@
+interface:
+  display_name: "Init Context"
+  short_description: "Scaffold AGENTS.md with cautious coding rules"
+  default_prompt: "Use $init-context to create or update AGENTS.md with assumptions-first, simplicity-first, surgical-change, and verification-first guidance."
