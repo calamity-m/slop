@@ -19,4 +19,15 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 	end,
 })
 
+require("kanagawa").setup({
+	colors = {
+		theme = {
+			all = {
+				ui = {
+					bg_gutter = "none",
+				},
+			},
+		},
+	},
+})
 require("kanagawa").load("dragon")

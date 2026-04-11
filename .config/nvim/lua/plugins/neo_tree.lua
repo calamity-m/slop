@@ -7,6 +7,7 @@ neo_tree.setup({
 	},
 	filesystem = {
 		use_libuv_file_watcher = true,
+		hijack_netrw_behavior = "disabled", -- Don't hijack netrw
 		follow_current_file = {
 			enabled = true,
 			leave_dirs_open = false,
