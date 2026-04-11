@@ -1,6 +1,6 @@
 ---
 name: part-plan-writer
-description: Draft and maintain implementation plans that are split into a fixed number of numbered parts with trackable progress. Use when the user wants a feature plan, rollout plan, migration plan, or refactor plan broken into X parts, wants a shared PLAN_CONTEXT.md plus per-task plan files, or wants living planning docs that must be updated during implementation.
+description: Draft and maintain implementation plans. Generally only invoked by the user. 
 ---
 
 # Part Plan Writer

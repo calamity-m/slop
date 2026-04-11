@@ -1,6 +1,6 @@
 ---
 name: git-cleanup-rebase
-description: Rewrite a feature branch into clear reviewable commit chunks before opening a merge request. Use when needing to clean up noisy local git history with a backup branch, a validated plan file, and a scripted interactive rebase that squashes adjacent commits into one or more reviewer-friendly commits. Do not use for commit splitting, arbitrary reordering, merge-commit histories, or repos with an in-progress git operation.
+description: Help a user cleanup a git branch through rebase and squashing. 
 ---
 
 # Git Cleanup Rebase
