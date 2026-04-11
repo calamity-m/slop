@@ -14,4 +14,5 @@ wk.add({
 	{ "<leader>Gt", group = "Git Toggles" },
 	{ "<leader>s", group = "Symbols" },
 	{ "<leader>t", group = "Toggle" },
+	{ "<leader>h", group = "Haunt" },
 })

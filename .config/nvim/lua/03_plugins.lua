@@ -20,6 +20,7 @@ vim.pack.add({
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/rachartier/tiny-code-action.nvim" },
 	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
+	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" },
 })
 
 local plugin_modules = {
@@ -39,6 +40,7 @@ local plugin_modules = {
 	"plugins.conform",
 	"plugins.tiny_code_action",
 	"plugins.gitsigns",
+	"plugins.haunt",
 }
 
 for _, module in ipairs(plugin_modules) do
