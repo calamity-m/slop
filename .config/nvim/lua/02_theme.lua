@@ -1,23 +1,13 @@
 vim.pack.add({
+	{ src = "https://github.com/zaldih/themery.nvim" },
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
-	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 	{ src = "https://github.com/webhooked/kanso.nvim" },
+	{ src = "https://github.com/rose-pine/neovim", name = "rose-pine" },
+	{ src = "https://github.com/sainnhe/gruvbox-material" },
+	{ src = "https://github.com/savq/melange-nvim" },
+	{ src = "https://github.com/oskarnurm/koda.nvim" },
+	{ src = "https://github.com/nikolvs/vim-sunbather" },
 }, { confirm = false })
-
-local theme_group = vim.api.nvim_create_augroup("ThemeHighlights", { clear = true })
-
-vim.api.nvim_create_autocmd("ColorScheme", {
-	group = theme_group,
-	callback = function()
-		vim.api.nvim_set_hl(0, "BlinkIndent", { fg = "#191922" })
-		vim.api.nvim_set_hl(0, "BlinkIndentRed", { fg = "#C34043" })
-		vim.api.nvim_set_hl(0, "BlinkIndentYellow", { fg = "#C0A36E" })
-		vim.api.nvim_set_hl(0, "BlinkIndentBlue", { fg = "#7E9CD8" })
-		vim.api.nvim_set_hl(0, "BlinkIndentTeal", { fg = "#6A9589" })
-		vim.api.nvim_set_hl(0, "BlinkIndentViolet", { fg = "#957FB8" })
-		vim.api.nvim_set_hl(0, "BlinkIndentOrange", { fg = "#FFA066" })
-	end,
-})
 
 require("kanagawa").setup({
 	colors = {
@@ -30,4 +20,46 @@ require("kanagawa").setup({
 		},
 	},
 })
-require("kanagawa").load("dragon")
+
+local themery = require("themery")
+
+themery.setup({
+	themes = {
+		{ name = "Kanagawa Dragon", colorscheme = "kanagawa-dragon" },
+		{ name = "Kanagawa Wave", colorscheme = "kanagawa-wave" },
+
+		{ name = "Rose Pine Moon", colorscheme = "rose-pine-moon" },
+
+		{
+			name = "Gruvbox Material (Soft)",
+			colorscheme = "gruvbox-material",
+			before = [[
+				vim.g.gruvbox_material_background = "soft"
+				vim.g.gruvbox_material_better_performance = true
+      ]],
+		},
+		{
+			name = "Gruvbox Material (Medium)",
+			colorscheme = "gruvbox-material",
+			before = [[
+        vim.g.gruvbox_material_background = "medium"
+        vim.g.gruvbox_material_better_performance = true
+      ]],
+		},
+		{
+			name = "Gruvbox Material (Hard)",
+			colorscheme = "gruvbox-material",
+			before = [[
+        vim.g.gruvbox_material_background = "hard"
+        vim.g.gruvbox_material_better_performance = true
+      ]],
+		},
+		{ name = "Melange", colorscheme = "melange" },
+		{ name = "Kanso Zen", colorscheme = "kanso-zen" },
+		{ name = "Kanso Ink", colorscheme = "kanso-ink" },
+		{ name = "Kanso Mist", colorscheme = "kanso-mist" },
+		{ name = "Koda", colorscheme = "koda" },
+		{ name = "Sunbather", colorscheme = "sunbather" },
+	},
+	livePreview = true,
+})
