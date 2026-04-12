@@ -13,7 +13,8 @@ Creates:
   ~/.config/skills  -> <repo>/.config/skills
   ~/.config/agents  -> <repo>/.config/agents
   ~/.config/nvim    -> <repo>/.config/nvim
-  ~/.config/zellij  -> <repo>/.config/zellij
+  ~/.config/zellij       -> <repo>/.config/zellij
+  ~/.config/peanutbutter -> <repo>/.config/peanutbutter
 
 Tool-specific links (skills only):
   ${CLAUDE_HOME:-~/.claude}/skills -> ~/.config/skills
@@ -118,6 +119,7 @@ ensure_symlink "$HOME/.config/skills" "$repo_dir/.config/skills" || true
 ensure_symlink "$HOME/.config/agents" "$repo_dir/.config/agents" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/zellij" "$repo_dir/.config/zellij" || true
+ensure_symlink "$HOME/.config/peanutbutter" "$repo_dir/.config/peanutbutter" || true
 
 # Symlink ~/.bashrc.d
 ensure_symlink "$HOME/.bashrc.d" "$repo_dir/.bashrc.d" || true
@@ -150,7 +152,8 @@ log "install complete"
 log "  skills: ~/.config/skills -> $repo_dir/.config/skills"
 log "  agents: ~/.config/agents -> $repo_dir/.config/agents"
 log "  nvim:   ~/.config/nvim -> $repo_dir/.config/nvim"
-log "  zellij: ~/.config/zellij -> $repo_dir/.config/zellij"
+log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
+log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"
 log "  bashrc: ~/.bashrc.d -> $repo_dir/.bashrc.d"
 log "  claude: $claude_root/skills -> ~/.config/skills"
 log "  codex:  $codex_root/skills -> ~/.config/skills"
