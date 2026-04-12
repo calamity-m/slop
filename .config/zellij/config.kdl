@@ -415,7 +415,7 @@ themes {
         text_unselected {
             base 197 201 199        // fg      #C5C9C7
             background 34 38 45     // mistBg0 #22262D
-            emphasis_0 220 165 97   // yellow  #DCA561
+            emphasis_0 182 146 123  // orange  #b6927b
             emphasis_1 127 180 202  // blue    #7FB4CA
             emphasis_2 138 154 123  // green3  #8a9a7b
             emphasis_3 147 138 169  // violet  #938AA9
@@ -423,7 +423,7 @@ themes {
         text_selected {
             base 34 38 45           // mistBg0 #22262D
             background 101 133 148  // blue2   #658594
-            emphasis_0 220 165 97   // yellow  #DCA561
+            emphasis_0 182 146 123  // orange  #b6927b
             emphasis_1 127 180 202  // blue    #7FB4CA
             emphasis_2 138 154 123  // green3  #8a9a7b
             emphasis_3 147 138 169  // violet  #938AA9
@@ -431,16 +431,16 @@ themes {
         ribbon_selected {
             base 34 38 45           // mistBg0 #22262D
             background 101 133 148  // blue2   #658594
-            emphasis_0 195 64 67    // red     #C34043
+            emphasis_0 196 116 110  // red3    #c4746e
             emphasis_1 220 165 97   // yellow  #DCA561
             emphasis_2 147 138 169  // violet  #938AA9
             emphasis_3 127 180 202  // blue    #7FB4CA
         }
         ribbon_unselected {
-            base 34 38 45           // mistBg0 #22262D
-            background 164 167 164  // gray2   #A4A7A4
-            emphasis_0 195 64 67    // red     #C34043
-            emphasis_1 197 201 199  // fg      #C5C9C7
+            base 197 201 199        // fg      #C5C9C7
+            background 57 59 68     // mistBg2 #393B44
+            emphasis_0 196 116 110  // red3    #c4746e
+            emphasis_1 113 124 124  // gray    #717C7C
             emphasis_2 101 133 148  // blue2   #658594
             emphasis_3 147 138 169  // violet  #938AA9
         }
@@ -558,7 +558,7 @@ default_mode "locked"
 // The name of the default layout to load on startup
 // Default: "default"
 // 
-// default_layout "compact"
+default_layout "home"
  
 // The folder in which Zellij will look for layouts
 // (Requires restart)
@@ -584,7 +584,7 @@ default_mode "locked"
 //   - true (default, enabled)
 //   - false
 // 
-pane_frames false
+pane_frames true
  
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)

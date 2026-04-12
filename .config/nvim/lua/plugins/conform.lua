@@ -16,6 +16,14 @@ conform.setup({
 		typescriptreact = { "oxfmt" },
 		json = { "oxfmt" },
 		vue = { "oxfmt" },
+		kdl = { "kdlfmt" },
+	},
+	formatters = {
+		kdlfmt = {
+			condition = function(_, ctx)
+				return not ctx.filename:match("config%.kdl$")
+			end,
+		},
 	},
 	default_format_opts = {
 		lsp_format = "fallback",
