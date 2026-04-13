@@ -45,15 +45,16 @@ If the user provides more than 4 options, narrow the set before deliberating.
 4. Give each advocate only its assigned option, the shared problem, the shared constraints, and the full option list for comparison.
 5. Require each advocate to complete Phase 1 and the first critique pass in a concise structured response.
 6. Continue the back-and-forth critique and revision cycle until quorum is reached or the round limit is hit.
-7. Treat quorum as reached when exactly one advocate still returns `position: yes` for its own option and all other advocates have withdrawn support with `position: no`.
-8. If no quorum is reached by the final round, arbitrate locally as a tie breaker. Score the remaining contenders against:
+7. If the first round/exchange does not produce quorum, you must run at least one more full round of advocate responses before arbitrating.
+8. Treat quorum as reached when exactly one advocate still returns `position: yes` for its own option and all other advocates have withdrawn support with `position: no`.
+9. If no quorum is reached by the final round, arbitrate locally as a tie breaker. Do not short-circuit to arbitration after the first unresolved exchange. Score the remaining contenders against:
    - correctness
    - simplicity
    - risk
    - reversibility
    - effort
    - alignment with constraints
-9. Return the final result in the exact JSON shape below.
+10. Return the final result as a concise human-readable summary, not raw JSON.
 
 ## Advocate Output Contract
 
@@ -92,27 +93,52 @@ For each revision round after the initial pass, each advocate must add:
 ## Arbiter Rules
 
 - Default to letting the advocates converge on a winner without intervention.
+- Do not arbitrate after a single unresolved round. If the first exchange does not produce agreement, run another full round first.
 - Apply the same criteria to every option only when quorum is not reached.
 - Prefer the option that best fits the stated constraints, not the most interesting option.
 - Treat reversibility as a major tie-breaker when correctness is close.
+- The arbiter is for persistent deadlock, not for speeding up the process.
 - Keep the reasoning concise and decision-focused.
 - If the evidence is weak or constraints are underspecified, lower confidence rather than over-claiming.
 
 ## Output Format
 
-Return exactly this JSON shape:
+Return a concise Markdown summary for the user.
 
-```json
-{
-  "decision": "<winning option>",
-  "reasoning": "<why it won>",
-  "runner_up": "<second best option>",
-  "tradeoffs": ["<key tradeoff 1>", "<key tradeoff 2>"],
-  "risks": ["<risk 1>", "<risk 2>"],
-  "confidence": "low | medium | high",
-  "when_to_reconsider": ["<condition that would change decision>"]
-}
+Use this structure:
+
+```md
+## Decision
+<winning option>
+
+## Why
+<short paragraph explaining why it won>
+
+## Runner-Up
+<second best option>
+
+## Tradeoffs
+- <key tradeoff 1>
+- <key tradeoff 2>
+
+## Risks
+- <risk 1>
+- <risk 2>
+
+## Confidence
+<low | medium | high>
+
+## Reconsider If
+- <condition that would change the decision>
+- <another condition if needed>
 ```
+
+Rules:
+
+- Do not emit JSON for the final answer unless the user explicitly asks for JSON.
+- Keep the final answer readable in a terminal.
+- Be concise. The final summary should usually fit in 8-16 lines.
+- Preserve the same decision content the JSON would have carried: winner, reasoning, runner-up, tradeoffs, risks, confidence, and when to reconsider.
 
 ## Modes
 
