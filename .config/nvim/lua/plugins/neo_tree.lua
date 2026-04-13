@@ -4,6 +4,9 @@ local neo_tree = require("neo-tree")
 neo_tree.setup({
 	window = {
 		width = 30,
+		mappings = {
+			["<space>"] = "none",
+		},
 	},
 	filesystem = {
 		use_libuv_file_watcher = true,
