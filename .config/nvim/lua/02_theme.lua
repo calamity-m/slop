@@ -17,6 +17,33 @@ require("kanagawa").setup({
 	},
 })
 
+require("kanso").setup({
+	overrides = function(colors)
+		return {
+			DiagnosticUnderlineError = {
+				fg = colors.theme.diag.error,
+				undercurl = true,
+				sp = colors.theme.diag.error,
+			},
+			DiagnosticUnderlineWarn = {
+				fg = colors.theme.diag.warning,
+				undercurl = true,
+				sp = colors.theme.diag.warning,
+			},
+			DiagnosticUnderlineInfo = {
+				fg = colors.theme.diag.info,
+				undercurl = true,
+				sp = colors.theme.diag.info,
+			},
+			DiagnosticUnderlineHint = {
+				fg = colors.theme.diag.hint,
+				undercurl = true,
+				sp = colors.theme.diag.hint,
+			},
+		}
+	end,
+})
+
 local themery = require("themery")
 
 themery.setup({
