@@ -1,0 +1,105 @@
+local M = {}
+
+local state_file = vim.fn.stdpath("data") .. "/theme-picker.json"
+local legacy_state_file = vim.fn.stdpath("data") .. "/themery/state.json"
+
+M.themes = {
+	{ name = "Kanagawa Dragon", colorscheme = "kanagawa-dragon" },
+	{ name = "Kanagawa Wave", colorscheme = "kanagawa-wave" },
+	{ name = "Gruvbox Material (Soft)", colorscheme = "gruvbox-material", gruvbox_background = "soft" },
+	{ name = "Gruvbox Material (Medium)", colorscheme = "gruvbox-material", gruvbox_background = "medium" },
+	{ name = "Gruvbox Material (Hard)", colorscheme = "gruvbox-material", gruvbox_background = "hard" },
+	{ name = "Kanso Ink", colorscheme = "kanso-ink" },
+	{ name = "Kanso Mist", colorscheme = "kanso-mist" },
+}
+
+local default_theme = M.themes[2]
+
+local function read_json(path)
+	local ok, lines = pcall(vim.fn.readfile, path)
+	if not ok or not lines or vim.tbl_isempty(lines) then
+		return nil
+	end
+
+	local decoded_ok, data = pcall(vim.json.decode, table.concat(lines, "\n"))
+	if not decoded_ok then
+		return nil
+	end
+
+	return data
+end
+
+local function write_json(path, data)
+	vim.fn.mkdir(vim.fn.fnamemodify(path, ":h"), "p")
+	vim.fn.writefile({ vim.json.encode(data) }, path)
+end
+
+local function apply_theme_config(theme)
+	if theme.gruvbox_background then
+		vim.g.gruvbox_material_background = theme.gruvbox_background
+		vim.g.gruvbox_material_better_performance = true
+	end
+end
+
+function M.get_theme(name)
+	for _, theme in ipairs(M.themes) do
+		if theme.name == name or theme.colorscheme == name then
+			return theme
+		end
+	end
+end
+
+function M.apply(theme, opts)
+	opts = opts or {}
+	if type(theme) == "string" then
+		theme = M.get_theme(theme)
+	end
+	if not theme then
+		return false
+	end
+
+	apply_theme_config(theme)
+	vim.cmd.colorscheme(theme.colorscheme)
+
+	if opts.persist ~= false then
+		write_json(state_file, {
+			name = theme.name,
+			colorscheme = theme.colorscheme,
+		})
+	end
+
+	return true
+end
+
+function M.load_saved()
+	local state = read_json(state_file) or read_json(legacy_state_file)
+	local theme = state and M.get_theme(state.name or state.colorscheme) or default_theme
+	M.apply(theme, { persist = false })
+end
+
+function M.pick()
+	local fzf = require("fzf-lua")
+	local entries = {}
+	local current = vim.g.colors_name or ""
+
+	for _, theme in ipairs(M.themes) do
+		local prefix = theme.colorscheme == current and "* " or "  "
+		table.insert(entries, prefix .. theme.name)
+	end
+
+	fzf.fzf_exec(entries, {
+		prompt = "Themes> ",
+		actions = {
+			["default"] = function(selected)
+				if not selected or not selected[1] then
+					return
+				end
+
+				local name = selected[1]:gsub("^%*%s+", ""):gsub("^%s+", "")
+				M.apply(name)
+			end,
+		},
+	})
+end
+
+return M

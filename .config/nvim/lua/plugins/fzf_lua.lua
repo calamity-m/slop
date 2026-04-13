@@ -1,5 +1,6 @@
 local fzf = require("fzf-lua")
 local map = vim.keymap.set
+local theme_picker = require("custom.theme_picker")
 
 fzf.setup({
 	"fzf-native",
@@ -62,6 +63,7 @@ map("n", "<leader>fo", fzf.oldfiles, { desc = "Recent Files" })
 map("n", "<leader>fd", fzf.diagnostics_document, { desc = "Document Diagnostics" })
 map("n", "<leader>fs", fzf.lsp_document_symbols, { desc = "Document Symbols" })
 map("n", "<leader>fG", git_global, { desc = "Git Global Picker" })
+map("n", "<leader>ft", theme_picker.pick, { desc = "Themes" })
 
 map("n", "<leader>gr", fzf.lsp_references, { desc = "References" })
 map("n", "<leader>gi", fzf.lsp_implementations, { desc = "Implementations" })
