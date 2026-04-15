@@ -2,7 +2,6 @@ vim.pack.add({
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 	{ src = "https://github.com/sainnhe/gruvbox-material" },
 	{ src = "https://github.com/ember-theme/nvim", name = "ember" },
-	{ src = "https://github.com/thesimonho/kanagawa-paper.nvim" },
 	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 }, { confirm = false })
 
