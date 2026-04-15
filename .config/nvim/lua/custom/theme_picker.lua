@@ -10,6 +10,7 @@ M.themes = {
 	{ name = "Gruvbox Material (Hard)", colorscheme = "gruvbox-material", gruvbox_background = "hard" },
 	{ name = "Ember Soft", colorscheme = "ember-soft", ember_variant = "ember-soft" },
 	{ name = "Catppuccin Macchiato", colorscheme = "catppuccin-macchiato" },
+	{ name = "Ashen", colorscheme = "ashen" },
 }
 
 local default_theme = M.themes[2]
