@@ -39,6 +39,12 @@ vim.diagnostic.config({
 	},
 	virtual_text = true,
 	update_in_insert = true,
+	virtual_lines = {
+		wrap = true, -- Wrap the virtual text lines
+	},
+	virtual_text = {
+		wrap = true,
+	},
 })
 
 local typos = { "W", "Q", "Wq", "WQ", "Wa", "WA", "Qa", "QA", "Wqa", "WQA", "WQa", "WqA" }
