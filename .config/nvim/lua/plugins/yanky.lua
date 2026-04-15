@@ -1,6 +1,10 @@
 local yanky = require("yanky")
 
-yanky.setup({})
+yanky.setup({
+	ring = {
+		permanent_wrapper = require("yanky.wrappers").remove_carriage_return,
+	},
+})
 
 local map = vim.keymap.set
 
