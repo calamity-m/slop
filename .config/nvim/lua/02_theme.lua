@@ -1,11 +1,16 @@
 vim.pack.add({
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
-	{ src = "https://github.com/webhooked/kanso.nvim" },
 	{ src = "https://github.com/sainnhe/gruvbox-material" },
 	{ src = "https://github.com/ember-theme/nvim", name = "ember" },
+	{ src = "https://github.com/thesimonho/kanagawa-paper.nvim" },
+	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 }, { confirm = false })
 
 require("kanagawa").setup({
+	minimal = false,
+	foreground = {
+		dark = "saturated",
+	},
 	colors = {
 		theme = {
 			all = {
@@ -13,35 +18,26 @@ require("kanagawa").setup({
 					bg_gutter = "none",
 				},
 			},
+			dragon = {
+				ui = {
+					bg = "#1e1c1a",
+					bg_dim = "#1a1818",
+					bg_gutter = "none",
+				},
+			},
 		},
 	},
 })
 
-require("kanso").setup({
-	overrides = function(colors)
-		return {
-			DiagnosticUnderlineError = {
-				fg = colors.theme.diag.error,
-				undercurl = true,
-				sp = colors.theme.diag.error,
-			},
-			DiagnosticUnderlineWarn = {
-				fg = colors.theme.diag.warning,
-				undercurl = true,
-				sp = colors.theme.diag.warning,
-			},
-			DiagnosticUnderlineInfo = {
-				fg = colors.theme.diag.info,
-				undercurl = true,
-				sp = colors.theme.diag.info,
-			},
-			DiagnosticUnderlineHint = {
-				fg = colors.theme.diag.hint,
-				undercurl = true,
-				sp = colors.theme.diag.hint,
-			},
-		}
-	end,
+require("catppuccin").setup({
+	flavour = "frappe",
+	color_overrides = {
+		frappe = {
+			base = "#22262D", -- main background (kanso-mist exact)
+			mantle = "#1e2228", -- slightly darker (sidebars, statusline)
+			crust = "#1a1e24", -- darkest (borders, bottom layer)
+		},
+	},
 })
 
 require("custom.theme_picker").load_saved()

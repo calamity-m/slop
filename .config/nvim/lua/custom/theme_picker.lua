@@ -6,13 +6,11 @@ local legacy_state_file = vim.fn.stdpath("data") .. "/themery/state.json"
 M.themes = {
 	{ name = "Kanagawa Dragon", colorscheme = "kanagawa-dragon" },
 	{ name = "Kanagawa Wave", colorscheme = "kanagawa-wave" },
-	{ name = "Gruvbox Material (Soft)", colorscheme = "gruvbox-material", gruvbox_background = "soft" },
 	{ name = "Gruvbox Material (Medium)", colorscheme = "gruvbox-material", gruvbox_background = "medium" },
 	{ name = "Gruvbox Material (Hard)", colorscheme = "gruvbox-material", gruvbox_background = "hard" },
-	{ name = "Kanso Ink", colorscheme = "kanso-ink" },
-	{ name = "Kanso Mist", colorscheme = "kanso-mist" },
-	{ name = "Ember Hard", colorscheme = "ember", ember_variant = "ember" },
 	{ name = "Ember Soft", colorscheme = "ember-soft", ember_variant = "ember-soft" },
+	{ name = "Kanagawa Paper Ink", colorscheme = "kanagawa-paper-ink" },
+	{ name = "Catppuccin Macchiato", colorscheme = "catppuccin-macchiato" },
 }
 
 local default_theme = M.themes[2]
