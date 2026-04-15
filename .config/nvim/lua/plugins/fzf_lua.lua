@@ -27,6 +27,10 @@ fzf.setup({
 	},
 })
 
+-- Route vim.ui.select through fzf-lua globally. Affects LSP code actions,
+-- :YankyRingHistory, and any other plugin that calls vim.ui.select.
+fzf.register_ui_select()
+
 local function git_global()
 	fzf.fzf_exec(function(fzf_cb)
 		fzf_cb()
