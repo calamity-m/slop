@@ -11,6 +11,8 @@ M.themes = {
 	{ name = "Gruvbox Material (Hard)", colorscheme = "gruvbox-material", gruvbox_background = "hard" },
 	{ name = "Kanso Ink", colorscheme = "kanso-ink" },
 	{ name = "Kanso Mist", colorscheme = "kanso-mist" },
+	{ name = "Ember Hard", colorscheme = "ember", ember_variant = "ember" },
+	{ name = "Ember Soft", colorscheme = "ember-soft", ember_variant = "ember-soft" },
 }
 
 local default_theme = M.themes[2]
@@ -38,6 +40,9 @@ local function apply_theme_config(theme)
 	if theme.gruvbox_background then
 		vim.g.gruvbox_material_background = theme.gruvbox_background
 		vim.g.gruvbox_material_better_performance = true
+	end
+	if theme.ember_variant then
+		require("ember").setup({ variant = theme.ember_variant })
 	end
 end
 

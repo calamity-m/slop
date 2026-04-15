@@ -2,6 +2,7 @@ vim.pack.add({
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 	{ src = "https://github.com/webhooked/kanso.nvim" },
 	{ src = "https://github.com/sainnhe/gruvbox-material" },
+	{ src = "https://github.com/ember-theme/nvim", name = "ember" },
 }, { confirm = false })
 
 require("kanagawa").setup({
