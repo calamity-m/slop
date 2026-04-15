@@ -4,6 +4,7 @@ vim.pack.add({
 	{ src = "https://github.com/ember-theme/nvim", name = "ember" },
 	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 	{ src = "https://github.com/ficd0/ashen.nvim" },
+	{ src = "https://github.com/webhooked/kanso.nvim" },
 }, { confirm = false })
 
 require("kanagawa").setup({

@@ -9,8 +9,9 @@ M.themes = {
 	{ name = "Gruvbox Material (Medium)", colorscheme = "gruvbox-material", gruvbox_background = "medium" },
 	{ name = "Gruvbox Material (Hard)", colorscheme = "gruvbox-material", gruvbox_background = "hard" },
 	{ name = "Ember Soft", colorscheme = "ember-soft", ember_variant = "ember-soft" },
-	{ name = "Catppuccin Macchiato", colorscheme = "catppuccin-macchiato" },
+	{ name = "Catppuccin Frappe", colorscheme = "catppuccin-frappe" },
 	{ name = "Ashen", colorscheme = "ashen" },
+	{ name = "Kanso Mist", colorscheme = "kanso-mist" },
 }
 
 local default_theme = M.themes[2]
@@ -44,6 +45,19 @@ local function apply_theme_config(theme)
 	end
 end
 
+local function apply_diagnostic_highlights()
+	local diagnostic_error = vim.api.nvim_get_hl(0, { name = "DiagnosticError", link = false })
+	local error_color = diagnostic_error.fg
+
+	if error_color then
+		vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", {
+			fg = error_color,
+			sp = error_color,
+			undercurl = true,
+		})
+	end
+end
+
 function M.get_theme(name)
 	for _, theme in ipairs(M.themes) do
 		if theme.name == name or theme.colorscheme == name then
@@ -63,6 +77,7 @@ function M.apply(theme, opts)
 
 	apply_theme_config(theme)
 	vim.cmd.colorscheme(theme.colorscheme)
+	apply_diagnostic_highlights()
 
 	if opts.persist ~= false then
 		write_json(state_file, {
