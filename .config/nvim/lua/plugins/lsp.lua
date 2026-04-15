@@ -6,6 +6,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"ty",
 	"oxfmt",
+	"helm_ls",
 })
 
 map("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })

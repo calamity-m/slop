@@ -14,6 +14,7 @@ treesitter_manager.setup({
 	"toml",
 	"typescript",
 	"tsx",
+	"helm",
 })
 
 local treesitter_group = vim.api.nvim_create_augroup("TreesitterAutostart", { clear = true })
