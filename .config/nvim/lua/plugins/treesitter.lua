@@ -1,20 +1,23 @@
 local treesitter_manager = require("tree-sitter-manager")
 
 treesitter_manager.setup({
-	"bash",
-	"lua",
-	"python",
-	"rust",
-	"javascript",
-	"zig",
-	"python",
-	"go",
-	"markdown",
-	"json",
-	"toml",
-	"typescript",
-	"tsx",
-	"helm",
+	ensure_installed = {
+		"bash",
+		"lua",
+		"python",
+		"rust",
+		"javascript",
+		"zig",
+		"go",
+		"markdown",
+		"json",
+		"toml",
+		"typescript",
+		"tsx",
+		"gotmpl",
+		"helm",
+		"yaml",
+	},
 })
 
 local treesitter_group = vim.api.nvim_create_augroup("TreesitterAutostart", { clear = true })
