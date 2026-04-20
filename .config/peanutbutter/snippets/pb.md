@@ -18,3 +18,20 @@ grep -o "<@pattern>" <@file:rg . --files>
 ```
 find <@start:?.> -maxdepth 1
 ```
+
+## git commit convential style
+
+```
+git commit -m '<@type:echo "feat\ntest\nfix">(<@scope>): <@message>\n<@body>"
+```
+
+## git commit multi-line with EOF
+
+```
+git commit -m "$(cat <<'EOF'
+<@type:echo "feat\nfix\nchore\ndocs\nrefactor\ntest\nperf\nci\nbuild\nstyle">(<@scope>): <@message>
+
+<@body>
+EOF
+)"
+```
