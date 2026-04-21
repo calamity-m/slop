@@ -22,7 +22,7 @@ find <@start:?.> -maxdepth 1
 ## Claude Code - headless commit
 
 ```
-claude -p "/commit" --dangerously-skip-permissions
+claude -p "/commit" --permission-mode bypassPermissions
 ```
 
 ## list files and directories in tree format, adhereing to gitignore

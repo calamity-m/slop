@@ -26,11 +26,15 @@ EOF
 
 ## git log one line
 
+Compact view of commit history — just the hash and subject. Good for a quick overview of what's been done.
+
 ```
 git log --oneline
 ```
 
 ## git log with bodies
+
+Like `--oneline` but also shows the commit body. Useful when you care about the detail in commit messages, not just the subject.
 
 ```
 git log --format="%C(yellow)%h%Creset %s%n%b"
@@ -40,5 +44,13 @@ git log --format="%C(yellow)%h%Creset %s%n%b"
 
 ```
 git commit --amend -m "<@message>"
+```
+
+## git reflog
+
+Shows every place HEAD has pointed — including commits that no longer appear in `git log` (e.g. after a reset, rebase, or dropped stash). Use this to recover "lost" commits by finding their hash and checking out or cherry-picking them.
+
+```
+git reflog
 ```
 
