@@ -19,21 +19,10 @@ grep -o "<@pattern>" <@file:rg . --files>
 find <@start:?.> -maxdepth 1
 ```
 
-## git commit convential style
+## Claude Code - headless commit
 
 ```
-git commit -m '<@type:echo "feat\ntest\nfix">(<@scope>): <@message>\n<@body>"
-```
-
-## git commit multi-line with EOF
-
-```
-git commit -m "$(cat <<'EOF'
-<@type:echo "feat\nfix\nchore\ndocs\nrefactor\ntest\nperf\nci\nbuild\nstyle">(<@scope>): <@message>
-
-<@body>
-EOF
-)"
+claude -p "/commit" --dangerously-skip-permissions
 ```
 
 ## list files and directories in tree format, adhereing to gitignore
