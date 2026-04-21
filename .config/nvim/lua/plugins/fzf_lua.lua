@@ -1,7 +1,7 @@
 local fzf = require("fzf-lua")
 local map = vim.keymap.set
 local theme_picker = require("custom.theme_picker")
-local haunt_picker = require("haunt.picker")
+local work_global = require("custom.fzf_work_global")
 
 fzf.setup({
 	"fzf-native",
@@ -24,6 +24,17 @@ fzf.setup({
 	},
 	grep = {
 		rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/' --max-columns=4096 -e",
+	},
+	work_global_grep = {
+		profile = 0,
+		fzf_opts = {},
+	},
+	haunt_global = {
+		profile = 0,
+		fzf_opts = {
+			["--delimiter"] = "[:]",
+			["--with-nth"] = "1..",
+		},
 	},
 })
 
@@ -58,30 +69,7 @@ local function git_global()
 	})
 end
 
-local function work_global()
-	fzf.fzf_exec(function(fzf_cb)
-		fzf_cb()
-	end, {
-		prompt = "Find [files | @ content | # haunt]> ",
-		actions = {
-			["default"] = function(_, opts)
-				local query = opts.__call_opts.query or ""
-
-				if query == "" or query:match("^%s*$") then
-					fzf.files()
-				elseif query:sub(1, 1) == "@" then
-					fzf.live_grep({ query = vim.trim(query:sub(2)) })
-				elseif query:sub(1, 1) == "#" then
-					haunt_picker.show({ prompt = "Haunt> " })
-				else
-					fzf.files({ query = query })
-				end
-			end,
-		},
-	})
-end
-
-map("n", "F", work_global, { desc = "Fzf Global" })
+map("n", "F", work_global.open, { desc = "Fzf Global" })
 map("n", "<leader>ff", fzf.global, { desc = "Fzf Global" })
 map("n", "<leader>fg", fzf.live_grep, { desc = "Live Grep" })
 map("n", "<leader>fb", fzf.buffers, { desc = "Buffers" })
