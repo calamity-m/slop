@@ -35,3 +35,14 @@ git commit -m "$(cat <<'EOF'
 EOF
 )"
 ```
+
+## list files and directories in tree format, adhereing to gitignore
+
+- the `--icons` just displays nice icons
+- add `--group-directories-first` to display directories ahead of plain files
+- the `--tree` is what gives the nice tree output
+
+
+```
+eza --tree --git-ignore --icons
+```
