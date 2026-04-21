@@ -31,7 +31,6 @@ claude -p "/commit" --permission-mode bypassPermissions
 - add `--group-directories-first` to display directories ahead of plain files
 - the `--tree` is what gives the nice tree output
 
-
 ```
-eza --tree --git-ignore --icons
+eza --tree --git-ignore --all --icons
 ```

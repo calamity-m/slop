@@ -1,1 +1,1 @@
-eval "$(pb --bash)"
+eval "$(peanutbutter --bash)"
