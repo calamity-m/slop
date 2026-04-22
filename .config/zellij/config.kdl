@@ -485,7 +485,7 @@ themes {
             emphasis_3 147 138 169  // violet  #938AA9
         }
         frame_selected {
-            base 101 133 148        // blue2   #658594  (active pane border)
+            base 127 180 202        // blue    #7FB4CA  (active pane border, higher contrast)
             background 0
             emphasis_0 220 165 97   // yellow  #DCA561
             emphasis_1 127 180 202  // blue    #7FB4CA
@@ -501,12 +501,12 @@ themes {
             emphasis_3 0
         }
         frame_highlight {
-            base 182 146 123        // orange  #b6927b  (hovered pane)
+            base 220 165 97         // yellow  #DCA561  (hovered pane, brighter highlight)
             background 0
             emphasis_0 147 138 169  // violet  #938AA9
-            emphasis_1 182 146 123  // orange  #b6927b
-            emphasis_2 182 146 123  // orange  #b6927b
-            emphasis_3 182 146 123  // orange  #b6927b
+            emphasis_1 220 165 97   // yellow  #DCA561
+            emphasis_2 220 165 97   // yellow  #DCA561
+            emphasis_3 220 165 97   // yellow  #DCA561
         }
         exit_code_success {
             base 138 154 123        // green3  #8a9a7b
