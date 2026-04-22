@@ -15,6 +15,7 @@ Creates:
   ~/.config/nvim    -> <repo>/.config/nvim
   ~/.config/zellij       -> <repo>/.config/zellij
   ~/.config/peanutbutter -> <repo>/.config/peanutbutter
+  ~/.config/peanutbutter-private/snippets (directory)
 
 Tool-specific links (skills only):
   ${CLAUDE_HOME:-~/.claude}/skills -> ~/.config/skills
@@ -120,6 +121,7 @@ ensure_symlink "$HOME/.config/agents" "$repo_dir/.config/agents" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/zellij" "$repo_dir/.config/zellij" || true
 ensure_symlink "$HOME/.config/peanutbutter" "$repo_dir/.config/peanutbutter" || true
+ensure_dir "$HOME/.config/peanutbutter-private/snippets" || true
 
 # Symlink ~/.bashrc.d
 ensure_symlink "$HOME/.bashrc.d" "$repo_dir/.bashrc.d" || true
@@ -154,6 +156,7 @@ log "  agents: ~/.config/agents -> $repo_dir/.config/agents"
 log "  nvim:   ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"
+log "  peanutbutter private: ~/.config/peanutbutter-private/snippets"
 log "  bashrc: ~/.bashrc.d -> $repo_dir/.bashrc.d"
 log "  claude: $claude_root/skills -> ~/.config/skills"
 log "  codex:  $codex_root/skills -> ~/.config/skills"
