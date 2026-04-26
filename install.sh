@@ -21,6 +21,9 @@ Tool-specific links (skills only):
   ${CLAUDE_HOME:-~/.claude}/skills -> ~/.config/skills
   ${CODEX_HOME:-~/.codex}/skills  -> ~/.config/skills
 
+Also installs:
+  forgit -> ${FORGIT_HOME:-~/.local/share/forgit}
+
 The script is conservative by default and will not replace existing
 non-symlink files or directories unless --force is passed.
 EOF
@@ -126,6 +129,9 @@ ensure_dir "$HOME/.config/peanutbutter-private/snippets" || true
 # Symlink ~/.bashrc.d
 ensure_symlink "$HOME/.bashrc.d" "$repo_dir/.bashrc.d" || true
 
+# Install shell tools
+"$repo_dir/.scripts/install-forgit.sh" || true
+
 # Append bashrc.d sourcing block if not already present
 bashrc_marker="# slop:bashrc.d"
 if [[ -f "$HOME/.bashrc" ]] && ! grep -qF "$bashrc_marker" "$HOME/.bashrc"; then
@@ -158,5 +164,6 @@ log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"
 log "  peanutbutter private: ~/.config/peanutbutter-private/snippets"
 log "  bashrc: ~/.bashrc.d -> $repo_dir/.bashrc.d"
+log "  forgit: ${FORGIT_HOME:-$HOME/.local/share/forgit}"
 log "  claude: $claude_root/skills -> ~/.config/skills"
 log "  codex:  $codex_root/skills -> ~/.config/skills"
