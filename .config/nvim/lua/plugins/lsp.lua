@@ -1,3 +1,5 @@
+local map = vim.keymap.set
+
 vim.lsp.enable({
 	"rust_analyzer",
 	"gopls",
@@ -5,4 +7,29 @@ vim.lsp.enable({
 	"ty",
 	"oxfmt",
 	"helm_ls",
+	"tombi",
+	"marksman",
+})
+
+map("n", "<leader>gg", vim.lsp.buf.definition, { desc = "Goto Definition" })
+map("n", "<leader>gh", vim.lsp.buf.hover, { desc = "Hover Documentation" })
+
+vim.filetype.add({
+	filename = {
+		["go.work"] = "gowork",
+	},
+	extension = {
+		gotmpl = "gotmpl",
+		tmpl = "gotmpl",
+	},
+})
+
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
 })

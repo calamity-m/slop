@@ -28,6 +28,7 @@ fzf.register_ui_select()
 
 local map = vim.keymap.set
 
+map("n", "F", fzf.global, { desc = "Fzf Global" })
 map("n", "<leader>ff", fzf.global, { desc = "Fzf Global" })
 map("n", "<leader>fg", fzf.live_grep, { desc = "Live Grep" })
 map("n", "<leader>fb", fzf.buffers, { desc = "Buffers" })
@@ -37,3 +38,7 @@ map("n", "gri", fzf.lsp_implementations, { desc = "Goto Implementation" })
 map("n", "grr", fzf.lsp_references, { desc = "Goto References" })
 map("n", "grt", fzf.lsp_typedefs, { desc = "Goto Type Definition" })
 map("n", "gO", fzf.lsp_document_symbols, { desc = "Document Symbols" })
+
+map("n", "<leader>gr", fzf.lsp_references, { desc = "References" })
+map("n", "<leader>gi", fzf.lsp_implementations, { desc = "Implementations" })
+map("n", "<leader>gt", fzf.lsp_typedefs, { desc = "Type Definitions" })

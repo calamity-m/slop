@@ -7,6 +7,7 @@ vim.pack.add({
 	{ src = "https://github.com/folke/which-key.nvim" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/TheNoeTrevino/haunt.nvim" },
+	{ src = "https://github.com/lewis6991/gitsigns.nvim" },
 	{ src = "https://github.com/RRethy/vim-illuminate" },
 	{ src = "https://github.com/rebelot/kanagawa.nvim" },
 	{ src = "https://github.com/sainnhe/gruvbox-material" },
@@ -16,6 +17,7 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 	{ src = "https://github.com/stevearc/conform.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/rachartier/tiny-cmdline.nvim" },
 })
 
 local plugin_modules = {
@@ -24,11 +26,13 @@ local plugin_modules = {
 	"plugins.neo_tree",
 	"plugins.fzf",
 	"plugins.haunt",
+	"plugins.gitsigns",
 	"plugins.illuminate",
 	"plugins.treesitter",
 	"plugins.blink",
 	"plugins.conform",
 	"plugins.lsp",
+	"plugins.tiny_cmdline",
 }
 
 for _, module in ipairs(plugin_modules) do

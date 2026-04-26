@@ -47,6 +47,9 @@ vim.diagnostic.config({
 	},
 })
 
+-- ui2
+require("vim._core.ui2").enable({})
+
 local typos = { "W", "Q", "Wq", "WQ", "Wa", "WA", "Qa", "QA", "Wqa", "WQA", "WQa", "WqA" }
 for _, cmd in ipairs(typos) do
 	vim.api.nvim_create_user_command(cmd, function(opts)
