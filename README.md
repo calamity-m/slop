@@ -15,6 +15,7 @@ That's it. The script symlinks everything into place:
 - `~/.config/agents` — agent instruction files
 - `~/.config/nvim` — neovim config
 - `~/.bashrc.d` — shell extensions, auto-sourced
+- `~/.local/share/forgit` — forgit checkout sourced by `~/.bashrc.d/zz-forgit.sh`
 
 It won't nuke your existing config unless you pass `--force`, at which point you've been warned.
 

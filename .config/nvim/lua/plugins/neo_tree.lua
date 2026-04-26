@@ -1,13 +1,13 @@
-local map = vim.keymap.set
-local neo_tree = require("neo-tree")
-
-neo_tree.setup({
+require("neo-tree").setup({
+	close_if_last_window = true,
 	window = {
-		width = 30,
+		position = "float",
+		width = 36,
 		mappings = {
 			["<space>"] = "none",
 		},
 	},
+	popup_border_style = "rounded",
 	filesystem = {
 		use_libuv_file_watcher = true,
 		follow_current_file = {
@@ -19,22 +19,8 @@ neo_tree.setup({
 			hide_dotfiles = false,
 		},
 	},
-	git_status = {
-		symbols = {
-			added = "",
-			modified = "",
-			deleted = "✖",
-			renamed = "󰁕",
-			untracked = "",
-			ignored = "",
-			unstaged = "󰄱",
-			staged = "",
-			conflict = "",
-		},
-	},
 })
 
-map("n", "<leader>e", "<cmd>Neotree toggle filesystem reveal left<CR>", { desc = "Explorer Toggle" })
-map("n", "<leader>o", "<cmd>Neotree focus filesystem left<CR>", { desc = "Explorer Focus" })
-map("n", "<leader>be", "<cmd>Neotree show buffers right<CR>", { desc = "Buffer Explorer" })
-map("n", "<leader>er", "<cmd>Neotree reveal filesystem left<CR>", { desc = "Explorer Reveal Current File" })
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle filesystem reveal<CR>", {
+	desc = "Explorer Toggle",
+})

@@ -1,6 +1,6 @@
-local h = require("haunt")
+local haunt = require("haunt")
 
-h.setup({
+haunt.setup({
 	picker = "fzf",
 	picker_keys = {
 		delete = { key = "d", mode = { "n" } },
@@ -8,60 +8,28 @@ h.setup({
 	},
 })
 
-local haunt = require("haunt.api")
-local haunt_picker = require("haunt.picker")
+local api = require("haunt.api")
+local picker = require("haunt.picker")
 local map = vim.keymap.set
 local prefix = "<leader>h"
 
--- annotations
-map("n", prefix .. "a", function()
-	haunt.annotate()
-end, { desc = "Annotate" })
+map("n", prefix .. "a", api.annotate, { desc = "Annotate" })
+map("n", prefix .. "t", api.toggle_annotation, { desc = "Toggle Annotation" })
+map("n", prefix .. "T", api.toggle_all_lines, { desc = "Toggle All Annotations" })
+map("n", prefix .. "d", api.delete, { desc = "Delete Bookmark" })
+map("n", prefix .. "C", api.clear_all, { desc = "Delete All Bookmarks" })
 
-map("n", prefix .. "t", function()
-	haunt.toggle_annotation()
-end, { desc = "Toggle annotation" })
+map("n", prefix .. "p", api.prev, { desc = "Previous Bookmark" })
+map("n", prefix .. "n", api.next, { desc = "Next Bookmark" })
 
-map("n", prefix .. "T", function()
-	haunt.toggle_all_lines()
-end, { desc = "Toggle all annotations" })
+map("n", "<leader>fh", picker.show, { desc = "Show Bookmarks" })
 
-map("n", prefix .. "d", function()
-	haunt.delete()
-end, { desc = "Delete bookmark" })
-
-map("n", prefix .. "C", function()
-	haunt.clear_all()
-end, { desc = "Delete all bookmarks" })
-
--- move
-map("n", prefix .. "p", function()
-	haunt.prev()
-end, { desc = "Previous bookmark" })
-
-map("n", prefix .. "n", function()
-	haunt.next()
-end, { desc = "Next bookmark" })
-
--- picker
-map("n", prefix .. "l", function()
-	haunt_picker.show()
-end, { desc = "Show Picker" })
-
--- quickfix
-map("n", prefix .. "q", function()
-	haunt.to_quickfix()
-end, { desc = "Send Hauntings to QF List (buffer)" })
-
+map("n", prefix .. "q", api.to_quickfix, { desc = "Bookmarks To Quickfix" })
 map("n", prefix .. "Q", function()
-	haunt.to_quickfix({ current_buffer = true })
-end, { desc = "Send Hauntings to QF List (all)" })
+	api.to_quickfix({ current_buffer = true })
+end, { desc = "Buffer Bookmarks To Quickfix" })
 
--- yank
 map("n", prefix .. "y", function()
-	haunt.yank_locations({ current_buffer = true })
-end, { desc = "Send Hauntings to Clipboard (buffer)" })
-
-map("n", prefix .. "Y", function()
-	haunt.yank_locations()
-end, { desc = "Send Hauntings to Clipboard (all)" })
+	api.yank_locations({ current_buffer = true })
+end, { desc = "Yank Buffer Bookmarks" })
+map("n", prefix .. "Y", api.yank_locations, { desc = "Yank All Bookmarks" })
