@@ -1,0 +1,48 @@
+[ui]
+# Maximum inline TUI height.
+# The terminal may still clamp this lower depending on available rows.
+height = 25
+
+[variables.http_method]
+# Optional default value pre-filled into the prompt.
+default = "GET"
+
+# Static suggestion list shown to the user.
+suggestions = ["GET", "POST", "PUT", "PATCH", "DELETE"]
+
+[variables.file]
+# Current working directory files.
+command = "find . -maxdepth 1 -type f | sed 's#^./##' | sort"
+
+[variables.files]
+# Alias for `file` if you prefer plural naming in snippets.
+command = "find . -maxdepth 1 -type f | sed 's#^./##' | sort"
+
+[variables.directory]
+# Current working directory directories.
+command = "find . -maxdepth 1 -type d ! -path . | sed 's#^./##' | sort"
+
+[variables.directories]
+# Alias for `directory` if you prefer plural naming in snippets.
+command = "find . -maxdepth 1 -type d ! -path . | sed 's#^./##' | sort"
+
+[variables.git_branch]
+command = "git branch --format='%(refname:short)'"
+
+[variables.git_remote]
+command = "git remote"
+
+[variables.container]
+command = "docker ps --format '{{.Names}}'"
+
+[variables.image]
+command = "docker images --format '{{.Repository}}:{{.Tag}}'"
+
+[variables.kube_context]
+# Dynamic suggestions from a shell command.
+# The command runs in the user's current working directory.
+command = "kubectl config get-contexts -o name"
+
+[variables.namespace]
+default = "default"
+suggestions = ["default", "kube-system", "staging", "prod"]
