@@ -2,3 +2,4 @@ out/
 nvim-pack-lock.json
 .config/skills/.system/
 .codex
+nvim.log
