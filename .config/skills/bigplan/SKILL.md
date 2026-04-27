@@ -107,6 +107,51 @@ When the user asks to update the plan, prefer surgical edits:
 
 If the user describes work that's already done in conversation but the plan still shows it open, offer to tick the relevant items rather than doing it unprompted — they may have done it differently than the plan anticipated.
 
+## Plan Review
+
+Plan review is part of this skill's built-in lifecycle:
+
+- **Always after initial creation**: once you've written the first draft of `BIGPLAN.md`, run a review before presenting the finished plan to the user.
+- **On demand**: whenever the user says "review plan", "review the bigplan", "review my plan", or asks for a critical look at the plan.
+
+### Running the review
+
+Spawn 2 sub-agents **simultaneously**. Give each one *only* the current `BIGPLAN.md` content — no conversation history, no project context beyond what's in the file. This isolation is intentional: fresh eyes catch things that context blinds you to.
+
+Before spawning, read `references/adversarial-reviewer.md` and include those full instructions in each sub-agent's prompt, along with which reviewer role they are playing:
+
+- **Reviewer A — Risks & Assumptions**: finds missing or understated risks, hidden assumptions, single points of failure.
+- **Reviewer B — Completeness & Scope**: finds uncovered promises, tasks too coarse to act on, missing deliverables, unacknowledged dependencies.
+
+### Merging findings into the plan
+
+Once both reviewers complete, synthesize their outputs:
+
+1. Discard duplicate findings and anything that is genuinely nitpicky or irrelevant given the plan's obvious scope.
+2. Split the remaining findings into two buckets:
+   - **Unambiguous**: there is one clear fix — add a missing risk, fill in an obvious gap, add a gotcha. Apply these directly to `BIGPLAN.md` without asking.
+   - **Requires decision**: the fix involves a real choice — competing approaches, a tradeoff the user needs to weigh in on, or a gap where the right answer isn't obvious from the plan alone.
+3. For any decision-required findings, **pause and ask the user before editing**. Present them grouped, concisely:
+
+```
+The review found a few things that need your call before I can merge them:
+
+1. **[Short title]** — [One sentence on the problem and why the fix isn't obvious. E.g. "The plan doesn't say whether auth tokens are short-lived JWTs or opaque session tokens — the mitigation strategy differs significantly."] What's your preference?
+2. **[Short title]** — ...
+```
+
+Wait for the user's answers, then apply their chosen fixes alongside the unambiguous ones.
+
+4. Prepend a review log entry at the top of `## Issues`:
+
+```
+- **YYYY-MM-DD — agent:claude (adversarial review)** — Plan reviewed by 2 adversarial sub-agents (Risks & Assumptions, Completeness & Scope). N findings; M merged into plan. <one sentence summary of most significant change, or "No significant gaps found.">
+```
+
+Add individual `## Issues` entries only for things that remain unresolved after the user's input — persistent open questions, deferred decisions. Direct edits don't need their own entries; the review log summary is enough.
+
+After all merges are done, briefly tell the user what changed — a 2-3 bullet summary of the most significant findings and how they were addressed. Don't narrate every minor tweak.
+
 ## Scope boundary
 
 This skill produces and maintains `BIGPLAN.md`. It does not write code, run the plan, create separate per-deliverable files, or stand up a multi-doc planning bundle. If the user wants per-part files or a heavier planning structure, point them at `part-plan-writer` instead.
