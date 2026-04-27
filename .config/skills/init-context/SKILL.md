@@ -50,7 +50,8 @@ If the existing file conflicts with the template and the right merge is not obvi
   - Simplicity First
   - Surgical Changes
   - Goal-Driven Execution
-  - Verifiable Automation
+  - In-Code Documentation
+  - Pre-commit Hooks
   - Project-Specific Notes
 - The file includes the short numbered verification-plan example.
 - No unrelated `AGENTS.md` content was removed unless the user asked for replacement.

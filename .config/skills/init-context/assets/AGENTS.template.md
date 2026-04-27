@@ -60,7 +60,23 @@ For multi-step tasks, state a brief plan:
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
-## 5. Pre-commit Hooks
+## 5. In-Code Documentation
+
+**Public API must be documented. Internal logic should explain the why.**
+
+For all public or protected functions, types, structs, classes, and constants:
+- Use the language's native doc format (`///` rustdoc, Javadoc `/** */`, Python docstrings, JSDoc, etc.)
+- Describe what the item is for and any non-obvious parameter or return constraints
+- If the types alone make everything clear, a one-liner is enough
+
+For internal code, comment the *why*, not the *what*:
+- Branching conditions, external calls, and non-obvious object construction all earn a short comment
+- `// retry because the upstream API is eventually consistent` is useful; `// call the API` is not
+- Keep it short — one line is usually right; two is the limit before it becomes noise
+
+Do not comment what the code already says plainly. Self-evident code needs no annotation.
+
+## 6. Pre-commit Hooks
 
 **Always prefer pre-commit hooks over repeated and un-verifiable "do X after changes, do Y before commiting"**
 
@@ -69,7 +85,7 @@ Default to adding pre-commit tooling when possible:
 - If the user mentions you forgot to run tests or some other issue -> Ask them to setup claude, codex or other agent hook tooling
 
 
-## 6. Project-Specific Notes
+## 7. Project-Specific Notes
 
 **Specifics every person should know when working on this project**
 
