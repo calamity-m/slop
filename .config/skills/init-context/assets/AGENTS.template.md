@@ -60,6 +60,31 @@ For multi-step tasks, state a brief plan:
 
 Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
 
+## 5. Pre-commit Hooks
+
+**Always prefer pre-commit hooks over repeated and un-verifiable "do X after changes, do Y before commiting"**
+
+Default to adding pre-commit tooling when possible:
+- If the user continually asks you to perform an action -> Ask them to setup pre-commit tooling
+- If the user mentions you forgot to run tests or some other issue -> Ask them to setup claude, codex or other agent hook tooling
+
+
+## 6. Project-Specific Notes
+
+**Specifics every person should know when working on this project**
+
+Liimit to 10 lines. Do not include "best coding practices" or "things you should always do after making changes", instead focus instead on critical business rules, or core design decisions.
+
+GOOD:
+-> "This project uses new style rust modules, rather than explicit mod.rs use"
+-> "Domain-specific language detailed in ..., refer to it when working on query functionality"
+-> "Repository serves as a core gateway for the business, uptime is critical"
+
+BAD:
+-> "Always remember to run `./gradlew test` after each change
+-> "Commit your changes with conventional style commits"
+-> "This project is a python repository using FastAPI, It uses the `ruff` linter and `uv` with a virtual environment in .venv"
+
 ---
 
 **These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
