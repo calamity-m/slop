@@ -31,12 +31,12 @@ Use this file when deciding how to split a change or how to name a commit.
 
 - Use the format `<type>(scope): short`.
 - Make the last part a compact description, not a sentence.
+- Keep the subject short, specific, and lowercase.
 - Good: `feat(commit): add message validator`
 - Good: `docs(edit-helm-chart): require render diffs`
 - Bad: `updated lots of stuff`
 
 ## Write a Useful Body
 
-- Always include a body explaining why the change was made.
-- For multi-concern commits (when a file contains unrelated changes), use the body to describe each distinct change.
+- Add a body when the change needs context, spans multiple concerns, or has notable behavior.
 - Keep it focused on why or notable behavior.
