@@ -12,16 +12,23 @@ This skill is for scaffolding or refreshing the repo instruction file, not for a
 ## Workflow
 
 1. Default the target file to `<repo-root>/AGENTS.md` unless the user specifies another path.
-2. If `AGENTS.md` already exists, read it before editing. If `CLAUDE.md` exists, treat that as the existing `AGENTS.md` file.
-3. If the file does not exist, create it from [`assets/AGENTS.template.md`](assets/AGENTS.template.md).
-4. If the file exists, preserve unrelated instructions and update only the section that corresponds to this guidance.
-5. Use the template text as the source of truth for the caution, simplicity, surgical-change, and goal-driven sections.
+2. **Survey the repository** before writing anything — run a quick scan to determine:
+   - Primary language(s) and build tooling (check file extensions, `Cargo.toml`, `package.json`, `pyproject.toml`, `go.mod`, etc.)
+   - Existing linter/formatter/test tooling (CI config, `Makefile`, pre-commit config, lock files)
+   - Any domain context visible from directory structure or README
+3. If `AGENTS.md` already exists, read it before editing. If `CLAUDE.md` exists, treat that as the existing `AGENTS.md` file.
+4. Read [`assets/AGENTS.template.md`](assets/AGENTS.template.md) as the structural source of truth, then **adapt it to the repo** before writing:
+   - **In-Code Documentation**: mention only the doc format(s) relevant to the repo's language(s) — rustdoc for Rust, docstrings for Python, JSDoc for JS/TS, etc. Drop the others.
+   - **Pre-commit Hooks**: name the actual tools the repo uses or would naturally adopt (e.g. `cargo clippy`, `ruff`, `eslint`, `golangci-lint`), not generic placeholders.
+   - **Project-Specific Notes**: fill in real observations from the survey — language, framework, key design decisions visible in the code. Leave the section empty or minimal if nothing meaningful is apparent; do not invent content.
+5. If the file exists, preserve unrelated instructions and update only the sections that correspond to this guidance.
 6. Keep the resulting `AGENTS.md` clean and direct. Do not add extra explanatory docs.
-7. Verify the final file contains all four principle sections and the short multi-step plan example.
-8. Symlink CLAUDE.md to AGENTS.md if not already linked
+7. Verify the final file contains all major sections and the short multi-step plan example.
+8. Symlink `CLAUDE.md` to `AGENTS.md` if not already linked.
 
 ## Required Behavior
 
+- Survey the repo before writing — the template is a structure, not a script to paste verbatim.
 - Create `AGENTS.md` when it is missing.
 - Update `AGENTS.md` surgically when it already exists.
 - Preserve unrelated existing agent instructions unless the user asked to replace the file.
@@ -34,13 +41,9 @@ The canonical scaffold content lives in:
 
 - [`assets/AGENTS.template.md`](assets/AGENTS.template.md)
 
-Copy it directly for a new file unless the user asks for changes.
+Use it as the structure and prose baseline, but tailor the repo-specific sections (In-Code Documentation, Pre-commit Hooks, Project-Specific Notes) to what the survey found. Generic placeholder text is worse than a short accurate description.
 
-For an existing `AGENTS.md`, prefer either:
-
-- Refactoring the existing AGENTS.md, with confirmation of the user, to match the template.
-
-If the existing file conflicts with the template and the right merge is not obvious, surface the conflict instead of guessing.
+For an existing `AGENTS.md`, prefer refactoring it to match the template structure with user confirmation. If the existing file conflicts with the template and the right merge is not obvious, surface the conflict instead of guessing.
 
 ## What To Verify
 
