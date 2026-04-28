@@ -8,4 +8,4 @@ if [ -d "$PB_PRIVATE_SNIPPETS_DIR" ]; then
   fi
 fi
 
-eval "$(peanutbutter --bash)"
+eval "$(peanutbutter bash)"
