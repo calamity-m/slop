@@ -50,6 +50,7 @@ Editor basics:
 | `nvim` | the editor config and `vi` alias | <https://neovim.io/> |
 | `fzf` | `fzf-lua` native picker backend | <https://github.com/junegunn/fzf> |
 | `rg` / ripgrep | `fzf-lua` live grep and global search | <https://github.com/BurntSushi/ripgrep> |
+| `tree-sitter` | Tree-sitter parser installs and maintenance | <https://tree-sitter.github.io/tree-sitter/> |
 | C compiler/toolchain | building installed Tree-sitter parsers when needed | your OS package manager, Xcode Command Line Tools, or `build-essential` |
 
 Configured LSP binaries:
@@ -196,6 +197,7 @@ npm install -g oxfmt@latest
 
 cargo install stylua --locked --force
 cargo install kdlfmt --locked --force
+cargo install tree-sitter-cli --locked --force
 ```
 
 Kubernetes CLI:
