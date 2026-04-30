@@ -6,6 +6,14 @@
 tar -czvf <@out>.tar.gz <@src:rg . --files>
 ```
 
+## List tar contents
+
+List files inside a tar archive without extracting it.
+
+```
+tar -tf <@tar:rg . --files>
+```
+
 ## Untar into directory
 
 ```
