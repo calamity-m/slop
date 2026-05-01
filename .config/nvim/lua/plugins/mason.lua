@@ -24,6 +24,9 @@ local tools = {
 	"xmlformatter",
 	"typos",
 	"buf",
+	"jdtls",
+	"java-debug-adapter",
+	"java-test",
 }
 
 require("mason").setup()

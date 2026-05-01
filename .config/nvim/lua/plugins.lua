@@ -26,6 +26,7 @@ vim.pack.add({
 	{ src = "https://github.com/leoluz/nvim-dap-go" },
 	{ src = "https://github.com/igorlfs/nvim-dap-view", version = vim.version.range("1.*") },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
+	{ src = "https://github.com/mfussenegger/nvim-jdtls" },
 	{ src = "https://github.com/rachartier/tiny-cmdline.nvim" },
 })
 
@@ -43,6 +44,7 @@ local plugin_modules = {
 	"plugins.conform",
 	"plugins.mason",
 	"plugins.dap",
+	"plugins.jdtls",
 	"plugins.lsp",
 	"plugins.tiny_cmdline",
 }

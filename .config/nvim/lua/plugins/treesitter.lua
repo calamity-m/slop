@@ -17,6 +17,7 @@ treesitter_manager.setup({
 		"gotmpl",
 		"helm",
 		"yaml",
+		"java",
 	},
 })
 
