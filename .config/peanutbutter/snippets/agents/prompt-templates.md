@@ -8,8 +8,8 @@ tags:
 
 ## debug prompt
 
-```
-cat <<'PROMPT' | xclip -selection clipboard
+````
+cat <<'PROMPT'
 ## Debug Session
 
 **Issue:**
@@ -24,4 +24,4 @@ cat <<'PROMPT' | xclip -selection clipboard
 **Leads / Hunches:**
 <@leads:?any suspicions about root cause>
 PROMPT
-```
+````
