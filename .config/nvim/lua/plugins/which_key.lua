@@ -10,6 +10,9 @@ wk.setup({
 
 wk.add({
 	{ "<leader>c", group = "Code" },
+	{ "<leader>d", group = "DAP" },
+	{ "<leader>dg", group = "DAP Go" },
+	{ "<leader>dp", group = "DAP Python" },
 	{ "<leader>f", group = "Find" },
 	{ "<leader>h", group = "Haunt" },
 	{ "<leader>g", group = "Goto / LSP" },

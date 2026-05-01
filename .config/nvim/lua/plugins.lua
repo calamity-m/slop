@@ -20,6 +20,11 @@ vim.pack.add({
 	{ src = "https://github.com/mason-org/mason.nvim" },
 	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
 	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
+	{ src = "https://github.com/mfussenegger/nvim-dap" },
+	{ src = "https://github.com/jay-babu/mason-nvim-dap.nvim" },
+	{ src = "https://codeberg.org/mfussenegger/nvim-dap-python" },
+	{ src = "https://github.com/leoluz/nvim-dap-go" },
+	{ src = "https://github.com/igorlfs/nvim-dap-view", version = vim.version.range("1.*") },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/rachartier/tiny-cmdline.nvim" },
 })
@@ -37,6 +42,7 @@ local plugin_modules = {
 	"plugins.blink",
 	"plugins.conform",
 	"plugins.mason",
+	"plugins.dap",
 	"plugins.lsp",
 	"plugins.tiny_cmdline",
 }

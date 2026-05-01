@@ -106,6 +106,7 @@ install.sh -> symlinks under $HOME and ~/.config
 - This is a dotfiles repo installed by `install.sh` via symlinks into home-directory config paths.
 - `install.sh` may run `mise trust` and `mise install`; keep mise config limited to global binary tools, not language runtimes.
 - Neovim LSP/formatter bootstrap is split: Mason owns Neovim-scoped tools, while mise owns shell-visible binaries.
+- If `nvim` is not on `PATH`, use the mise-installed binary under `~/.local/share/mise/installs/neovim/<version>/bin/nvim`; for example, `~/.local/share/mise/installs/neovim/0.12.2/bin/nvim`.
 - Keep snippet changes in `.config/peanutbutter/snippets` as Markdown `##` sections with one executable fenced code block.
 - When adding or editing Peanutbutter snippets, refer to https://github.com/calamity-m/peanutbutter/blob/main/docs/SNIPPET_SYNTAX.md.
 - Shell aliases and helpers live in `.bashrc.d`; keep them POSIX-aware only where the surrounding file already is.
