@@ -33,7 +33,9 @@ map("n", "<leader>ff", fzf.global, { desc = "Fzf Global" })
 map("n", "<leader>fg", fzf.live_grep, { desc = "Live Grep" })
 map("n", "<leader>fb", fzf.buffers, { desc = "Buffers" })
 
-map({ "n", "x" }, "gra", fzf.lsp_code_actions, { desc = "Code Action" })
+map("n", "<leader>cD", fzf.diagnostics_document, { desc = "Document Diagnostics" })
+map("n", "<leader>cs", fzf.lsp_document_symbols, { desc = "Document Symbols" })
+
 map("n", "gri", fzf.lsp_implementations, { desc = "Goto Implementation" })
 map("n", "grr", fzf.lsp_references, { desc = "Goto References" })
 map("n", "grt", fzf.lsp_typedefs, { desc = "Goto Type Definition" })

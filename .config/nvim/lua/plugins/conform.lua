@@ -45,3 +45,7 @@ conform.setup({
 		timeout_ms = 500, -- prevent long blocking on save
 	},
 })
+
+vim.keymap.set({ "n", "x" }, "<leader>cf", function()
+	conform.format({ async = true, lsp_format = "fallback" })
+end, { desc = "Format" })
