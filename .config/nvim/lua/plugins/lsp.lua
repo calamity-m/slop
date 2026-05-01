@@ -1,15 +1,7 @@
 local map = vim.keymap.set
+local mason = require("plugins.mason")
 
-vim.lsp.enable({
-	"rust_analyzer",
-	"gopls",
-	"lua_ls",
-	"ty",
-	"oxfmt",
-	"helm_ls",
-	"tombi",
-	"marksman",
-})
+vim.lsp.enable(mason.lsp_servers)
 
 map("n", "<leader>gg", vim.lsp.buf.definition, { desc = "Goto Definition" })
 map("n", "<leader>gh", vim.lsp.buf.hover, { desc = "Hover Documentation" })

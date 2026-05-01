@@ -16,6 +16,9 @@ vim.pack.add({
 	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 	{ src = "https://github.com/stevearc/conform.nvim" },
+	{ src = "https://github.com/mason-org/mason.nvim" },
+	{ src = "https://github.com/mason-org/mason-lspconfig.nvim" },
+	{ src = "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim" },
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/rachartier/tiny-cmdline.nvim" },
 })
@@ -31,6 +34,7 @@ local plugin_modules = {
 	"plugins.treesitter",
 	"plugins.blink",
 	"plugins.conform",
+	"plugins.mason",
 	"plugins.lsp",
 	"plugins.tiny_cmdline",
 }
