@@ -15,7 +15,7 @@ select a docker container to get a shell on it.
 dexec
 ```
 
-## zellij - spawn project tab
+## zellij - spawn/create project tab
 
 Create a new zellij tab with an nvim project layout setup from the get-go.
 
