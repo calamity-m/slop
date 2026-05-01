@@ -1,15 +1,15 @@
 ---
 tags:
-    - debug
-    - ai
+  - debug
+  - ai
 ---
 
 # Prompt Template Snippets
 
 ## debug prompt
 
-````
-cat <<'PROMPT'
+```
+cat <<'PROMPT' | xclip -selection clipboard
 ## Debug Session
 
 **Issue:**
@@ -24,4 +24,4 @@ cat <<'PROMPT'
 **Leads / Hunches:**
 <@leads:?any suspicions about root cause>
 PROMPT
-````
+```
