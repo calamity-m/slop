@@ -4,6 +4,7 @@ require("mini.tabline").setup()
 require("mini.indentscope").setup()
 require("mini.notify").setup()
 require("mini.cmdline").setup()
+require("mini.cursorword").setup()
 require("mini.hues").setup({
 	background = "#101418",
 	foreground = "#d7dde3",
