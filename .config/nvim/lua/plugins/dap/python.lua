@@ -15,11 +15,20 @@ function M.setup()
 
 	dap_python.setup(debugpy_adapter())
 
-	vim.keymap.set("n", "<leader>dpt", dap_python.test_method, { desc = "DAP Python Test Method" })
-	vim.keymap.set("n", "<leader>dpT", dap_python.test_class, { desc = "DAP Python Test Class" })
-	vim.keymap.set("x", "<leader>dps", function()
-		dap_python.debug_selection()
-	end, { desc = "DAP Python Debug Selection" })
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = "python",
+		callback = function(event)
+			vim.keymap.set("n", "<leader>dt", dap_python.test_method, {
+				buffer = event.buf,
+				desc = "DAP Test",
+			})
+
+			vim.keymap.set("n", "<leader>dT", dap_python.test_class, {
+				buffer = event.buf,
+				desc = "DAP Test Class",
+			})
+		end,
+	})
 end
 
 return M

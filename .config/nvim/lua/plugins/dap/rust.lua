@@ -157,6 +157,47 @@ local function build_all_tests()
 	end, "Select Cargo test executable:")
 end
 
+function M.debug_current_file_tests()
+	require("dap").run({
+		name = "Cargo debug current file tests",
+		type = "codelldb",
+		request = "launch",
+		program = build_current_file_tests,
+		cwd = cargo_root,
+		args = test_args,
+		stopOnEntry = false,
+	})
+end
+
+function M.debug_all_tests()
+	require("dap").run({
+		name = "Cargo debug all tests",
+		type = "codelldb",
+		request = "launch",
+		program = build_all_tests,
+		cwd = cargo_root,
+		args = test_args,
+		stopOnEntry = false,
+	})
+end
+
+local function setup_keymaps()
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = "rust",
+		callback = function(event)
+			vim.keymap.set("n", "<leader>dt", M.debug_current_file_tests, {
+				buffer = event.buf,
+				desc = "DAP Test",
+			})
+
+			vim.keymap.set("n", "<leader>dT", M.debug_all_tests, {
+				buffer = event.buf,
+				desc = "DAP All Tests",
+			})
+		end,
+	})
+end
+
 function M.setup(dap)
 	dap.configurations.rust = {
 		{
@@ -210,6 +251,8 @@ function M.setup(dap)
 			stopOnEntry = false,
 		},
 	}
+
+	setup_keymaps()
 end
 
 return M

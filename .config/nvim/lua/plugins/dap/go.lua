@@ -5,8 +5,20 @@ function M.setup()
 
 	dap_go.setup()
 
-	vim.keymap.set("n", "<leader>dgt", dap_go.debug_test, { desc = "DAP Go Test" })
-	vim.keymap.set("n", "<leader>dgT", dap_go.debug_last_test, { desc = "DAP Go Last Test" })
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = "go",
+		callback = function(event)
+			vim.keymap.set("n", "<leader>dt", dap_go.debug_test, {
+				buffer = event.buf,
+				desc = "DAP Test",
+			})
+
+			vim.keymap.set("n", "<leader>dT", dap_go.debug_last_test, {
+				buffer = event.buf,
+				desc = "DAP Last Test",
+			})
+		end,
+	})
 end
 
 return M
