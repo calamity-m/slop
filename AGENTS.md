@@ -77,7 +77,6 @@ install.sh                       -> entry point; symlinks repo paths into $HOME 
 .config/nvim/                    -> Neovim Lua config (init.lua + lua/, queries/, snippets/)
 .config/peanutbutter/snippets/   -> Peanutbutter Markdown snippets (## section + fenced block)
 .config/zellij/                  -> Zellij config and layouts
-.scripts/                        -> auxiliary scripts (forgit installer, dashboards)
 ```
 
 ### Entry point
