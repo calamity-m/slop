@@ -10,8 +10,8 @@ Usage:
 Symlink dotfiles from this repository into $HOME.
 
 Creates:
-  ~/.config/skills  -> <repo>/.config/skills
-  ~/.config/agents  -> <repo>/.config/agents
+  ~/.config/skills  -> <repo>/.agents/skills
+  ~/.config/agents  -> <repo>/.agents
   ~/.config/nvim    -> <repo>/.config/nvim
   ~/.config/zellij       -> <repo>/.config/zellij
   ~/.config/peanutbutter -> <repo>/.config/peanutbutter
@@ -119,8 +119,8 @@ ensure_symlink() {
 
 # Link .config entries into ~/.config
 ensure_dir "$HOME/.config" || true
-ensure_symlink "$HOME/.config/skills" "$repo_dir/.config/skills" || true
-ensure_symlink "$HOME/.config/agents" "$repo_dir/.config/agents" || true
+ensure_symlink "$HOME/.config/skills" "$repo_dir/.agents/skills" || true
+ensure_symlink "$HOME/.config/agents" "$repo_dir/.agents" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/zellij" "$repo_dir/.config/zellij" || true
 ensure_symlink "$HOME/.config/peanutbutter" "$repo_dir/.config/peanutbutter" || true
@@ -157,8 +157,8 @@ ensure_symlink "$codex_root/skills" "$HOME/.config/skills" || true
 
 log ""
 log "install complete"
-log "  skills: ~/.config/skills -> $repo_dir/.config/skills"
-log "  agents: ~/.config/agents -> $repo_dir/.config/agents"
+log "  skills: ~/.config/skills -> $repo_dir/.agents/skills"
+log "  agents: ~/.config/agents -> $repo_dir/.agents"
 log "  nvim:   ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"

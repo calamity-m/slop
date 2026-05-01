@@ -1,5 +1,5 @@
 out/
 nvim-pack-lock.json
-.config/skills/.system/
+.agents/skills/.system/
 .codex
 nvim.log

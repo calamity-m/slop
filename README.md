@@ -11,8 +11,8 @@ git clone <this-repo> ~/code/slop
 
 That's it. The script symlinks everything into place:
 
-- `~/.config/skills` — AI agent skills (also wired into `~/.claude/skills` and `~/.codex/skills`)
-- `~/.config/agents` — agent instruction files
+- `~/.config/skills` — AI agent skills from `.agents/skills` (also wired into `~/.claude/skills` and `~/.codex/skills`)
+- `~/.config/agents` — agent instruction files and skills from `.agents`
 - `~/.config/nvim` — neovim config
 - `~/.config/zellij` — zellij config and layouts
 - `~/.config/peanutbutter` — peanutbutter config and snippets
