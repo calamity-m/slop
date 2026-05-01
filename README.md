@@ -91,6 +91,7 @@ Optional workflow tools:
 | `glab` | `.scripts/pipeline-dashboard.sh` | <https://gitlab.com/gitlab-org/cli> |
 | `jq` | `.scripts/pipeline-dashboard.sh` JSON parsing | <https://jqlang.org/> |
 | `forgit` | Git shortcuts sourced from `~/.local/share/forgit` | <https://github.com/wfxr/forgit> |
+| `lazygit` | terminal Git UI and `lg` alias | <https://github.com/jesseduffield/lazygit> |
 
 ### Update Runbooks
 
@@ -143,6 +144,7 @@ Tools using the archive pattern:
 - `zellij`: binary `zellij`
 - `helm_ls`: binary `helm_ls`
 - `glab`: binary `glab`
+- `lazygit`: binary `lazygit`
 
 Neovim release archive:
 
