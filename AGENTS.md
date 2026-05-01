@@ -61,9 +61,44 @@ Prefer concrete checks such as `bash -n install.sh`, loading a snippet file, or 
 
 **Prefer repeatable checks over reminders.**
 
-No repo pre-commit config is currently present. When adding one is in scope, prefer hooks that match this repo's files, such as shell syntax checks for `.sh` files and formatting/linting for Lua or Markdown where tooling already exists.
+No repo pre-commit config is currently present. When adding one is in scope, the natural-fit tools for this repo are `bash -n` and `shellcheck` for `.sh` files under `install.sh`, `.bashrc.d/`, and `.scripts/`, plus `stylua` for the Lua under `.config/nvim/`. Markdown snippets and skill files have no current formatter.
 
-## 7. Project-Specific Notes
+## 7. Repository Map
+
+**Brief orientation. Where things live, where execution starts, how install flows.**
+
+### Key directories
+
+```text
+install.sh                       -> entry point; symlinks repo paths into $HOME and ~/.config
+.agents/skills/                  -> agent skills (symlinked into ~/.claude/skills and ~/.codex/skills)
+.bashrc.d/                       -> shell extensions, auto-sourced by ~/.bashrc
+.config/nvim/                    -> Neovim Lua config (init.lua + lua/, queries/, snippets/)
+.config/peanutbutter/snippets/   -> Peanutbutter Markdown snippets (## section + fenced block)
+.config/zellij/                  -> Zellij config and layouts
+.scripts/                        -> auxiliary scripts (forgit installer, dashboards)
+```
+
+### Entry point
+
+```text
+./install.sh [--force]   -> create all symlinks; refuses to clobber non-symlink files unless --force
+```
+
+Single entry point. Everything else is sourced by the tools that consume the symlinked configs (bash, Neovim, Claude Code, Codex, peanutbutter, zellij).
+
+### Data flow
+
+```text
+install.sh -> symlinks under $HOME and ~/.config
+                |
+                +-> bash starts -> ~/.bashrc.d/*.sh sourced
+                +-> nvim starts -> ~/.config/nvim/init.lua
+                +-> claude/codex -> ~/.config/skills/<skill>/SKILL.md
+                +-> peanutbutter -> ~/.config/peanutbutter/snippets/*.md
+```
+
+## 8. Project-Specific Notes
 
 **Specifics every person should know when working on this project.**
 

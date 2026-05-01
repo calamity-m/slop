@@ -85,7 +85,51 @@ Default to adding pre-commit tooling when possible:
 - If the user mentions you forgot to run tests or some other issue -> Ask them to setup claude, codex or other agent hook tooling
 
 
-## 7. Project-Specific Notes
+## 7. Repository Map
+
+**Brief orientation. Where things live, where execution starts, how data moves.**
+
+Keep this short — three subsections, a few lines each. The point is to let an agent locate the right file fast, not to mirror the README.
+
+### Key directories
+
+List only directories an agent will actually need. One line each: path -> purpose.
+
+```text
+src/api/        -> HTTP handlers, request validation
+src/core/       -> domain logic, no I/O
+src/storage/    -> Postgres + Redis adapters
+migrations/     -> Alembic schema migrations
+```
+
+Skip directories with self-evident names (`tests/`, `docs/`) unless their layout is non-obvious.
+
+### Entry points
+
+Name the file(s) where execution starts. Include the relevant launch command.
+
+```text
+src/api/main.py        -> `uv run app` (HTTP server)
+src/workers/runner.py  -> `uv run worker` (background jobs)
+```
+
+If there is only one entry point, one line is enough. If there are several (CLI + server + worker), list each.
+
+### Data flow
+
+One paragraph or a short arrow chain. Just enough to predict where a change ripples.
+
+```text
+Request -> api/handler -> core/service -> storage/repo -> Postgres
+                              |
+                              -> Redis cache (read-through)
+```
+
+Cover only the dominant path. Edge cases and alternate flows belong in code comments or design docs, not here.
+
+If the repo is small enough that a map adds no value, say so in one line ("Single script; entry point is `main.py`") and move on.
+
+## 8. Project-Specific Notes
 
 **Specifics every person should know when working on this project**
 
