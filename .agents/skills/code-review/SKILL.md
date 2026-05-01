@@ -1,6 +1,6 @@
 ---
 name: code-review
-description: Review code, diffs, and code paths for consistency with repository conventions, correctness, security, API design, and testability. Use when the user asks for a code review, PR review, diff review, convention check, or wants feedback on specific code. Does NOT trigger for architecture or design-only discussions — use grug-review for those.
+description: Review code, diffs, and code paths for consistency with repository conventions, correctness, security, API design, and testability. Use when the user asks for a code review, PR review, diff review, convention check, or wants feedback on specific code. Does NOT trigger for architecture or design-only discussions — use grugbrain for those.
 ---
 
 # Code Review
