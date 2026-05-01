@@ -73,6 +73,7 @@ No repo pre-commit config is currently present. When adding one is in scope, the
 install.sh                       -> entry point; symlinks repo paths into $HOME and ~/.config
 .agents/skills/                  -> agent skills (symlinked into ~/.claude/skills and ~/.codex/skills)
 .bashrc.d/                       -> shell extensions, auto-sourced by ~/.bashrc
+.config/mise/                    -> mise global config for binary tool installs
 .config/nvim/                    -> Neovim Lua config (init.lua + lua/, queries/, snippets/)
 .config/peanutbutter/snippets/   -> Peanutbutter Markdown snippets (## section + fenced block)
 .config/zellij/                  -> Zellij config and layouts
@@ -82,7 +83,7 @@ install.sh                       -> entry point; symlinks repo paths into $HOME 
 ### Entry point
 
 ```text
-./install.sh [--force]   -> create all symlinks; refuses to clobber non-symlink files unless --force
+./install.sh [--force]   -> create symlinks, trust/install mise tools if mise exists; refuses to clobber non-symlink files unless --force
 ```
 
 Single entry point. Everything else is sourced by the tools that consume the symlinked configs (bash, Neovim, Claude Code, Codex, peanutbutter, zellij).
@@ -93,6 +94,7 @@ Single entry point. Everything else is sourced by the tools that consume the sym
 install.sh -> symlinks under $HOME and ~/.config
                 |
                 +-> bash starts -> ~/.bashrc.d/*.sh sourced
+                +-> mise present -> ~/.config/mise/config.toml trusted, `mise install` run
                 +-> nvim starts -> ~/.config/nvim/init.lua
                 +-> claude/codex -> ~/.config/skills/<skill>/SKILL.md
                 +-> peanutbutter -> ~/.config/peanutbutter/snippets/*.md
@@ -103,6 +105,8 @@ install.sh -> symlinks under $HOME and ~/.config
 **Specifics every person should know when working on this project.**
 
 - This is a dotfiles repo installed by `install.sh` via symlinks into home-directory config paths.
+- `install.sh` may run `mise trust` and `mise install`; keep mise config limited to global binary tools, not language runtimes.
+- Neovim LSP/formatter bootstrap is split: Mason owns Neovim-scoped tools, while mise owns shell-visible binaries.
 - Keep snippet changes in `.config/peanutbutter/snippets` as Markdown `##` sections with one executable fenced code block.
 - When adding or editing Peanutbutter snippets, refer to https://github.com/calamity-m/peanutbutter/blob/main/docs/SNIPPET_SYNTAX.md.
 - Shell aliases and helpers live in `.bashrc.d`; keep them POSIX-aware only where the surrounding file already is.
