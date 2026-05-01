@@ -12,6 +12,7 @@ git clone <this-repo> ~/code/slop
 That's it. The script symlinks everything into place:
 
 - `~/.config/skills` — AI agent skills from `.agents/skills` (also wired into `~/.claude/skills` and `~/.codex/skills`)
+- `~/.config/mise` — binary tool versions for mise
 - `~/.config/nvim` — neovim config
 - `~/.config/zellij` — zellij config and layouts
 - `~/.config/peanutbutter` — peanutbutter config and snippets
@@ -25,18 +26,42 @@ It won't nuke your existing config unless you pass `--force`, at which point you
 
 The installer mostly symlinks config. It does not install the tools those configs expect, except for cloning `forgit` when `git` is available.
 
-Update runbooks assume direct installs land in `~/.local/bin`; run `mkdir -p ~/.local/bin ~/.local/opt` first and adjust the destination if a tool is package-manager managed on your machine. For `.zip` assets, use `unzip <asset> -d "$tmp"` instead of `tar -xf ... -C "$tmp"`.
+Bootstrap tools stay outside mise:
 
-Core tools:
+| Tool | Used for |
+| --- | --- |
+| `bash` | `install.sh` and `~/.bashrc.d` shell extensions |
+| `git` | cloning this repo and installing `forgit` |
+| `mise` | installing and updating binary tools |
 
-| Tool | Used for | Where to get it |
-| --- | --- | --- |
-| `bash` | `install.sh` and `~/.bashrc.d` shell extensions | <https://www.gnu.org/software/bash/> |
-| `git` | cloning this repo and installing `forgit` | <https://git-scm.com/> |
-| `fzf` | shell completion and picker-backed helpers | <https://github.com/junegunn/fzf> |
-| `zoxide` | shell directory jumping integration | <https://github.com/ajeetdsouza/zoxide> |
-| `eza` | `ll`, `la`, and `tree` aliases | <https://github.com/eza-community/eza> |
-| `peanutbutter` | snippet expansion and shell integration | <https://github.com/calamity-m/peanutbutter/releases> |
+Install `mise`, then run `./install.sh` to link config and install the checked-in binary tool config:
+
+```bash
+./install.sh
+```
+
+Update those tools with:
+
+```bash
+mise upgrade
+```
+
+The checked-in mise config is intentionally limited to binary tools. OS-owned tools, language runtimes, Docker, and C compiler/toolchain packages stay outside mise for now.
+
+Mise-managed binaries:
+
+| Tool | Used for |
+| --- | --- |
+| `fzf` | shell completion and picker-backed helpers |
+| `zoxide` | shell directory jumping integration |
+| `eza` | `ll`, `la`, and `tree` aliases |
+| `peanutbutter` | snippet expansion and shell integration |
+| `nvim` | the editor config and `vi` alias |
+| `rg` / ripgrep | `fzf-lua`, Docker helper filtering, and snippets |
+| `zellij` | terminal workspace config and layouts |
+| `lazygit` | terminal Git UI and `lg` alias |
+| `gh` | GitHub CLI |
+| `glab` | GitLab CLI for `.scripts/pipeline-dashboard.sh` |
 
 ### Neovim
 
@@ -44,13 +69,13 @@ The Neovim config uses `vim.pack`, `vim.lsp.enable`, `nvim-lspconfig`, `conform.
 
 Editor basics:
 
-| Tool | Used for | Where to get it |
+| Tool | Used for | Managed by |
 | --- | --- | --- |
-| `nvim` | the editor config and `vi` alias | <https://neovim.io/> |
-| `fzf` | `fzf-lua` native picker backend | <https://github.com/junegunn/fzf> |
-| `rg` / ripgrep | `fzf-lua` live grep and global search | <https://github.com/BurntSushi/ripgrep> |
-| `tree-sitter` | Tree-sitter parser installs and maintenance | <https://tree-sitter.github.io/tree-sitter/> |
-| C compiler/toolchain | building installed Tree-sitter parsers when needed | your OS package manager, Xcode Command Line Tools, or `build-essential` |
+| `nvim` | the editor config and `vi` alias | mise |
+| `fzf` | `fzf-lua` native picker backend | mise |
+| `rg` / ripgrep | `fzf-lua` live grep and global search | mise |
+| `tree-sitter` | Tree-sitter parser installs and maintenance | cargo |
+| C compiler/toolchain | building installed Tree-sitter parsers when needed | OS package manager |
 
 Configured LSP binaries:
 
@@ -78,136 +103,6 @@ Configured formatters:
 | `kdlfmt` | KDL, except `config.kdl` | <https://github.com/hougesen/kdlfmt> |
 
 Tree-sitter parsers are configured for bash, Lua, Python, Rust, JavaScript, Zig, Go, Markdown, JSON, TOML, TypeScript, TSX, Go templates, Helm, and YAML.
-
-Optional workflow tools:
-
-| Tool | Used for | Where to get it |
-| --- | --- | --- |
-| `rg` / ripgrep | Docker helper filtering and peanutbutter snippets | <https://github.com/BurntSushi/ripgrep> |
-| `zellij` | terminal workspace config and layouts | <https://zellij.dev/> |
-| `docker` | Docker shell helpers and peanutbutter variables | <https://docs.docker.com/get-docker/> |
-| `kubectl` | Kubernetes shell completions and peanutbutter variables | <https://kubernetes.io/docs/tasks/tools/> |
-| `glab` | `.scripts/pipeline-dashboard.sh` | <https://gitlab.com/gitlab-org/cli> |
-| `jq` | `.scripts/pipeline-dashboard.sh` JSON parsing | <https://jqlang.org/> |
-| `forgit` | Git shortcuts sourced from `~/.local/share/forgit` | <https://github.com/wfxr/forgit> |
-| `lazygit` | terminal Git UI and `lg` alias | <https://github.com/jesseduffield/lazygit> |
-
-### Update Runbooks
-
-Package-manager tools:
-
-`bash`, `git`, Docker, and the C compiler/toolchain are best updated through the OS package manager. For apt-based systems:
-
-```bash
-sudo apt update
-sudo apt install --only-upgrade bash git build-essential
-```
-
-For Docker, update Docker Desktop, Docker Engine packages, or the OS package that owns your Docker install.
-
-Git checkout tools:
-
-```bash
-git -C ~/.fzf pull
-~/.fzf/install
-
-git -C "${FORGIT_HOME:-$HOME/.local/share/forgit}" pull --ff-only
-```
-
-Archive asset pattern:
-
-Use this for tools whose release page gives you a `.tar.gz`, `.tar.xz`, or similar archive. Swap in the right URL and binary name.
-
-```bash
-tmp=$(mktemp -d)
-curl -L <release-archive> -o "$tmp/tool.tar"
-tar -xf "$tmp/tool.tar" -C "$tmp"
-install "$(find "$tmp" -type f -name <binary> | head -1)" ~/.local/bin/<binary>
-```
-
-For `.zip` assets:
-
-```bash
-tmp=$(mktemp -d)
-curl -L <release-asset.zip> -o "$tmp/tool.zip"
-unzip "$tmp/tool.zip" -d "$tmp"
-install "$(find "$tmp" -type f -name <binary> | head -1)" ~/.local/bin/<binary>
-```
-
-Tools using the archive pattern:
-
-- `zoxide`: binary `zoxide`
-- `eza`: binary `eza`
-- `peanutbutter`: binary `peanutbutter`
-- `rg` / ripgrep: binary `rg`
-- `zellij`: binary `zellij`
-- `helm_ls`: binary `helm_ls`
-- `glab`: binary `glab`
-- `lazygit`: binary `lazygit`
-
-Neovim release archive:
-
-```bash
-tmp=$(mktemp -d)
-curl -L <nvim-linux-archive> -o "$tmp/nvim.tar"
-tar -xf "$tmp/nvim.tar" -C "$tmp"
-rm -rf ~/.local/opt/nvim
-mv "$(find "$tmp" -maxdepth 1 -type d -name 'nvim-*' | head -1)" ~/.local/opt/nvim
-ln -sf ~/.local/opt/nvim/bin/nvim ~/.local/bin/nvim
-```
-
-Lua language server release archive:
-
-```bash
-tmp=$(mktemp -d)
-curl -L <lua-language-server-archive> -o "$tmp/lua-ls.tar"
-tar -xf "$tmp/lua-ls.tar" -C "$tmp"
-root=$(dirname "$(dirname "$(find "$tmp" -type f -path '*/bin/lua-language-server' | head -1)")")
-rm -rf ~/.local/opt/lua-language-server
-cp -a "$root" ~/.local/opt/lua-language-server
-ln -sf ~/.local/opt/lua-language-server/bin/lua-language-server ~/.local/bin/lua-language-server
-```
-
-Single binary release assets:
-
-```bash
-tmp=$(mktemp -d)
-curl -L <release-asset> -o "$tmp/<binary>"
-install "$tmp/<binary>" ~/.local/bin/<binary>
-```
-
-Tools using the single binary pattern:
-
-- `marksman`: binary `marksman`
-- `jq`: binary `jq`
-
-Language/toolchain managed tools:
-
-```bash
-rustup update
-rustup component add rust-analyzer rustfmt
-
-go install golang.org/x/tools/gopls@latest
-go install golang.org/x/tools/cmd/goimports@latest
-
-uv tool install --force ty
-uv tool install --force tombi
-uv tool install --force ruff
-
-npm install -g oxfmt@latest
-
-cargo install stylua --locked --force
-cargo install kdlfmt --locked --force
-cargo install tree-sitter-cli --locked --force
-```
-
-Kubernetes CLI:
-
-```bash
-tmp=$(mktemp -d)
-curl -L <stable-version-url>/bin/linux/amd64/kubectl -o "$tmp/kubectl"
-install "$tmp/kubectl" ~/.local/bin/kubectl
-```
 
 ## Why
 

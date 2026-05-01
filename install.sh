@@ -11,6 +11,7 @@ Symlink dotfiles from this repository into $HOME.
 
 Creates:
   ~/.config/skills  -> <repo>/.agents/skills
+  ~/.config/mise    -> <repo>/.config/mise
   ~/.config/nvim    -> <repo>/.config/nvim
   ~/.config/zellij       -> <repo>/.config/zellij
   ~/.config/peanutbutter -> <repo>/.config/peanutbutter
@@ -119,10 +120,16 @@ ensure_symlink() {
 # Link .config entries into ~/.config
 ensure_dir "$HOME/.config" || true
 ensure_symlink "$HOME/.config/skills" "$repo_dir/.agents/skills" || true
+ensure_symlink "$HOME/.config/mise" "$repo_dir/.config/mise" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/zellij" "$repo_dir/.config/zellij" || true
 ensure_symlink "$HOME/.config/peanutbutter" "$repo_dir/.config/peanutbutter" || true
 ensure_dir "$HOME/.config/peanutbutter-private/snippets" || true
+
+if command -v mise >/dev/null 2>&1 && [[ -f "$HOME/.config/mise/config.toml" ]]; then
+  mise trust "$HOME/.config/mise/config.toml" || true
+  mise install
+fi
 
 # Symlink ~/.bashrc.d
 ensure_symlink "$HOME/.bashrc.d" "$repo_dir/.bashrc.d" || true
@@ -156,6 +163,7 @@ ensure_symlink "$codex_root/skills" "$HOME/.config/skills" || true
 log ""
 log "install complete"
 log "  skills: ~/.config/skills -> $repo_dir/.agents/skills"
+log "  mise:   ~/.config/mise -> $repo_dir/.config/mise"
 log "  nvim:   ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"

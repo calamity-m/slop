@@ -1,0 +1,11 @@
+[tools]
+fzf = "latest"
+zoxide = "latest"
+eza = "latest"
+ripgrep = "latest"
+neovim = "latest"
+zellij = "latest"
+lazygit = "latest"
+gh = "latest"
+glab = "latest"
+"github:calamity-m/peanutbutter" = "latest"
