@@ -12,10 +12,30 @@ The document is **living**: it is updated as scope shifts, risks materialize, de
 ## When to create vs. update
 
 1. Check whether `BIGPLAN.md` already exists at the repo root.
-2. If it doesn't exist and the user is describing new work → create it from the template below.
+2. If it doesn't exist and the user is describing new work → **invoke the `grill-me` skill first** (see "Pre-draft grill" below), then create the document from the template using the resulting Shared Understanding summary.
 3. If it exists → read it first, then make the smallest coherent edit that satisfies the request (tick items, add a deliverable, revise a risk, expand a description). Preserve everything else verbatim.
 
 Don't silently rewrite sections the user didn't ask about. If you spot something stale while making a requested edit, mention it and ask before changing it.
+
+## Pre-draft grill
+
+A new BIGPLAN exists to capture sizeable work, and sizeable work is exactly where unspoken assumptions become deliverable-shaped pain. Before drafting, hand off to the `grill-me` skill to reach shared understanding.
+
+The grill should:
+
+1. Do its own pre-flight (read the repo, the README, any linked docs) — do not ask the user things you can answer yourself.
+2. Run the question loop until the stopping criteria in `grill-me` are met or the user calls it.
+3. Produce the **Shared understanding** summary block.
+
+Use that summary as the source material for the first draft:
+
+- **Goal** seeds the Plan Overview.
+- **In scope / Out of scope** shapes the deliverable boundaries.
+- **Key terms** flow into the Plan Details, especially as Gotchas if a term has been overloaded historically.
+- **Assumptions confirmed** are background facts; do not list them again unless one is load-bearing for a deliverable.
+- **Open questions deferred** become Issues entries, dated and signed, so they don't get lost.
+
+Skip the grill **only** when the brief is already crisp (the user has clearly thought it through, scope is explicit, terms are unambiguous). When skipping, say so in your reply with a one-line reason — "brief is clear, skipping grill because X" — so the user can override if they disagree.
 
 ## Document structure
 
