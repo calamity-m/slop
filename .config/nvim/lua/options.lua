@@ -24,8 +24,6 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.showtabline = 2
-vim.opt.spell = true
-vim.opt.spelllang = "en_au"
 
 vim.o.mousescroll = "ver:25,hor:6"
 vim.o.switchbuf = "usetab"

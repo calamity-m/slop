@@ -11,6 +11,7 @@ M.lsp_servers = {
 	"helm_ls",
 	"tombi",
 	"marksman",
+	"typos_lsp",
 }
 
 local tools = {
@@ -21,6 +22,8 @@ local tools = {
 	"tombi",
 	"kdlfmt",
 	"xmlformatter",
+	"typos",
+	"buf",
 }
 
 require("mason").setup()

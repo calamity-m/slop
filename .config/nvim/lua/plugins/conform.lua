@@ -4,8 +4,9 @@ conform.setup({
 	formatters_by_ft = {
 		lua = { "stylua" }, -- Lua formatter
 		go = { "goimports", "gofmt" }, -- imports first, then format
-		python = { "ruff" }, -- fast Python formatter/linter
+		python = { "ruff_organize_imports", "ruff_format" }, -- imports first, then format
 		rust = { "rustfmt" }, -- Rust formatter
+		proto = { "buf" }, -- Protobuf formatter
 
 		-- JS/TS ecosystem via oxfmt (fast, Rust-based)
 		javascript = { "oxfmt" },
