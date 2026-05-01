@@ -12,13 +12,18 @@ conform.setup({
 		javascriptreact = { "oxfmt" },
 		typescript = { "oxfmt" },
 		typescriptreact = { "oxfmt" },
+		html = { "oxfmt" },
+		css = { "oxfmt" },
+		scss = { "oxfmt" },
 		json = { "oxfmt" },
 		jsonc = { "oxfmt" }, -- JSON with comments (tsconfig, etc.)
+		markdown = { "oxfmt" },
 		mjs = { "oxfmt" }, -- ES modules
 		cjs = { "oxfmt" }, -- CommonJS modules
 		vue = { "oxfmt" }, -- mainly script blocks
 		toml = { "tombi" }, -- proper TOML formatter
 		kdl = { "kdlfmt" }, -- KDL formatter
+		xml = { "xmlformatter" }, -- XML formatter
 	},
 
 	formatters = {

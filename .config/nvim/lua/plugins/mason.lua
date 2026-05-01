@@ -20,6 +20,7 @@ local tools = {
 	"oxfmt",
 	"tombi",
 	"kdlfmt",
+	"xmlformatter",
 }
 
 require("mason").setup()
