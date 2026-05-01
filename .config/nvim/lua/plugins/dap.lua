@@ -3,13 +3,16 @@ local dap_view = require("dap-view")
 local mason_nvim_dap = require("mason-nvim-dap")
 local map = vim.keymap.set
 
-dap_view.setup({})
+dap_view.setup({
+	auto_toggle = true,
+})
 
 mason_nvim_dap.setup({
 	ensure_installed = {
 		"codelldb",
 		"delve",
 		"python",
+		"js-debug-adapter",
 	},
 	handlers = {},
 })
@@ -17,6 +20,7 @@ mason_nvim_dap.setup({
 require("plugins.dap.rust").setup(dap)
 require("plugins.dap.python").setup()
 require("plugins.dap.go").setup()
+require("plugins.dap.javascript").setup()
 
 vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "C", texthl = "DiagnosticSignWarn" })
