@@ -5,6 +5,7 @@ alias ll='eza -l --header --icons'
 alias la='eza -la --header --icons'
 
 # Muscle-memory compatibility for `ls -lsha`.
+unalias ls 2>/dev/null || true
 ls() {
   if [[ ${1-} == "-lsha" ]]; then
     shift
