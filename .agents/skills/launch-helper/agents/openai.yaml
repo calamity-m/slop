@@ -1,0 +1,4 @@
+interface:
+  display_name: "Launch Helper"
+  short_description: "Create VS Code launch configurations"
+  default_prompt: "Use $launch-helper to set up .vscode/launch.json for this project."
