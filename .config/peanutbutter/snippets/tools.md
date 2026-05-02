@@ -1,7 +1,7 @@
 ---
 tags:
-    - cli
-    - terminal
+  - cli
+  - terminal
 ---
 
 # Tools
@@ -13,12 +13,4 @@ select a docker container to get a shell on it.
 
 ```
 dexec
-```
-
-## zellij - spawn/create project tab
-
-Create a new zellij tab with an nvim project layout setup from the get-go.
-
-``` 
-zellij action new-tab --layout ~/.config/zellij/layouts/nvim-project.kdl --cwd <@project:find ~/code -maxdepth 1 | tail -n +2> --name <@tab_name>
 ```
