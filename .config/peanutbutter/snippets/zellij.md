@@ -20,3 +20,11 @@ Apply a four-pane base layout to the current zellij tab.
 ```
 zellij action override-layout ~/.config/zellij/layouts/base.kdl --apply-only-to-active-tab
 ```
+
+## kill current session
+
+Quit the current zellij session.
+
+```
+zellij kill-session
+```
