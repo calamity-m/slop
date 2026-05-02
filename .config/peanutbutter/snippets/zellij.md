@@ -26,5 +26,5 @@ zellij action override-layout ~/.config/zellij/layouts/base.kdl --apply-only-to-
 Quit the current zellij session.
 
 ```
-zellij kill-session
+zellij kill-session "$ZELLIJ_SESSION_NAME"
 ```
