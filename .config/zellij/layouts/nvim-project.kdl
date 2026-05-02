@@ -6,7 +6,6 @@ layout {
         pane size="70%" close_on_exit=true {
             name "nvim"
             command "nvim"
-            args "."
         }
         pane split_direction="vertical" {
             pane
