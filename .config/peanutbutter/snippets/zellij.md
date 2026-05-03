@@ -18,7 +18,7 @@ project="<@project:find ~/code -maxdepth 1 | tail -n +2>"; zellij action rename-
 Apply a four-pane base layout to the current zellij tab.
 
 ```
-zellij action override-layout ~/.config/zellij/layouts/base.kdl --apply-only-to-active-tab
+zellij action rename-tab base; zellij action override-layout ~/.config/zellij/layouts/base.kdl --apply-only-to-active-tab
 ```
 
 ## apply agent stack layout to current tab
