@@ -53,7 +53,7 @@ local function apply_diagnostic_highlights()
 	end
 end
 
--- render-markdown.nvim heading highlights
+-- render-markdown.nvim highlights
 local function blend_channel(fg, bg, alpha)
 	return math.floor((fg * alpha) + (bg * (1 - alpha)) + 0.5)
 end
@@ -77,6 +77,8 @@ end
 local function apply_render_markdown_highlights()
 	local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
 	local normal_bg = normal.bg or 0x000000
+	local normal_fg = normal.fg or 0xffffff
+	local code_bg = blend_color(normal_fg, normal_bg, 0.08)
 	local heading_groups = {
 		"@markup.heading.1.markdown",
 		"@markup.heading.2.markdown",
@@ -111,8 +113,27 @@ local function apply_render_markdown_highlights()
 			})
 		end
 	end
+
+	local comment = vim.api.nvim_get_hl(0, { name = "Comment", link = false })
+	vim.api.nvim_set_hl(0, "RenderMarkdownCode", {
+		bg = code_bg,
+	})
+	vim.api.nvim_set_hl(0, "RenderMarkdownCodeBorder", {
+		bg = code_bg,
+	})
+	vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", {
+		bg = code_bg,
+	})
+	vim.api.nvim_set_hl(0, "RenderMarkdownCodeInfo", {
+		fg = comment.fg or normal_fg,
+		bold = true,
+	})
+	vim.api.nvim_set_hl(0, "RenderMarkdownCodeFallback", {
+		bg = code_bg,
+		fg = normal_fg,
+	})
 end
--- end render-markdown.nvim heading highlights
+-- end render-markdown.nvim highlights
 
 local function read_json(path)
 	local ok, lines = pcall(vim.fn.readfile, path)
