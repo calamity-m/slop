@@ -53,6 +53,67 @@ local function apply_diagnostic_highlights()
 	end
 end
 
+-- render-markdown.nvim heading highlights
+local function blend_channel(fg, bg, alpha)
+	return math.floor((fg * alpha) + (bg * (1 - alpha)) + 0.5)
+end
+
+local function blend_color(fg, bg, alpha)
+	local fg_red = math.floor(fg / 0x10000) % 0x100
+	local fg_green = math.floor(fg / 0x100) % 0x100
+	local fg_blue = fg % 0x100
+	local bg_red = math.floor(bg / 0x10000) % 0x100
+	local bg_green = math.floor(bg / 0x100) % 0x100
+	local bg_blue = bg % 0x100
+
+	return string.format(
+		"#%02x%02x%02x",
+		blend_channel(fg_red, bg_red, alpha),
+		blend_channel(fg_green, bg_green, alpha),
+		blend_channel(fg_blue, bg_blue, alpha)
+	)
+end
+
+local function apply_render_markdown_highlights()
+	local normal = vim.api.nvim_get_hl(0, { name = "Normal", link = false })
+	local normal_bg = normal.bg or 0x000000
+	local heading_groups = {
+		"@markup.heading.1.markdown",
+		"@markup.heading.2.markdown",
+		"@markup.heading.3.markdown",
+		"@markup.heading.4.markdown",
+		"@markup.heading.5.markdown",
+		"@markup.heading.6.markdown",
+	}
+	local fallback_groups = {
+		"DiagnosticError",
+		"DiagnosticWarn",
+		"DiagnosticInfo",
+		"DiagnosticHint",
+		"Function",
+		"Constant",
+	}
+
+	for index = 1, 6 do
+		local heading = vim.api.nvim_get_hl(0, { name = heading_groups[index], link = false })
+		local fallback = vim.api.nvim_get_hl(0, { name = fallback_groups[index], link = false })
+		local fg = fallback.fg or heading.fg
+
+		if fg then
+			vim.api.nvim_set_hl(0, "RenderMarkdownH" .. index, {
+				fg = fg,
+				bold = true,
+			})
+			vim.api.nvim_set_hl(0, "RenderMarkdownH" .. index .. "Bg", {
+				bg = blend_color(fg, normal_bg, 0.22),
+				fg = fg,
+				bold = true,
+			})
+		end
+	end
+end
+-- end render-markdown.nvim heading highlights
+
 local function read_json(path)
 	local ok, lines = pcall(vim.fn.readfile, path)
 	if not ok or not lines or vim.tbl_isempty(lines) then
@@ -104,6 +165,7 @@ function M.apply(theme, opts)
 	apply_theme_config(theme)
 	vim.cmd.colorscheme(theme.colorscheme)
 	apply_diagnostic_highlights()
+	apply_render_markdown_highlights()
 
 	if opts.persist ~= false then
 		write_json(state_file, {
