@@ -132,8 +132,29 @@ local function apply_render_markdown_highlights()
 		bg = code_bg,
 		fg = normal_fg,
 	})
+
+	local ok, colors = pcall(require, "render-markdown.core.colors")
+	if ok then
+		colors.reload()
+	end
 end
 -- end render-markdown.nvim highlights
+
+local function refresh_render_markdown_buffers()
+	local ok, render_markdown = pcall(require, "render-markdown")
+	if not ok then
+		return
+	end
+
+	for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+		if vim.api.nvim_buf_is_loaded(bufnr) and vim.bo[bufnr].filetype == "markdown" then
+			pcall(render_markdown.render, {
+				buf = bufnr,
+				event = "Theme",
+			})
+		end
+	end
+end
 
 local function read_json(path)
 	local ok, lines = pcall(vim.fn.readfile, path)
@@ -187,6 +208,11 @@ function M.apply(theme, opts)
 	vim.cmd.colorscheme(theme.colorscheme)
 	apply_diagnostic_highlights()
 	apply_render_markdown_highlights()
+	vim.schedule(function()
+		apply_diagnostic_highlights()
+		apply_render_markdown_highlights()
+		refresh_render_markdown_buffers()
+	end)
 
 	if opts.persist ~= false then
 		write_json(state_file, {
