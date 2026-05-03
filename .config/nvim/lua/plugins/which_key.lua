@@ -9,6 +9,7 @@ wk.setup({
 })
 
 wk.add({
+	{ "<leader>b", group = "Buffer" },
 	{ "<leader>c", group = "Code" },
 	{ "<leader>d", group = "DAP" },
 	{ "<leader>f", group = "Find" },

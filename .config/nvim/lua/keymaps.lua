@@ -10,6 +10,7 @@ map("n", "<C-l>", "<C-w>l", { desc = "Window Right" })
 
 map("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Previous Buffer" })
 map("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next Buffer" })
+map("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Delete Buffer" })
 
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
