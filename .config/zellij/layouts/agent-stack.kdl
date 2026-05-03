@@ -1,0 +1,18 @@
+layout {
+    pane size=1 borderless=true {
+        plugin location="zellij:tab-bar"
+    }
+    pane stacked=true {
+        pane name="agent-1"
+        pane name="agent-2"
+        pane name="nvim" close_on_exit=true {
+            command "nvim"
+        }
+    }
+    floating_panes {
+        pane x="10%" y="10%" width="80%" height="80%"
+    }
+    pane size=1 borderless=true {
+        plugin location="status-bar"
+    }
+}
