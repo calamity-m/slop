@@ -29,6 +29,7 @@ vim.pack.add({
 	{ src = "https://github.com/neovim/nvim-lspconfig" },
 	{ src = "https://github.com/mfussenegger/nvim-jdtls" },
 	{ src = "https://github.com/rachartier/tiny-cmdline.nvim" },
+	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 })
 
 local plugin_modules = {
@@ -49,6 +50,7 @@ local plugin_modules = {
 	"plugins.jdtls",
 	"plugins.lsp",
 	"plugins.tiny_cmdline",
+	"plugins.autotag",
 }
 
 for _, module in ipairs(plugin_modules) do
