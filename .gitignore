@@ -3,6 +3,8 @@ nvim-pack-lock.json
 .agents/skills/.system/
 .codex
 nvim.log
+.config/mise/conf.d/*
+!.config/mise/conf.d/.gitkeep
 .bashrc.d/
 !.bashrc.d/docker.sh
 !.bashrc.d/editor.sh
