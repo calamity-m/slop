@@ -8,6 +8,7 @@ M.lsp_servers = {
 	"lua_ls",
 	"ty",
 	"oxfmt",
+	"vtsls",
 	"helm_ls",
 	"tombi",
 	"marksman",
