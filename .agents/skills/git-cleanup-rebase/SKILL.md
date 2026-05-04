@@ -1,6 +1,7 @@
 ---
 name: git-cleanup-rebase
-description: Help a user cleanup a git branch through rebase and squashing. 
+description: Help a user cleanup a git branch through rebase and squashing.
+disable-model-invocation: true
 ---
 
 # Git Cleanup Rebase
