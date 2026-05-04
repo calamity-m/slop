@@ -7,10 +7,10 @@ tags:
 
 ## apply project layout to current tab
 
-Apply the nvim project layout to the current zellij tab.
+Apply the nvim project layout to the current zellij tab from the current directory.
 
 ```
-project="<@project:find ~/code -maxdepth 1 | tail -n +2>"; zellij action rename-tab "$(basename "$project")"; cd "$project" && zellij action override-layout ~/.config/zellij/layouts/nvim-project.kdl --apply-only-to-active-tab
+project="$PWD"; zellij action rename-tab "$(basename "$project")"; cd "$project" && zellij action override-layout ~/.config/zellij/layouts/nvim-project.kdl --apply-only-to-active-tab
 ```
 
 ## apply base layout to current tab
@@ -23,10 +23,10 @@ zellij action rename-tab base; zellij action override-layout ~/.config/zellij/la
 
 ## apply agent stack layout to current tab
 
-Apply the agent stack layout to the current zellij tab.
+Apply the agent stack layout to the current zellij tab from the current directory.
 
 ```
-project="<@project:find ~/code -maxdepth 1 | tail -n +2>"
+project="$PWD"
 tab_name="$(basename "$project")-agents"
 zellij action rename-tab "$tab_name"
 cd "$project" && zellij action override-layout ~/.config/zellij/layouts/agent-stack.kdl --apply-only-to-active-tab
