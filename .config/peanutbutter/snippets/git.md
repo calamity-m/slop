@@ -54,3 +54,26 @@ Shows every place HEAD has pointed — including commits that no longer appear i
 git reflog
 ```
 
+## git delete local branches not on remote
+
+```
+git fetch --prune
+git branch -vv | awk '/: gone]/{print $1 == "*" ? $2 : $1}' | xargs -r git branch -D
+```
+
+## git delete local branches except main or master
+
+```
+git switch main || git switch master
+git branch --format='%(refname:short)' | grep -Ev '^(main|master)$' | xargs -r git branch -D
+```
+
+## git delete branch on remote and local
+
+```
+branch="<@branch>"
+remote="<@remote:echo origin>"
+
+git push "$remote" --delete "$branch"
+git branch -D "$branch"
+```
