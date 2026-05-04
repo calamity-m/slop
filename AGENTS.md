@@ -61,7 +61,7 @@ Prefer concrete checks such as `bash -n install.sh`, loading a snippet file, or 
 
 **Prefer repeatable checks over reminders.**
 
-No repo pre-commit config is currently present. When adding one is in scope, the natural-fit tools for this repo are `bash -n` and `shellcheck` for `.sh` files under `install.sh`, `.bashrc.d/`, and `.scripts/`, plus `stylua` for the Lua under `.config/nvim/`. Markdown snippets and skill files have no current formatter.
+No repo pre-commit config is currently present. When adding one is in scope, the natural-fit tools for this repo are `bash -n` and `shellcheck` for `install.sh` and `.bashrc.d/*.sh`, plus `stylua` for the Lua under `.config/nvim/`. Markdown snippets and skill files have no current formatter.
 
 ## 7. Repository Map
 
@@ -95,7 +95,7 @@ install.sh -> symlinks under $HOME and ~/.config
                 +-> bash starts -> ~/.bashrc.d/*.sh sourced
                 +-> mise present -> ~/.config/mise/config.toml trusted, `mise install` run
                 +-> nvim starts -> ~/.config/nvim/init.lua
-                +-> claude/codex -> ~/.config/skills/<skill>/SKILL.md
+                +-> claude/codex -> ~/.agents/skills/<skill>/SKILL.md
                 +-> peanutbutter -> ~/.config/peanutbutter/snippets/*.md
 ```
 
