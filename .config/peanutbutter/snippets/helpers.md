@@ -25,3 +25,15 @@ cat <<'EOF' > <@file>
 <@content>
 EOF
 ```
+
+## Run command without saving to history
+
+```
+<@command>; history -d $(history 1)
+```
+
+## If/else one liner
+
+```
+if [[ <@condition> ]]; then <@then>; else <@else>; fi
+```

@@ -6,6 +6,12 @@
 tar -czvf <@out>.tar.gz <@src:rg . --files>
 ```
 
+## Create tar from directory using relative paths
+
+```
+tar czf <@out>.tar.gz -C <@directory> .
+```
+
 ## List tar contents
 
 List files inside a tar archive without extracting it.
