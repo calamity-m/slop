@@ -3,3 +3,15 @@ nvim-pack-lock.json
 .agents/skills/.system/
 .codex
 nvim.log
+.bashrc.d/
+!.bashrc.d/docker.sh
+!.bashrc.d/editor.sh
+!.bashrc.d/eza.sh
+!.bashrc.d/fzf.sh
+!.bashrc.d/kubectl.sh
+!.bashrc.d/lazygit.sh
+!.bashrc.d/mise.sh
+!.bashrc.d/peanutbutter.sh
+!.bashrc.d/truecolor.sh
+!.bashrc.d/zellij.sh
+!.bashrc.d/zoxide.sh
