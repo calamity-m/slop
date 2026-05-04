@@ -49,3 +49,27 @@ conform.setup({
 vim.keymap.set({ "n", "x" }, "<leader>cf", function()
 	conform.format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format" })
+
+vim.api.nvim_create_user_command("ConformDir", function(opts)
+	local dir = opts.args ~= "" and opts.args or vim.fn.getcwd()
+	local files = vim.fn.glob(dir .. "/**/*", false, true)
+	for _, file in ipairs(files) do
+		if vim.fn.isdirectory(file) == 0 then
+			local bufnr = vim.fn.bufadd(file)
+			vim.fn.bufload(bufnr)
+			conform.format({ bufnr = bufnr, async = false, lsp_format = "fallback" })
+			vim.api.nvim_buf_call(bufnr, function()
+				vim.cmd("silent! write")
+			end)
+		end
+	end
+end, { nargs = "?", complete = "dir", desc = "Format all files in a directory" })
+
+vim.keymap.set("n", "<leader>cF", function()
+	vim.ui.input({ prompt = "Directory (default cwd): " }, function(input)
+		if input == nil then
+			return
+		end
+		vim.cmd("ConformDir " .. (input ~= "" and input or ""))
+	end)
+end, { desc = "Format directory" })

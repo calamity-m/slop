@@ -7,6 +7,7 @@
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 
 Before implementing:
+
 - State assumptions explicitly when they affect the change.
 - If multiple interpretations exist, present them instead of picking silently.
 - If a simpler approach exists, say so.
@@ -27,6 +28,7 @@ Before implementing:
 **Touch only what you must. Clean up only your own mess.**
 
 When editing existing files:
+
 - Do not refactor unrelated code, comments, or formatting.
 - Match the existing style, even if you would write new code differently.
 - If you notice unrelated dead code or stale config, mention it instead of deleting it.
