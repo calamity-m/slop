@@ -5,8 +5,6 @@ description: Stress-test a plan, design, or change request through structured se
 
 # Grill Me
 
-Adapted from Matt Pocock's `grill-me` (https://github.com/mattpocock/skills/blob/main/skills/productivity/grill-me/SKILL.md). The aim is the same — interview the user until you reach shared understanding — but with sharper direction on **what to ask** and **what not to ask**.
-
 ## What this skill is for
 
 Four goals, in this order:
@@ -61,7 +59,7 @@ My recommended answer: <your best guess, with brief reasoning>
 
 The recommended answer matters. It does three things at once:
 
-- Surfaces *your* current assumption so the user can correct it cheaply.
+- Surfaces _your_ current assumption so the user can correct it cheaply.
 - Lets the user say "yes, that one" and move on quickly.
 - Forces you to actually think about the tradeoff rather than fish for input.
 
