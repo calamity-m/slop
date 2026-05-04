@@ -16,6 +16,7 @@ Creates:
   ~/.config/zellij       -> <repo>/.config/zellij
   ~/.config/peanutbutter -> <repo>/.config/peanutbutter
   ~/.config/peanutbutter-private/snippets (directory)
+  ~/.pi/agent/extensions -> <repo>/.pi/agent/extensions
 
 Tool-specific links (skills only):
   ${CLAUDE_HOME:-~/.claude}/skills -> ~/.config/skills
@@ -125,6 +126,8 @@ ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/zellij" "$repo_dir/.config/zellij" || true
 ensure_symlink "$HOME/.config/peanutbutter" "$repo_dir/.config/peanutbutter" || true
 ensure_dir "$HOME/.config/peanutbutter-private/snippets" || true
+ensure_dir "$HOME/.pi/agent" || true
+ensure_symlink "$HOME/.pi/agent/extensions" "$repo_dir/.pi/agent/extensions" || true
 
 if command -v mise >/dev/null 2>&1 && [[ -f "$HOME/.config/mise/config.toml" ]]; then
   mise trust "$HOME/.config/mise/config.toml" || true
@@ -165,6 +168,7 @@ log "  nvim:   ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"
 log "  peanutbutter private: ~/.config/peanutbutter-private/snippets"
+log "  pi extensions: ~/.pi/agent/extensions -> $repo_dir/.pi/agent/extensions"
 log "  bashrc: ~/.bashrc.d -> $repo_dir/.bashrc.d"
 log "  claude: $claude_root/skills -> ~/.agents/skills"
 log "  codex:  $codex_root/skills -> ~/.agents/skills"
