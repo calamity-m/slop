@@ -1,4 +1,22 @@
+---
+tags:
+  - openssl
+  - certificates
+---
+
 # Cert Snippets
+
+## Inspect pem cert
+
+```
+openssl x509 -in <@pem:rg . --files> -noout -text
+```
+
+## Inspect p12 cert
+
+```
+openssl pkcs12 -in <@p12:rg . --files> -nokeys -info
+```
 
 ## Extract cert from p12
 

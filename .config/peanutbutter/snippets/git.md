@@ -1,13 +1,12 @@
 ---
 tags:
-    - git
-    - development
+  - git
+  - development
 ---
-
 
 # Git Snippets
 
-## git commit convential style
+## git commit conventional style
 
 ```
 git commit -m '<@type:echo "feat\ntest\nfix">(<@scope>): <@message>\n<@body>"
