@@ -54,6 +54,19 @@ Shows every place HEAD has pointed — including commits that no longer appear i
 git reflog
 ```
 
+## git enable lfs
+
+```
+git lfs install
+```
+
+## git track file type with lfs
+
+```
+git lfs track "<@pattern:echo '*.psd'>"
+git add .gitattributes
+```
+
 ## git delete local branches not on remote
 
 ```
