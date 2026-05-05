@@ -33,7 +33,13 @@ local tools = {
 	"java-test",
 }
 
-require("mason").setup()
+local mason_opts = {}
+
+pcall(function()
+	mason_opts = require("local.mason")
+end)
+
+require("mason").setup(mason_opts)
 
 require("mason-lspconfig").setup({
 	automatic_enable = false,

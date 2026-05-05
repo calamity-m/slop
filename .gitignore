@@ -3,6 +3,7 @@ nvim-pack-lock.json
 .agents/skills/.system/
 .codex
 nvim.log
+.config/nvim/lua/local/*.lua
 .config/mise/conf.d/*
 !.config/mise/conf.d/.gitkeep
 .bashrc.d/
