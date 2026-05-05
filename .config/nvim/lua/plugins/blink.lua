@@ -1,6 +1,6 @@
 local blink_cmp = require("blink.cmp")
 
-blink_cmp.setup({
+local blink_opts = {
 	keymap = { preset = "super-tab" },
 	appearance = {
 		nerd_font_variant = "mono",
@@ -15,4 +15,10 @@ blink_cmp.setup({
 	fuzzy = {
 		implementation = "prefer_rust_with_warning",
 	},
-})
+}
+
+pcall(function()
+	blink_opts = vim.tbl_deep_extend("force", blink_opts, require("local.blink"))
+end)
+
+blink_cmp.setup(blink_opts)
