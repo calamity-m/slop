@@ -234,18 +234,18 @@ url = "https://github.com/calamity-m/fml/releases/download/v0.0.3/fml-x86_64-unk
 url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/410837917"
 
 [[tools."github:calamity-m/peanutbutter"]]
-version = "0.5.2"
+version = "0.6.0"
 backend = "github:calamity-m/peanutbutter"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64"]
-checksum = "sha256:d6a180a5c8706dcf93b00b99c42853c05f42a275240689a426575d710eea93a0"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.5.2/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/410531670"
+checksum = "sha256:86d7447ec4cd9408aece9fe3956b5d29bcb7d92726ea19fa5f48167bbca29ee1"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.6.0/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/413389118"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64-musl"]
-checksum = "sha256:fd0cee061ee1214fae84176e4d2b8e8ab63da7efc811d50704074d943e13f322"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.5.2/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/410532000"
+checksum = "sha256:6f570da6babcd297199e6ebf3c33ccf6896fb6808debd892aaadee895ee77d8c"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.6.0/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/413389701"
 
 [[tools.glab]]
 version = "1.93.0"
