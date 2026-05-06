@@ -32,3 +32,23 @@ curl --cert '<@cert>' --key '<@key>' '<@url>'
 ```
 curl --user '<@username>:<@password>' '<@url>'
 ```
+
+## curl with json body
+
+```
+curl -X <@method:echo "POST\nPUT\nPATCH"> \
+  -H 'Content-Type: application/json' \
+  --data-binary @- \
+  '<@url>' <<'JSON'
+<@json_body>
+JSON
+```
+
+## curl with form url encoded
+
+```
+curl -X <@method:echo "POST\nPUT\nPATCH"> \
+  -H 'Content-Type: application/x-www-form-urlencoded' \
+  -d '<@field>=<@value>' \
+  '<@url>'
+```
