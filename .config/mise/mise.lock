@@ -220,18 +220,18 @@ checksum = "sha256:3ae3a5549e85c7ad5b20192ebcfee4371269deca51255f6f2f2e051c6541f
 url = "https://github.com/orhun/git-cliff/releases/download/v2.13.1/git-cliff-2.13.1-x86_64-pc-windows-msvc.zip"
 
 [[tools."github:calamity-m/fml"]]
-version = "0.0.3"
+version = "0.0.4"
 backend = "github:calamity-m/fml"
 
 [tools."github:calamity-m/fml"."platforms.linux-x64"]
-checksum = "sha256:73955990492ccbff498a426ff26a580fd42842158f5a83bb1d583adbe5edaa5a"
-url = "https://github.com/calamity-m/fml/releases/download/v0.0.3/fml-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/410837096"
+checksum = "sha256:942ad752669aee8906525d642445f80cb41e91cdde8229562ec5fb37de7b251a"
+url = "https://github.com/calamity-m/fml/releases/download/v0.0.4/fml-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/413468852"
 
 [tools."github:calamity-m/fml"."platforms.linux-x64-musl"]
-checksum = "sha256:060380309b807e65b5522b881e0b9d1f5938f428690c8a3c42dd438f4a480c68"
-url = "https://github.com/calamity-m/fml/releases/download/v0.0.3/fml-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/410837917"
+checksum = "sha256:6ca2dbbb7fbeab852e4abd341dead3563f6e877926a93af2a4bc0110af604dde"
+url = "https://github.com/calamity-m/fml/releases/download/v0.0.4/fml-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/413469929"
 
 [[tools."github:calamity-m/peanutbutter"]]
 version = "0.6.0"
