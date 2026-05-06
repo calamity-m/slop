@@ -1,19 +1,36 @@
 ---
 name: bigplan
-description: Create and maintain a living BIGPLAN.md planning document at the repo root with Plan Overview, Risks, Plan Details (pseudo-code, gotchas, critical files), Deliverables (numbered sub-deliverables with description + checkbox task list), and an Issues scratch area. Use this skill whenever the user wants to scaffold, update, or work against a BIGPLAN, asks for a "big plan" / multi-deliverable plan / living plan document, wants to break a sizeable effort into deliverables with checklists, or refers to "the bigplan" in this repo. Also use it to tick items off, add new deliverables, revise risks, capture gotchas/critical files, or log issues and contention points as work progresses.
+description: Create and maintain a living kebab-summary-bigplan.md planning document with Plan Overview, Risks, Plan Details (pseudo-code, gotchas, critical files), Deliverables (numbered sub-deliverables with description + checklist), and an Issues scratch area. Use this skill whenever the user wants to scaffold, update, or work against a BIGPLAN, asks for a "big plan" or multi-deliverable plan, wants to break a sizeable effort into deliverables, or refers to "the bigplan" in this repo. Also use it to tick items off, add new deliverables, revise risks, capture gotchas, or log issues.
 ---
 
 # BIGPLAN
 
-Maintain a single living planning document — `BIGPLAN.md` at the repo root — that captures the shape of a sizeable piece of work: what it is, what could go wrong, and the discrete deliverables that make it real.
+Maintain a single living planning document for a sizeable piece of work: what it is, what could go wrong, and the discrete deliverables that make it real.
 
 The document is **living**: it is updated as scope shifts, risks materialize, deliverables complete, or new ones emerge. Treat every invocation of this skill as either *creating* the file or *editing it in place* — never start from scratch when one already exists.
 
+## Plan path and filename
+
+When creating a new plan, choose the location in this priority order:
+
+1. **Where the user asks** — if the user gives an explicit directory or file path, use it. If they give a directory, create the generated filename inside it. If they give a filename, preserve it unless it clearly conflicts with the `*-bigplan.md` convention and should be clarified.
+2. **`docs/plans/`** — if that directory exists in the repo.
+3. **`docs/`** — create the plan there when no higher-priority location applies.
+
+Name generated plan files `<extreme-summary>-bigplan.md`, where `<extreme-summary>` is a short kebab-case label for the effort:
+
+- `refactor-bigplan.md`
+- `oauth-bigplan.md`
+- `producer-config-bigplan.md`
+
+Keep the summary extreme: usually 1-3 words, lowercase, ASCII, and specific enough to distinguish the effort from other active plans.
+
 ## When to create vs. update
 
-1. Check whether `BIGPLAN.md` already exists at the repo root.
-2. If it doesn't exist and the user is describing new work → **invoke the `grill-me` skill first** (see "Pre-draft grill" below), then create the document from the template using the resulting Shared Understanding summary.
-3. If it exists → read it first, then make the smallest coherent edit that satisfies the request (tick items, add a deliverable, revise a risk, expand a description). Preserve everything else verbatim.
+1. Resolve the target plan path using "Plan path and filename" above.
+2. If the user is asking about an existing plan, first prefer any explicit path they named. Otherwise, look for an existing `*-bigplan.md` whose filename or title matches the requested effort, checking `docs/plans/` before `docs/`.
+3. If it doesn't exist and the user is describing new work → **invoke the `grill-me` skill first** (see "Pre-draft grill" below), then create the document from the template using the resulting Shared Understanding summary.
+4. If it exists → read it first, then make the smallest coherent edit that satisfies the request (tick items, add a deliverable, revise a risk, expand a description). Preserve everything else verbatim.
 
 Don't silently rewrite sections the user didn't ask about. If you spot something stale while making a requested edit, mention it and ask before changing it.
 
@@ -39,7 +56,7 @@ Skip the grill **only** when the brief is already crisp (the user has clearly th
 
 ## Document structure
 
-`BIGPLAN.md` always uses this exact skeleton:
+Every bigplan document always uses this exact skeleton:
 
 ```markdown
 # BIGPLAN: <short title of the effort>
@@ -131,12 +148,12 @@ If the user describes work that's already done in conversation but the plan stil
 
 Plan review is part of this skill's built-in lifecycle:
 
-- **Always after initial creation**: once you've written the first draft of `BIGPLAN.md`, run a review before presenting the finished plan to the user.
+- **Always after initial creation**: once you've written the first draft of the bigplan document, run a review before presenting the finished plan to the user.
 - **On demand**: whenever the user says "review plan", "review the bigplan", "review my plan", or asks for a critical look at the plan.
 
 ### Running the review
 
-Spawn 2 sub-agents **simultaneously**. Give each one *only* the current `BIGPLAN.md` content — no conversation history, no project context beyond what's in the file. This isolation is intentional: fresh eyes catch things that context blinds you to.
+Spawn 2 sub-agents **simultaneously**. Give each one *only* the current bigplan document content — no conversation history, no project context beyond what's in the file. This isolation is intentional: fresh eyes catch things that context blinds you to.
 
 Before spawning, read `references/adversarial-reviewer.md` and include those full instructions in each sub-agent's prompt, along with which reviewer role they are playing:
 
@@ -149,7 +166,7 @@ Once both reviewers complete, synthesize their outputs:
 
 1. Discard duplicate findings and anything that is genuinely nitpicky or irrelevant given the plan's obvious scope.
 2. Split the remaining findings into two buckets:
-   - **Unambiguous**: there is one clear fix — add a missing risk, fill in an obvious gap, add a gotcha. Apply these directly to `BIGPLAN.md` without asking.
+   - **Unambiguous**: there is one clear fix — add a missing risk, fill in an obvious gap, add a gotcha. Apply these directly to the bigplan document without asking.
    - **Requires decision**: the fix involves a real choice — competing approaches, a tradeoff the user needs to weigh in on, or a gap where the right answer isn't obvious from the plan alone.
 3. For any decision-required findings, **pause and ask the user before editing**. Present them grouped, concisely:
 
@@ -174,4 +191,4 @@ After all merges are done, briefly tell the user what changed — a 2-3 bullet s
 
 ## Scope boundary
 
-This skill produces and maintains `BIGPLAN.md`. It does not write code, run the plan, create separate per-deliverable files, or stand up a multi-doc planning bundle. If the user wants per-part files or a heavier planning structure, point them at `part-plan-writer` instead.
+This skill produces and maintains one `*-bigplan.md` document for the effort. It does not write code, run the plan, create separate per-deliverable files, or stand up a multi-doc planning bundle. If the user wants per-part files or a heavier planning structure, point them at `part-plan-writer` instead.
