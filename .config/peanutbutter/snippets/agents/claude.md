@@ -16,7 +16,7 @@ claude -p --dangerously-skip-permissions "/commit"
 ## complete small github issue end-to-end
 
 ```
-claude -p "$(cat <<'PROMPT'
+claude "$(cat <<'PROMPT'
 Pick a small, self-contained open GitHub issue from this repo and complete it end to end:
 
 1. **Select** - run `gh issue list`, choose the smallest in-scope issue (prefer lower tier/priority labels). State which issue you picked and why.
