@@ -1,0 +1,4 @@
+interface:
+  display_name: "MR Create"
+  short_description: "Create why-first PR/MR review requests"
+  default_prompt: "Use $mr-create to create a why-first PR/MR for the current branch."
