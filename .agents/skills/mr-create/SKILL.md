@@ -1,6 +1,6 @@
 ---
 name: mr-create
-description: Create a GitHub pull request or GitLab merge request from the current branch. Use when the user asks to open, draft, prepare, or write a PR/MR with a why-first title and description, including templates, recent review examples, and inline context comments for risky code.
+description: Create a GitHub pull request or GitLab merge request from the current branch. Use when the user asks to open, draft, prepare, or write a PR/MR with a conventional-commit title and why-first description, including templates, recent review examples, and inline context comments for risky code.
 ---
 
 # MR Create
@@ -13,7 +13,7 @@ Use this skill to create a review request whose title and description explain wh
 - If the current branch is not `main` or `master`, assume the review should merge the current branch into the repository default branch, preferring `main`/`master` when present.
 - If the current branch is `main` or `master`, ask the user which source and target branches to use before creating anything.
 - Analyze the diff before drafting the title or body. If the diff shows what changed but not why, ask the user for the missing intent.
-- Make the title state the reason or outcome, not an implementation inventory.
+- Make the title follow conventional commit style while stating the reason or outcome, not an implementation inventory.
 - Fill the description from local templates, recent review descriptions, linked issues, commit messages, and the diff, in that order.
 - Keep the description reviewer-oriented: lead with why, cover what in bullets, call out risks and verification.
 - Add inline comments only for areas that are genuinely dubious, surprising, risky, or likely to attract reviewer attention.
@@ -38,7 +38,7 @@ Use this skill to create a review request whose title and description explain wh
    - Read the last two merged or recently created review request descriptions for local tone, structure, and required sections.
    - Use existing issue references and closing keywords only when evidence supports the linkage.
 4. Draft the review request:
-   - Title: why-first, outcome-oriented, and concise.
+   - Title: conventional commit style, outcome-oriented, and concise.
    - Opening: one or two sentences explaining the reason for the change.
    - What changed: bullets grouped by reviewer-relevant behavior or subsystem.
    - Verification: commands run, manual checks, or "Not run" with a reason.
@@ -63,20 +63,28 @@ Use this skill to create a review request whose title and description explain wh
 
 ## Title Guidance
 
+Use conventional commit style:
+
+```text
+<type>(<scope>): <outcome>
+```
+
+Choose the narrowest accurate type such as `feat`, `fix`, `docs`, `refactor`, `test`, `chore`, or `ci`. Include a scope when it clarifies the affected subsystem. Keep the description outcome-oriented because it is likely to become the squash-merge commit subject.
+
 Prefer:
 
 ```text
-Prevent stale search results after source changes
-Make snippet editing preserve cursor context
-Reduce CI noise from optional analyzer failures
+fix(search): prevent stale results after source changes
+feat(snippets): preserve cursor context when editing
+ci(analyzer): reduce noise from optional failures
 ```
 
 Avoid:
 
 ```text
-Update search.rs and app.rs
-Add selected_sequence_id plumbing
-Fix tests
+chore: update search.rs and app.rs
+refactor(ui): add selected_sequence_id plumbing
+fix: fix tests
 ```
 
 If only a what-title is possible from the diff, the why is not known enough. Ask the user.
