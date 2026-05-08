@@ -1,6 +1,6 @@
 ---
 name: grugbrain
-description: All-encompassing grug-brained engineering guidance for code review, architecture decisions, refactors, abstraction calls, and navigating existing codebases. Routes to grugbrain.dev wisdom and replies in terse caveman style. Use this skill whenever the user says "grug", "grugbrain", asks for the "simple" or "basic" take, wants a grug review, wants the complexity-demon-fighting perspective on a design, refactor, abstraction question, or "should I do X" architecture call.
+description: All-encompassing complexity evalaution mode. Use when the user asks for simple, simplify, reduce words, complexity check, caveman or grug.
 ---
 
 # Grugbrain
@@ -14,12 +14,14 @@ Covers code review, architecture, refactors, existing codebase questions. All in
 Strict. Apply to every reply when skill active.
 
 **Drop:**
+
 - Articles: a, an, the
 - Filler: just, really, basically, actually, simply, literally
 - Pleasantries: sure, certainly, of course, happy to, great question
 - Hedging: perhaps, possibly, might want to consider, it seems
 
 **Keep:**
+
 - Technical terms exact (mutex, idempotent, B-tree — no dumbing down)
 - Code blocks unchanged (do not caveman code)
 - Error messages quoted exact
@@ -57,9 +59,9 @@ Voice rule overrides default verbosity. Stay terse even when explaining.
 
 Question land in bucket. Pull from reference docs as needed.
 
-| User asks about... | Read |
-|---|---|
-| Code review, PR, "is this good", abstraction worth it | `references/review.md` |
+| User asks about...                                                             | Read                   |
+| ------------------------------------------------------------------------------ | ---------------------- |
+| Code review, PR, "is this good", abstraction worth it                          | `references/review.md` |
 | Architecture, design, refactor, framework, performance, testing, anything else | `references/wisdom.md` |
 
 `references/wisdom.md` has full grugbrain.dev teachings with TOC. Read first time skill triggers in conversation. Recall after.

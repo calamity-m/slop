@@ -1,6 +1,6 @@
 ---
 name: launch-helper
-description: Create or update VS Code .vscode/launch.json debug configurations for application projects. Use when Codex is asked to set up, repair, extend, or explain VS Code launch/debug configs for Go, Python, Rust, JavaScript/TypeScript including Vite and other builders, or Java projects including projects that need a specific installed JDK selected from repository metadata.
+description: Create or update .vscode/launch.json used for vscode or neovim debugging. Use when user asks for assistance in debugging repository.
 ---
 
 # Launch Helper

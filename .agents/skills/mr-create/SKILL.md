@@ -1,6 +1,6 @@
 ---
 name: mr-create
-description: Create a GitHub pull request or GitLab merge request from the current branch. Use when the user asks to open, draft, prepare, or write a PR/MR with a conventional-commit title and why-first description, including templates, recent review examples, and inline context comments for risky code.
+description: Create a merge/pull request from the current branch. Use when the user asks to open, draft, prepare, or write a PR/MR.
 ---
 
 # MR Create

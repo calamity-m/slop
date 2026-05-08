@@ -1,6 +1,6 @@
 ---
 name: commit
-description: "Stage the smallest coherent set of changes and write a short conventional commit message. Use this skill when the user asks to commit changes, choose a commit message, split work into commits, or stage only relevant files before committing."
+description: "Commit staged or unstaged changes. Use this skill when committing with git, or when the user explicitly asks to commit."
 ---
 
 # Commit

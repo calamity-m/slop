@@ -1,6 +1,6 @@
 ---
 name: mr-address
-description: Address feedback, failed checks, review threads, and follow-up commits on an existing pull request or merge request. Use when the user asks to fix PR/MR comments, address review feedback, resolve discussions, investigate failed jobs, or push changes for an open review.
+description: Address feedback, failed checks, review threads, and follow-up commits on an existing merge/pull request. Use when the user asks to fix or address PR/MR comments or failures.
 ---
 
 # MR Address

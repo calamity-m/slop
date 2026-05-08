@@ -1,6 +1,6 @@
 ---
 name: drawio-xml-diagram
-description: Create, edit or repair raw draw.io / diagrams.net XML diagrams in `mxGraphModel` or uncompressed `.drawio` form. Use when the user wants draw.io XML, diagrams.net source, `mxGraphModel`, `.drawio` source, or a diagram that will be pasted into or uploaded to a draw.io instance, especially when it must reuse icon libraries already installed in that instance.
+description: Create, edit or repair raw draw.io / diagrams.net XML diagrams in `mxGraphModel` or uncompressed `.drawio` form.
 ---
 
 # Draw.io XML Diagram

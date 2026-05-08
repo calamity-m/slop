@@ -1,13 +1,13 @@
 ---
 name: bigplan
-description: Create and maintain a living kebab-summary-bigplan.md planning document with Plan Overview, Risks, Plan Details (pseudo-code, gotchas, critical files), Deliverables (numbered sub-deliverables with description + checklist), and an Issues scratch area. Use this skill whenever the user wants to scaffold, update, or work against a BIGPLAN, asks for a "big plan" or multi-deliverable plan, wants to break a sizeable effort into deliverables, or refers to "the bigplan" in this repo. Also use it to tick items off, add new deliverables, revise risks, capture gotchas, or log issues.
+description: Create a living plan document designed for complex features and refactors. Use when the user wants to review an existing bigplan, asks for a new plan, or to mark deliverables in implementation.
 ---
 
 # BIGPLAN
 
 Maintain a single living planning document for a sizeable piece of work: what it is, what could go wrong, and the discrete deliverables that make it real.
 
-The document is **living**: it is updated as scope shifts, risks materialize, deliverables complete, or new ones emerge. Treat every invocation of this skill as either *creating* the file or *editing it in place* — never start from scratch when one already exists.
+The document is **living**: it is updated as scope shifts, risks materialize, deliverables complete, or new ones emerge. Treat every invocation of this skill as either _creating_ the file or _editing it in place_ — never start from scratch when one already exists.
 
 ## Plan path and filename
 
@@ -58,7 +58,7 @@ Skip the grill **only** when the brief is already crisp (the user has clearly th
 
 Every bigplan document always uses this exact skeleton:
 
-```markdown
+````markdown
 # BIGPLAN: <short title of the effort>
 
 ## Plan Overview
@@ -88,6 +88,7 @@ Every bigplan document always uses this exact skeleton:
 ```text
 <rough algorithm or interaction sketch — not real code, just enough to anchor the design>
 ```
+````
 
 ## Deliverables
 
@@ -111,6 +112,7 @@ Every bigplan document always uses this exact skeleton:
 <Scratch area. Agents and humans append findings, contention points, open questions, blockers, or "this looked weird" notes here. Newest at the top. Each entry is dated and signed so the trail is legible.>
 
 - **YYYY-MM-DD — <author/agent>** — <observation, question, or contention point. Link to the relevant deliverable or file when possible.>
+
 ```
 
 ### Section rules
@@ -171,10 +173,12 @@ Once both reviewers complete, synthesize their outputs:
 3. For any decision-required findings, **pause and ask the user before editing**. Present them grouped, concisely:
 
 ```
+
 The review found a few things that need your call before I can merge them:
 
 1. **[Short title]** — [One sentence on the problem and why the fix isn't obvious. E.g. "The plan doesn't say whether auth tokens are short-lived JWTs or opaque session tokens — the mitigation strategy differs significantly."] What's your preference?
 2. **[Short title]** — ...
+
 ```
 
 Wait for the user's answers, then apply their chosen fixes alongside the unambiguous ones.
@@ -182,7 +186,9 @@ Wait for the user's answers, then apply their chosen fixes alongside the unambig
 4. Prepend a review log entry at the top of `## Issues`:
 
 ```
+
 - **YYYY-MM-DD — agent:claude (adversarial review)** — Plan reviewed by 2 adversarial sub-agents (Risks & Assumptions, Completeness & Scope). N findings; M merged into plan. <one sentence summary of most significant change, or "No significant gaps found.">
+
 ```
 
 Add individual `## Issues` entries only for things that remain unresolved after the user's input — persistent open questions, deferred decisions. Direct edits don't need their own entries; the review log summary is enough.
@@ -192,3 +198,4 @@ After all merges are done, briefly tell the user what changed — a 2-3 bullet s
 ## Scope boundary
 
 This skill produces and maintains one `*-bigplan.md` document for the effort. It does not write code, run the plan, create separate per-deliverable files, or stand up a multi-doc planning bundle. If the user wants per-part files or a heavier planning structure, point them at `part-plan-writer` instead.
+```

@@ -1,6 +1,6 @@
 ---
 name: mr-review
-description: Review an existing GitHub pull request or GitLab merge request with a code-quality focus. Use when the user asks to review a PR/MR, inspect title and description, review linked issues or docs, analyze open discussions, compare changed code against existing patterns, record findings, or leave line-specific review comments.
+description: Review an existing merge/pull request with a code-quality focus. Use when the user asks to review a PR/MR, inspect title and description, review linked issues or docs, analyze open discussions, compare changed code against existing patterns, record findings, or leave line-specific review comments.
 ---
 
 # MR Review
@@ -86,10 +86,11 @@ The record must always include the next intended step so a compacted or resumed 
    - Attach each code finding to the most specific changed line that supports it.
    - Use a detached PR/MR comment only for review-request-level concerns such as an absent rationale, misleading description, or insufficient reason for the MR to exist.
 10. Post comments and finish:
-   - Post concise line comments with evidence, impact, and the smallest useful ask.
-   - Avoid broad summaries unless the provider requires a review submission body.
-   - Update the record with every posted comment, skipped finding, and remaining uncertainty.
-   - Finish with review URL, record path, comments posted, and any findings deliberately not posted.
+
+- Post concise line comments with evidence, impact, and the smallest useful ask.
+- Avoid broad summaries unless the provider requires a review submission body.
+- Update the record with every posted comment, skipped finding, and remaining uncertainty.
+- Finish with review URL, record path, comments posted, and any findings deliberately not posted.
 
 ## Review Record Shape
 
@@ -99,6 +100,7 @@ Keep the record concise but complete enough to resume:
 # MR Review State
 
 Target:
+
 - Provider:
 - Review:
 - Repository:
@@ -107,30 +109,33 @@ Target:
 - Head SHA:
 
 Context:
+
 - Title/description understanding:
 - Linked data:
 - Open threads:
 - Pre-diff repo guidance:
 
 Code understanding:
+
 - MR changes:
 - Existing base behavior:
 - Affected areas:
 - Tests and verification:
 
 Review pass:
+
 - General observations:
 - Code-quality findings:
 - Subagent findings:
 - Questions:
 
 Comments:
+
 - To post:
 - Posted:
 - Skipped with reason:
 
-Next step:
--
+## Next step:
 ```
 
 ## Subagent Task Shape

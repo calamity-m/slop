@@ -1,6 +1,6 @@
 ---
 name: mermaid-diagram
-description: Create or repair Mermaid diagrams (sequence, flowchart, ERD, and more) from prose, code paths, architecture notes, database schemas, or process descriptions. Use this skill when the user asks for a Mermaid diagram, interaction flow, process chart, decision tree, entity relationship diagram, data model, schema diagram, or wants existing Mermaid syntax cleaned up or made easier to read.
+description: Create or repair Mermaid diagrams (sequence, flowchart, ERD, and more). Use this skill when the user asks for a mermaid diagram cleanup or to create a new sequence, erd, flowchart or other diagrams.
 ---
 
 # Mermaid Diagram
