@@ -1,0 +1,4 @@
+interface:
+  display_name: "MR Address"
+  short_description: "Address PR/MR feedback and failed checks"
+  default_prompt: "Use $mr-address to address the open PR/MR feedback and failed checks for this branch."
