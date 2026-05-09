@@ -1,5 +1,14 @@
 local gitsigns = require("gitsigns")
 
+local function set_word_diff_hls()
+	vim.api.nvim_set_hl(0, "GitSignsAddLnInline", { bg = "#3a6b3a", bold = true })
+	vim.api.nvim_set_hl(0, "GitSignsChangeLnInline", { bg = "#3a3a1e", bold = true })
+	vim.api.nvim_set_hl(0, "GitSignsDeleteLnInline", { bg = "#4a1e1e", bold = true })
+end
+
+set_word_diff_hls()
+vim.api.nvim_create_autocmd("ColorScheme", { callback = set_word_diff_hls })
+
 gitsigns.setup({
 	current_line_blame = true,
 	current_line_blame_opts = {
@@ -56,11 +65,20 @@ gitsigns.setup({
 		end, { desc = "Git Diff This ~" })
 
 		map("n", "<leader>GQ", function()
-			gitsigns.setqflist("all")
+			gitsigns.setqflist("all", { open = false })
+			vim.schedule(function()
+				require("fzf-lua").quickfix()
+			end)
 		end, { desc = "Git Hunks to Quickfix (All)" })
-		map("n", "<leader>hq", gitsigns.setqflist, { desc = "Git Hunks to Quickfix" })
+		map("n", "<leader>hq", function()
+			gitsigns.setqflist(nil, { open = false })
+			vim.schedule(function()
+				require("fzf-lua").quickfix()
+			end)
+		end, { desc = "Git Hunks to Quickfix" })
 
 		map("n", "<leader>Gtb", gitsigns.toggle_current_line_blame, { desc = "Git Toggle Line Blame" })
 		map("n", "<leader>Gtw", gitsigns.toggle_word_diff, { desc = "Git Toggle Word Diff" })
+		map("n", "<leader>Gtd", gitsigns.toggle_deleted, { desc = "Git Toggle Deleted (Buffer)" })
 	end,
 })
