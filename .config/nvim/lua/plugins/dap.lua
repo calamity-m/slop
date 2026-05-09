@@ -1,11 +1,8 @@
 local dap = require("dap")
-local dap_view = require("dap-view")
 local mason_nvim_dap = require("mason-nvim-dap")
 local map = vim.keymap.set
 
-dap_view.setup({
-	auto_toggle = true,
-})
+require("plugins.dap.ui")
 
 mason_nvim_dap.setup({
 	ensure_installed = {
@@ -42,4 +39,3 @@ map("n", "<leader>dO", dap.step_out, { desc = "DAP Step Out" })
 map("n", "<leader>dr", dap.repl.open, { desc = "DAP REPL" })
 map("n", "<leader>dl", dap.run_last, { desc = "DAP Run Last" })
 map("n", "<leader>dq", dap.terminate, { desc = "DAP Terminate" })
-map("n", "<leader>dv", "<cmd>DapViewToggle!<CR>", { desc = "DAP View Toggle" })
