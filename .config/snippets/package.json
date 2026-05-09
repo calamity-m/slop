@@ -1,0 +1,27 @@
+{
+  "name": "personal snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "lua",
+        "path": "./lua.json"
+      },
+      {
+        "language": "rust",
+        "path": "./rust.json"
+      },
+      {
+        "language": "rust",
+        "path": "./rust-docs.json"
+      },
+      {
+        "language": "rust",
+        "path": "./rust-tests.json"
+      },
+      {
+        "language": "rust",
+        "path": "./rust-tokio.json"
+      }
+    ]
+  }
+}

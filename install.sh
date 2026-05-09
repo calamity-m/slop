@@ -10,12 +10,14 @@ Usage:
 Symlink dotfiles from this repository into $HOME.
 
 Creates:
-  ~/.config/skills  -> <repo>/.agents/skills
-  ~/.config/mise    -> <repo>/.config/mise
-  ~/.config/nvim    -> <repo>/.config/nvim
+  ~/.config/skills    -> <repo>/.agents/skills
+  ~/.config/mise      -> <repo>/.config/mise
+  ~/.config/nvim      -> <repo>/.config/nvim
+  ~/.config/snippets  -> <repo>/.config/snippets
   ~/.config/zellij       -> <repo>/.config/zellij
   ~/.config/peanutbutter -> <repo>/.config/peanutbutter
   ~/.config/peanutbutter-private/snippets (directory)
+  ~/.config/Code/User/snippets -> ~/.config/snippets
   ~/.pi/agent/extensions -> <repo>/.pi/agent/extensions
 
 Tool-specific links (skills only):
@@ -123,9 +125,12 @@ ensure_dir "$HOME/.agents" || true
 ensure_symlink "$HOME/.agents/skills" "$repo_dir/.agents/skills" || true
 ensure_symlink "$HOME/.config/mise" "$repo_dir/.config/mise" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
+ensure_symlink "$HOME/.config/snippets" "$repo_dir/.config/snippets" || true
 ensure_symlink "$HOME/.config/zellij" "$repo_dir/.config/zellij" || true
 ensure_symlink "$HOME/.config/peanutbutter" "$repo_dir/.config/peanutbutter" || true
 ensure_dir "$HOME/.config/peanutbutter-private/snippets" || true
+ensure_dir "$HOME/.config/Code/User" || true
+ensure_symlink "$HOME/.config/Code/User/snippets" "$HOME/.config/snippets" || true
 ensure_dir "$HOME/.pi/agent" || true
 ensure_symlink "$HOME/.pi/agent/extensions" "$repo_dir/.pi/agent/extensions" || true
 
@@ -164,7 +169,9 @@ log ""
 log "install complete"
 log "  skills: ~/.agents/skills -> $repo_dir/.agents/skills"
 log "  mise:   ~/.config/mise -> $repo_dir/.config/mise"
-log "  nvim:   ~/.config/nvim -> $repo_dir/.config/nvim"
+log "  nvim:     ~/.config/nvim -> $repo_dir/.config/nvim"
+log "  snippets: ~/.config/snippets -> $repo_dir/.config/snippets"
+log "  vscode:   ~/.config/Code/User/snippets -> ~/.config/snippets"
 log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"
 log "  peanutbutter private: ~/.config/peanutbutter-private/snippets"

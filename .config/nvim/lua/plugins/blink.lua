@@ -11,6 +11,13 @@ local blink_opts = {
 	},
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
+		providers = {
+			snippets = {
+				opts = {
+					search_paths = { vim.fn.expand("~/.config/snippets") },
+				},
+			},
+		},
 	},
 	fuzzy = {
 		implementation = "prefer_rust_with_warning",
