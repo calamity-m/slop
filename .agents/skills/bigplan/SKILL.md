@@ -32,6 +32,8 @@ Keep the summary extreme: usually 1-3 words, lowercase, ASCII, and specific enou
 3. If it doesn't exist and the user is describing new work → **invoke the `grill-me` skill first** (see "Pre-draft grill" below), then create the document from the template using the resulting Shared Understanding summary.
 4. If it exists → read it first, then make the smallest coherent edit that satisfies the request (tick items, add a deliverable, revise a risk, expand a description). Preserve everything else verbatim.
 
+**Adding a new deliverable to an existing plan is a scope change, not a routine edit.** Treat it with the same scrutiny as new work: interrogate scope, acceptance criteria, and whether it should have been part of the original plan before writing it in. If the description is vague — no clear done-state, no constraints, just a label — ask at minimum: "What does done look like for this, and what's the output?" If it can't be answered concisely, create a stub Issues entry instead and flag it as deferred scope rather than appending a half-specified deliverable.
+
 Don't silently rewrite sections the user didn't ask about. If you spot something stale while making a requested edit, mention it and ask before changing it.
 
 ## Pre-draft grill
@@ -130,6 +132,8 @@ The skeleton is only as useful as the content. When drafting or expanding the do
 
 - **Plan Overview** answers *why* and *what is "done"*. A reader who hasn't been in the conversation should understand the shape of the work in 30 seconds.
 - **Risks** are concrete things that could derail the plan — unknowns, dependencies on others, fragile assumptions, performance/scale unknowns. "We might write bugs" isn't a risk. "The third-party API rate-limits at 10 rps and we need 50 rps for the import deliverable" is.
+
+  Before writing risks, **explore the codebase** — read relevant files, configs, and dependencies to answer questions you would otherwise guess at. A risk that can be resolved by reading a file is not a risk; answer it and write what you found. Risks that survive this check should name a specific bad thing, its severity, and a concrete mitigation or explicit watch-for signal. If a risk can only be described speculatively ("may", "might", "if X turns out to be Y") and the answer cannot be found in the repo, convert it to an `## Issues` entry — note what information would resolve it. The Risks section is not a speculation log.
 - **Deliverables** are vertical slices of value, not horizontal layers. Prefer "user can log in with email" over "build the auth database table". Each one should be independently demonstrable.
 - **Deliverable descriptions** earn their keep by capturing decisions and constraints that would otherwise live only in chat — chosen libraries, file paths, API shapes, acceptance criteria. The checklist is the *how*; the description is the *what and why*.
 

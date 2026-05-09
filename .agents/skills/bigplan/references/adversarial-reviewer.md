@@ -15,6 +15,8 @@ Look for:
 - **Understated risks**: Risks that exist but whose severity is soft-pedalled or whose mitigation is wishful thinking.
 - **Hidden assumptions**: Things the plan treats as known or settled that are actually open questions. Look especially at the Plan Overview and deliverable descriptions — what is taken for granted?
 - **Single points of failure**: One thing going wrong that cascades and blocks multiple deliverables.
+- **Vague or speculative risks**: Risks written with "may", "might", "could", or "if X turns out to be Y" without a concrete mitigation or watch-for signal. These are unresolved questions masquerading as risks. Flag each one and state what concrete information would turn it into a real risk entry — or suggest it be moved to `## Issues`.
+- **Discovery-as-risk**: Risks that describe work still needed to understand the risk itself (e.g., "we need to investigate...", "TBD", "unknown at this time"). These belong in `## Issues` as open questions, not in `## Risks`.
 
 Do NOT flag generic risks like "we might write bugs" or "scope could grow". Only flag concrete, plan-specific concerns.
 
