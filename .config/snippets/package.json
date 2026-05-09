@@ -24,7 +24,15 @@
       },
       {
         "language": "java",
+        "path": "./java.json"
+      },
+      {
+        "language": "java",
         "path": "./java-dto.json"
+      },
+      {
+        "language": "java",
+        "path": "./java-springboot.json"
       }
     ]
   }

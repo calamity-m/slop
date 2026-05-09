@@ -1,0 +1,11 @@
+{
+  "enum": {
+    "prefix": "enum",
+    "body": [
+      "public enum ${1:EnumName} {",
+      "\t${2:VALUE}$0",
+      "}"
+    ],
+    "description": "Java enum declaration."
+  }
+}
