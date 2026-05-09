@@ -446,6 +446,38 @@ url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygi
 checksum = "sha256:6024f3094904caaf9b9672b801cba31a65ad36729a0d2c5a03c432f739c0678b"
 url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_windows_x86_64.zip"
 
+[[tools.minikube]]
+version = "1.38.1"
+backend = "aqua:kubernetes/minikube"
+
+[tools.minikube."platforms.linux-arm64"]
+checksum = "sha256:a0b8a1ebfc8c07a247271d8df98ac0ddd7c8c855b601d402463e2e50c08c6bab"
+url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-linux-arm64"
+
+[tools.minikube."platforms.linux-arm64-musl"]
+checksum = "sha256:a0b8a1ebfc8c07a247271d8df98ac0ddd7c8c855b601d402463e2e50c08c6bab"
+url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-linux-arm64"
+
+[tools.minikube."platforms.linux-x64"]
+checksum = "sha256:099477eaf248bcb5bcea8ce78a2898e93ac01461c35189da1848c3de82ecd22e"
+url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-linux-amd64"
+
+[tools.minikube."platforms.linux-x64-musl"]
+checksum = "sha256:099477eaf248bcb5bcea8ce78a2898e93ac01461c35189da1848c3de82ecd22e"
+url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-linux-amd64"
+
+[tools.minikube."platforms.macos-arm64"]
+checksum = "sha256:f9b0c70bb7daf38c683c0b6e46dc1b612600247ae826bf74576807746a919ee8"
+url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-darwin-arm64"
+
+[tools.minikube."platforms.macos-x64"]
+checksum = "sha256:db11dffba835609988e4e98c3a91a38653ce66ddfa8ea3aaea92d87c54a0a348"
+url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-darwin-amd64"
+
+[tools.minikube."platforms.windows-x64"]
+checksum = "sha256:04215bec5632a976b48eb632856b50f1eaaa183b9c2a5904e11d1bacc4961ff7"
+url = "https://github.com/kubernetes/minikube/releases/download/v1.38.1/minikube-windows-amd64.exe"
+
 [[tools.neovim]]
 version = "0.12.2"
 backend = "vfox:mise-plugins/vfox-neovim"
