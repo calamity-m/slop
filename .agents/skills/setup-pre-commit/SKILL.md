@@ -9,7 +9,7 @@ Sets up `prek` pre-commit hooks in a repository. Handles fresh installs and enha
 
 Trigger this skill when:
 - Asked to set up pre-commit hooks
-- A CLAUDE.md instruction says to add a pre-commit hook for a task being done repeatedly (e.g. "add a hook for X")
+- A `CLAUDE.md` or `AGENTS.md` instruction says to add a pre-commit hook for a task being done repeatedly (e.g. "add a hook for X")
 - The user asks to add a specific check to existing hooks
 
 ## Step 1 — Validate prek is installed
