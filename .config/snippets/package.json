@@ -21,6 +21,10 @@
       {
         "language": "rust",
         "path": "./rust-tokio.json"
+      },
+      {
+        "language": "java",
+        "path": "./java-dto.json"
       }
     ]
   }

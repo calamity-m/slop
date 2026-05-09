@@ -1,0 +1,11 @@
+{
+  "dto.record": {
+    "prefix": "dto.record",
+    "body": [
+      "public record ${1:RecordName}(",
+      "\t@JsonProperty(\"${2:fieldName}\") @NotNull ${3:String} ${4:fieldName}$0",
+      ") {}"
+    ],
+    "description": "Outbound DTO as a Java record with JsonProperty and NotNull."
+  }
+}
