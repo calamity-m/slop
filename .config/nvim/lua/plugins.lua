@@ -30,6 +30,7 @@ vim.pack.add({
 	{ src = "https://github.com/mfussenegger/nvim-jdtls" },
 	{ src = "https://github.com/rachartier/tiny-cmdline.nvim" },
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
+	{ src = "https://github.com/OXY2DEV/markview.nvim" },
 })
 
 local plugin_modules = {
@@ -51,6 +52,7 @@ local plugin_modules = {
 	"plugins.lsp",
 	"plugins.tiny_cmdline",
 	"plugins.autotag",
+	"plugins.markview",
 }
 
 for _, module in ipairs(plugin_modules) do

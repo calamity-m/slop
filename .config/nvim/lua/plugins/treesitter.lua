@@ -10,6 +10,7 @@ treesitter_manager.setup({
 		"zig",
 		"go",
 		"markdown",
+		"markdown_inline",
 		"json",
 		"toml",
 		"typescript",
