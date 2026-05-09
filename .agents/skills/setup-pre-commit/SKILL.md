@@ -5,13 +5,6 @@ description: setup pre-commit hooks
 
 # setup-pre-commit
 
-Sets up `prek` pre-commit hooks in a repository. Handles fresh installs and enhancing existing configs.
-
-Trigger this skill when:
-- Asked to set up pre-commit hooks
-- A `CLAUDE.md` or `AGENTS.md` instruction says to add a pre-commit hook for a task being done repeatedly (e.g. "add a hook for X")
-- The user asks to add a specific check to existing hooks
-
 ## Step 1 — Validate prek is installed
 
 ```bash
@@ -49,16 +42,16 @@ Also check for `Cargo.toml`, `go.mod`, `package.json`, `pom.xml`, `build.gradle`
 
 For each language found, read the matching reference file before writing any hook blocks:
 
-| Language / files found | Reference file |
-|---|---|
-| `.py`, `pyproject.toml`, `requirements.txt` | `references/python.md` |
-| `.java`, `pom.xml`, `build.gradle` | `references/java.md` |
-| `.rs`, `Cargo.toml` | `references/rust.md` |
-| `.go`, `go.mod` | `references/go.md` |
-| `.tsx`, `.jsx`, `react` in `package.json` | `references/react.md` |
-| `.ts`, `tsconfig.json` (no React) | `references/typescript.md` |
-| `.sh` | `references/shell.md` |
-| `.lua` | `references/lua.md` |
+| Language / files found                      | Reference file             |
+| ------------------------------------------- | -------------------------- |
+| `.py`, `pyproject.toml`, `requirements.txt` | `references/python.md`     |
+| `.java`, `pom.xml`, `build.gradle`          | `references/java.md`       |
+| `.rs`, `Cargo.toml`                         | `references/rust.md`       |
+| `.go`, `go.mod`                             | `references/go.md`         |
+| `.tsx`, `.jsx`, `react` in `package.json`   | `references/react.md`      |
+| `.ts`, `tsconfig.json` (no React)           | `references/typescript.md` |
+| `.sh`                                       | `references/shell.md`      |
+| `.lua`                                      | `references/lua.md`        |
 
 ### Resolve latest hook revisions
 
@@ -115,6 +108,7 @@ Do not remove, reorder, or modify existing hooks.
 ## Finish
 
 Tell the user:
+
 - What config file was written or updated
 - Which hooks were added and what they check
 - How to run manually: `prek run` (staged files) or `prek run -a` (all files)
