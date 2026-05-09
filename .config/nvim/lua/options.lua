@@ -31,7 +31,7 @@ vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 
 vim.o.mousescroll = "ver:25,hor:6"
-vim.o.switchbuf = "usetab"
+vim.o.switchbuf = "useopen,usetab"
 
 vim.diagnostic.config({
 	signs = {

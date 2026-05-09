@@ -22,6 +22,8 @@ require("plugins.dap.python").setup()
 require("plugins.dap.go").setup()
 require("plugins.dap.javascript").setup()
 
+dap.defaults.fallback.switchbuf = "useopen,usetab,split"
+
 vim.fn.sign_define("DapBreakpoint", { text = "B", texthl = "DiagnosticSignError" })
 vim.fn.sign_define("DapBreakpointCondition", { text = "C", texthl = "DiagnosticSignWarn" })
 vim.fn.sign_define("DapLogPoint", { text = "L", texthl = "DiagnosticSignInfo" })
