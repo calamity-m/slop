@@ -25,6 +25,11 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.showtabline = 2
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+
 vim.o.mousescroll = "ver:25,hor:6"
 vim.o.switchbuf = "usetab"
 

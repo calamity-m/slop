@@ -23,6 +23,12 @@ end, { desc = "Delete Other Buffers" })
 
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
+-- Folds
+map("n", "<leader>z", "za", { desc = "Toggle Fold" })
+map("n", "<leader>Z", "zA", { desc = "Toggle Fold Recursive" })
+map("n", "zR", "zR", { desc = "Open All Folds" })
+map("n", "zM", "zM", { desc = "Close All Folds" })
+
 -- Blackhole registers, delete without affecting copy buffer
 map("v", "<leader>dd", '"_d', { desc = "Delete Without Yank" })
 map("v", "<leader>dc", '"_c', { desc = "Change Without Yank" })
