@@ -46,16 +46,7 @@ Skip the grill entirely if everything important is already explicit and consiste
 
 ## The grill loop
 
-Ask **one question at a time**. Wait for the answer before asking the next.
-
-Each question follows this shape:
-
-```
-**Q<n>: <single clear question>**
-
-Why I'm asking: <one line — which goal this serves and what's currently unclear>
-My recommended answer: <your best guess, with brief reasoning>
-```
+Ask the smallest useful batch of questions. Prefer **2–4 questions at a time** when the uncertainties are independent, and ask a single question only when the next question genuinely depends on the answer.
 
 The recommended answer matters. It does three things at once:
 
@@ -63,7 +54,7 @@ The recommended answer matters. It does three things at once:
 - Lets the user say "yes, that one" and move on quickly.
 - Forces you to actually think about the tradeoff rather than fish for input.
 
-After each answer, **revise your internal model** before composing the next question. Questions later in the sequence depend on earlier answers — do not pre-write a rigid list.
+After each batch, **revise your internal model** before composing the next batch. Do not pre-write a rigid questionnaire; later questions should reflect earlier answers.
 
 ## What to ask about
 
@@ -118,8 +109,6 @@ Stop grilling when **any** of these is true:
 - You can restate the plan in your own words and the user agrees with the restatement.
 - The remaining unknowns are implementation details a reasonable agent can decide during execution without unsaid constraints leaking in.
 - The user signals "enough, let's go" — respect it. Note any unresolved item explicitly so it surfaces in the plan or the issues log.
-
-A typical grill is **3–7 questions**. If you are past 10 and still going, you are either grilling on things you should have explored yourself, or the brief is genuinely too vague and you should say so out loud.
 
 ## Output after grilling
 
