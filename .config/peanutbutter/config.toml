@@ -46,3 +46,8 @@ command = "kubectl config get-contexts -o name"
 [variables.namespace]
 default = "default"
 suggestions = ["default", "kube-system", "staging", "prod"]
+
+[lint.suggestion-command-failed]
+ignore_command = "*rg*"
+ignore_file = ["test*", "fixtures/*"]
+disable = false
