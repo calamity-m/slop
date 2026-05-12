@@ -22,6 +22,7 @@ function M.setup()
 		pattern = "java",
 		callback = function()
 			jdtls.start_or_attach({
+				-- Use Mason's jdtls directly so Java LSP does not depend on shell PATH setup.
 				cmd = { mason_path .. "/bin/jdtls" },
 				root_dir = vim.fs.root(0, { "pom.xml", "build.gradle", "build.gradle.kts", ".git" }),
 				settings = { java = {} },
@@ -72,5 +73,7 @@ function M.setup()
 		end,
 	})
 end
+
+M.setup()
 
 return M
