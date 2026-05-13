@@ -19,6 +19,7 @@ Creates:
   ~/.config/peanutbutter-private/snippets (directory)
   ~/.config/Code/User/snippets -> ~/.config/snippets
   ~/.pi/agent/extensions -> <repo>/.pi/agent/extensions
+  ~/.pi/agent/prompts    -> <repo>/.pi/agent/prompts
 
 Tool-specific links (skills only):
   ${CLAUDE_HOME:-~/.claude}/skills -> ~/.config/skills
@@ -133,6 +134,7 @@ ensure_dir "$HOME/.config/Code/User" || true
 ensure_symlink "$HOME/.config/Code/User/snippets" "$HOME/.config/snippets" || true
 ensure_dir "$HOME/.pi/agent" || true
 ensure_symlink "$HOME/.pi/agent/extensions" "$repo_dir/.pi/agent/extensions" || true
+ensure_symlink "$HOME/.pi/agent/prompts" "$repo_dir/.pi/agent/prompts" || true
 
 if command -v mise >/dev/null 2>&1 && [[ -f "$HOME/.config/mise/config.toml" ]]; then
   mise trust "$HOME/.config/mise/config.toml" || true
@@ -176,6 +178,7 @@ log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"
 log "  peanutbutter private: ~/.config/peanutbutter-private/snippets"
 log "  pi extensions: ~/.pi/agent/extensions -> $repo_dir/.pi/agent/extensions"
+log "  pi prompts:    ~/.pi/agent/prompts -> $repo_dir/.pi/agent/prompts"
 log "  bashrc: ~/.bashrc.d -> $repo_dir/.bashrc.d"
 log "  claude: $claude_root/skills -> ~/.agents/skills"
 log "  codex:  $codex_root/skills -> ~/.agents/skills"
