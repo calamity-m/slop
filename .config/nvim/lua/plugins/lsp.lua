@@ -29,6 +29,15 @@ vim.filetype.add({
 	},
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "java",
+	callback = function()
+		vim.bo.tabstop = 4
+		vim.bo.shiftwidth = 4
+		vim.bo.expandtab = true
+	end,
+})
+
 vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {

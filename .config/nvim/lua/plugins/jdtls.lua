@@ -25,7 +25,11 @@ function M.setup()
 				-- Use Mason's jdtls directly so Java LSP does not depend on shell PATH setup.
 				cmd = { mason_path .. "/bin/jdtls" },
 				root_dir = vim.fs.root(0, { "pom.xml", "build.gradle", "build.gradle.kts", ".git" }),
-				settings = { java = {} },
+				settings = {
+					java = {
+						format = { enabled = true },
+					},
+				},
 				init_options = { bundles = bundles },
 				on_attach = function(_, bufnr)
 					-- setup_dap must run after the server attaches so jdtls can register DAP handlers
