@@ -9,6 +9,9 @@ wk.setup({
 })
 
 wk.add({
+	{ "<leader>a", group = "Atlas" },
+	{ "<leader>aa", group = "Atlas GitHub" },
+	{ "<leader>ag", group = "Atlas GitLab" },
 	{ "<leader>b", group = "Buffer" },
 	{ "<leader>c", group = "Code" },
 	{ "<leader>d", group = "DAP" },
