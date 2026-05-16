@@ -234,18 +234,23 @@ url = "https://github.com/calamity-m/fml/releases/download/v0.0.4/fml-x86_64-unk
 url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/413469929"
 
 [[tools."github:calamity-m/peanutbutter"]]
-version = "0.7.0"
+version = "0.10.1"
 backend = "github:calamity-m/peanutbutter"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64"]
-checksum = "sha256:97cc6a4b55df78134c19611a509c675318783f8093acfb2b8f707617272baad1"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.7.0/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/415642138"
+checksum = "sha256:cba7eff30be7d225cbc62878bd32f420e0c7806c041f29da959033038b4c079a"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.10.1/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/421540665"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64-musl"]
-checksum = "sha256:417b892406b89fd58d5783b87796952b2672870e64c21c035ee7ce053ff6e23e"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.7.0/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/415642425"
+checksum = "sha256:837749760b99d77b670d25d9a93efd95086d6f17cb1a2ede56419d2be74994ae"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.10.1/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/421540664"
+
+[tools."github:calamity-m/peanutbutter"."platforms.windows-x64"]
+checksum = "sha256:5e07c616a4f5c768712cea0ab9aa67abe067a4a83ac858067e2c4becae4103b4"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.10.1/peanutbutter-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/421540663"
 
 [[tools.glab]]
 version = "1.93.0"
