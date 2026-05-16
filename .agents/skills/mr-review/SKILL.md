@@ -15,6 +15,7 @@ Use this skill to review an existing PR/MR as a reviewer. The goal is to underst
 - Use `/tmp/mr-review/` as the persistent working record. Keep assumptions, understanding, findings, and posted comments there.
 - Prefer line-specific comments. Use a detached PR/MR comment only when the concern is about the review request itself, such as unclear rationale, missing description, or the change not being justified.
 - Prioritize correctness, security, data loss, compatibility, maintainability, observability, test coverage, and consistency with local patterns.
+- Use the `code-review` skill (`.agents/skills/code-review/SKILL.md`) as the standard for the code-quality pass, whether performed locally or by an authorized subagent.
 - Do not post style-only, speculative, or nitpick comments unless they materially affect review quality.
 - Use subagents only when the active request explicitly authorizes delegation. If delegation is not authorized, perform the same code-quality pass locally and record that choice.
 
@@ -78,8 +79,9 @@ The record must always include the next intended step so a compacted or resumed 
    - Record mismatches, precedent, and whether the MR is consistent with the codebase.
 8. Run a code-quality pass on the MR branch:
    - Focus on the actual code that exists in the review branch, not only the diff.
+   - Read and apply `.agents/skills/code-review/SKILL.md` before forming findings.
    - If delegation is authorized, spawn a subagent to run `/code-review` on the changed area and ask for findings grounded in current branch files.
-   - If delegation is not authorized, perform that pass locally.
+   - If delegation is not authorized, perform that pass locally using the same `code-review` criteria.
    - Compile findings into the review record, separating confirmed issues from observations and questions.
 9. Decide what to post:
    - Convert only confirmed, actionable findings into review comments.
@@ -143,7 +145,7 @@ Comments:
 Use this prompt only when delegation is explicitly authorized in the active conversation:
 
 ```text
-Run /code-review on the current PR/MR branch area, not just the diff. Inputs: changed file list, current branch files, relevant base-branch examples, repository coding standards, and review context. Focus on correctness, security, maintainability, local pattern consistency, and test coverage. Output confirmed findings with file/line references, severity, impact, and suggested reviewer comment text. Do not edit files or post comments.
+Run /code-review on the current PR/MR branch area, following `.agents/skills/code-review/SKILL.md`, not just the diff. Inputs: changed file list, current branch files, relevant base-branch examples, repository coding standards, and review context. Focus on correctness, security, maintainability, local pattern consistency, and test coverage. Output confirmed findings with file/line references, severity, impact, and suggested reviewer comment text. Do not edit files or post comments.
 ```
 
 ## Comment Standards
