@@ -31,6 +31,14 @@ Compact view of commit history — just the hash and subject. Good for a quick o
 git log --oneline
 ```
 
+## git update main without switching
+
+Fetches `main` from the remote into the local `main` branch while staying on your current branch.
+
+```
+git fetch <@remote:echo origin> main:main
+```
+
 ## git log with bodies
 
 Like `--oneline` but also shows the commit body. Useful when you care about the detail in commit messages, not just the subject.
