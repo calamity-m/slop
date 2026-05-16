@@ -8,7 +8,7 @@ Usage:
   validate.sh <diagram-file>
   validate.sh -    # read Mermaid source from stdin
 
-Validate a Mermaid diagram by asking Mermaid CLI to render it via `npx`.
+Validate a Mermaid diagram by rendering it with `mmdr` when available, otherwise Mermaid CLI via `npx`.
 Supported diagram types: sequenceDiagram, flowchart, graph, erDiagram.
 EOF
 }
@@ -62,21 +62,36 @@ if [[ -z "$diagram_type" ]]; then
   exit 1
 fi
 
+run_mmdr() {
+  mmdr -i "$input_file" -o "$output_file" -e svg >/dev/null
+}
+
 run_npx_mmdc() {
   npx -y @mermaid-js/mermaid-cli -q -i "$input_file" -o "$output_file"
 }
 
+if command -v mmdr >/dev/null 2>&1; then
+  runner="mmdr"
+  if run_mmdr; then
+    echo "valid: rendered the $diagram_type diagram successfully with $runner"
+    exit 0
+  fi
+
+  echo "error: failed to render the $diagram_type diagram via $runner" >&2
+  exit 1
+fi
+
 if ! command -v npx >/dev/null 2>&1; then
-  echo "error: npx is not available" >&2
+  echo "error: neither mmdr nor npx is available" >&2
   exit 127
 fi
 
 runner="npx @mermaid-js/mermaid-cli"
 
 if run_npx_mmdc; then
-  echo "valid: Mermaid CLI rendered the $diagram_type diagram successfully with $runner"
+  echo "valid: rendered the $diagram_type diagram successfully with $runner"
   exit 0
 fi
 
-echo "error: Mermaid CLI failed to render the $diagram_type diagram via $runner" >&2
+echo "error: failed to render the $diagram_type diagram via $runner" >&2
 exit 1

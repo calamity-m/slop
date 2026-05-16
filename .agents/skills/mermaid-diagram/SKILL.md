@@ -53,6 +53,7 @@ If the request fits both (e.g. a flow with both actor interactions and branching
 Before finalizing:
 
 - If the diagram exists as a local file or can be written to a temp file, run `./scripts/validate.sh <diagram-file>`.
+- The validator prefers `mmdr` from `mermaid-rs-renderer` and falls back to `npx @mermaid-js/mermaid-cli`.
 - If the diagram is in Markdown, extract the Mermaid block first or write just the Mermaid snippet to a temp file before validating.
 - Run through the type-specific validation checklist in the diagram lens.
 - Check that labels are short enough to scan without wrapping badly.
