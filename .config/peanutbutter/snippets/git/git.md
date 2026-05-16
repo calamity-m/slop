@@ -83,7 +83,7 @@ git branch --format='%(refname:short)' | grep -Ev '^(main|master)$' | xargs -r g
 ## git delete branch on remote and local
 
 ```
-branch="<@branch>"
+branch="<@branch:git branch --format='%(refname:short)'>"
 remote="<@remote:echo origin>"
 
 git push "$remote" --delete "$branch"
