@@ -10,6 +10,7 @@ M.lsp_servers = {
 	"oxfmt",
 	"vtsls",
 	"helm_ls",
+	"yamlls",
 	"tombi",
 	"marksman",
 	"typos_lsp",

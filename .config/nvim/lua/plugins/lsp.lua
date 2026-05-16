@@ -22,6 +22,11 @@ end, { desc = "Toggle inlay hints" })
 vim.filetype.add({
 	filename = {
 		["go.work"] = "gowork",
+		[".gitlab-ci.yml"] = "yaml.gitlab",
+		["docker-compose.yml"] = "yaml.docker-compose",
+		["docker-compose.yaml"] = "yaml.docker-compose",
+		["compose.yml"] = "yaml.docker-compose",
+		["compose.yaml"] = "yaml.docker-compose",
 	},
 	extension = {
 		gotmpl = "gotmpl",
