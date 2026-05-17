@@ -98,18 +98,14 @@ vim.lsp.config("ty", {
 	},
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = "markdown",
-	callback = function()
-		vim.lsp.start({
-			name = "peanutbutter",
-			cmd = { "peanutbutter", "lsp" },
-			-- root_dir tells Neovim which directory to treat as the project root.
-			-- Here we walk up looking for a marker file, mirroring the server's own logic.
-			root_dir = (function()
-				local markers = { ".peanutbutter.toml", "peanutbutter.toml", "_peanutbutter.toml" }
-				return vim.fs.dirname(vim.fs.find(markers, { upward = true })[1])
-			end)(),
-		})
-	end,
+vim.lsp.config("peanutbutter", {
+	cmd = { "peanutbutter", "lsp" },
+	filetypes = { "markdown" },
+	root_markers = {
+		".peanutbutter.toml",
+		"peanutbutter.toml",
+		"_peanutbutter.toml",
+	},
 })
+
+vim.lsp.enable("peanutbutter")

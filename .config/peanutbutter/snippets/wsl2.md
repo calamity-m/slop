@@ -8,6 +8,6 @@ tags:
 
 ## Open WSL path in Windows Explorer
 
-```
+```bash
 explorer.exe "$(wslpath -w '<@path:?.>')"
 ```

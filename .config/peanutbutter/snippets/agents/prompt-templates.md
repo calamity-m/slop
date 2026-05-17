@@ -8,7 +8,7 @@ tags:
 
 ## debug prompt
 
-````
+````bash
 cat <<'PROMPT'
 ## Debug Session
 

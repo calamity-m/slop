@@ -4,7 +4,7 @@
 
 Remove all unused containers, networks, images, build cache, and volumes. This is destructive for anything Docker considers unused.
 
-```
+```bash
 docker system prune --all --volumes --force && docker builder prune --all --force
 ```
 
@@ -12,7 +12,7 @@ docker system prune --all --volumes --force && docker builder prune --all --forc
 
 Remove stopped containers and unused images, but leave volumes alone.
 
-```
+```bash
 docker container prune --force && docker image prune --all --force
 ```
 
@@ -20,7 +20,7 @@ docker container prune --force && docker image prune --all --force
 
 Commit a running container to a temporary image, inspect it with `dive`, then remove the temporary image.
 
-```
+```bash
 container=<@container>
 tmp_image="dive-${container}-$(date +%s)"
 docker commit "$container" "$tmp_image" >/dev/null && dive "$tmp_image"
@@ -31,7 +31,7 @@ docker image rm "$tmp_image"
 
 Copy a file or directory out of a running container and onto the host.
 
-```
+```bash
 docker cp <@container>:<@container_path> <@host_path:?.>
 ```
 
@@ -39,6 +39,6 @@ docker cp <@container>:<@container_path> <@host_path:?.>
 
 Start an image with an interactive `sh` shell and remove the container when it exits.
 
-```
+```bash
 docker run --rm -it <@image> sh
 ```

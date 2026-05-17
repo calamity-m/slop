@@ -11,6 +11,6 @@ tags:
 When you run the snippet you'll be presented with a TUI that lets you
 select a docker container to get a shell on it.
 
-```
+```bash
 dexec
 ```

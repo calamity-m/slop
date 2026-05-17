@@ -9,7 +9,7 @@ tags:
 
 Apply the nvim project layout to the current zellij tab from the current directory.
 
-```
+```bash
 project="$PWD"; zellij action rename-tab "$(basename "$project")"; cd "$project" && zellij action override-layout ~/.config/zellij/layouts/nvim-project.kdl --apply-only-to-active-tab
 ```
 
@@ -17,7 +17,7 @@ project="$PWD"; zellij action rename-tab "$(basename "$project")"; cd "$project"
 
 Apply a four-pane base layout to the current zellij tab.
 
-```
+```bash
 zellij action rename-tab base; zellij action override-layout ~/.config/zellij/layouts/base.kdl --apply-only-to-active-tab
 ```
 
@@ -25,7 +25,7 @@ zellij action rename-tab base; zellij action override-layout ~/.config/zellij/la
 
 Apply the agent stack layout to the current zellij tab from the current directory.
 
-```
+```bash
 project="$PWD"
 tab_name="$(basename "$project")-agents"
 zellij action rename-tab "$tab_name"
@@ -50,6 +50,6 @@ zellij action list-panes --json --all --tab --state --geometry \
 
 Quit the current zellij session.
 
-```
+```bash
 zellij kill-session "$ZELLIJ_SESSION_NAME"
 ```

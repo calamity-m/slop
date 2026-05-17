@@ -1,36 +1,32 @@
+---
+tags:
+  - pb
+  - general
+  - scratch
+---
+
 # General Snippets
 
 This file holds general top-level widgets, often acting as a scratch-pad for snippets
 before they can be curated into a proper area, or removed for being useless/pointless.
 
-
 ## Search file, but return only the matching portion if it exists
 
-```
+```bash
 (
-# just invert the -o to -v to exclude it 
+# just invert the -o to -v to exclude it
 grep -o "<@pattern>" <@file:rg . --files>
 )
 ```
 
 ## Find directories with a max depth of 1
 
-```
+```bash
 find <@start:?.> -maxdepth 1
 ```
 
-## Claude Code - headless commit
+## list all possible paths of an executable/binary
 
-```
-claude -p "/commit" --permission-mode bypassPermissions
-```
-
-## list files and directories in tree format, adhereing to gitignore
-
-- the `--icons` just displays nice icons
-- add `--group-directories-first` to display directories ahead of plain files
-- the `--tree` is what gives the nice tree output
-
-```
-eza --tree --git-ignore --all --icons
+```bash
+which -a <@cmd>
 ```

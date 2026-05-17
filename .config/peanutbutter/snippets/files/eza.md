@@ -1,24 +1,36 @@
+---
+variables:
+  sort:
+    suggestions:
+      - name
+      - size
+      - extension
+      - changed
+      - modified
+      - accessed
+      - created
+      - ninode
+      - type
+      - none
+---
+
 # Eza Snippets
 
 ## eza long list, hidden files, sorted
 
-```
-eza -lha -s <@sort:echo "name\nName\nsize\nextension\nExtension\nmodified\nchanged\naccessed\ncreated\ninode\ntype\nnone">
+```bash
+eza -lha -s <@sort>
 ```
 
 ## eza long list with hidden files and block sizes
 
 Equivalent to the `ls -lsha` habit: `-l` uses long listing, `-a` includes hidden files, and `-S` adds the allocated block-size column. `--header` labels the columns and `--icons` keeps the output consistent with the shell aliases.
 
-```
+```bash
 eza -laS --header --icons <@path:?.>
 ```
 
 ## eza list directories in a directory
-
-```
-eza --oneline --only-dirs --all --git-ignore --ignore-glob .git <@directory>
-```
 
 Example:
 
@@ -26,4 +38,32 @@ Example:
 .hidden-dir
 hello-world
 hi-there
+```
+
+```bash
+eza --oneline --only-dirs --all --git-ignore --ignore-glob .git <@directory>
+```
+
+## eza list files and directories in tree format
+
+- the `--icons` just displays nice icons
+- add `--group-directories-first` to display directories ahead of plain files
+- the `--tree` is what gives the nice tree output
+- `-git-ignore` is pretty self explanatory
+
+Example:
+
+```text
+ .
+├──  .agents
+│   └──  skills
+│       ├──  bigplan
+│       │   ├──  references
+│       │   │   └──  adversarial-reviewer.md
+│       │   └──  SKILL.md
+│       ├──  code-review
+```
+
+```bash
+eza --tree --git-ignore --all --icons
 ```

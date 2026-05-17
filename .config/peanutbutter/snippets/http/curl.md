@@ -17,25 +17,25 @@ variables:
 
 ## curl with password protected p12
 
-```
+```bash
 curl --cert-type P12 --cert '<@p12>:<@password>' '<@url>'
 ```
 
 ## curl with pem cert no password
 
-```
+```bash
 curl --cert '<@cert>' --key '<@key>' '<@url>'
 ```
 
 ## curl with basic auth
 
-```
+```bash
 curl --user '<@username>:<@password>' '<@url>'
 ```
 
 ## curl with json body
 
-```
+```bash
 curl -X <@method:echo "POST\nPUT\nPATCH"> \
   -H 'Content-Type: application/json' \
   --data-binary @- \
@@ -46,7 +46,7 @@ JSON
 
 ## curl with form url encoded
 
-```
+```bash
 curl -X <@method:echo "POST\nPUT\nPATCH"> \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d '<@field>=<@value>' \

@@ -9,13 +9,13 @@ tags:
 
 ## commit - headless /commit skill
 
-```
+```bash
 claude -p --dangerously-skip-permissions "/commit"
 ```
 
 ## complete small github issue end-to-end
 
-```
+```bash
 claude "$(cat <<'PROMPT'
 Pick a small, self-contained open GitHub issue from this repo and complete it end to end:
 
