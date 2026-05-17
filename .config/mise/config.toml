@@ -27,3 +27,5 @@ minikube = "latest"
 mark = "latest"
 jwtui = { version = "latest", exe = "jwtui" }
 jwt = "latest"
+vhs = "latest"
+ttyd = "latest"

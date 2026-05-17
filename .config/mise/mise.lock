@@ -665,6 +665,58 @@ url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15
 checksum = "sha256:124510b94b6baa3380d051fdf4650eaa80a302c876d611e9dba0b2e18d87493a"
 url = "https://github.com/BurntSushi/ripgrep/releases/download/15.1.0/ripgrep-15.1.0-x86_64-pc-windows-msvc.zip"
 
+[[tools.ttyd]]
+version = "1.7.7"
+backend = "aqua:tsl0922/ttyd"
+
+[tools.ttyd."platforms.linux-arm64"]
+url = "https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.aarch64"
+
+[tools.ttyd."platforms.linux-arm64-musl"]
+url = "https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.aarch64"
+
+[tools.ttyd."platforms.linux-x64"]
+checksum = "blake3:6ed0d916345e111411cdc7f7d649bcb984ec1ee603d470b2151ac0a31b9585a4"
+url = "https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.x86_64"
+
+[tools.ttyd."platforms.linux-x64-musl"]
+url = "https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.x86_64"
+
+[tools.ttyd."platforms.windows-x64"]
+url = "https://github.com/tsl0922/ttyd/releases/download/1.7.7/ttyd.win32.exe"
+
+[[tools.vhs]]
+version = "0.11.0"
+backend = "aqua:charmbracelet/vhs"
+
+[tools.vhs."platforms.linux-arm64"]
+checksum = "sha256:af782cddbf844a377df6ea41c0e72339393fa021be3f6cb70a2f47d48675d92b"
+url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Linux_arm64.tar.gz"
+
+[tools.vhs."platforms.linux-arm64-musl"]
+checksum = "sha256:af782cddbf844a377df6ea41c0e72339393fa021be3f6cb70a2f47d48675d92b"
+url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Linux_arm64.tar.gz"
+
+[tools.vhs."platforms.linux-x64"]
+checksum = "sha256:99cb634587eaae0473c1ea377db80c3a048c27f99fe0a7febb1a1e8cb7ee5009"
+url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Linux_x86_64.tar.gz"
+
+[tools.vhs."platforms.linux-x64-musl"]
+checksum = "sha256:99cb634587eaae0473c1ea377db80c3a048c27f99fe0a7febb1a1e8cb7ee5009"
+url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Linux_x86_64.tar.gz"
+
+[tools.vhs."platforms.macos-arm64"]
+checksum = "sha256:eec91ee450ba50b6d4fce2800593b2ac5fdd88a73056367d2c3b870ee44de3f7"
+url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Darwin_arm64.tar.gz"
+
+[tools.vhs."platforms.macos-x64"]
+checksum = "sha256:dd5c86c1cec1cf9ebd5ac6cf8119efcb731f055bbe7c7010408c741ee7770f64"
+url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Darwin_x86_64.tar.gz"
+
+[tools.vhs."platforms.windows-x64"]
+checksum = "sha256:e3d87403b25e1e88addec6548bdbfdbee772a5c313c9f6f96c495b8e163f18ba"
+url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Windows_x86_64.zip"
+
 [[tools.zellij]]
 version = "0.44.3"
 backend = "aqua:zellij-org/zellij"
