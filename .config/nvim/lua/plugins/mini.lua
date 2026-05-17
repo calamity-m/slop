@@ -3,7 +3,6 @@ local mini_starter = require("mini.starter")
 mini_starter.setup({
 	evaluate_single = true,
 	items = {
-		mini_starter.sections.builtin_actions(),
 		mini_starter.sections.recent_files(10, true, false),
 		mini_starter.sections.recent_files(10, false, true),
 	},
