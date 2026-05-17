@@ -1,17 +1,4 @@
 require("mini.icons").setup()
-local mini_starter = require("mini.starter")
-mini_starter.setup({
-	evaluate_single = true,
-	items = {
-		mini_starter.sections.recent_files(10, true, false),
-		mini_starter.sections.recent_files(10, false, true),
-	},
-	content_hooks = {
-		mini_starter.gen_hook.adding_bullet(),
-		mini_starter.gen_hook.indexing("all", { "Builtin actions" }),
-		mini_starter.gen_hook.padding(3, 2),
-	},
-})
 require("mini.statusline").setup({ use_icons = true })
 require("mini.tabline").setup()
 require("mini.indentscope").setup()
