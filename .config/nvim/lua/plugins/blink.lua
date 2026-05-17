@@ -9,6 +9,7 @@ local blink_opts = {
 	completion = {
 		documentation = { auto_show = true },
 	},
+	cmdline = { enabled = false },
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
 		providers = {
