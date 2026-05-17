@@ -21,4 +21,6 @@ wk.add({
 	{ "<leader>G", group = "Git" },
 	{ "<leader>Gt", group = "Git Toggles" },
 	{ "<leader>M", group = "Mason" },
+	{ "<leader>v", group = "Vim" },
+	{ "<leader>vp", group = "Pack" },
 })
