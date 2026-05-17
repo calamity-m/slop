@@ -22,6 +22,6 @@ require("neo-tree").setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle filesystem reveal<CR>", {
+vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle filesystem<CR>", {
 	desc = "Explorer Toggle",
 })
