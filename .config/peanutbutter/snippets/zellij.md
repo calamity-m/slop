@@ -3,6 +3,7 @@ name: Zellij
 tags:
   - cli
   - terminal
+  - zellij
 ---
 
 ## apply project layout to current tab

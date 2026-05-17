@@ -3,6 +3,9 @@ tags:
   - pb
   - general
   - scratch
+variables:
+  file:
+    command: rg . --files
 ---
 
 # General Snippets
@@ -15,7 +18,7 @@ before they can be curated into a proper area, or removed for being useless/poin
 ```bash
 (
 # just invert the -o to -v to exclude it
-grep -o "<@pattern>" <@file:rg . --files>
+grep -o "<@pattern>" <@file>
 )
 ```
 
