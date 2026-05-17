@@ -33,6 +33,8 @@ vim.opt.foldlevel = 99
 vim.o.mousescroll = "ver:25,hor:6"
 vim.o.switchbuf = "useopen,usetab"
 
+vim.o.inccommand = "split"
+
 vim.diagnostic.config({
 	signs = {
 		text = {
@@ -42,7 +44,6 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.HINT] = " ",
 		},
 	},
-	virtual_text = true,
 	update_in_insert = true,
 	virtual_lines = {
 		wrap = true, -- Wrap the virtual text lines
