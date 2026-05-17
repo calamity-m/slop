@@ -238,23 +238,23 @@ url = "https://github.com/calamity-m/fml/releases/download/v0.1.0/fml-x86_64-unk
 url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/421812439"
 
 [[tools."github:calamity-m/peanutbutter"]]
-version = "0.12.0"
+version = "0.14.0"
 backend = "github:calamity-m/peanutbutter"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64"]
-checksum = "sha256:4508f611d2385033bdb1565032d61d081b7aeff9065d5c3d017c89b7ec8e4558"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.12.0/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/422152390"
+checksum = "sha256:02a94a34d96bf0777ffe44c320c0fe841392a14b5c04e3d7a5e6f977ca135b66"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.14.0/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/422338198"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64-musl"]
-checksum = "sha256:0c9823e20ac7048c12dcf4198a0e681dbb8850c9fd3c654148dfc3557480f9f4"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.12.0/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/422152391"
+checksum = "sha256:bc6be3a00dbc2bdf8eaaadcfcc27bc598519c84a5f7b2d294f2d2a28c0af0ea8"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.14.0/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/422338199"
 
 [tools."github:calamity-m/peanutbutter"."platforms.windows-x64"]
-checksum = "sha256:f5e1bc8090f179685711b038d2a712c7c931e903382a82bf4431b46d56f29ce2"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.12.0/peanutbutter-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/422152392"
+checksum = "sha256:de0b139f41dcab73dc6bdc0034347af3e9a028375643cd51b3298bd37a375293"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.14.0/peanutbutter-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/422338197"
 
 [[tools.glab]]
 version = "1.97.0"
