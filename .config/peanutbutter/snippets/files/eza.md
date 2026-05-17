@@ -44,7 +44,7 @@ hi-there
 eza --oneline --only-dirs --all --git-ignore --ignore-glob .git <@directory>
 ```
 
-## eza list files and directories in tree format
+## eza list files and directories in a tree format
 
 - the `--icons` just displays nice icons
 - add `--group-directories-first` to display directories ahead of plain files
@@ -54,14 +54,7 @@ eza --oneline --only-dirs --all --git-ignore --ignore-glob .git <@directory>
 Example:
 
 ```text
- .
-├──  .agents
-│   └──  skills
-│       ├──  bigplan
-│       │   ├──  references
-│       │   │   └──  adversarial-reviewer.md
-│       │   └──  SKILL.md
-│       ├──  code-review
+
 ```
 
 ```bash
