@@ -3,6 +3,14 @@ local M = {}
 function M.setup()
 	local jdtls = require("jdtls")
 	local mason_path = vim.fn.stdpath("data") .. "/mason"
+	local opts = {
+		format_line_length = 120,
+		settings = {},
+	}
+
+	pcall(function()
+		opts = vim.tbl_deep_extend("force", opts, require("local.jdtls"))
+	end)
 
 	-- Collect debug adapter JARs installed by Mason
 	local bundles = vim.split(
@@ -18,6 +26,39 @@ function M.setup()
 		{ trimempty = true }
 	))
 
+	local settings = vim.tbl_deep_extend("force", {
+		java = {
+			format = { enabled = true },
+		},
+	}, opts.settings or {})
+
+	local has_formatter_settings_url = settings.java
+		and settings.java.format
+		and settings.java.format.settings
+		and settings.java.format.settings.url
+
+	if not has_formatter_settings_url then
+		local formatter_profile = "calam-jdtls"
+		local formatter_path = vim.fn.stdpath("cache") .. "/jdtls-formatter.xml"
+		local line_length = tonumber(opts.format_line_length) or 120
+		-- jdtls only exposes formatter width through an Eclipse formatter profile.
+		vim.fn.writefile({
+			'<?xml version="1.0" encoding="UTF-8" standalone="no"?>',
+			'<profiles version="13">',
+			string.format('\t<profile kind="CodeFormatterProfile" name="%s" version="13">', formatter_profile),
+			string.format(
+				'\t\t<setting id="org.eclipse.jdt.core.formatter.lineSplit" value="%d"/>',
+				line_length
+			),
+			"\t</profile>",
+			"</profiles>",
+		}, formatter_path)
+		settings.java.format.settings = {
+			url = formatter_path,
+			profile = formatter_profile,
+		}
+	end
+
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = "java",
 		callback = function()
@@ -25,11 +66,7 @@ function M.setup()
 				-- Use Mason's jdtls directly so Java LSP does not depend on shell PATH setup.
 				cmd = { mason_path .. "/bin/jdtls" },
 				root_dir = vim.fs.root(0, { "pom.xml", "build.gradle", "build.gradle.kts", ".git" }),
-				settings = {
-					java = {
-						format = { enabled = true },
-					},
-				},
+				settings = settings,
 				init_options = { bundles = bundles },
 				on_attach = function(_, bufnr)
 					-- setup_dap must run after the server attaches so jdtls can register DAP handlers
