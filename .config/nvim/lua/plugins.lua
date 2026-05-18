@@ -5,6 +5,7 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-tree/nvim-web-devicons" },
 	{ src = "https://github.com/nvim-neo-tree/neo-tree.nvim" },
 	{ src = "https://github.com/folke/which-key.nvim" },
+	{ src = "https://github.com/rmagatti/auto-session" },
 	{ src = "https://github.com/ibhagwan/fzf-lua" },
 	{ src = "https://github.com/rachartier/tiny-code-action.nvim" },
 	{ src = "https://github.com/smjonas/inc-rename.nvim" },
@@ -42,6 +43,7 @@ vim.pack.add({
 local plugin_modules = {
 	"plugins.mini",
 	"plugins.which_key",
+	"plugins.auto_session",
 	"plugins.neo_tree",
 	"plugins.fzf",
 	"plugins.tiny_code_action",

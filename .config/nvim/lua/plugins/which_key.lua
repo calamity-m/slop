@@ -23,4 +23,5 @@ wk.add({
 	{ "<leader>M", group = "Mason" },
 	{ "<leader>v", group = "Vim" },
 	{ "<leader>vp", group = "Pack" },
+	{ "<leader>vs", group = "Session" },
 })
