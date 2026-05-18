@@ -77,6 +77,13 @@ vim.keymap.set({ "n", "x" }, "<leader>cf", function()
 	conform.format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format" })
 
+vim.api.nvim_create_user_command("WriteNoFormat", function()
+	-- Bypass format-on-save autocmds when you need to persist the buffer as-is.
+	vim.cmd("noautocmd write")
+end, { desc = "Write current file without formatting" })
+
+vim.keymap.set("n", "<leader>cW", "<cmd>WriteNoFormat<CR>", { desc = "Write without formatting" })
+
 vim.api.nvim_create_user_command("ConformDir", function(opts)
 	-- Default to the current working directory when no path is provided.
 	local dir = opts.args ~= "" and opts.args or vim.fn.getcwd()
