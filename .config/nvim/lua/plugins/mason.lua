@@ -21,6 +21,7 @@ local tools = {
 	"goimports",
 	"ruff",
 	"oxfmt",
+	"prettier",
 	"tombi",
 	"kdlfmt",
 	"xmlformatter",
