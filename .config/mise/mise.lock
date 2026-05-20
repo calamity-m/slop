@@ -224,18 +224,18 @@ checksum = "sha256:3ae3a5549e85c7ad5b20192ebcfee4371269deca51255f6f2f2e051c6541f
 url = "https://github.com/orhun/git-cliff/releases/download/v2.13.1/git-cliff-2.13.1-x86_64-pc-windows-msvc.zip"
 
 [[tools."github:calamity-m/fml"]]
-version = "0.1.1"
+version = "0.2.0"
 backend = "github:calamity-m/fml"
 
 [tools."github:calamity-m/fml"."platforms.linux-x64"]
-checksum = "sha256:a14c9af77b5a6f90d020654c7a1be900ef057aee19e1484eda660953468ffa15"
-url = "https://github.com/calamity-m/fml/releases/download/v0.1.1/fml-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/422359468"
+checksum = "sha256:f930ff75f4dbd202cccd45a0dad55394cdb5c99ae1af8c93ae4aa09e459b0a8f"
+url = "https://github.com/calamity-m/fml/releases/download/v0.2.0/fml-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/424778972"
 
 [tools."github:calamity-m/fml"."platforms.linux-x64-musl"]
-checksum = "sha256:de91c11567f4e39a13a887f32967e20d680978f341e2e51815d2419ad2e57fc4"
-url = "https://github.com/calamity-m/fml/releases/download/v0.1.1/fml-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/422360394"
+checksum = "sha256:ee225a0bce3f23782ca2c426590cec7c796815b6b4e372ff5fefd41f3e711e27"
+url = "https://github.com/calamity-m/fml/releases/download/v0.2.0/fml-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/424780867"
 
 [[tools."github:calamity-m/peanutbutter"]]
 version = "0.14.2"
@@ -519,38 +519,38 @@ checksum = "sha256:6024f3094904caaf9b9672b801cba31a65ad36729a0d2c5a03c432f739c06
 url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_windows_x86_64.zip"
 
 [[tools.mark]]
-version = "16.3.0"
+version = "16.4.0"
 backend = "github:kovetskiy/mark"
 
 [tools.mark."platforms.linux-arm64"]
-checksum = "sha256:a3398f028093d1c0816ba8a5a5721fface1dee06246b514d2884c2559acdff74"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.3.0/mark_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/391627351"
+checksum = "sha256:ad8af8896e9a76b8ae73d8981c556087eeba534f1381802c71963d93f4e9e5c0"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251511"
 
 [tools.mark."platforms.linux-arm64-musl"]
-checksum = "sha256:a3398f028093d1c0816ba8a5a5721fface1dee06246b514d2884c2559acdff74"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.3.0/mark_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/391627351"
+checksum = "sha256:ad8af8896e9a76b8ae73d8981c556087eeba534f1381802c71963d93f4e9e5c0"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251511"
 
 [tools.mark."platforms.linux-x64"]
-checksum = "sha256:a2adf19d55143c457cc75cb56c64d0c54ebb04be5fcffc1cb93df18d6a30ba42"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.3.0/mark_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/391627352"
+checksum = "sha256:e66a99199006ad3e2011d15f53aa903d75a865c8c6298eaa7ccb793109a6f191"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251510"
 
 [tools.mark."platforms.linux-x64-musl"]
-checksum = "sha256:a2adf19d55143c457cc75cb56c64d0c54ebb04be5fcffc1cb93df18d6a30ba42"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.3.0/mark_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/391627352"
+checksum = "sha256:e66a99199006ad3e2011d15f53aa903d75a865c8c6298eaa7ccb793109a6f191"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251510"
 
 [tools.mark."platforms.macos-arm64"]
-checksum = "sha256:1a6c92fe915663654995dd482c3a8c7dbcb00d74d8a6fb24695961c02fe99ba0"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.3.0/mark_Darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/391627353"
+checksum = "sha256:1da4e1962df93a0fa4e2862c81a26d4d5e3c1e6acac29e27bff6ab594778d307"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251512"
 
 [tools.mark."platforms.macos-x64"]
-checksum = "sha256:d002e9c0608784f5aca8a16735b1bf5e67be78b6d4cab2b002fa66c9a30c4b83"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.3.0/mark_Darwin_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/391627350"
+checksum = "sha256:5c62a03d61cf4ce1be94c1d49b7d60e257a9d7b23427b3b12d998521bf398ee5"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251509"
 
 [[tools.minikube]]
 version = "1.38.1"
