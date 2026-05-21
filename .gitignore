@@ -18,3 +18,4 @@ nvim.log
 !.bashrc.d/truecolor.sh
 !.bashrc.d/zellij.sh
 !.bashrc.d/zoxide.sh
+!.bashrc.d/history.sh
