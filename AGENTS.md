@@ -76,7 +76,7 @@ install.sh                       -> entry point; symlinks repo paths into $HOME 
 .agents/skills/                  -> agent skills (symlinked into ~/.claude/skills and ~/.codex/skills)
 .bashrc.d/                       -> shell extensions, auto-sourced by ~/.bashrc
 .config/mise/                    -> mise global config for binary tool installs
-.config/nvim/                    -> Neovim Lua config (init.lua + lua/, queries/, snippets/)
+.config/nvim/                    -> Neovim Lua config (init.lua + lua/, snippets/)
 .config/peanutbutter/snippets/   -> Peanutbutter Markdown snippets (## section + fenced block)
 .config/zellij/                  -> Zellij config and layouts
 ```
