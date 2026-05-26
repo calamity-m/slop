@@ -12,6 +12,10 @@ variables:
       - ninode
       - type
       - none
+  path:
+    default: .
+  directory:
+    default: .
 ---
 
 # Eza Snippets
@@ -27,7 +31,7 @@ eza -lha -s <@sort>
 Equivalent to the `ls -lsha` habit: `-l` uses long listing, `-a` includes hidden files, and `-S` adds the allocated block-size column. `--header` labels the columns and `--icons` keeps the output consistent with the shell aliases.
 
 ```bash
-eza -laS --header --icons <@path:?.>
+eza -laS --header --icons <@path>
 ```
 
 ## eza list directories in a directory
@@ -54,9 +58,18 @@ eza --oneline --only-dirs --all --git-ignore --ignore-glob .git <@directory>
 Example:
 
 ```text
-
+ .
+├──  .agents
+│   └──  skills
+│       ├──  bigplan
+│       │   ├──  references
+│       │   │   └──  adversarial-reviewer.md
+│       │   └──  SKILL.md
+│       ├──  code-review
+│       │   ├──  agents
+│       │   │   └──  openai.yaml
 ```
 
 ```bash
-eza --tree --git-ignore --all --icons
+eza --tree --git-ignore --all --icons <@directory>
 ```

@@ -121,36 +121,36 @@ checksum = "sha256:4d4f87f6bc8e6ee176789c28bee698234ce0275da013709eb16b0f14819c1
 url = "https://github.com/eza-community/eza/releases/download/v0.23.4/eza.exe_x86_64-pc-windows-gnu.tar.gz"
 
 [[tools.fzf]]
-version = "0.72.0"
+version = "0.73.1"
 backend = "aqua:junegunn/fzf"
 
 [tools.fzf."platforms.linux-arm64"]
-checksum = "sha256:a0a5b50730f568c5f08b8dbba1e6e598db253e1856d371290086786b889b996b"
-url = "https://github.com/junegunn/fzf/releases/download/v0.72.0/fzf-0.72.0-linux_arm64.tar.gz"
+checksum = "sha256:a408b0b6c08d486307b8f1554f967b8b50ee1b3ea8b4035e3161bab31fdfc28d"
+url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-linux_arm64.tar.gz"
 
 [tools.fzf."platforms.linux-arm64-musl"]
-checksum = "sha256:a0a5b50730f568c5f08b8dbba1e6e598db253e1856d371290086786b889b996b"
-url = "https://github.com/junegunn/fzf/releases/download/v0.72.0/fzf-0.72.0-linux_arm64.tar.gz"
+checksum = "sha256:a408b0b6c08d486307b8f1554f967b8b50ee1b3ea8b4035e3161bab31fdfc28d"
+url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-linux_arm64.tar.gz"
 
 [tools.fzf."platforms.linux-x64"]
-checksum = "sha256:0e58e4bd0b3c5d68c56b54c460a6863d0de79633ed18d388575a960ab447b006"
-url = "https://github.com/junegunn/fzf/releases/download/v0.72.0/fzf-0.72.0-linux_amd64.tar.gz"
+checksum = "sha256:f3252c2c366bc1700d3c85781ec8c9695998927ac127870eb049ceea2d540f8a"
+url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-linux_amd64.tar.gz"
 
 [tools.fzf."platforms.linux-x64-musl"]
-checksum = "sha256:0e58e4bd0b3c5d68c56b54c460a6863d0de79633ed18d388575a960ab447b006"
-url = "https://github.com/junegunn/fzf/releases/download/v0.72.0/fzf-0.72.0-linux_amd64.tar.gz"
+checksum = "sha256:f3252c2c366bc1700d3c85781ec8c9695998927ac127870eb049ceea2d540f8a"
+url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-linux_amd64.tar.gz"
 
 [tools.fzf."platforms.macos-arm64"]
-checksum = "sha256:4cbf87e8e8a342614c1e3e74670ceb18c2af998c4d4d0c379cfee9b520774e90"
-url = "https://github.com/junegunn/fzf/releases/download/v0.72.0/fzf-0.72.0-darwin_arm64.tar.gz"
+checksum = "sha256:d27fd68c04fb9b42f7c73a3f7d38069a74d308e40174f64a072c747213e97286"
+url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-darwin_arm64.tar.gz"
 
 [tools.fzf."platforms.macos-x64"]
-checksum = "sha256:561c9db95cc1f75c8ad7e1d4461b2da0c8461189041f610ff1205f6303b84634"
-url = "https://github.com/junegunn/fzf/releases/download/v0.72.0/fzf-0.72.0-darwin_amd64.tar.gz"
+checksum = "sha256:75bbf15248d1cf0a13eafc75b8a55f5075c437e2ba6d76899afc53f4f3e1b38c"
+url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-darwin_amd64.tar.gz"
 
 [tools.fzf."platforms.windows-x64"]
-checksum = "sha256:cce66ae7e442030334927bfbfd917690713e63d215aba93027f99807828fe239"
-url = "https://github.com/junegunn/fzf/releases/download/v0.72.0/fzf-0.72.0-windows_amd64.zip"
+checksum = "sha256:521a974dc32e93404265e55bffaf71a59e05e80abdf8ca4afb21a6030dc76f5f"
+url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-windows_amd64.zip"
 
 [[tools.gh]]
 version = "2.92.0"
@@ -224,37 +224,37 @@ checksum = "sha256:3ae3a5549e85c7ad5b20192ebcfee4371269deca51255f6f2f2e051c6541f
 url = "https://github.com/orhun/git-cliff/releases/download/v2.13.1/git-cliff-2.13.1-x86_64-pc-windows-msvc.zip"
 
 [[tools."github:calamity-m/fml"]]
-version = "0.2.0"
+version = "0.4.0"
 backend = "github:calamity-m/fml"
 
 [tools."github:calamity-m/fml"."platforms.linux-x64"]
-checksum = "sha256:f930ff75f4dbd202cccd45a0dad55394cdb5c99ae1af8c93ae4aa09e459b0a8f"
-url = "https://github.com/calamity-m/fml/releases/download/v0.2.0/fml-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/424778972"
+checksum = "sha256:b7f21e1bb4c34c20952529c136cc6c7d3f177d6355bf0ffd577efe9c31a34280"
+url = "https://github.com/calamity-m/fml/releases/download/v0.4.0/fml-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/426556063"
 
 [tools."github:calamity-m/fml"."platforms.linux-x64-musl"]
-checksum = "sha256:ee225a0bce3f23782ca2c426590cec7c796815b6b4e372ff5fefd41f3e711e27"
-url = "https://github.com/calamity-m/fml/releases/download/v0.2.0/fml-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/424780867"
+checksum = "sha256:691d040b79c41150c2f3428987f6299278baeadb677787fbdd89d05f3fdb596a"
+url = "https://github.com/calamity-m/fml/releases/download/v0.4.0/fml-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/426557290"
 
 [[tools."github:calamity-m/peanutbutter"]]
-version = "0.14.2"
+version = "0.16.0"
 backend = "github:calamity-m/peanutbutter"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64"]
-checksum = "sha256:983ac66e2a2da5f0fb21f919b3bdddb74171cf544fe9720723e1b9595b891d9a"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.14.2/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/422762981"
+checksum = "sha256:79b9e74713305956e8993c6443c49b281a644252e893439260406253e52ade19"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.16.0/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/430050112"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64-musl"]
-checksum = "sha256:f2a88d6017b296f5d5904e1e5375b133dcb0409fc02fe7821ab1c780e4bb2200"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.14.2/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/422762982"
+checksum = "sha256:6f6ea22fdab06d141b48046398eeb60f15c7e2f23ecdc52479a564b3d4bb9f10"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.16.0/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/430050114"
 
 [tools."github:calamity-m/peanutbutter"."platforms.windows-x64"]
-checksum = "sha256:c03c0ee4d14a909529666b2a7532d45b9776ce63019a4289a68b968b622e8acb"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.14.2/peanutbutter-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/422762983"
+checksum = "sha256:38708132fcd5822e3916158ca5e1393bc911f47b559e2320104ded7021c57434"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.16.0/peanutbutter-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/430050116"
 
 [[tools.glab]]
 version = "1.99.0"

@@ -1,14 +1,12 @@
 ---
-tags:
-  - pb
-  - general
-  - scratch
+tags: [starter]
+description: A general set of snippets with no home
 variables:
-  file:
-    command: rg . --files
+  start:
+    default: .
 ---
 
-# General Snippets
+# Peanutbutter snippets
 
 This file holds general top-level widgets, often acting as a scratch-pad for snippets
 before they can be curated into a proper area, or removed for being useless/pointless.
@@ -25,7 +23,7 @@ grep -o "<@pattern>" <@file>
 ## Find directories with a max depth of 1
 
 ```bash
-find <@start:?.> -maxdepth 1
+find <@start> -maxdepth 1
 ```
 
 ## list all possible paths of an executable/binary

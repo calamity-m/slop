@@ -1,3 +1,11 @@
+---
+variables:
+  zip:
+    command: rg . --files
+  gz:
+    command: rg . --files
+---
+
 # Zip Snippets
 
 ## Create zip
@@ -9,41 +17,41 @@ zip -r <@out>.zip <@src>
 ## Unzip into directory
 
 ```bash
-unzip <@zip:rg . --files> -d <@dest>
+unzip <@zip> -d <@dest>
 ```
 
 ## Unzip specific file
 
 ```bash
-unzip <@zip:rg . --files> <@file>
+unzip <@zip> <@file>
 ```
 
 ## List contents of zip
 
 ```bash
-unzip -l <@zip:rg . --files>
+unzip -l <@zip>
 ```
 
 ## Gzip a file
 
 ```bash
-gzip <@file:rg . --files>
+gzip <@file>
 ```
 
 ## Gzip, keep original
 
 ```bash
-gzip -k <@file:rg . --files>
+gzip -k <@file>
 ```
 
 ## Gunzip a file
 
 ```bash
-gunzip <@gz:rg . --files>
+gunzip <@gz>
 ```
 
 ## Gunzip, keep original
 
 ```bash
-gunzip -k <@gz:rg . --files>
+gunzip -k <@gz>
 ```

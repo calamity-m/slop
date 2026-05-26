@@ -1,3 +1,14 @@
+---
+variables:
+  depth:
+    suggestions:
+      - 1
+      - 2
+      - 3
+  tar:
+    command: rg . --files
+---
+
 # Tar Snippets
 
 ## Create tar
@@ -17,23 +28,23 @@ tar czf <@out>.tar.gz -C <@directory> .
 List files inside a tar archive without extracting it.
 
 ```bash
-tar -tf <@tar:rg . --files>
+tar -tf <@tar>
 ```
 
 ## Untar into directory
 
 ```bash
-tar -xzvf <@tar:rg . --files> -C <@dest>
+tar -xzvf <@tar> -C <@dest>
 ```
 
 ## Untar specific file
 
 ```bash
-tar -xzvf <@tar:rg . --files> <@file>
+tar -xzvf <@tar> <@file>
 ```
 
 ## Untar, strip prefix
 
 ```bash
-tar -xzvf <@tar:rg . --files> -C <@dest> --strip-components=<@depth:echo "1\n2\n3">
+tar -xzvf <@tar> -C <@dest> --strip-components=<@depth>
 ```

@@ -21,8 +21,11 @@ Default `<#name>` substitution shell-single-quotes the upstream value, so
 names with unusual characters are safe.
 
 ```bash
-kubectl get secret -n <@namespace:kubectl get ns --no-headers -o custom-columns=NAME:.metadata.name> \
+kubectl get secret \
+  -n <@namespace:kubectl get ns --no-headers -o custom-columns=NAME:.metadata.name> \
   <@secret:kubectl get secret -n <#namespace> --no-headers -o custom-columns=NAME:.metadata.name> \
-  -o jsonpath='{.data.<@key:kubectl get secret -n <#namespace> <#secret> -o go-template='{{range $k, $_ := .data}}{{$k}}{{"\n"}}{{end}}'>}' | base64 -d | tee <@output:echo <#namespace:raw>.<#secret:raw>.<#key:raw>.out>
+  -o jsonpath='{.data.<@key:kubectl get secret -n <#namespace> <#secret> -o go-template='{{range $k, $_ := .data}}{{$k}}{{"\n"}}{{end}}'>}' \
+  | base64 -d \
+  | tee <@output:?<#namespace:raw>.<#secret:raw>.<#key:raw>.out>
 echo
 ```
