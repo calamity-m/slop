@@ -153,42 +153,42 @@ checksum = "sha256:521a974dc32e93404265e55bffaf71a59e05e80abdf8ca4afb21a6030dc76
 url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-windows_amd64.zip"
 
 [[tools.gh]]
-version = "2.92.0"
+version = "2.93.0"
 backend = "aqua:cli/cli"
 
 [tools.gh."platforms.linux-arm64"]
-checksum = "sha256:c2248526dd0160c08d3fccca2332c3c1a07c15a78b23978e77735f1b5a18cfee"
-url = "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_linux_arm64.tar.gz"
+checksum = "sha256:c55feb33684abba57e9909737340d5b39282257c0363e1edde6785ac4a413be7"
+url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-arm64-musl"]
-checksum = "sha256:c2248526dd0160c08d3fccca2332c3c1a07c15a78b23978e77735f1b5a18cfee"
-url = "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_linux_arm64.tar.gz"
+checksum = "sha256:c55feb33684abba57e9909737340d5b39282257c0363e1edde6785ac4a413be7"
+url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64"]
-checksum = "sha256:b57848131bdf0c229cd35e1f2a51aa718199858b2e728410b37e89a428943ec4"
-url = "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_linux_amd64.tar.gz"
+checksum = "sha256:02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0"
+url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64-musl"]
-checksum = "sha256:b57848131bdf0c229cd35e1f2a51aa718199858b2e728410b37e89a428943ec4"
-url = "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_linux_amd64.tar.gz"
+checksum = "sha256:02d1290eba130e0b896f3709ffff22e1c75a51475ddb70476a85abc6b5807af0"
+url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-arm64"]
-checksum = "sha256:b11c54f6bd7d15ed6590475079e5b2fcf36f45d3991a80041b29c9d0cc1f1d07"
-url = "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_macOS_arm64.zip"
+checksum = "sha256:a86be4e0a86c26456cf71177d6572d6f1165cf1679e532b72f7f15918ee51fd2"
+url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_macOS_arm64.zip"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-x64"]
-checksum = "sha256:ae9bb327ab0d91071bdada79f8f14034a2a0f19b0e001835a782eafa519d2af0"
-url = "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_macOS_amd64.zip"
+checksum = "sha256:009425b9d175c482037fe25181817fd6b1ea3ae1f51cfae0e18f29f33d3152ac"
+url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_macOS_amd64.zip"
 provenance = "github-attestations"
 
 [tools.gh."platforms.windows-x64"]
-checksum = "sha256:b6a8df3c8c6b9c80f290906387673bc4d272840f3789c5650e0e4e6e75522785"
-url = "https://github.com/cli/cli/releases/download/v2.92.0/gh_2.92.0_windows_amd64.zip"
+checksum = "sha256:77aa01ed7317295ad550de0ad04f3f276b1ef0e9272e3d002ac28dd99853d211"
+url = "https://github.com/cli/cli/releases/download/v2.93.0/gh_2.93.0_windows_amd64.zip"
 provenance = "github-attestations"
 
 [[tools.git-cliff]]
@@ -257,43 +257,43 @@ url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.17.0/pean
 url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/430184277"
 
 [[tools.glab]]
-version = "1.99.0"
+version = "1.100.0"
 backend = "gitlab:gitlab-org/cli"
 
 [tools.glab."platforms.linux-arm64"]
-checksum = "sha256:f65737b39193b3c26d0ee3f94c8475bc5284e2b126eab1c25f5c4747701c4c77"
-url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.99.0/downloads/glab_1.99.0_linux_arm64.tar.gz"
-url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E99%2E0/glab_1%2E99%2E0_linux_arm64%2Etar%2Egz"
+checksum = "sha256:118eee84f15c3186d59f90abd3e5b130f7b185f838ef1619fb99e5b8bfeaeee8"
+url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.100.0/downloads/glab_1.100.0_linux_arm64.tar.gz"
+url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E100%2E0/glab_1%2E100%2E0_linux_arm64%2Etar%2Egz"
 
 [tools.glab."platforms.linux-arm64-musl"]
-checksum = "sha256:f65737b39193b3c26d0ee3f94c8475bc5284e2b126eab1c25f5c4747701c4c77"
-url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.99.0/downloads/glab_1.99.0_linux_arm64.tar.gz"
-url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E99%2E0/glab_1%2E99%2E0_linux_arm64%2Etar%2Egz"
+checksum = "sha256:118eee84f15c3186d59f90abd3e5b130f7b185f838ef1619fb99e5b8bfeaeee8"
+url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.100.0/downloads/glab_1.100.0_linux_arm64.tar.gz"
+url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E100%2E0/glab_1%2E100%2E0_linux_arm64%2Etar%2Egz"
 
 [tools.glab."platforms.linux-x64"]
-checksum = "sha256:85cc54b35eef8196026d18d0a0e74d2343acff7dcbd199af089c506c91314fdc"
-url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.99.0/downloads/glab_1.99.0_linux_amd64.tar.gz"
-url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E99%2E0/glab_1%2E99%2E0_linux_amd64%2Etar%2Egz"
+checksum = "sha256:d2a8ccffe924d3ad22feb2d1338840e9a610041c6ea6fd76e9aeda3744f210c2"
+url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.100.0/downloads/glab_1.100.0_linux_amd64.tar.gz"
+url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E100%2E0/glab_1%2E100%2E0_linux_amd64%2Etar%2Egz"
 
 [tools.glab."platforms.linux-x64-musl"]
-checksum = "sha256:85cc54b35eef8196026d18d0a0e74d2343acff7dcbd199af089c506c91314fdc"
-url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.99.0/downloads/glab_1.99.0_linux_amd64.tar.gz"
-url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E99%2E0/glab_1%2E99%2E0_linux_amd64%2Etar%2Egz"
+checksum = "sha256:d2a8ccffe924d3ad22feb2d1338840e9a610041c6ea6fd76e9aeda3744f210c2"
+url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.100.0/downloads/glab_1.100.0_linux_amd64.tar.gz"
+url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E100%2E0/glab_1%2E100%2E0_linux_amd64%2Etar%2Egz"
 
 [tools.glab."platforms.macos-arm64"]
-checksum = "sha256:25dd0546771d5e76f8ddc1316a3b5f0e088b6c8ac555cc0472ed5f6ef6fd4f0e"
-url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.99.0/downloads/glab_1.99.0_darwin_arm64.tar.gz"
-url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E99%2E0/glab_1%2E99%2E0_darwin_arm64%2Etar%2Egz"
+checksum = "sha256:214c33b3f32850c7a9fb4a46575ba18538b8e7e64ed65dc29b0797dbc8702b0e"
+url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.100.0/downloads/glab_1.100.0_darwin_arm64.tar.gz"
+url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E100%2E0/glab_1%2E100%2E0_darwin_arm64%2Etar%2Egz"
 
 [tools.glab."platforms.macos-x64"]
-checksum = "sha256:d167dad860994b99486774a5bdab78099528834b3c8e1725c76b9fc2e955a9fb"
-url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.99.0/downloads/glab_1.99.0_darwin_amd64.tar.gz"
-url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E99%2E0/glab_1%2E99%2E0_darwin_amd64%2Etar%2Egz"
+checksum = "sha256:0b7ab7423aaca0024a3e25585f3e3981f21641e7cc286d20cba6038ada6b4741"
+url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.100.0/downloads/glab_1.100.0_darwin_amd64.tar.gz"
+url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E100%2E0/glab_1%2E100%2E0_darwin_amd64%2Etar%2Egz"
 
 [tools.glab."platforms.windows-x64"]
-checksum = "sha256:f0a9596512509fb1f3a6541cd667ae0104ff974c8eb2fc28b5e039b4fae5a974"
-url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.99.0/downloads/glab_1.99.0_windows_amd64.zip"
-url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E99%2E0/glab_1%2E99%2E0_windows_amd64%2Ezip"
+checksum = "sha256:f0a0abeb3c04236667151b97ca8c7a184d37038fe6fe969223d7cf5eb2df1e5a"
+url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.100.0/downloads/glab_1.100.0_windows_amd64.zip"
+url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E100%2E0/glab_1%2E100%2E0_windows_amd64%2Ezip"
 
 [[tools.helm]]
 version = "4.2.0"
@@ -487,36 +487,36 @@ checksum = "sha256:538f4229eee91a17b34724da7daade7687393d6988e33b723c6c306572c13
 url = "https://dl.k8s.io/v1.36.1/bin/windows/amd64/kubectl.exe"
 
 [[tools.lazygit]]
-version = "0.61.1"
+version = "0.62.0"
 backend = "aqua:jesseduffield/lazygit"
 
 [tools.lazygit."platforms.linux-arm64"]
-checksum = "sha256:20b1abb2bee5dfd46173b9047353eb678bc51a23839e821958d0b1863ab1655e"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_linux_arm64.tar.gz"
+checksum = "sha256:5f97dd0201194ee17a8b5a9655bf6c6d3f596af4399674746bc77056544fed70"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_linux_arm64.tar.gz"
 
 [tools.lazygit."platforms.linux-arm64-musl"]
-checksum = "sha256:20b1abb2bee5dfd46173b9047353eb678bc51a23839e821958d0b1863ab1655e"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_linux_arm64.tar.gz"
+checksum = "sha256:5f97dd0201194ee17a8b5a9655bf6c6d3f596af4399674746bc77056544fed70"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_linux_arm64.tar.gz"
 
 [tools.lazygit."platforms.linux-x64"]
-checksum = "sha256:1b91e660700f2332696726b635202576b543e2bc49b639830dccd26bc5160d5d"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_linux_x86_64.tar.gz"
+checksum = "sha256:c57dd766436a42c2da52c3138034f55ca6d8bb935983ee8ae272f0d0386aca6a"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_linux_x86_64.tar.gz"
 
 [tools.lazygit."platforms.linux-x64-musl"]
-checksum = "sha256:1b91e660700f2332696726b635202576b543e2bc49b639830dccd26bc5160d5d"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_linux_x86_64.tar.gz"
+checksum = "sha256:c57dd766436a42c2da52c3138034f55ca6d8bb935983ee8ae272f0d0386aca6a"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_linux_x86_64.tar.gz"
 
 [tools.lazygit."platforms.macos-arm64"]
-checksum = "sha256:cb665faec92d1574d398296869c084d2b9686464a42806558b967bb87cd07bc9"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_darwin_arm64.tar.gz"
+checksum = "sha256:01aa2231718ae63d5c445de97ce492af55f7bdd9cbeaa200b4c94a782dd15ccf"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_darwin_arm64.tar.gz"
 
 [tools.lazygit."platforms.macos-x64"]
-checksum = "sha256:6efdb97b8ec24b5729156555d6bc05b340776f00084ddd78ab8bdc7f3dd9b727"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_darwin_x86_64.tar.gz"
+checksum = "sha256:5d067eeba1d46e6420be3fde6319595f82d1e23fae32c346962793059d6a3937"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_darwin_x86_64.tar.gz"
 
 [tools.lazygit."platforms.windows-x64"]
-checksum = "sha256:6024f3094904caaf9b9672b801cba31a65ad36729a0d2c5a03c432f739c0678b"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.61.1/lazygit_0.61.1_windows_x86_64.zip"
+checksum = "sha256:132247de071b238cbcd40b0559de6ac248af7cbb97c1c93ae465537333286f04"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_windows_x86_64.zip"
 
 [[tools.mark]]
 version = "16.4.0"
