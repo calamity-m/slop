@@ -62,10 +62,14 @@ function M.setup()
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = "java",
 		callback = function()
+			local root_dir = vim.fs.root(0, { "pom.xml", "build.gradle", "build.gradle.kts", ".git" })
+			local workspace_dir = vim.fn.stdpath("data")
+				.. "/jdtls-workspace/"
+				.. vim.fn.fnamemodify(root_dir or vim.fn.getcwd(), ":t")
 			jdtls.start_or_attach({
 				-- Use Mason's jdtls directly so Java LSP does not depend on shell PATH setup.
-				cmd = { mason_path .. "/bin/jdtls" },
-				root_dir = vim.fs.root(0, { "pom.xml", "build.gradle", "build.gradle.kts", ".git" }),
+				cmd = { mason_path .. "/bin/jdtls", "-data", workspace_dir },
+				root_dir = root_dir,
 				settings = settings,
 				init_options = { bundles = bundles },
 				on_attach = function(_, bufnr)
@@ -108,6 +112,20 @@ function M.setup()
 					vim.keymap.set("n", "<leader>dT", jdtls.test_class, {
 						buffer = bufnr,
 						desc = "DAP Test Class",
+					})
+					vim.keymap.set("n", "<leader>cjw", jdtls.clean_workspace, {
+						buffer = bufnr,
+						desc = "Clean Java Workspace",
+					})
+					vim.keymap.set("n", "<leader>cju", jdtls.update_projects_config, {
+						buffer = bufnr,
+						desc = "Update Java Project Config",
+					})
+					vim.keymap.set("n", "<leader>cjb", function()
+						jdtls.compile(true)
+					end, {
+						buffer = bufnr,
+						desc = "Build Java Project",
 					})
 				end,
 			})
