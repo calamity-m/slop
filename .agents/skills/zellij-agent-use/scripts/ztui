@@ -1,0 +1,214 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage:
+  ztui panes
+  ztui run --name NAME [--cwd DIR] -- COMMAND [ARG...]
+  ztui capture [--ansi] [--full] [--path PATH] PANE_ID
+  ztui text PANE_ID TEXT
+  ztui type-enter PANE_ID TEXT
+  ztui key PANE_ID KEY [KEY...]
+  ztui enter PANE_ID
+  ztui wait PANE_ID PATTERN [--timeout SECONDS] [--interval SECONDS]
+
+Examples:
+  ztui panes
+  ztui run --name tui-under-test -- cargo run
+  ztui capture terminal_3
+  ztui key terminal_3 Tab
+  ztui type-enter terminal_3 "search text"
+  ztui wait terminal_3 "Ready" --timeout 5
+EOF
+}
+
+if [[ $# -lt 1 ]]; then
+  usage >&2
+  exit 2
+fi
+
+zj() {
+  zellij "$@"
+}
+
+cmd="$1"
+shift
+
+case "$cmd" in
+  panes)
+    if [[ $# -ne 0 ]]; then
+      usage >&2
+      exit 2
+    fi
+    zj action list-panes --json --all --tab --state --geometry --command
+    ;;
+
+  run)
+    name=""
+    cwd="$PWD"
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --name)
+          name="${2:-}"
+          shift 2
+          ;;
+        --cwd)
+          cwd="${2:-}"
+          shift 2
+          ;;
+        --)
+          shift
+          break
+          ;;
+        *)
+          usage >&2
+          exit 2
+          ;;
+      esac
+    done
+    if [[ -z "$name" || $# -eq 0 ]]; then
+      usage >&2
+      exit 2
+    fi
+    zj run --name "$name" --cwd "$cwd" -- "$@"
+    ;;
+
+  capture)
+    args=()
+    path=""
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --ansi)
+          args+=(--ansi)
+          shift
+          ;;
+        --full)
+          args+=(--full)
+          shift
+          ;;
+        --path)
+          path="${2:-}"
+          shift 2
+          ;;
+        *)
+          break
+          ;;
+      esac
+    done
+    if [[ $# -ne 1 ]]; then
+      usage >&2
+      exit 2
+    fi
+    if [[ -n "$path" ]]; then
+      args+=(--path "$path")
+    fi
+    zj action dump-screen "${args[@]}" --pane-id "$1"
+    ;;
+
+  text)
+    if [[ $# -ne 2 ]]; then
+      usage >&2
+      exit 2
+    fi
+    zj action write-chars --pane-id "$1" "$2"
+    ;;
+
+  type-enter)
+    if [[ $# -ne 2 ]]; then
+      usage >&2
+      exit 2
+    fi
+    pane="$1"
+    text="$2"
+    zj action write-chars --pane-id "$pane" "$text"
+    zj action send-keys --pane-id "$pane" Enter
+    ;;
+
+  key)
+    if [[ $# -lt 2 ]]; then
+      usage >&2
+      exit 2
+    fi
+    pane="$1"
+    shift
+    while [[ $# -gt 0 ]]; do
+      key="$1"
+      shift
+      case "$key" in
+        Ctrl|Alt|Shift)
+          while [[ $# -gt 0 && ( "$1" == "Ctrl" || "$1" == "Alt" || "$1" == "Shift" ) ]]; do
+            key+=" $1"
+            shift
+          done
+          if [[ $# -eq 0 ]]; then
+            printf 'ztui: modifier key requires a base key\n' >&2
+            exit 2
+          fi
+          key+=" $1"
+          shift
+          ;;
+      esac
+      zj action send-keys --pane-id "$pane" "$key"
+    done
+    ;;
+
+  enter)
+    if [[ $# -ne 1 ]]; then
+      usage >&2
+      exit 2
+    fi
+    zj action send-keys --pane-id "$1" Enter
+    ;;
+
+  wait)
+    if [[ $# -lt 2 ]]; then
+      usage >&2
+      exit 2
+    fi
+    pane="$1"
+    pattern="$2"
+    shift 2
+    timeout=10
+    interval=0.2
+    while [[ $# -gt 0 ]]; do
+      case "$1" in
+        --timeout)
+          timeout="${2:-}"
+          shift 2
+          ;;
+        --interval)
+          interval="${2:-}"
+          shift 2
+          ;;
+        *)
+          usage >&2
+          exit 2
+          ;;
+      esac
+    done
+
+    deadline=$((SECONDS + timeout))
+    while (( SECONDS <= deadline )); do
+      if zj action dump-screen --pane-id "$pane" | grep -q -- "$pattern"; then
+        zj action dump-screen --pane-id "$pane"
+        exit 0
+      fi
+      sleep "$interval"
+    done
+
+    zj action dump-screen --pane-id "$pane" >&2 || true
+    printf 'ztui: timed out waiting for pattern: %s\n' "$pattern" >&2
+    exit 1
+    ;;
+
+  -h|--help|help)
+    usage
+    ;;
+
+  *)
+    usage >&2
+    exit 2
+    ;;
+esac

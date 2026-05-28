@@ -1,0 +1,4 @@
+interface:
+  display_name: "Zellij Agent Use"
+  short_description: "Drive and inspect interactive TUI applications through Zellij panes"
+  default_prompt: "Use $zellij-agent-use to test this terminal UI through Zellij: launch or identify the pane, send keys, capture the screen, and verify the visible state."
