@@ -1,10 +1,10 @@
 ---
-name: Helpers
+name: IO
 ---
 
-# Helper Snippets
+# IO Snippets
 
-General snippets that can be used to extend terminal commands
+Snippets for redirecting and moving data around
 
 ## Pipe stdout and stderr to file and terminal
 
@@ -26,14 +26,20 @@ cat <<'EOF' > <@file>
 EOF
 ```
 
-## Run command without saving to history
+## Suppress stderr
 
 ```bash
-<@command>; history -d $(history 1)
+<@command> 2>/dev/null
 ```
 
-## If/else one liner
+## Discard all output
 
 ```bash
-if [[ <@condition> ]]; then <@then>; else <@else>; fi
+<@command> &>/dev/null
+```
+
+## Pipe stdout into nvim
+
+```bash
+<@command> | nvim -
 ```
