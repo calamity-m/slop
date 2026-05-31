@@ -106,6 +106,7 @@ vim.lsp.config("peanutbutter", {
 		"peanutbutter.toml",
 		"_peanutbutter.toml",
 	},
+	workspace_required = true,
 })
 
 vim.lsp.enable("peanutbutter")
