@@ -3,6 +3,7 @@ local M = {}
 function M.setup()
 	local jdtls = require("jdtls")
 	local mason_path = vim.fn.stdpath("data") .. "/mason"
+	local lombok_path = mason_path .. "/packages/jdtls/lombok.jar"
 	local opts = {
 		format_line_length = 120,
 		settings = {},
@@ -66,9 +67,15 @@ function M.setup()
 			local workspace_dir = vim.fn.stdpath("data")
 				.. "/jdtls-workspace/"
 				.. vim.fn.fnamemodify(root_dir or vim.fn.getcwd(), ":t")
+			local cmd = { mason_path .. "/bin/jdtls", "-data", workspace_dir }
+			if vim.fn.filereadable(lombok_path) == 1 then
+				-- JDTLS needs Lombok as a JVM agent to see generated methods and constructors.
+				table.insert(cmd, 2, "--jvm-arg=-javaagent:" .. lombok_path)
+			end
+
 			jdtls.start_or_attach({
 				-- Use Mason's jdtls directly so Java LSP does not depend on shell PATH setup.
-				cmd = { mason_path .. "/bin/jdtls", "-data", workspace_dir },
+				cmd = cmd,
 				root_dir = root_dir,
 				settings = settings,
 				init_options = { bundles = bundles },
@@ -112,10 +119,6 @@ function M.setup()
 					vim.keymap.set("n", "<leader>dT", jdtls.test_class, {
 						buffer = bufnr,
 						desc = "DAP Test Class",
-					})
-					vim.keymap.set("n", "<leader>cjw", jdtls.clean_workspace, {
-						buffer = bufnr,
-						desc = "Clean Java Workspace",
 					})
 					vim.keymap.set("n", "<leader>cju", jdtls.update_projects_config, {
 						buffer = bufnr,
