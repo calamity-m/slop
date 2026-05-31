@@ -29,3 +29,4 @@ jwtui = { version = "latest", exe = "jwtui" }
 jwt = "latest"
 vhs = "latest"
 ttyd = "latest"
+gradle = "latest"

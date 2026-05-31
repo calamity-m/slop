@@ -224,18 +224,18 @@ checksum = "sha256:3ae3a5549e85c7ad5b20192ebcfee4371269deca51255f6f2f2e051c6541f
 url = "https://github.com/orhun/git-cliff/releases/download/v2.13.1/git-cliff-2.13.1-x86_64-pc-windows-msvc.zip"
 
 [[tools."github:calamity-m/fml"]]
-version = "0.4.0"
+version = "0.7.0"
 backend = "github:calamity-m/fml"
 
 [tools."github:calamity-m/fml"."platforms.linux-x64"]
-checksum = "sha256:b7f21e1bb4c34c20952529c136cc6c7d3f177d6355bf0ffd577efe9c31a34280"
-url = "https://github.com/calamity-m/fml/releases/download/v0.4.0/fml-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/426556063"
+checksum = "sha256:fca2c2599d966f9dc814b72ddfc9a17d8546b27f800ef05c893f0e1669b0f0b1"
+url = "https://github.com/calamity-m/fml/releases/download/v0.7.0/fml-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/432972604"
 
 [tools."github:calamity-m/fml"."platforms.linux-x64-musl"]
-checksum = "sha256:691d040b79c41150c2f3428987f6299278baeadb677787fbdd89d05f3fdb596a"
-url = "https://github.com/calamity-m/fml/releases/download/v0.4.0/fml-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/426557290"
+checksum = "sha256:37fd98f03ef7354e289b94aa595abcae8e4e7fc56c11be08e50f379d5463a25c"
+url = "https://github.com/calamity-m/fml/releases/download/v0.7.0/fml-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/432973517"
 
 [[tools."github:calamity-m/peanutbutter"]]
 version = "0.17.0"
@@ -294,6 +294,38 @@ url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/
 checksum = "sha256:f0a0abeb3c04236667151b97ca8c7a184d37038fe6fe969223d7cf5eb2df1e5a"
 url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.100.0/downloads/glab_1.100.0_windows_amd64.zip"
 url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E100%2E0/glab_1%2E100%2E0_windows_amd64%2Ezip"
+
+[[tools.gradle]]
+version = "9.5.1"
+backend = "aqua:gradle/gradle"
+
+[tools.gradle."platforms.linux-arm64"]
+checksum = "sha256:bafc141b619ad6350fd975fc903156dd5c151998cc8b058e8c1044ab5f7b031f"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.5.1/gradle-9.5.1-bin.zip"
+
+[tools.gradle."platforms.linux-arm64-musl"]
+checksum = "sha256:bafc141b619ad6350fd975fc903156dd5c151998cc8b058e8c1044ab5f7b031f"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.5.1/gradle-9.5.1-bin.zip"
+
+[tools.gradle."platforms.linux-x64"]
+checksum = "sha256:bafc141b619ad6350fd975fc903156dd5c151998cc8b058e8c1044ab5f7b031f"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.5.1/gradle-9.5.1-bin.zip"
+
+[tools.gradle."platforms.linux-x64-musl"]
+checksum = "sha256:bafc141b619ad6350fd975fc903156dd5c151998cc8b058e8c1044ab5f7b031f"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.5.1/gradle-9.5.1-bin.zip"
+
+[tools.gradle."platforms.macos-arm64"]
+checksum = "sha256:bafc141b619ad6350fd975fc903156dd5c151998cc8b058e8c1044ab5f7b031f"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.5.1/gradle-9.5.1-bin.zip"
+
+[tools.gradle."platforms.macos-x64"]
+checksum = "sha256:bafc141b619ad6350fd975fc903156dd5c151998cc8b058e8c1044ab5f7b031f"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.5.1/gradle-9.5.1-bin.zip"
+
+[tools.gradle."platforms.windows-x64"]
+checksum = "sha256:bafc141b619ad6350fd975fc903156dd5c151998cc8b058e8c1044ab5f7b031f"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.5.1/gradle-9.5.1-bin.zip"
 
 [[tools.helm]]
 version = "4.2.0"
@@ -487,36 +519,36 @@ checksum = "sha256:538f4229eee91a17b34724da7daade7687393d6988e33b723c6c306572c13
 url = "https://dl.k8s.io/v1.36.1/bin/windows/amd64/kubectl.exe"
 
 [[tools.lazygit]]
-version = "0.62.0"
+version = "0.62.1"
 backend = "aqua:jesseduffield/lazygit"
 
 [tools.lazygit."platforms.linux-arm64"]
-checksum = "sha256:5f97dd0201194ee17a8b5a9655bf6c6d3f596af4399674746bc77056544fed70"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_linux_arm64.tar.gz"
+checksum = "sha256:22a19e4790323dfe0363a876d1f76738ee9722a3086ef27c9e4503c3c1d962ac"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.1/lazygit_0.62.1_linux_arm64.tar.gz"
 
 [tools.lazygit."platforms.linux-arm64-musl"]
-checksum = "sha256:5f97dd0201194ee17a8b5a9655bf6c6d3f596af4399674746bc77056544fed70"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_linux_arm64.tar.gz"
+checksum = "sha256:22a19e4790323dfe0363a876d1f76738ee9722a3086ef27c9e4503c3c1d962ac"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.1/lazygit_0.62.1_linux_arm64.tar.gz"
 
 [tools.lazygit."platforms.linux-x64"]
-checksum = "sha256:c57dd766436a42c2da52c3138034f55ca6d8bb935983ee8ae272f0d0386aca6a"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_linux_x86_64.tar.gz"
+checksum = "sha256:99d78cce8883b24150c2f4ba151f6a0443644f63f63794f18d6643e99f75be09"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.1/lazygit_0.62.1_linux_x86_64.tar.gz"
 
 [tools.lazygit."platforms.linux-x64-musl"]
-checksum = "sha256:c57dd766436a42c2da52c3138034f55ca6d8bb935983ee8ae272f0d0386aca6a"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_linux_x86_64.tar.gz"
+checksum = "sha256:99d78cce8883b24150c2f4ba151f6a0443644f63f63794f18d6643e99f75be09"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.1/lazygit_0.62.1_linux_x86_64.tar.gz"
 
 [tools.lazygit."platforms.macos-arm64"]
-checksum = "sha256:01aa2231718ae63d5c445de97ce492af55f7bdd9cbeaa200b4c94a782dd15ccf"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_darwin_arm64.tar.gz"
+checksum = "sha256:878697eb72157915f5bff4d4a40f7ea896f096b308190a1a1b20fe17576cfd0d"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.1/lazygit_0.62.1_darwin_arm64.tar.gz"
 
 [tools.lazygit."platforms.macos-x64"]
-checksum = "sha256:5d067eeba1d46e6420be3fde6319595f82d1e23fae32c346962793059d6a3937"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_darwin_x86_64.tar.gz"
+checksum = "sha256:33963e544085e0a820b71837fa4c8db82d6ab409ffd03a5677898b766541c537"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.1/lazygit_0.62.1_darwin_x86_64.tar.gz"
 
 [tools.lazygit."platforms.windows-x64"]
-checksum = "sha256:132247de071b238cbcd40b0559de6ac248af7cbb97c1c93ae465537333286f04"
-url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.0/lazygit_0.62.0_windows_x86_64.zip"
+checksum = "sha256:57c4c53d905c7083b689940573fefe6530dd66476a51b2b97737c697bf57dd22"
+url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.1/lazygit_0.62.1_windows_x86_64.zip"
 
 [[tools.mark]]
 version = "16.4.0"
