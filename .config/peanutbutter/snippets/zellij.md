@@ -4,6 +4,16 @@ tags:
   - cli
   - terminal
   - zellij
+variables:
+  session_name:
+    suggestions:
+      - main
+      - test
+      - scratch
+      - work
+      - dev
+  session:
+    command: zellij list-sessions --short --no-formatting
 ---
 
 ## apply project layout to current tab
@@ -45,6 +55,46 @@ zellij action list-panes --json --all --tab --state --geometry \
         esac
         zellij action rename-pane --pane-id "terminal_${pane_id}" "$pane_name"
     done
+```
+
+## start named session
+
+Start a zellij session with a selected name.
+
+```bash
+zellij --session <@session_name>
+```
+
+## kill a named session
+
+Kill a zellij session with the selected name
+
+```bash
+zellij kill-session <@session>
+```
+
+## attach to session
+
+Attach to an existing zellij session selected from the available sessions.
+
+```bash
+zellij attach <@session>
+```
+
+## rename current session
+
+Rename the current zellij session.
+
+```bash
+zellij action rename-session <@session_name>
+```
+
+## detach current session
+
+Detach from the current zellij session without killing it.
+
+```bash
+zellij action detach
 ```
 
 ## kill current session
