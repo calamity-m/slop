@@ -10,15 +10,34 @@ map("n", "<C-l>", "<C-w>l", { desc = "Window Right" })
 
 map("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Previous Buffer" })
 map("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next Buffer" })
-map("n", "<leader>bdd", "<cmd>bdelete<CR>", { desc = "Delete Buffer" })
-map("n", "<leader>bda", "<cmd>bufdo bdelete<CR>", { desc = "Delete All Buffers" })
-map("n", "<leader>bdo", function()
+local function delete_buffers(except_current)
   local current = vim.api.nvim_get_current_buf()
+  local skipped = 0
+
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if buf ~= current and vim.api.nvim_buf_is_loaded(buf) then
-      vim.api.nvim_buf_delete(buf, {})
+    if vim.api.nvim_buf_is_loaded(buf) and not (except_current and buf == current) then
+      if vim.bo[buf].buftype == "terminal" then
+        skipped = skipped + 1
+      else
+        local ok = pcall(vim.api.nvim_buf_delete, buf, {})
+        if not ok then
+          skipped = skipped + 1
+        end
+      end
     end
   end
+
+  if skipped > 0 then
+    vim.notify("Skipped " .. skipped .. " protected buffer(s)", vim.log.levels.INFO)
+  end
+end
+
+map("n", "<leader>bdd", "<cmd>bdelete<CR>", { desc = "Delete Buffer" })
+map("n", "<leader>bda", function()
+  delete_buffers(false)
+end, { desc = "Delete All Buffers" })
+map("n", "<leader>bdo", function()
+  delete_buffers(true)
 end, { desc = "Delete Other Buffers" })
 
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
