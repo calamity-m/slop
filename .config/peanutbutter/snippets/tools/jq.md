@@ -3,6 +3,9 @@ tags:
   - jq
   - json
   - tools
+variables:
+  json_file:
+    command: fd -e json .
 ---
 
 # jq snippets
@@ -23,4 +26,22 @@ jq '.[0] | keys'
 
 ```bash
 <@command> | jq 'keys'
+```
+
+## Tail a file and run JQ on each line
+
+```bash
+tail -f <@json_file> | jq .
+```
+
+## convert json to single line
+
+```bash
+<@command> | jq -c
+```
+
+## JSON URL escape/quoted
+
+```bash
+<@command> | jq -R
 ```
