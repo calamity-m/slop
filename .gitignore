@@ -6,6 +6,8 @@ nvim.log
 .config/nvim/lua/local/*.lua
 .config/mise/conf.d/*
 !.config/mise/conf.d/.gitkeep
+
+# Bashrc.d - ignore all except explicit files we want tracked in git
 .bashrc.d/
 !.bashrc.d/docker.sh
 !.bashrc.d/editor.sh
@@ -19,3 +21,6 @@ nvim.log
 !.bashrc.d/zellij.sh
 !.bashrc.d/zoxide.sh
 !.bashrc.d/history.sh
+
+# pi
+.pi
