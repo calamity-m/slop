@@ -1,4 +1,10 @@
 require("neo-tree").setup({
+	sources = {
+		"filesystem",
+		"buffers",
+		"git_status",
+		"diagnostics",
+	},
 	close_if_last_window = true,
 	window = {
 		position = "float",
@@ -40,4 +46,12 @@ require("neo-tree").setup({
 
 vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle filesystem<CR>", {
 	desc = "Explorer Toggle",
+})
+
+vim.keymap.set("n", "<leader>fed", "<cmd>Neotree diagnostics reveal float<CR>", {
+	desc = "Explorer Diagnostics",
+})
+
+vim.keymap.set("n", "<leader>feg", "<cmd>Neotree git_status reveal float<CR>", {
+	desc = "Explorer Git Status",
 })

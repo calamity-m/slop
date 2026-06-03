@@ -16,6 +16,7 @@ wk.add({
 	{ "<leader>c", group = "Code" },
 	{ "<leader>d", group = "DAP" },
 	{ "<leader>f", group = "Find" },
+	{ "<leader>fe", group = "Explorer" },
 	{ "<leader>h", group = "Haunt" },
 	{ "<leader>g", group = "Goto / LSP" },
 	{ "<leader>G", group = "Git" },
