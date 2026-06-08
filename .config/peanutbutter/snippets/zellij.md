@@ -57,9 +57,7 @@ zellij action list-panes --json --all --tab --state --geometry \
     done
 ```
 
-## start named session
-
-Start a zellij session with a selected name.
+## start named sessions
 
 ```bash
 zellij --session <@session_name>
@@ -67,23 +65,27 @@ zellij --session <@session_name>
 
 ## kill a named session
 
-Kill a zellij session with the selected name
+Killing a session leaves it still usable later
 
 ```bash
 zellij kill-session <@session>
 ```
 
-## attach to session
+## delete a named session
 
-Attach to an existing zellij session selected from the available sessions.
+Delete a session once killed to fully remove it forever
+
+```bash
+zellij delete-session <@session>
+```
+
+## attach to session
 
 ```bash
 zellij attach <@session>
 ```
 
 ## rename current session
-
-Rename the current zellij session.
 
 ```bash
 zellij action rename-session <@session_name>
@@ -99,8 +101,18 @@ zellij action detach
 
 ## kill current session
 
-Quit the current zellij session.
-
 ```bash
 zellij kill-session "$ZELLIJ_SESSION_NAME"
+```
+
+## delete all sessions
+
+```bash
+zellij delete-all-sessions
+```
+
+## kill all sessions
+
+```bash
+zellij kill-all-sessions
 ```
