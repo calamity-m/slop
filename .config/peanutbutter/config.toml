@@ -51,3 +51,19 @@ suggestions = ["default", "kube-system", "staging", "prod"]
 ignore_command = "*rg*"
 ignore_file = ["test*", "fixtures/*"]
 disable = false
+
+[search]
+frecency_weight = 100.0
+
+[search.frecency]
+half_life_days = 25.0
+location_weight = 2.5
+
+[search.fuzzy]
+name = 25
+tag = 23
+frontmatter_name = 15
+description = 3
+path = 5
+body = 9
+command = 20
