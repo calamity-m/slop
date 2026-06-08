@@ -12,6 +12,13 @@ variables:
       - scratch
       - work
       - dev
+  tab_name:
+    suggestions:
+      - main
+      - test
+      - scratch
+      - work
+      - dev
   session:
     command: zellij list-sessions --short --no-formatting
 ---
@@ -89,6 +96,12 @@ zellij attach <@session>
 
 ```bash
 zellij action rename-session <@session_name>
+```
+
+## rename current tab
+
+```bash
+zellij action rename-tab <@tab_name>
 ```
 
 ## detach current session
