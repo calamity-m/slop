@@ -150,6 +150,19 @@ When the user asks to update the plan, prefer surgical edits:
 
 If the user describes work that's already done in conversation but the plan still shows it open, offer to tick the relevant items rather than doing it unprompted — they may have done it differently than the plan anticipated.
 
+## Research marker sweep
+
+Run this sweep on every draft — the initial one and any in-place edit — after writing the content and before Plan Review or presenting to the user. A plan carrying unresolved research language isn't ready for implementation.
+
+Scan the document text for research markers: phrases that signal an open question rather than a settled decision — "need to investigate," "unknown at this time," "TBD," "not sure if," "unclear whether," "to be determined," "figure out later," and similar hedges.
+
+For each marker found:
+
+1. **Try to resolve it first.** Read the relevant code, config, or docs — the same exploration the Risks guidance already calls for (see "Filling in the template well"). If the answer is findable, write the finding in place and drop the hedge language entirely.
+2. **If it survives that check, it blocks implementation:**
+   - **Initial creation**: gather every surviving marker into `### Deliverable 1. Resolve open research questions`, placed before all other deliverables (renumber the rest — the one case where shifting numbers is correct, since nothing has shipped and no cross-references exist yet). Each marker becomes its own checklist item phrased as a question to answer; the deliverable's acceptance criteria is "answer recorded in Plan Details (or the affected deliverable) and the item ticked."
+   - **In-place edit to an existing plan**: deliverable numbers are stable (see "Updating in place") — don't renumber to retrofit a research deliverable. Instead log each surviving marker as a dated, signed `## Issues` entry tagged `blocks: Deliverable N`, and tell the user directly so they know that deliverable shouldn't start until it's resolved.
+
 ## Plan Review
 
 Plan review is part of this skill's built-in lifecycle:
@@ -157,9 +170,13 @@ Plan review is part of this skill's built-in lifecycle:
 - **Always after initial creation**: once you've written the first draft of the bigplan document, run a review before presenting the finished plan to the user.
 - **On demand**: whenever the user says "review plan", "review the bigplan", "review my plan", or asks for a critical look at the plan.
 
+Run the research marker sweep above first — reviewers should be looking at a document you've already cleaned of hedge language where possible.
+
 ### Running the review
 
 Spawn 2 sub-agents **simultaneously**. Give each one *only* the current bigplan document content — no conversation history, no project context beyond what's in the file. This isolation is intentional: fresh eyes catch things that context blinds you to.
+
+Both reviewers should also flag any leftover research-marker language they spot (e.g. "need to investigate", "TBD", "unknown"). These are **Unambiguous** findings — route them back through the sweep above rather than treating them as a judgment call for the user.
 
 Before spawning, read `references/adversarial-reviewer.md` and include those full instructions in each sub-agent's prompt, along with which reviewer role they are playing:
 
