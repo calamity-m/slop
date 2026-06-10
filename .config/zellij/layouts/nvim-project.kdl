@@ -3,7 +3,7 @@ layout {
         plugin location="zellij:tab-bar"
     }
     pane split_direction="horizontal" {
-        pane size="70%" close_on_exit=true {
+        pane size="70%" {
             name "nvim"
             command "nvim"
         }

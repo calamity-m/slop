@@ -5,7 +5,7 @@ layout {
     pane stacked=true {
         pane name="agent-1"
         pane name="agent-2"
-        pane name="nvim" close_on_exit=true {
+        pane name="nvim" {
             command "nvim"
         }
     }
@@ -16,3 +16,4 @@ layout {
         plugin location="status-bar"
     }
 }
+
