@@ -17,8 +17,9 @@ variables:
       - main
       - test
       - scratch
-      - work
+      - slop
       - dev
+      - longlived
   session:
     command: zellij list-sessions --short --no-formatting
 ---
