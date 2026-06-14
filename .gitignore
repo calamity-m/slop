@@ -30,9 +30,11 @@ nvim.log
 .pi/agent/prompts/*
 !.pi/agent/prompts/analyze-change-feasibility.md
 !.pi/agent/prompts/choose-react-hook.md
+!.pi/agent/prompts/diagnose-dark-mode-issue.md
 !.pi/agent/prompts/explain-css.md
 !.pi/agent/prompts/explain-react-hook.md
 !.pi/agent/prompts/neutral-message.md
 !.pi/agent/prompts/research-codemap-report.md
 !.pi/agent/prompts/sanitize-message-tone.md
 !.pi/agent/prompts/summarize-codebase-changes.md
+!.pi/agent/prompts/springboot-cb-refactor.md
