@@ -1,11 +1,12 @@
 ---
 name: init-context
-description: Create or update a repo `AGENTS.md` or `CLUADE.md` file with cautious implementation guidance. Use when the user wants to scaffold agent instructions around explicit assumptions, project-specific guidelines, verifiable success criteria, and key architectural decisions.
+description: Create or update a repo `AGENTS.md` or `CLUADE.md` file with cautious implementation guidance. Use to scaffold agent instructions around explicit assumptions, project-specific guidelines, verifiable success criteria, and key architectural decisions.
+disable-model-invocation: true
 ---
 
 # Init Context
 
-Create or update a repository `AGENTS.md` file that tells coding agents to think before coding, keep changes minimal, and verify outcomes concretely. 
+Create or update a repository `AGENTS.md` file that tells coding agents to think before coding, keep changes minimal, and verify outcomes concretely.
 
 This skill is for scaffolding or refreshing the repo instruction file, not for applying the posture by itself.
 
