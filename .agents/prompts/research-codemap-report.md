@@ -3,16 +3,10 @@ description: Explore a repository codepath or issue and produce a succinct hando
 argument-hint: "<repository-topic> [known-leads]"
 ---
 
-You are being tasked with exploring this repository for:
+You are being tasked with exploring this repository for the following, plus any known leads the user included:
 
 ```text
-$1
-```
-
-Known starting leads from the user, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The repository topic may be a variable, concept, codepath, flow, issue, feature, integration point, or any other repository-related topic.

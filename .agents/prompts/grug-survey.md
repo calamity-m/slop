@@ -3,16 +3,10 @@ description: Point the grugbrain skill at a slice of the project and get a terse
 argument-hint: "<area-or-problem> [intent-and-leads]"
 ---
 
-You are being asked for a grugbrain view of this slice of the project:
+You are being asked for a grugbrain view of this slice of the project, plus any intent and known leads the user included:
 
 ```text
-$1
-```
-
-Intent and known leads from the user, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The slice may be a module, a directory, a feature, a flow, a single function, a design note, or a fuzzy problem area. The intent is usually one of: understand the complexity here, decide whether to refactor, or find what to simplify. The leads may be files, symbols, commands, or notes the user already believes are relevant.

@@ -3,16 +3,10 @@ description: Trace how CSS is applied to a component or screen and explain where
 argument-hint: "<component-or-screen> [known-leads]"
 ---
 
-You are being tasked with explaining the styling of this part of the app:
+You are being tasked with explaining the styling of this part of the app, plus any known leads the user included:
 
 ```text
-$1
-```
-
-Known starting leads from the user, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The target may be a single component, a screen, a widget, or a visual region the user can describe but not locate. For example: the header bar, a data table, a modal, or "the spacing around the login form".

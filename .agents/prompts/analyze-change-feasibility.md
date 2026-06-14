@@ -3,16 +3,10 @@ description: Assess the feasibility of a proposed change in an unfamiliar reposi
 argument-hint: "<proposed-change> [known-leads]"
 ---
 
-You are being tasked with assessing the feasibility of this proposed change:
+You are being tasked with assessing the feasibility of this proposed change, plus any known leads the user included:
 
 ```text
-$1
-```
-
-Known starting leads from the user, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The proposed change may be a feature, refactor, behavior shift, performance improvement, or integration. For example: modifying a frontend table to use async and lazy loading of queries.

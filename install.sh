@@ -18,12 +18,14 @@ Creates:
   ~/.config/peanutbutter -> <repo>/.config/peanutbutter
   ~/.config/peanutbutter-private/snippets (directory)
   ~/.config/Code/User/snippets -> ~/.config/snippets
+  ~/.agents/prompts      -> <repo>/.agents/prompts
   ~/.pi/agent/extensions -> <repo>/.pi/agent/extensions
-  ~/.pi/agent/prompts    -> <repo>/.pi/agent/prompts
+  ~/.pi/agent/prompts    -> ~/.agents/prompts
 
-Tool-specific links (skills only):
-  ${CLAUDE_HOME:-~/.claude}/skills -> ~/.config/skills
-  ${CODEX_HOME:-~/.codex}/skills  -> ~/.config/skills
+Tool-specific links:
+  ${CLAUDE_HOME:-~/.claude}/skills   -> ~/.agents/skills
+  ${CLAUDE_HOME:-~/.claude}/commands -> ~/.agents/prompts
+  ${CODEX_HOME:-~/.codex}/skills    -> ~/.agents/skills
 
 Also installs:
 
@@ -124,6 +126,7 @@ ensure_symlink() {
 ensure_dir "$HOME/.config" || true
 ensure_dir "$HOME/.agents" || true
 ensure_symlink "$HOME/.agents/skills" "$repo_dir/.agents/skills" || true
+ensure_symlink "$HOME/.agents/prompts" "$repo_dir/.agents/prompts" || true
 ensure_symlink "$HOME/.config/mise" "$repo_dir/.config/mise" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/snippets" "$repo_dir/.config/snippets" || true
@@ -134,7 +137,8 @@ ensure_dir "$HOME/.config/Code/User" || true
 ensure_symlink "$HOME/.config/Code/User/snippets" "$HOME/.config/snippets" || true
 ensure_dir "$HOME/.pi/agent" || true
 ensure_symlink "$HOME/.pi/agent/extensions" "$repo_dir/.pi/agent/extensions" || true
-ensure_symlink "$HOME/.pi/agent/prompts" "$repo_dir/.pi/agent/prompts" || true
+# pi reads prompt templates from ~/.pi/agent/prompts; point it at the shared ~/.agents/prompts source
+ensure_symlink "$HOME/.pi/agent/prompts" "$HOME/.agents/prompts" || true
 
 if command -v mise >/dev/null 2>&1 && [[ -f "$HOME/.config/mise/config.toml" ]]; then
   mise trust "$HOME/.config/mise/config.toml" || true
@@ -165,11 +169,14 @@ fi
 ensure_dir "$claude_root" || true
 ensure_dir "$codex_root" || true
 ensure_symlink "$claude_root/skills" "$HOME/.agents/skills" || true
+# Claude Code reads user slash commands from ~/.claude/commands; reuse the shared prompts source
+ensure_symlink "$claude_root/commands" "$HOME/.agents/prompts" || true
 ensure_symlink "$codex_root/skills" "$HOME/.agents/skills" || true
 
 log ""
 log "install complete"
 log "  skills: ~/.agents/skills -> $repo_dir/.agents/skills"
+log "  prompts: ~/.agents/prompts -> $repo_dir/.agents/prompts"
 log "  mise:   ~/.config/mise -> $repo_dir/.config/mise"
 log "  nvim:     ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  snippets: ~/.config/snippets -> $repo_dir/.config/snippets"
@@ -178,7 +185,8 @@ log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"
 log "  peanutbutter private: ~/.config/peanutbutter-private/snippets"
 log "  pi extensions: ~/.pi/agent/extensions -> $repo_dir/.pi/agent/extensions"
-log "  pi prompts:    ~/.pi/agent/prompts -> $repo_dir/.pi/agent/prompts"
+log "  pi prompts:    ~/.pi/agent/prompts -> ~/.agents/prompts"
 log "  bashrc: ~/.bashrc.d -> $repo_dir/.bashrc.d"
-log "  claude: $claude_root/skills -> ~/.agents/skills"
+log "  claude skills:   $claude_root/skills -> ~/.agents/skills"
+log "  claude commands: $claude_root/commands -> ~/.agents/prompts"
 log "  codex:  $codex_root/skills -> ~/.agents/skills"

@@ -3,16 +3,10 @@ description: Recommend which React hook(s) fit a goal, grounded in the patterns 
 argument-hint: "<what-you-need-to-do> [known-leads]"
 ---
 
-You are being tasked with recommending the right React hook(s) for this goal:
+You are being tasked with recommending the right React hook(s) for this goal, plus any known leads the user included:
 
 ```text
-$1
-```
-
-Known starting leads from the user, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The goal is something the user needs to accomplish in a component, described in their own terms. For example: "fetch data when a filter changes", "keep a value between renders without re-rendering", "share state across several components", or "debounce an input".

@@ -791,4 +791,4 @@ The goal is a controlled query compiler, not a database language.
 
 # Query
 
-$@
+$ARGUMENTS

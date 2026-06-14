@@ -3,16 +3,10 @@ description: Summarize the direction and substance of recent changes in a reposi
 argument-hint: "<scope-or-range> [known-leads]"
 ---
 
-You are being tasked with summarizing the changes happening in this repository for:
+You are being tasked with summarizing the changes happening in this repository for the following, plus any known leads the user included:
 
 ```text
-$1
-```
-
-Known starting leads from the user, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The scope may be a commit range (e.g. `main..feature-x`, `HEAD~20..HEAD`), a tag span, a date window, a branch, a single merge/pull request, an author, a subsystem, or a general request like "what changed this month". If the scope is ambiguous, state the interpretation you chose before reporting.

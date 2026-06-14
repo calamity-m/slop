@@ -22,22 +22,5 @@ nvim.log
 !.bashrc.d/zoxide.sh
 !.bashrc.d/history.sh
 
-# pi - track explicit prompt templates, ignore local settings and audit logs
-.pi/*
-!.pi/agent/
-.pi/agent/*
-!.pi/agent/prompts/
-.pi/agent/prompts/*
-!.pi/agent/prompts/analyze-change-feasibility.md
-!.pi/agent/prompts/choose-react-hook.md
-!.pi/agent/prompts/debug.md
-!.pi/agent/prompts/diagnose-dark-mode-issue.md
-!.pi/agent/prompts/explain-css.md
-!.pi/agent/prompts/explain-react-hook.md
-!.pi/agent/prompts/grug-survey.md
-!.pi/agent/prompts/neutral-message.md
-!.pi/agent/prompts/refactor-useeffect-hook.md
-!.pi/agent/prompts/research-codemap-report.md
-!.pi/agent/prompts/sanitize-message-tone.md
-!.pi/agent/prompts/summarize-codebase-changes.md
-!.pi/agent/prompts/springboot-cb-refactor.md
+# pi - all local now that prompt templates moved to .agents/prompts
+.pi/

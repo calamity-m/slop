@@ -3,16 +3,10 @@ description: Trace why something renders wrong in dark mode and identify the saf
 argument-hint: "<dark-mode-symptom> [known-leads]"
 ---
 
-You are being tasked with diagnosing this dark mode issue:
+You are being tasked with diagnosing this dark mode issue, plus any known leads the user included:
 
 ```text
-$1
-```
-
-Known starting leads from the user, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The symptom may be anything that looks wrong when dark mode is active: unreadable text, an element stuck on a light background, an icon that disappears, a flash of the wrong theme on load, a control whose colors never switch, or a region that only half-themes. The user can usually describe what they see but not where it comes from.

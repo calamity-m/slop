@@ -3,16 +3,10 @@ description: Explain a React hook and how it is used in this repository, plainly
 argument-hint: "<hook-name-or-usage> [known-leads]"
 ---
 
-You are being tasked with explaining this React hook:
+You are being tasked with explaining this React hook, plus any known leads the user included:
 
 ```text
-$1
-```
-
-Known starting leads from the user, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The target may be a built-in hook (`useState`, `useEffect`, `useMemo`, `useRef`, `useContext`, `useReducer`, etc.), a library hook (e.g. React Query's `useQuery`, Redux's `useSelector`), or a custom hook defined in this repository. It may be named directly or pointed at through a component that uses it.

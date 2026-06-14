@@ -3,16 +3,10 @@ description: Rewrite a message to use neutral or positive language instead of ne
 argument-hint: "<message> [context-or-audience]"
 ---
 
-You are being tasked with rewriting this message so its tone is neutral or positive rather than negative, harsh, or blunt:
+You are being tasked with rewriting this message so its tone is neutral or positive rather than negative, harsh, or blunt, plus any context about the audience or situation the user included:
 
 ```text
-$1
-```
-
-Known context about the audience or situation, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The message may be a chat reply, a review comment, an email, a commit or MR note, a Slack message, or any other written communication. The context may name the recipient, the relationship, the channel, or the outcome the user wants.

@@ -3,16 +3,10 @@ description: Debug an issue through a disciplined hypothesis-elimination loop ba
 argument-hint: "<issue-description> [known-leads]"
 ---
 
-You are being tasked with debugging this issue:
+You are being tasked with debugging this issue, plus any known leads the user included:
 
 ```text
-$1
-```
-
-Known starting leads from the user, if any:
-
-```text
-${@:2}
+$ARGUMENTS
 ```
 
 The issue may be a crash, a wrong result, a flaky test, a performance regression, a hang, a build failure, or any other observed misbehavior. The known leads may be files, symbols, stack traces, error messages, commands, failing tests, recent commits, or notes the user already believes are relevant.

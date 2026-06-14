@@ -286,4 +286,4 @@ Please provide:
 
 ## Target Code
 
-Hook: $@
+Hook: $ARGUMENTS
