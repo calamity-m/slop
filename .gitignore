@@ -34,6 +34,7 @@ nvim.log
 !.pi/agent/prompts/diagnose-dark-mode-issue.md
 !.pi/agent/prompts/explain-css.md
 !.pi/agent/prompts/explain-react-hook.md
+!.pi/agent/prompts/grug-survey.md
 !.pi/agent/prompts/neutral-message.md
 !.pi/agent/prompts/refactor-useeffect-hook.md
 !.pi/agent/prompts/research-codemap-report.md
