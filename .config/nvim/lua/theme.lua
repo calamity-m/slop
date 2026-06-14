@@ -10,6 +10,7 @@ M.themes = {
 	{ name = "Gruvbox Material (Hard)", colorscheme = "gruvbox-material", gruvbox_background = "hard" },
 	{ name = "Ember Soft", colorscheme = "ember-soft", ember_variant = "ember-soft" },
 	{ name = "Kanso Mist", colorscheme = "kanso-mist" },
+	{ name = "Komau", colorscheme = "komau" },
 }
 
 local default_theme = M.themes[2]

@@ -16,6 +16,7 @@ vim.pack.add({
 	{ src = "https://github.com/sainnhe/gruvbox-material" },
 	{ src = "https://github.com/ember-theme/nvim", name = "ember" },
 	{ src = "https://github.com/webhooked/kanso.nvim" },
+	{ src = "https://github.com/ntk148v/komau.vim" },
 	{ src = "https://github.com/romus204/tree-sitter-manager.nvim" },
 	{ src = "https://github.com/saghen/blink.cmp", version = vim.version.range("1.*") },
 	{ src = "https://github.com/stevearc/conform.nvim" },
