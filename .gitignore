@@ -30,6 +30,7 @@ nvim.log
 .pi/agent/prompts/*
 !.pi/agent/prompts/analyze-change-feasibility.md
 !.pi/agent/prompts/choose-react-hook.md
+!.pi/agent/prompts/debug.md
 !.pi/agent/prompts/diagnose-dark-mode-issue.md
 !.pi/agent/prompts/explain-css.md
 !.pi/agent/prompts/explain-react-hook.md
