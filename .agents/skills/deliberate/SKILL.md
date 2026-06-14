@@ -5,7 +5,7 @@ description: Use structured multi-agent deliberation to evaluate 2-4 competing o
 
 # Deliberate
 
-Use structured multi-agent deliberation to choose between 2-4 viable options.
+Spawn opposing sub-agents to argue competing options until one concedes or the debate deadlocks, then hand the standing positions to the user. The user is the arbiter, not the main agent.
 
 This skill is for decisions where multiple approaches look plausible and the tradeoffs are not obvious. It is not for trivial choices, obvious fixes, or low-stakes actions.
 
@@ -14,172 +14,90 @@ This skill is for decisions where multiple approaches look plausible and the tra
 - `problem`: the decision to make
 - `options`: 2-4 candidate approaches
 - `constraints` (optional): requirements, context, preferences, or hard limits
-- `rounds` (optional): default `2`, max `5`
 
-If the user does not provide `rounds`, use `2`.
-If the user provides more than `5` rounds, cap it at `5`.
 If the user provides more than 4 options, narrow the set before deliberating.
 
-## Roles
+## Sub-agents
 
-### Advocates
-
-- Create one advocate per option.
-- Each advocate must strongly defend only its assigned option.
-- Advocates must not switch sides.
-- Advocates may withdraw support from their own option, but must not adopt another option as their own.
-- Advocates should acknowledge weaknesses honestly.
-
-### Arbiter
-
-- The main agent is the arbiter.
-- The arbiter checks for quorum after each round and uses one consistent rubric only if a deadlock remains.
-- The arbiter is a tie breaker, not an extra advocate.
-- The arbiter must not invent new options.
+- Spawn one sub-agent per option. Each owns and defends a single stance.
+- A sub-agent may **concede** (withdraw its option and bow out), but must never adopt a competitor's option as its own.
+- Sub-agents argue strongly but acknowledge real weaknesses. No strawmanning the other stances.
+- Only spawn sub-agents once the user has explicitly asked to deliberate or debate the options.
 
 ## Workflow
 
-1. Confirm the decision fits this skill: 2-4 real options, meaningful uncertainty, and enough stakes to justify debate.
-2. Normalize the inputs into a short problem statement, a numbered option list, explicit constraints, and `rounds`.
-3. Spawn one sub-agent per option. Use `spawn_agent` only when the user has explicitly asked to deliberate, compare via debate, or otherwise requested multi-agent reasoning.
-4. Give each advocate only its assigned option, the shared problem, the shared constraints, and the full option list for comparison.
-5. Require each advocate to complete Phase 1 and the first critique pass in a concise structured response.
-6. Continue the back-and-forth critique and revision cycle until quorum is reached or the round limit is hit.
-7. If the first round/exchange does not produce quorum, you must run at least one more full round of advocate responses before arbitrating.
-8. Treat quorum as reached when exactly one advocate still returns `position: yes` for its own option and all other advocates have withdrawn support with `position: no`.
-9. If no quorum is reached by the final round, arbitrate locally as a tie breaker. Do not short-circuit to arbitration after the first unresolved exchange. Score the remaining contenders against:
-   - correctness
-   - simplicity
-   - risk
-   - reversibility
-   - effort
-   - alignment with constraints
-10. Return the final result as a concise human-readable summary, not raw JSON.
+1. Confirm the decision fits: 2-4 real options, meaningful uncertainty, enough stakes to justify debate.
+2. Normalize the inputs into a short problem statement, a numbered option list, and explicit constraints.
+3. **Develop.** Spawn one sub-agent per option. Each builds its case from the shared problem, constraints, and full option list. Give it only its own assigned stance to defend.
+4. **Exchange.** Give every still-standing sub-agent the current cases of all the others. Each one then either revises its stance in response or concedes and bows out.
+5. **Loop.** Repeat the exchange. Stop when either:
+   - **Agreement** — all but one sub-agent has conceded, or
+   - **Deadlock** — 3 or more consecutive exchanges pass with no concession and no stance meaningfully moving.
+6. Hand the standing positions to the user and let them decide. Do not pick a winner yourself.
 
-## Advocate Output Contract
+## Termination
 
-For Phase 1, each advocate must produce:
-
-```json
-{
-  "option": "<assigned option>",
-  "thesis": "<why this option is best>",
-  "arguments": ["<strong point 1>", "<strong point 2>"],
-  "assumptions": ["<what must be true>"],
-  "risks": ["<biggest downside>"]
-}
-```
-
-For Phase 2, each advocate must add:
-
-```json
-{
-  "strongest_competitor": "<best competing option>",
-  "critique": ["<weakness in that competing option>"],
-  "self_flaws": ["<weakness in this advocate's own case>"]
-}
-```
-
-For each revision round after the initial pass, each advocate must add:
-
-```json
-{
-  "position": "yes | no",
-  "confidence": "low | medium | high",
-  "revised_reasoning": ["<updated reasoning>"]
-}
-```
-
-## Arbiter Rules
-
-- Default to letting the advocates converge on a winner without intervention.
-- Do not arbitrate after a single unresolved round. If the first exchange does not produce agreement, run another full round first.
-- Apply the same criteria to every option only when quorum is not reached.
-- Prefer the option that best fits the stated constraints, not the most interesting option.
-- Treat reversibility as a major tie-breaker when correctness is close.
-- The arbiter is for persistent deadlock, not for speeding up the process.
-- Keep the reasoning concise and decision-focused.
-- If the evidence is weak or constraints are underspecified, lower confidence rather than over-claiming.
+- The main agent does not arbitrate, score, or break ties. It runs the loop and reports.
+- A sub-agent that concedes is out and does not return in later exchanges.
+- If only one sub-agent remains standing, that is agreement — report it as the surviving case, not as your verdict.
+- If the loop hits deadlock, report every standing position side by side for the user to judge.
 
 ## Output Format
 
-Return a concise Markdown summary for the user.
+Return a concise Markdown summary for the user. No JSON.
 
-Use this structure:
+When the debate **deadlocked**, present the standing cases for the user to arbitrate:
 
 ```md
-## Decision
-<winning option>
+## Deadlock after <n> exchanges
 
-## Why
-<short paragraph explaining why it won>
+### <Option A>
+- Case: <core argument>
+- Strongest point: <best point>
+- Concedes: <weakness this side admits>
 
-## Runner-Up
-<second best option>
+### <Option B>
+- Case: <core argument>
+- Strongest point: <best point>
+- Concedes: <weakness this side admits>
 
-## Tradeoffs
-- <key tradeoff 1>
-- <key tradeoff 2>
+## Over to you
+<one or two sentences naming the crux the user must decide>
+```
 
-## Risks
-- <risk 1>
-- <risk 2>
+When the debate reached **agreement**:
 
-## Confidence
-<low | medium | high>
+```md
+## Standing position
+<surviving option>
 
-## Reconsider If
-- <condition that would change the decision>
-- <another condition if needed>
+## Why it held
+<short paragraph: the case that survived and what made the others concede>
+
+## What was conceded
+- <option that bowed out> — <why>
+
+## Reconsider if
+- <condition that would reopen the debate>
 ```
 
 Rules:
 
-- Do not emit JSON for the final answer unless the user explicitly asks for JSON.
-- Keep the final answer readable in a terminal.
-- Be concise. The final summary should usually fit in 8-16 lines.
-- Preserve the same decision content the JSON would have carried: winner, reasoning, runner-up, tradeoffs, risks, confidence, and when to reconsider.
-
-## Modes
-
-### `binary`
-
-- Use exactly 2 options.
-- Keep the debate shorter and faster.
-
-### `multi`
-
-- Use 3-4 options.
-- Run the full workflow.
-
-### `redteam`
-
-- Use three roles:
-  - one proposes
-  - one attacks
-  - one defends the revised version
-- Use this when the user wants a stress test of a favored option rather than a balanced comparison.
+- The user is the arbiter. Surface positions; do not declare a winner unless every other stance conceded on its own.
+- Keep the output readable in a terminal. Usually 8-16 lines.
+- Be concise. Cut scaffolding, not substance.
 
 ## Prompting Guidance
 
-When briefing advocates:
+When briefing a sub-agent:
 
-- Tell them which option they own.
-- Tell them they must not switch sides.
-- Tell them they may stop recommending their own option, but may not adopt a competitor's option as their own.
-- Tell them to be concise.
-- Tell them to argue strongly but acknowledge real risks.
-- Tell them to identify the strongest competing option, not a weak strawman.
-
-When arbitrating:
-
-- First check whether quorum was already reached.
-- Summarize each option's best case and biggest weakness.
-- Break ties using the explicit rubric.
-- Do not synthesize a hybrid option unless the user separately asks for one after the deliberation.
+- Tell it which option it owns and that it must not switch sides.
+- Tell it it may concede and bow out, but may not adopt a competitor's option.
+- Tell it to argue strongly, stay concise, and name real risks in its own option.
+- On exchanges, tell it to engage the strongest competing case, not a weak version of it.
 
 ## Example Triggers
 
 - "Use `deliberate` to choose between these architectures."
-- "Run a 3-option deliberation on game engines."
-- "Deliberate (binary) on Redis vs Postgres for queues."
+- "Run a deliberation on these three game engines."
+- "Deliberate Redis vs Postgres for queues."

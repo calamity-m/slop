@@ -1,51 +1,33 @@
-# Init Context
+# <project name>
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+<one-line description of what this project is and who it serves>
 
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**
 
 Before implementing:
+
 - State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them - don't pick silently.
+- If multiple interpretations exist, present them instead of picking silently.
 - If a simpler approach exists, say so. Push back when warranted.
-- Don't silently expand into wiring, integrations, or adjacent work that wasn't requested. If scope is unclear, ask rather than guessing big.
-- If something is unclear, stop. Name what's confusing. Ask.
+- Don't silently expand into wiring, integrations, or adjacent work that wasn't requested.
+- If something is unclear, stop, name what's confusing, and ask.
 
-## 2. Simplicity First
+## 2. Guidelines
 
-**Minimum code that solves the problem. Nothing speculative.**
+<3-6 rules this repo keeps getting wrong. Each must be specific and enforceable — a rule the agent could not infer from the code and would not abuse as a shortcut. Drop generic posture ("write clean code", "make minimal changes"); name the concrete thing this codebase cares about.>
 
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No "flexibility" or "configurability" that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
+- <rule — e.g. a pattern that is rejected here, a step that must not be skipped, a tradeoff this repo has already settled>
+- <rule>
+- <rule>
 
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-## 3. Surgical Changes
-
-**Touch only what you must. Clean up only your own mess.**
-
-When editing existing code:
-- Don't "improve" adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it - don't delete it.
-
-When your changes create orphans:
-- Remove imports/variables/functions that YOUR changes made unused.
-- Don't remove pre-existing dead code unless asked.
-
-The test: Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
+## 3. Goal-Driven Execution
 
 **Define success criteria. Loop until verified.**
 
 Transform tasks into verifiable goals:
+
 - "Add validation" -> "Write tests for invalid inputs, then make them pass"
 - "Fix the bug" -> "Write a test that reproduces it, then make it pass"
 - "Refactor X" -> "Ensure tests pass before and after"
@@ -58,93 +40,29 @@ For multi-step tasks, state a brief plan:
 3. [Step] -> verify: [check]
 ```
 
-Strong success criteria let you loop independently. Weak criteria ("make it work") require constant clarification.
+Strong success criteria let you loop independently. Weak criteria require clarification.
 
-## 5. In-Code Documentation
+## 4. In-Code Documentation
 
 **Public API must be documented. Internal logic should explain the why.**
 
-For all public or protected functions, types, structs, classes, and constants:
-- Use the language's native doc format (`///` rustdoc, Javadoc `/** */`, Python docstrings, JSDoc, etc.)
-- Describe what the item is for and any non-obvious parameter or return constraints
-- If the types alone make everything clear, a one-liner is enough
+<Name the actual language's doc format and the repo's real invariants worth a comment. Drop formats the repo doesn't use.>
 
-For internal code, comment the *why*, not the *what*:
-- Branching conditions, external calls, and non-obvious object construction all earn a short comment
-- `// retry because the upstream API is eventually consistent` is useful; `// call the API` is not
-- Keep it short — one line is usually right; two is the limit before it becomes noise
+For public <language> items:
 
-Do not comment what the code already says plainly. Self-evident code needs no annotation.
+- Use the language's doc-comment format (<the actual one — rustdoc, docstrings, JSDoc, etc.>).
+- Describe what the item is for and any non-obvious parameter, return, or concurrency constraint.
+- If the types make everything clear, a one-liner is enough.
 
-## 6. Pre-commit Hooks
+For internal code, comment the why, not the what:
 
-**Always prefer pre-commit hooks over repeated and un-verifiable "do X after changes, do Y before commiting"**
+- <Name the repo's real invariants that earn a short comment — the things that bite when changed blind.>
+- Keep comments short. Delete comments that merely restate the code.
 
-Default to adding pre-commit tooling when possible:
-- If the user continually asks you to perform an action -> Ask them to setup pre-commit tooling
-- If the user mentions you forgot to run tests or some other issue -> Ask them to setup claude, codex or other agent hook tooling
+## 5. Key Decisions
 
+<The handful of architectural facts that change how an agent works here — the things you'd want to know before touching the code, that a quick search would not reveal. Name real types, modules, and entry points. Skip anything an agent would discover anyway.>
 
-## 7. Repository Map
-
-**Brief orientation. Where things live, where execution starts, how data moves.**
-
-Keep this short — three subsections, a few lines each. The point is to let an agent locate the right file fast, not to mirror the README.
-
-### Key directories
-
-List only directories an agent will actually need. One line each: path -> purpose.
-
-```text
-src/api/        -> HTTP handlers, request validation
-src/core/       -> domain logic, no I/O
-src/storage/    -> Postgres + Redis adapters
-migrations/     -> Alembic schema migrations
-```
-
-Skip directories with self-evident names (`tests/`, `docs/`) unless their layout is non-obvious.
-
-### Entry points
-
-Name the file(s) where execution starts. Include the relevant launch command.
-
-```text
-src/api/main.py        -> `uv run app` (HTTP server)
-src/workers/runner.py  -> `uv run worker` (background jobs)
-```
-
-If there is only one entry point, one line is enough. If there are several (CLI + server + worker), list each.
-
-### Data flow
-
-One paragraph or a short arrow chain. Just enough to predict where a change ripples.
-
-```text
-Request -> api/handler -> core/service -> storage/repo -> Postgres
-                              |
-                              -> Redis cache (read-through)
-```
-
-Cover only the dominant path. Edge cases and alternate flows belong in code comments or design docs, not here.
-
-If the repo is small enough that a map adds no value, say so in one line ("Single script; entry point is `main.py`") and move on.
-
-## 8. Project-Specific Notes
-
-**Specifics every person should know when working on this project**
-
-Liimit to 10 lines. Do not include "best coding practices" or "things you should always do after making changes", instead focus instead on critical business rules, or core design decisions.
-
-GOOD:
--> "This project uses new style rust modules, rather than explicit mod.rs use"
--> "Domain-specific language detailed in ..., refer to it when working on query functionality"
--> "Repository serves as a core gateway for the business, uptime is critical"
-
-BAD:
--> "Always remember to run `./gradlew test` after each change
--> "Commit your changes with conventional style commits"
--> "This project is a python repository using FastAPI, It uses the `ruff` linter and `uv` with a virtual environment in .venv"
-
----
-
-**These guidelines are working if:** fewer unnecessary changes in diffs, fewer rewrites due to overcomplication, and clarifying questions come before implementation rather than after mistakes.
+- <decision — e.g. the runtime/concurrency model and the libraries it rests on>
+- <decision — e.g. the central control-flow construct and why its ordering matters>
+- <decision — e.g. a core invariant a key type enforces>

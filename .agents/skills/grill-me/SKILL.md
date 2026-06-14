@@ -46,7 +46,7 @@ Skip the grill entirely if everything important is already explicit and consiste
 
 ## The grill loop
 
-Ask the smallest useful batch of questions. Prefer **2–4 questions at a time** when the uncertainties are independent, and ask a single question only when the next question genuinely depends on the answer.
+Ask the smallest useful batch of questions. Prefer **2–4 questions at a time** when the uncertainties are independent, and ask a single question only when the next question genuinely depends on the answer. Use any "ask question" or "interview" tools at your disposal.
 
 The recommended answer matters. It does three things at once:
 

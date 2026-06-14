@@ -6,46 +6,46 @@ Score each criterion out of its weight. Total is out of 100. Anything under 70 m
 
 ## Scoring Rubric
 
-### 1. Repository Map (20 points)
+### 1. Key Decisions (20 points)
 
-Maps to template section 7.
+Maps to template section 5.
 
-- **20**: Key directories explained with purpose, entry point(s) named with launch command, data flow described in a few lines or a short arrow chain. An agent reading only this section can locate the right file for a typical change.
-- **15**: Map present, minor gaps (entry point missing a command, data flow vague).
-- **10**: Bare directory listing with no purpose annotations, or entry points without context.
+- **20**: Real architectural facts — central types, modules, entry points, runtime model — named with actual identifiers. An agent reading only this section can orient and predict where a change ripples.
+- **15**: Decisions present, minor gaps (a key module unnamed, runtime model vague).
+- **10**: Mostly generic ("the app is well structured") with few real identifiers.
 - **5**: One sentence, mostly hand-waving.
-- **0**: No map at all.
+- **0**: No key decisions at all.
 
-Bonus considerations: paths must actually exist; commands must actually run.
+Bonus considerations: every named identifier must actually exist in the repo.
 
 ### 2. Posture Coverage (15 points)
 
-Maps to template sections 1–4 (Think Before Coding, Simplicity First, Surgical Changes, Goal-Driven Execution).
+Maps to template sections 1 and 3 (Think Before Coding, Goal-Driven Execution).
 
-- **15**: All four sections present, each with concrete rules an agent can apply (e.g. "state assumptions before editing", "every changed line traces to the request").
-- **10**: All four present but one or two are generic / could apply to any repo.
-- **5**: One or two sections missing, or all reduced to platitudes.
+- **15**: Both sections present, each with concrete rules an agent can apply (e.g. "state assumptions before editing", "write a test that reproduces it, then make it pass").
+- **10**: Both present but one is generic / could apply to any repo.
+- **5**: One section missing, or both reduced to platitudes.
 - **0**: No posture guidance.
 
-### 3. Tooling Specificity (15 points)
+### 3. In-Code Documentation (15 points)
 
-Maps to template sections 5–6 (In-Code Documentation, Pre-commit Hooks).
+Maps to template section 4.
 
-- **15**: Doc format named for the actual language(s) (rustdoc, JSDoc, docstrings — not all of them). Pre-commit / lint / format / test commands named and runnable. No generic placeholders.
-- **10**: Right tools named but commands missing or wrong flags.
-- **5**: Generic ("use a linter") or wrong-language guidance left in.
-- **0**: No tooling guidance.
+- **15**: Doc format named for the actual language(s) (rustdoc, JSDoc, docstrings — not all of them), and the repo's real `why`-worthy invariants named (event ordering, async cancellation, store/search, etc.). No generic placeholders.
+- **10**: Right format named but invariants vague or generic.
+- **5**: Generic ("document your code") or wrong-language guidance left in.
+- **0**: No documentation guidance.
 
-### 4. Project-Specific Notes (10 points)
+### 4. Guidelines Specificity (10 points)
 
-Maps to template section 8.
+Maps to template section 2.
 
-- **10**: Real observations — domain rules, design decisions, non-obvious conventions. Each line earns its place.
-- **7**: A few real notes mixed with generic advice.
-- **3**: Mostly "always run tests", "use conventional commits", or restates the language/framework already obvious from the repo.
+- **10**: 3-6 concrete, enforceable rules an agent keeps getting wrong here. Each is project-specific and actionable.
+- **7**: A few real rules mixed with generic posture.
+- **3**: Mostly "always run tests", "use conventional commits", or restates obvious posture already covered elsewhere.
 - **0**: Empty, or nothing but filler.
 
-Cap at 10 lines per the template. Long lists here are a smell.
+Long lists here are a smell — keep it to the rules that matter.
 
 ### 5. Conciseness (10 points)
 
@@ -96,9 +96,11 @@ Only scored when **updating** an existing file. Skip when creating from scratch 
 - Commands that would fail (wrong paths, missing deps, removed scripts).
 - References to deleted files or folders.
 - Doc-format guidance for languages the repo does not use.
-- Pre-commit hook section naming tools the repo does not have configured.
 - "TODO" markers left from a previous pass.
 - Generic advice copy-pasted from a template with no repo-specific tailoring.
-- Project-Specific Notes section listing the same facts a glance at `package.json` would reveal.
-- Repository Map listing every directory in the tree instead of the navigation-relevant ones.
+- The template's `<bracketed>` placeholders left in verbatim instead of replaced with real content.
+- Lines an agent would discover on its own in seconds (the language, the framework, the directory names) — they dilute the signal.
+- Vague posture loose enough to be cited as a shortcut ("make minimal changes") where a thinking task was warranted.
+- Guidelines section restating generic posture instead of the rules this repo keeps getting wrong.
+- Key Decisions naming types or modules that do not exist in the repo.
 - Conflicting guidance across multiple instruction files (`AGENTS.md`, `CLAUDE.md`, `.cursorrules`, etc.) — flag for the user, do not silently reconcile.
