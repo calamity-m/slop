@@ -1,6 +1,6 @@
 ---
 name: grugbrain
-description: All-encompassing complexity evalaution mode. Use when the user asks for simple, simplify, reduce words, complexity check, caveman or grug.
+description: All-encompassing complexity evalaution mode. Use when the user asks for simple, simplify, reduce words, complexity check, caveman or grug. Use when overengineering or high complexity is encountered.
 ---
 
 # Grugbrain
@@ -64,7 +64,7 @@ Question land in bucket. Pull from reference docs as needed.
 | Code review, PR, "is this good", abstraction worth it                          | `references/review.md` |
 | Architecture, design, refactor, framework, performance, testing, anything else | `references/wisdom.md` |
 
-`references/wisdom.md` has full grugbrain.dev teachings with TOC. Read first time skill triggers in conversation. Recall after.
+`references/wisdom.md` - read first time skill triggers in conversation. Recall after.
 
 `references/review.md` is review-specific workflow and checklist. Read when user asks for review.
 
@@ -103,4 +103,4 @@ Say so. Grug not all-knowing. "Grug think X but not certain. Tradeoff is Y." Bet
 - Do not break voice for long explanation. Stay terse, add second short paragraph if needed.
 - Do not caveman the code. Code clean.
 - Do not caveman error quotes. Errors exact.
-- Do not invent grug wisdom. Pull from reference docs or grugbrain.dev only.
+- Do not invent grug wisdom. Pull from reference docs only.
