@@ -1,6 +1,6 @@
-# Agent Instructions
+# slop
 
-**Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
+Personal dotfiles for Neovim, Bash, Zellij, mise, Peanutbutter snippets, and reusable AI-agent skills, installed by symlinking this repo into `$HOME`.
 
 ## 1. Think Before Coding
 
@@ -10,35 +10,28 @@ Before implementing:
 
 - State assumptions explicitly when they affect the change.
 - If multiple interpretations exist, present them instead of picking silently.
-- If a simpler approach exists, say so.
-- Do not expand into adjacent setup, rewiring, or cleanup that was not requested.
-- If something is unclear enough to risk the result, ask before editing.
+- If a simpler approach exists, say so. Push back when warranted.
+- Do not expand into adjacent setup, rewiring, cleanup, or integrations that were not requested.
+- If something is unclear enough to risk the result, stop, name what's confusing, and ask.
 
-## 2. Simplicity First
+## 2. Guidelines
 
-**Minimum change that solves the problem. Nothing speculative.**
+- Treat `install.sh` as the contract for what this repo installs. When adding or moving a dotfile area, update symlink setup, usage text, and final summary lines together.
+- Keep `install.sh` conservative: preserve `ensure_symlink` behavior where real files are skipped unless `--force` is passed.
+- Touch only what the task needs. Do not refactor unrelated config, comments, keymaps, snippets, or formatting; mention unrelated stale config instead of deleting it.
+- Do not bulk-format `.config/zellij/config.kdl`; `.config/nvim/lua/plugins/conform.lua` intentionally disables `kdlfmt` for that file.
+- Respect `.gitignore`: local Neovim overrides live under `.config/nvim/lua/local/*.lua`, and only explicitly listed `.pi/agent/prompts/*.md` and `.bashrc.d/*.sh` files are tracked.
+- Skills under `.agents/skills/*/SKILL.md` are executable agent instructions. Keep references relative to each skill directory and verify any referenced scripts or docs exist.
 
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No configurability that was not requested.
-- If a change starts getting large, stop and simplify before continuing.
-
-## 3. Surgical Changes
-
-**Touch only what you must. Clean up only your own mess.**
-
-When editing existing files:
-
-- Do not refactor unrelated code, comments, or formatting.
-- Match the existing style, even if you would write new code differently.
-- If you notice unrelated dead code or stale config, mention it instead of deleting it.
-- Remove only imports, variables, functions, or files made unused by your change.
-
-Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
+## 3. Goal-Driven Execution
 
 **Define success criteria. Loop until verified.**
+
+Transform tasks into verifiable goals:
+
+- "Add validation" -> "Write tests for invalid inputs, then make them pass"
+- "Fix the bug" -> "Write a test that reproduces it, then make it pass"
+- "Refactor X" -> "Ensure tests pass before and after"
 
 For multi-step tasks, state a brief plan:
 
@@ -48,73 +41,43 @@ For multi-step tasks, state a brief plan:
 3. [Step] -> verify: [check]
 ```
 
-Prefer concrete checks such as `bash -n install.sh`, loading a snippet file, or running the relevant command with a tiny fixture.
+Prefer concrete checks such as `bash -n install.sh`, loading the changed Neovim module, validating a snippet fixture, or running the relevant tool command.
 
-## 5. In-Code Documentation
+Strong success criteria let you loop independently. Weak criteria require clarification.
 
-**Explain why, not what.**
+## 4. In-Code Documentation
 
-- For Bash functions and non-obvious shell blocks, add short comments only when they clarify intent, constraints, or side effects.
-- For Lua config, document public helper functions or surprising setup decisions with concise Lua comments.
-- Markdown snippets and runbooks should stay command-focused and avoid prose that repeats the command.
-- Do not comment self-evident code.
+**Public API must be documented. Internal logic should explain the why.**
 
-## 6. Pre-commit Hooks
+Use the native comment style for the file being edited: `---` LuaDoc for public Lua modules/functions, `#` comments for Bash and TOML, `//` comments for KDL, and concise Markdown notes in skill docs.
 
-**Prefer repeatable checks over reminders.**
+For public Lua and shell entry points:
 
-No repo pre-commit config is currently present. When adding one is in scope, the natural-fit tools for this repo are `bash -n` and `shellcheck` for `install.sh` and `.bashrc.d/*.sh`, plus `stylua` for the Lua under `.config/nvim/`. Markdown snippets and skill files have no current formatter.
+- Document what the item is for and any non-obvious environment, filesystem, or external-command requirement.
+- Keep one-liners for simple keymaps, aliases, and plugin setup; the name plus `desc` is often enough.
 
-## 7. Repository Map
+For internal code, comment the why, not the what:
 
-**Brief orientation. Where things live, where execution starts, how install flows.**
+- Symlink safety in `install.sh` (`--force`, skipped existing files, and `$CLAUDE_HOME`/`$CODEX_HOME` handling).
+- Formatting exceptions such as Prettier requiring a project config and `kdlfmt` skipping Zellij `config.kdl`.
+- Neovim/Zellij runtime coupling, especially pane renaming in `.config/nvim/lua/zellij.lua` and locked-mode keybind assumptions in `.config/zellij/config.kdl`.
+- Mason versus mise ownership: Mason installs Neovim-scoped LSP/DAP/format tools, while mise installs shell-visible binaries.
 
-### Key directories
+## 5. Key Decisions
 
-```text
-install.sh                       -> entry point; symlinks repo paths into $HOME and ~/.config
-.agents/skills/                  -> agent skills (symlinked into ~/.claude/skills and ~/.codex/skills)
-.bashrc.d/                       -> shell extensions, auto-sourced by ~/.bashrc
-.config/mise/                    -> mise global config for binary tool installs
-.config/nvim/                    -> Neovim Lua config (init.lua + lua/, snippets/)
-.config/peanutbutter/snippets/   -> Peanutbutter Markdown snippets (## section + fenced block)
-.config/zellij/                  -> Zellij config and layouts
-```
+- `install.sh` is the only installer. Its `ensure_dir` and `ensure_symlink` functions create links into `~/.config`, `~/.agents`, `~/.pi/agent`, and tool-specific skill paths without replacing real files unless `--force` is used.
+- Neovim starts at `.config/nvim/init.lua`, which loads `options`, `keymaps`, `plugins`, `theme`, then `require("zellij").setup()`. Plugin registration lives in `.config/nvim/lua/plugins.lua` via `vim.pack.add` and the ordered `plugin_modules` list.
+- Mason state is centralized in `.config/nvim/lua/plugins/mason.lua`: `M.lsp_servers` feeds `vim.lsp.enable(mason.lsp_servers)` in `.config/nvim/lua/plugins/lsp.lua`, while `tools` feeds `mason-tool-installer`.
+- Debugger setup lives in `.config/nvim/lua/plugins/dap.lua`; language-specific launch/test workflows live under `.config/nvim/lua/plugins/dap/`.
+- Formatting is centralized in `.config/nvim/lua/plugins/conform.lua`; `format_on_save` is enabled, Prettier only runs when `has_prettier_config(ctx)` finds config, and `WriteNoFormat`/`ConformDir` are the escape hatches.
+- Zellij integration is split: `.config/nvim/lua/zellij.lua` renames panes through `zellij action rename-pane`, while `.config/zellij/config.kdl` uses `clear-defaults=true`, `default_mode "locked"`, custom themes, and disabled `web_sharing`.
+- `.agents/skills` and `.pi/agent/prompts` are distributed as dotfiles, not built artifacts; changes should be plain Markdown/YAML/shell that work after symlinking through `install.sh`.
 
-### Entry point
+## Repository Notes
 
-```text
-./install.sh [--force]   -> create symlinks, trust/install mise tools if mise exists; refuses to clobber non-symlink files unless --force
-```
-
-Single entry point. Everything else is sourced by the tools that consume the symlinked configs (bash, Neovim, Claude Code, Codex, peanutbutter, zellij).
-
-### Data flow
-
-```text
-install.sh -> symlinks under $HOME and ~/.config
-                |
-                +-> bash starts -> ~/.bashrc.d/*.sh sourced
-                +-> mise present -> ~/.config/mise/config.toml trusted, `mise install` run
-                +-> nvim starts -> ~/.config/nvim/init.lua
-                +-> claude/codex -> ~/.agents/skills/<skill>/SKILL.md
-                +-> peanutbutter -> ~/.config/peanutbutter/snippets/*.md
-```
-
-## 8. Project-Specific Notes
-
-**Specifics every person should know when working on this project.**
-
-- This is a dotfiles repo installed by `install.sh` via symlinks into home-directory config paths.
-- `install.sh` may run `mise trust` and `mise install`; keep mise config limited to global binary tools, not language runtimes.
-- Neovim LSP/formatter bootstrap is split: Mason owns Neovim-scoped tools, while mise owns shell-visible binaries.
-- If `nvim` is not on `PATH`, use the mise-installed binary under `~/.local/share/mise/installs/neovim/<version>/bin/nvim`; for example, `~/.local/share/mise/installs/neovim/0.12.2/bin/nvim`.
-- Neovim DAP setup lives in `.config/nvim/lua/plugins/dap.lua`; language-specific debugger configuration lives under `.config/nvim/lua/plugins/dap/`. Mason installs DAP adapters, while these Lua modules define launch/test workflows and buffer-local debug keymaps.
-- Keep snippet changes in `.config/peanutbutter/snippets` as Markdown `##` sections with one executable fenced code block.
-- When adding or editing Peanutbutter snippets, refer to https://github.com/calamity-m/peanutbutter/blob/main/docs/SNIPPET_SYNTAX.md.
-- Shell aliases and helpers live in `.bashrc.d`; keep them POSIX-aware only where the surrounding file already is.
-- Neovim config lives under `.config/nvim` and is Lua-based.
-
----
+- No repo pre-commit config is currently present. If adding one is in scope, natural checks are `bash -n` and `shellcheck` for `install.sh` and `.bashrc.d/*.sh`, plus `stylua` for `.config/nvim/**/*.lua`.
+- `.config/mise/config.toml` is intentionally limited to global binary tools, not project language runtimes.
+- Peanutbutter snippets live under `.config/peanutbutter/snippets`; keep snippet changes as Markdown sections with executable fenced code blocks and check syntax against the upstream Peanutbutter docs when needed.
+- `CLAUDE.md` should remain a symlink to `AGENTS.md` so Claude Code and other agents read the same guidance.
 
 **These guidelines are working if:** diffs stay small, assumptions are visible, and verification is concrete.
