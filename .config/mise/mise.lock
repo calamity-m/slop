@@ -670,42 +670,42 @@ url = "https://github.com/neovim/neovim/releases/download/v0.12.3/nvim-macos-x86
 url = "https://github.com/neovim/neovim/releases/download/v0.12.3/nvim-win64.zip"
 
 [[tools.prek]]
-version = "0.4.4"
+version = "0.4.5"
 backend = "aqua:j178/prek"
 
 [tools.prek."platforms.linux-arm64"]
-checksum = "sha256:b38ea178e3f73a7a767edde47a091faac2814d93ba7faa590cba8d19d0fdc76a"
-url = "https://github.com/j178/prek/releases/download/v0.4.4/prek-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:9c3f0686b6f12995b2f9cbc2953a457987622a29bbcdeaa64f62527af851fc1e"
+url = "https://github.com/j178/prek/releases/download/v0.4.5/prek-aarch64-unknown-linux-musl.tar.gz"
 provenance = "github-attestations"
 
 [tools.prek."platforms.linux-arm64-musl"]
-checksum = "sha256:b38ea178e3f73a7a767edde47a091faac2814d93ba7faa590cba8d19d0fdc76a"
-url = "https://github.com/j178/prek/releases/download/v0.4.4/prek-aarch64-unknown-linux-musl.tar.gz"
+checksum = "sha256:9c3f0686b6f12995b2f9cbc2953a457987622a29bbcdeaa64f62527af851fc1e"
+url = "https://github.com/j178/prek/releases/download/v0.4.5/prek-aarch64-unknown-linux-musl.tar.gz"
 provenance = "github-attestations"
 
 [tools.prek."platforms.linux-x64"]
-checksum = "sha256:4a0aa963c6468ebcd4734ee7d763e8c1223bfb9bdabcb4528a7afac6b0147e12"
-url = "https://github.com/j178/prek/releases/download/v0.4.4/prek-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:94698d1cd74e7b462a017257efeab6f46142f4fb3da9a1314f06c1d55c26d614"
+url = "https://github.com/j178/prek/releases/download/v0.4.5/prek-x86_64-unknown-linux-musl.tar.gz"
 provenance = "github-attestations"
 
 [tools.prek."platforms.linux-x64-musl"]
-checksum = "sha256:4a0aa963c6468ebcd4734ee7d763e8c1223bfb9bdabcb4528a7afac6b0147e12"
-url = "https://github.com/j178/prek/releases/download/v0.4.4/prek-x86_64-unknown-linux-musl.tar.gz"
+checksum = "sha256:94698d1cd74e7b462a017257efeab6f46142f4fb3da9a1314f06c1d55c26d614"
+url = "https://github.com/j178/prek/releases/download/v0.4.5/prek-x86_64-unknown-linux-musl.tar.gz"
 provenance = "github-attestations"
 
 [tools.prek."platforms.macos-arm64"]
-checksum = "sha256:d3d74f96bbb9fe88d14bdb3119501f8f39602b885e19f57c6567791599afd231"
-url = "https://github.com/j178/prek/releases/download/v0.4.4/prek-aarch64-apple-darwin.tar.gz"
+checksum = "sha256:ed4920762f0e3db07163c437af622a1d4905e1ad7053692a495551b9ce92549f"
+url = "https://github.com/j178/prek/releases/download/v0.4.5/prek-aarch64-apple-darwin.tar.gz"
 provenance = "github-attestations"
 
 [tools.prek."platforms.macos-x64"]
-checksum = "sha256:960809f1b7541210e4182fb5408b2de5394ef4a490f8de51bc19724e4c0df227"
-url = "https://github.com/j178/prek/releases/download/v0.4.4/prek-x86_64-apple-darwin.tar.gz"
+checksum = "sha256:b0afc8bbea69d61bbfe49100394df99eed15a9c4675b06c9936417e65aa88b16"
+url = "https://github.com/j178/prek/releases/download/v0.4.5/prek-x86_64-apple-darwin.tar.gz"
 provenance = "github-attestations"
 
 [tools.prek."platforms.windows-x64"]
-checksum = "sha256:c6b503e858a7ba17df47618d1c5b0331132b70bcc2a35704e5f422d21c433abe"
-url = "https://github.com/j178/prek/releases/download/v0.4.4/prek-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:1ee0d2b210acc805e0ccd1b00fa84eb1d0d939f1a79da37ae9f432e1c16c5986"
+url = "https://github.com/j178/prek/releases/download/v0.4.5/prek-x86_64-pc-windows-msvc.zip"
 provenance = "github-attestations"
 
 [[tools.ripgrep]]
@@ -788,36 +788,36 @@ checksum = "sha256:e3d87403b25e1e88addec6548bdbfdbee772a5c313c9f6f96c495b8e163f1
 url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Windows_x86_64.zip"
 
 [[tools.worktrunk]]
-version = "0.57.0"
+version = "0.58.0"
 backend = "aqua:max-sixty/worktrunk"
 
 [tools.worktrunk."platforms.linux-arm64"]
-checksum = "sha256:8ba77aca2b40ef1f08869cc9531b3d593b0563e77650002f75e2ecf57e408e81"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.57.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
+checksum = "sha256:cc218c530af8fdb22a14e7b5a748a34d77493222822c8603528749a7f4e93667"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.58.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-arm64-musl"]
-checksum = "sha256:8ba77aca2b40ef1f08869cc9531b3d593b0563e77650002f75e2ecf57e408e81"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.57.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
+checksum = "sha256:cc218c530af8fdb22a14e7b5a748a34d77493222822c8603528749a7f4e93667"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.58.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-x64"]
-checksum = "sha256:96d69c1a8dd62c049f4bb20fba177d7484870d41a260165f1a4f949a35951f4f"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.57.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
+checksum = "sha256:d1feb2c231e10030c5301ffdd539a48f37ebfec50dea6ef1e1078c87e95beeec"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.58.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-x64-musl"]
-checksum = "sha256:96d69c1a8dd62c049f4bb20fba177d7484870d41a260165f1a4f949a35951f4f"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.57.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
+checksum = "sha256:d1feb2c231e10030c5301ffdd539a48f37ebfec50dea6ef1e1078c87e95beeec"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.58.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.macos-arm64"]
-checksum = "sha256:57467108aa1cd732064b31c3eea69cd70b034560160b2b4d1fb158109c47549d"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.57.0/worktrunk-aarch64-apple-darwin.tar.xz"
+checksum = "sha256:fe9cb0714bd0e4cabc34564d5a39bad3040e8d2a55140d08e02564f14aea2962"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.58.0/worktrunk-aarch64-apple-darwin.tar.xz"
 
 [tools.worktrunk."platforms.macos-x64"]
-checksum = "sha256:30edd59713325ac31573527e356b219802e36553e68313c52fcb2ccca6c6170b"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.57.0/worktrunk-x86_64-apple-darwin.tar.xz"
+checksum = "sha256:251951732ab19f36e665ba8825863e867008f7d1970aa644892683f047ef7147"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.58.0/worktrunk-x86_64-apple-darwin.tar.xz"
 
 [tools.worktrunk."platforms.windows-x64"]
-checksum = "sha256:4352650cb3defe6e9e4da613089da32e76bc3f947462b2950aec8bce5fc5940d"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.57.0/worktrunk-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:6ffb85a51c43e6fd6fd5b687d7e02caab85e1d2b716bea8b068a845a14dbcbe1"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.58.0/worktrunk-x86_64-pc-windows-msvc.zip"
 
 [[tools.zellij]]
 version = "0.44.3"
