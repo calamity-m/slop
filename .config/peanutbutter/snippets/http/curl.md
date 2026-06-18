@@ -11,6 +11,8 @@ variables:
     command: rg --files -g '*.p12' -g '*.pfx'
   url:
     default: https://
+  output_file:
+    default: output.txt
 ---
 
 # Curl Snippets
@@ -31,6 +33,12 @@ curl --cert '<@cert>' --key '<@key>' '<@url>'
 
 ```bash
 curl --user '<@username>:<@password>' '<@url>'
+```
+
+## curl output to file
+
+```bash
+curl --output '<@output_file>' '<@url>'
 ```
 
 ## curl with json body
