@@ -65,5 +65,38 @@
       "}"
     ],
     "description": "Checked Exception subclass with standard constructor overloads."
+  },
+  "switch.arrow": {
+    "prefix": "switch.arrow",
+    "body": [
+      "switch (${1:value}) {",
+      "\tcase ${2:LABEL} -> ${3:statement};",
+      "\tdefault -> ${4:defaultStatement};",
+      "}$0"
+    ],
+    "description": "Enhanced Java switch statement using arrow case labels."
+  },
+  "switch.expression": {
+    "prefix": "switch.expression",
+    "body": [
+      "var ${1:result} = switch (${2:value}) {",
+      "\tcase ${3:LABEL} -> ${4:expression};",
+      "\tdefault -> ${5:defaultExpression};",
+      "};$0"
+    ],
+    "description": "Enhanced Java switch expression using arrow case labels."
+  },
+  "switch.complex_expression": {
+    "prefix": "switch.complex_expression",
+    "body": [
+      "var ${1:result} = switch (${2:value}) {",
+      "\tcase ${3:LABEL} -> {",
+      "\t\t${4:// complex logic}",
+      "\t\tyield ${5:expression};",
+      "\t}",
+      "\tdefault -> ${6:defaultExpression};",
+      "};$0"
+    ],
+    "description": "Enhanced Java switch expression with a block case and yield."
   }
 }

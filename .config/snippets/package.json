@@ -28,6 +28,10 @@
       },
       {
         "language": "java",
+        "path": "./java-docs.json"
+      },
+      {
+        "language": "java",
         "path": "./java-dto.json"
       },
       {
