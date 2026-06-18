@@ -7,5 +7,63 @@
       "}"
     ],
     "description": "Java enum declaration."
+  },
+  "exception.runtime": {
+    "prefix": "exception.runtime",
+    "body": [
+      "public class ${1:ExceptionName} extends RuntimeException {",
+      "\tprivate static final long serialVersionUID = 1L;",
+      "",
+      "\tpublic ${1:ExceptionName}() {",
+      "\t\tsuper();",
+      "\t}",
+      "",
+      "\tpublic ${1:ExceptionName}(String message) {",
+      "\t\tsuper(message);",
+      "\t}",
+      "",
+      "\tpublic ${1:ExceptionName}(String message, Throwable cause) {",
+      "\t\tsuper(message, cause);",
+      "\t}",
+      "",
+      "\tpublic ${1:ExceptionName}(Throwable cause) {",
+      "\t\tsuper(cause);",
+      "\t}",
+      "",
+      "\tprotected ${1:ExceptionName}(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {",
+      "\t\tsuper(message, cause, enableSuppression, writableStackTrace);",
+      "\t}",
+      "}"
+    ],
+    "description": "RuntimeException subclass with standard constructor overloads."
+  },
+  "exception.base": {
+    "prefix": "exception.base",
+    "body": [
+      "public class ${1:ExceptionName} extends Exception {",
+      "\tprivate static final long serialVersionUID = 1L;",
+      "",
+      "\tpublic ${1:ExceptionName}() {",
+      "\t\tsuper();",
+      "\t}",
+      "",
+      "\tpublic ${1:ExceptionName}(String message) {",
+      "\t\tsuper(message);",
+      "\t}",
+      "",
+      "\tpublic ${1:ExceptionName}(String message, Throwable cause) {",
+      "\t\tsuper(message, cause);",
+      "\t}",
+      "",
+      "\tpublic ${1:ExceptionName}(Throwable cause) {",
+      "\t\tsuper(cause);",
+      "\t}",
+      "",
+      "\tprotected ${1:ExceptionName}(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {",
+      "\t\tsuper(message, cause, enableSuppression, writableStackTrace);",
+      "\t}",
+      "}"
+    ],
+    "description": "Checked Exception subclass with standard constructor overloads."
   }
 }
