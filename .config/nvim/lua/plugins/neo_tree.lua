@@ -6,6 +6,9 @@ require("neo-tree").setup({
 		"diagnostics",
 	},
 	close_if_last_window = true,
+	clipboard = {
+		sync = "universal",
+	},
 	window = {
 		position = "float",
 		width = 36,
