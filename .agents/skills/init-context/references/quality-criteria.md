@@ -8,7 +8,7 @@ Score each criterion out of its weight. Total is out of 100. Anything under 70 m
 
 ### 1. Key Decisions (20 points)
 
-Maps to template section 5.
+Maps to template section 4.
 
 - **20**: Real architectural facts — central types, modules, entry points, runtime model — named with actual identifiers. An agent reading only this section can orient and predict where a change ripples.
 - **15**: Decisions present, minor gaps (a key module unnamed, runtime model vague).
@@ -18,27 +18,27 @@ Maps to template section 5.
 
 Bonus considerations: every named identifier must actually exist in the repo.
 
-### 2. Posture Coverage (15 points)
+### 2. Verification Coverage (15 points)
 
-Maps to template sections 1 and 3 (Think Before Coding, Goal-Driven Execution).
+Maps to template section 2 (Verification).
 
-- **15**: Both sections present, each with concrete rules an agent can apply (e.g. "state assumptions before editing", "write a test that reproduces it, then make it pass").
-- **10**: Both present but one is generic / could apply to any repo.
-- **5**: One section missing, or both reduced to platitudes.
-- **0**: No posture guidance.
+- **15**: Concrete repo-specific checks are present, with copy-pasteable commands or exact tool/module validation steps and guidance for when to use them.
+- **10**: Verification guidance is present but partly generic or missing some common task paths.
+- **5**: Verification is reduced to platitudes like "run tests" without commands or context.
+- **0**: No verification guidance.
 
 ### 3. In-Code Documentation (15 points)
 
-Maps to template section 4.
+Maps to template section 3.
 
 - **15**: Doc format named for the actual language(s) (rustdoc, JSDoc, docstrings — not all of them), and the repo's real `why`-worthy invariants named (event ordering, async cancellation, store/search, etc.). No generic placeholders.
 - **10**: Right format named but invariants vague or generic.
 - **5**: Generic ("document your code") or wrong-language guidance left in.
 - **0**: No documentation guidance.
 
-### 4. Guidelines Specificity (10 points)
+### 4. Project Rules Specificity (10 points)
 
-Maps to template section 2.
+Maps to template section 1.
 
 - **10**: 3-6 concrete, enforceable rules an agent keeps getting wrong here. Each is project-specific and actionable.
 - **7**: A few real rules mixed with generic posture.
@@ -101,6 +101,6 @@ Only scored when **updating** an existing file. Skip when creating from scratch 
 - The template's `<bracketed>` placeholders left in verbatim instead of replaced with real content.
 - Lines an agent would discover on its own in seconds (the language, the framework, the directory names) — they dilute the signal.
 - Vague posture loose enough to be cited as a shortcut ("make minimal changes") where a thinking task was warranted.
-- Guidelines section restating generic posture instead of the rules this repo keeps getting wrong.
+- Project Rules section restating generic posture instead of the rules this repo keeps getting wrong.
 - Key Decisions naming types or modules that do not exist in the repo.
 - Conflicting guidance across multiple instruction files (`AGENTS.md`, `CLAUDE.md`, `.cursorrules`, etc.) — flag for the user, do not silently reconcile.

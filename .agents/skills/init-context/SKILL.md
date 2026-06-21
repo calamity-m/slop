@@ -1,14 +1,14 @@
 ---
 name: init-context
-description: Create or update a repo `AGENTS.md` or `CLUADE.md` file with cautious implementation guidance. Use to scaffold agent instructions around explicit assumptions, project-specific guidelines, verifiable success criteria, and key architectural decisions.
+description: Create or update a repo `AGENTS.md` or `CLAUDE.md` file with project-specific implementation guidance. Use to scaffold agent instructions around repo rules, concrete verification, documentation norms, and key architectural decisions.
 disable-model-invocation: true
 ---
 
 # Init Context
 
-Create or update a repository `AGENTS.md` file that tells coding agents to think before coding, keep changes minimal, and verify outcomes concretely.
+Create or update a repository `AGENTS.md` file that tells coding agents what is specific to this project: rules, verification commands, documentation norms, and key decisions.
 
-This skill is for scaffolding or refreshing the repo instruction file, not for applying the posture by itself.
+This skill is for scaffolding or refreshing the repo instruction file, not for applying the posture by itself. User-level context may already provide generic agent behavior, so avoid duplicating broad advice unless the project truly depends on it.
 
 ## Workflow
 
@@ -26,7 +26,8 @@ This skill is for scaffolding or refreshing the repo instruction file, not for a
    - **< 50**: surface the score to the user and propose a near-rewrite before doing it. Do not silently overwrite.
 5. Read [`assets/AGENTS.template.md`](assets/AGENTS.template.md) as the structural source of truth, then **adapt it to the repo** before writing. The template is a vibe, not a form to fill — open with the project's identity and keep the prose tight. The bar for every line: it is non-obvious, an agent would not cheaply discover it by searching, and it is specific enough that it cannot be misused as a shortcut to skip thinking. Cut anything that fails this — a thin, high-signal file beats a complete one.
    - **Header**: replace `# <project name>` and the one-line description with what this repo actually is and who it serves.
-   - **Guidelines**: write 3-6 concrete, enforceable rules an agent keeps getting wrong here — not generic posture. Drop the placeholder examples; if nothing project-specific applies, keep the section short rather than padding it.
+   - **Project Rules**: write 3-6 concrete, enforceable rules an agent keeps getting wrong here — not generic posture. Drop the placeholder examples; if nothing project-specific applies, keep the section short rather than padding it.
+   - **Verification**: name concrete checks and commands for this repo. Keep the short multi-step plan example, but make surrounding guidance project-specific.
    - **In-Code Documentation**: mention only the doc format relevant to the repo's language(s) — rustdoc for Rust, docstrings for Python, JSDoc for JS/TS, etc. Name the repo's real invariants worth a `why` comment. Drop the others.
    - **Key Decisions**: name the real architectural facts — central types, modules, entry points, runtime model — using actual identifiers from the survey. Each line earns its place. If the repo is too small to have meaningful decisions, keep it to a line or two rather than inventing content.
 6. If the file exists, preserve unrelated instructions and update only the sections that correspond to this guidance.
@@ -42,7 +43,7 @@ This skill is for scaffolding or refreshing the repo instruction file, not for a
 - Update `AGENTS.md` surgically when it already exists.
 - Preserve unrelated existing agent instructions unless the user asked to replace the file.
 - Do not silently discard user-written guidance already present in `AGENTS.md`.
-- Keep the scaffolding small: one file plus this skill's own metadata and template asset.
+- Keep the scaffolding small: one project context file plus this skill's own metadata and template asset.
 
 ## Template Source
 
@@ -50,7 +51,7 @@ The canonical scaffold content lives in:
 
 - [`assets/AGENTS.template.md`](assets/AGENTS.template.md)
 
-Use it as the structure and prose baseline, but tailor the repo-specific sections (Guidelines, In-Code Documentation, Key Decisions) to what the survey found. The template's bracketed placeholders and example bullets are flavor cues — replace them with real content. Generic placeholder text is worse than a short accurate description.
+Use it as the structure and prose baseline, but tailor the repo-specific sections (Project Rules, Verification, In-Code Documentation, Key Decisions) to what the survey found. The template's bracketed placeholders and example bullets are flavor cues — replace them with real content. Generic placeholder text is worse than a short accurate description.
 
 For an existing `AGENTS.md`, prefer refactoring it to match the template structure with user confirmation. If the existing file conflicts with the template and the right merge is not obvious, surface the conflict instead of guessing.
 
@@ -59,9 +60,8 @@ For an existing `AGENTS.md`, prefer refactoring it to match the template structu
 - `AGENTS.md` exists at the intended path.
 - The file leads with the project name and a one-line description.
 - The file contains all major sections:
-  - Think Before Coding
-  - Guidelines
-  - Goal-Driven Execution
+  - Project Rules
+  - Verification
   - In-Code Documentation
   - Key Decisions
 - The file includes the short numbered verification-plan example.

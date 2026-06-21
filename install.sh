@@ -10,6 +10,7 @@ Usage:
 Symlink dotfiles from this repository into $HOME.
 
 Creates:
+  ~/.agents/AGENTS.md -> <repo>/.agents/AGENTS.md
   ~/.config/skills    -> <repo>/.agents/skills
   ~/.config/mise      -> <repo>/.config/mise
   ~/.config/nvim      -> <repo>/.config/nvim
@@ -19,10 +20,12 @@ Creates:
   ~/.config/peanutbutter-private/snippets (directory)
   ~/.config/Code/User/snippets -> ~/.config/snippets
   ~/.agents/prompts      -> <repo>/.agents/prompts
+  ~/.pi/agent/AGENTS.md  -> ~/.agents/AGENTS.md
   ~/.pi/agent/extensions -> <repo>/.pi/agent/extensions
   ~/.pi/agent/prompts    -> ~/.agents/prompts
 
 Tool-specific links:
+  ${CLAUDE_HOME:-~/.claude}/CLAUDE.md -> ~/.agents/AGENTS.md
   ${CLAUDE_HOME:-~/.claude}/skills   -> ~/.agents/skills
   ${CLAUDE_HOME:-~/.claude}/commands -> ~/.agents/prompts
   ${CODEX_HOME:-~/.codex}/skills    -> ~/.agents/skills
@@ -125,6 +128,7 @@ ensure_symlink() {
 # Link .config entries into ~/.config
 ensure_dir "$HOME/.config" || true
 ensure_dir "$HOME/.agents" || true
+ensure_symlink "$HOME/.agents/AGENTS.md" "$repo_dir/.agents/AGENTS.md" || true
 ensure_symlink "$HOME/.agents/skills" "$repo_dir/.agents/skills" || true
 ensure_symlink "$HOME/.agents/prompts" "$repo_dir/.agents/prompts" || true
 ensure_symlink "$HOME/.config/mise" "$repo_dir/.config/mise" || true
@@ -136,8 +140,10 @@ ensure_dir "$HOME/.config/peanutbutter-private/snippets" || true
 ensure_dir "$HOME/.config/Code/User" || true
 ensure_symlink "$HOME/.config/Code/User/snippets" "$HOME/.config/snippets" || true
 ensure_dir "$HOME/.pi/agent" || true
+# pi reads user context from ~/.pi/agent/AGENTS.md; point it at the shared ~/.agents source.
+ensure_symlink "$HOME/.pi/agent/AGENTS.md" "$HOME/.agents/AGENTS.md" || true
 ensure_symlink "$HOME/.pi/agent/extensions" "$repo_dir/.pi/agent/extensions" || true
-# pi reads prompt templates from ~/.pi/agent/prompts; point it at the shared ~/.agents/prompts source
+# pi reads prompt templates from ~/.pi/agent/prompts; point it at the shared ~/.agents/prompts source.
 ensure_symlink "$HOME/.pi/agent/prompts" "$HOME/.agents/prompts" || true
 
 if command -v mise >/dev/null 2>&1 && [[ -f "$HOME/.config/mise/config.toml" ]]; then
@@ -168,13 +174,16 @@ fi
 # Tool-specific skill symlinks
 ensure_dir "$claude_root" || true
 ensure_dir "$codex_root" || true
+# Claude Code reads user-level context from ~/.claude/CLAUDE.md; reuse the shared ~/.agents source.
+ensure_symlink "$claude_root/CLAUDE.md" "$HOME/.agents/AGENTS.md" || true
 ensure_symlink "$claude_root/skills" "$HOME/.agents/skills" || true
-# Claude Code reads user slash commands from ~/.claude/commands; reuse the shared prompts source
+# Claude Code reads user slash commands from ~/.claude/commands; reuse the shared prompts source.
 ensure_symlink "$claude_root/commands" "$HOME/.agents/prompts" || true
 ensure_symlink "$codex_root/skills" "$HOME/.agents/skills" || true
 
 log ""
 log "install complete"
+log "  agents context: ~/.agents/AGENTS.md -> $repo_dir/.agents/AGENTS.md"
 log "  skills: ~/.agents/skills -> $repo_dir/.agents/skills"
 log "  prompts: ~/.agents/prompts -> $repo_dir/.agents/prompts"
 log "  mise:   ~/.config/mise -> $repo_dir/.config/mise"
@@ -184,9 +193,11 @@ log "  vscode:   ~/.config/Code/User/snippets -> ~/.config/snippets"
 log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"
 log "  peanutbutter private: ~/.config/peanutbutter-private/snippets"
+log "  pi context:    ~/.pi/agent/AGENTS.md -> ~/.agents/AGENTS.md"
 log "  pi extensions: ~/.pi/agent/extensions -> $repo_dir/.pi/agent/extensions"
 log "  pi prompts:    ~/.pi/agent/prompts -> ~/.agents/prompts"
 log "  bashrc: ~/.bashrc.d -> $repo_dir/.bashrc.d"
+log "  claude context:  $claude_root/CLAUDE.md -> ~/.agents/AGENTS.md"
 log "  claude skills:   $claude_root/skills -> ~/.agents/skills"
 log "  claude commands: $claude_root/commands -> ~/.agents/prompts"
 log "  codex:  $codex_root/skills -> ~/.agents/skills"
