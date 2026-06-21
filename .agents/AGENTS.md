@@ -14,8 +14,11 @@
 - Prefer concrete verification: tests, syntax checks, type checks, linters, or loading the changed module/tool.
 - For multi-step work, state a short plan with how each step will be verified.
 - Preserve unrelated formatting, comments, config, and behavior.
-- Prefer flat orchestration: keep the main control flow in one central function, and extract narrow nearby helpers for details instead of creating deep drill-down call chains.
 - Mention unrelated stale or suspicious code instead of silently fixing it.
+
+## Code Structure
+
+- Prefer keeping the main control flow in one central area; extract narrow nearby helpers for details rather than deep drill-down call chains.
 
 ## Documentation Defaults
 

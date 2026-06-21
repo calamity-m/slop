@@ -4,6 +4,8 @@ Use this rubric when **updating** an existing `AGENTS.md` (or `CLAUDE.md`) to de
 
 Score each criterion out of its weight. Total is out of 100. Anything under 70 means the file should be improved before declaring the task done; under 50 means a near-rewrite is justified.
 
+A genuinely small or simple repo is the exception: it may have few real decisions or rules, and an honest, sparse file can legitimately score below 70. Do not pad sections with generic advice to clear the floor — a thin accurate file beats a padded one. The score floor exists to catch lazy files, not to force invented content (see Red Flags).
+
 ## Scoring Rubric
 
 ### 1. Key Decisions (20 points)
@@ -70,7 +72,7 @@ Long lists here are a smell — keep it to the rules that matter.
 
 ### 8. Surgical Update Hygiene (10 points)
 
-Only scored when **updating** an existing file. Skip when creating from scratch (redistribute weight evenly across other criteria).
+Only scored when **updating** an existing file. When creating from scratch, drop this criterion and score out of 90, then apply the same thresholds proportionally (e.g. ≥ 85/100 becomes ≥ 76/90; 70/100 becomes 63/90).
 
 - **10**: User-written content outside the template's sections is preserved. Updates land in the right sections without rewriting unrelated prose. No silent deletions.
 - **5**: Some unrelated content rewritten or moved without need.

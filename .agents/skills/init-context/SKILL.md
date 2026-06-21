@@ -19,11 +19,7 @@ This skill is for scaffolding or refreshing the repo instruction file, not for a
    - **Key Decisions inputs**: the handful of architectural facts that change how an agent works here — the central types, modules, entry points, and runtime model. Open enough source files to name them with real identifiers — do not guess.
    - Any domain context or project-specific rules visible from directory structure, README, or how the code is shaped.
 3. If `AGENTS.md` already exists, read it end-to-end before editing. If `CLAUDE.md` exists, treat that as the existing `AGENTS.md` file.
-4. **Score the existing file** against [`references/quality-criteria.md`](references/quality-criteria.md) when one exists. The score determines the edit posture:
-   - **≥ 85**: leave as-is or apply only what the user asked for.
-   - **70–84**: targeted updates to the lowest-scoring sections.
-   - **50–69**: substantial rewrite of weak sections, preserve anything strong.
-   - **< 50**: surface the score to the user and propose a near-rewrite before doing it. Do not silently overwrite.
+4. **Score the existing file** (if one exists) against [`references/quality-criteria.md`](references/quality-criteria.md). The score determines the edit posture — see the thresholds in the rubric's Assessment Process. In short: leave high-scoring files alone, target the weakest sections in the middle range, and surface a near-rewrite to the user before doing it when the score is very low.
 5. Read [`assets/AGENTS.template.md`](assets/AGENTS.template.md) as the structural source of truth, then **adapt it to the repo** before writing. The template is a vibe, not a form to fill — open with the project's identity and keep the prose tight. The bar for every line: it is non-obvious, an agent would not cheaply discover it by searching, and it is specific enough that it cannot be misused as a shortcut to skip thinking. Cut anything that fails this — a thin, high-signal file beats a complete one.
    - **Header**: replace `# <project name>` and the one-line description with what this repo actually is and who it serves.
    - **Project Rules**: write 3-6 concrete, enforceable rules an agent keeps getting wrong here — not generic posture. Drop the placeholder examples; if nothing project-specific applies, keep the section short rather than padding it.
@@ -34,7 +30,7 @@ This skill is for scaffolding or refreshing the repo instruction file, not for a
 7. Keep the resulting `AGENTS.md` clean and direct. Do not add extra explanatory docs.
 8. **Verify against the rubric** before declaring the task done — re-score the final file. If any criterion would still drop below its full weight, fix it before stopping.
 9. Verify the final file leads with the project identity, contains all major sections, and keeps the short multi-step plan example.
-10. Symlink `CLAUDE.md` to `AGENTS.md` if not already linked.
+10. If the repo already uses `CLAUDE.md`, or the user asks for it, symlink `CLAUDE.md` to `AGENTS.md` so every agent reads the same file. Do not create this link unprompted in a repo that has no `CLAUDE.md`.
 
 ## Required Behavior
 
