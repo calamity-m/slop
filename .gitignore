@@ -8,7 +8,7 @@ nvim.log
 !.config/mise/conf.d/.gitkeep
 
 # Bashrc.d - ignore all except explicit files we want tracked in git
-.bashrc.d/
+.bashrc.d/*
 !.bashrc.d/docker.sh
 !.bashrc.d/editor.sh
 !.bashrc.d/eza.sh
@@ -17,6 +17,7 @@ nvim.log
 !.bashrc.d/lazygit.sh
 !.bashrc.d/mise.sh
 !.bashrc.d/peanutbutter.sh
+!.bashrc.d/revdiff-clip.sh
 !.bashrc.d/truecolor.sh
 !.bashrc.d/zellij.sh
 !.bashrc.d/zoxide.sh

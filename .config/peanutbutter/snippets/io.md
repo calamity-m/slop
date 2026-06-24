@@ -32,6 +32,14 @@ Snippets for redirecting and moving data around
 <@command> | xclip -selection clipboard
 ```
 
+## Copy revdiff annotations to clipboard
+
+Runs the interactive review and copies saved annotations after exit. Use `q` to keep annotations; `Q` discards them.
+
+```bash
+revdiff-clip <@args>
+```
+
 ## Write multiline content to file with heredoc
 
 ```bash
