@@ -36,7 +36,7 @@ vim.pack.add({
 	{ src = "https://github.com/windwp/nvim-ts-autotag" },
 	{ src = "https://github.com/OXY2DEV/markview.nvim" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
-	{ src = "https://github.com/emrearmagan/atlas.nvim", version = "feat/gitlab" },
+	{ src = "https://github.com/emrearmagan/atlas.nvim" },
 	-- nvim-dap-ui (alternative to nvim-dap-view)
 	{ src = "https://github.com/nvim-neotest/nvim-nio" },
 	{ src = "https://github.com/rcarriga/nvim-dap-ui" },

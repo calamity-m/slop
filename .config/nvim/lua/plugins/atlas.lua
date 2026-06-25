@@ -1,4 +1,4 @@
-require("atlas").setup({
+local atlas_opts = {
 	pulls = {
 		providers = {
 			github = {
@@ -101,7 +101,18 @@ require("atlas").setup({
 			},
 		},
 	},
-})
+}
+
+pcall(function()
+	local local_opts = require("local.atlas")
+	if type(local_opts) == "function" then
+		atlas_opts = local_opts(atlas_opts) or atlas_opts
+	else
+		atlas_opts = vim.tbl_deep_extend("force", atlas_opts, local_opts)
+	end
+end)
+
+require("atlas").setup(atlas_opts)
 
 local map = vim.keymap.set
 
