@@ -288,6 +288,40 @@ checksum = "sha256:7003a17776d0a770c38a92589242a2aaa20f130f6cbab6d546a71c13dc7bd
 url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.20.0/peanutbutter-x86_64-pc-windows-msvc.zip"
 url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/453623070"
 
+[[tools."github:umputun/revdiff"]]
+version = "1.8.1"
+backend = "github:umputun/revdiff"
+
+[tools."github:umputun/revdiff"."platforms.linux-arm64"]
+checksum = "sha256:02f1b9e9c3d2b3ab08b4987fb3e9b31bf0e7cdc5aa6325165822acc93b20effe"
+url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945985"
+
+[tools."github:umputun/revdiff"."platforms.linux-arm64-musl"]
+checksum = "sha256:02f1b9e9c3d2b3ab08b4987fb3e9b31bf0e7cdc5aa6325165822acc93b20effe"
+url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945985"
+
+[tools."github:umputun/revdiff"."platforms.linux-x64"]
+checksum = "sha256:706a3c0ce14d42579cdd25cd87a3a69816e89b3a4b17d1f8bbb0e6c2351bf45a"
+url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945984"
+
+[tools."github:umputun/revdiff"."platforms.linux-x64-musl"]
+checksum = "sha256:706a3c0ce14d42579cdd25cd87a3a69816e89b3a4b17d1f8bbb0e6c2351bf45a"
+url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945984"
+
+[tools."github:umputun/revdiff"."platforms.macos-arm64"]
+checksum = "sha256:fc1cddfb667e4eecac51420d000d1f700231842d18efee8c50356eef2184209e"
+url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945983"
+
+[tools."github:umputun/revdiff"."platforms.macos-x64"]
+checksum = "sha256:57ab015702ab4379ba46310ee976972289aa7dfa10a928d6bd8c0118d26ff39b"
+url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945982"
+
 [[tools.glab]]
 version = "1.105.0"
 backend = "gitlab:gitlab-org/cli"
