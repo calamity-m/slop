@@ -20,6 +20,7 @@ Creates:
   ~/.config/peanutbutter-private/snippets (directory)
   ~/.config/Code/User/snippets -> ~/.config/snippets
   ~/.agents/prompts      -> <repo>/.agents/prompts
+  ~/.scripts             -> <repo>/.scripts
   ~/.pi/agent/AGENTS.md  -> ~/.agents/AGENTS.md
   ~/.pi/agent/extensions -> <repo>/.pi/agent/extensions
   ~/.pi/agent/prompts    -> ~/.agents/prompts
@@ -131,6 +132,7 @@ ensure_dir "$HOME/.agents" || true
 ensure_symlink "$HOME/.agents/AGENTS.md" "$repo_dir/.agents/AGENTS.md" || true
 ensure_symlink "$HOME/.agents/skills" "$repo_dir/.agents/skills" || true
 ensure_symlink "$HOME/.agents/prompts" "$repo_dir/.agents/prompts" || true
+ensure_symlink "$HOME/.scripts" "$repo_dir/.scripts" || true
 ensure_symlink "$HOME/.config/mise" "$repo_dir/.config/mise" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/snippets" "$repo_dir/.config/snippets" || true
@@ -186,6 +188,7 @@ log "install complete"
 log "  agents context: ~/.agents/AGENTS.md -> $repo_dir/.agents/AGENTS.md"
 log "  skills: ~/.agents/skills -> $repo_dir/.agents/skills"
 log "  prompts: ~/.agents/prompts -> $repo_dir/.agents/prompts"
+log "  scripts: ~/.scripts -> $repo_dir/.scripts"
 log "  mise:   ~/.config/mise -> $repo_dir/.config/mise"
 log "  nvim:     ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  snippets: ~/.config/snippets -> $repo_dir/.config/snippets"
