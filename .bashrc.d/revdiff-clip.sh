@@ -23,3 +23,5 @@ revdiff-clip() {
   rm -f "$tmp"
   return "$revdiff_status"
 }
+
+alias rd=revdiff-clip
