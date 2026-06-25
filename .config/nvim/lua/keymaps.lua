@@ -10,20 +10,27 @@ map("n", "<C-l>", "<C-w>l", { desc = "Window Right" })
 
 map("n", "<S-h>", "<cmd>bprevious<CR>", { desc = "Previous Buffer" })
 map("n", "<S-l>", "<cmd>bnext<CR>", { desc = "Next Buffer" })
-local function delete_buffers(except_current)
+local function delete_buffers(except_current, force)
   local current = vim.api.nvim_get_current_buf()
+  local buffers = {}
   local skipped = 0
 
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(buf) and not (except_current and buf == current) then
+    if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buflisted and not (except_current and buf == current) then
       if vim.bo[buf].buftype == "terminal" then
         skipped = skipped + 1
+      elseif buf == current then
+        table.insert(buffers, buf)
       else
-        local ok = pcall(vim.api.nvim_buf_delete, buf, {})
-        if not ok then
-          skipped = skipped + 1
-        end
+        table.insert(buffers, 1, buf)
       end
+    end
+  end
+
+  for _, buf in ipairs(buffers) do
+    local ok = pcall(vim.api.nvim_buf_delete, buf, { force = force })
+    if not ok then
+      skipped = skipped + 1
     end
   end
 
@@ -34,11 +41,17 @@ end
 
 map("n", "<leader>bdd", "<cmd>bdelete<CR>", { desc = "Delete Buffer" })
 map("n", "<leader>bda", function()
-  delete_buffers(false)
+  delete_buffers(false, false)
 end, { desc = "Delete All Buffers" })
 map("n", "<leader>bdo", function()
-  delete_buffers(true)
+  delete_buffers(true, false)
 end, { desc = "Delete Other Buffers" })
+map("n", "<leader>bdA", function()
+  delete_buffers(false, true)
+end, { desc = "Force Delete All Buffers" })
+map("n", "<leader>bdO", function()
+  delete_buffers(true, true)
+end, { desc = "Force Delete Other Buffers" })
 
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 
