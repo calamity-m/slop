@@ -5,7 +5,7 @@ description: Create a merge/pull request from the current branch. Use when the u
 
 # MR Create
 
-Use this skill to create a review request whose title and description explain why the change exists, with enough concrete detail for reviewers to understand what changed and where to focus.
+Use this skill to create a review request that is easy to understand for a reviewer seeing the branch cold: a why-first title and description, plus high-signal inline comments on complex, major, or potentially contentious changed lines.
 
 ## Core Rules
 
@@ -15,8 +15,9 @@ Use this skill to create a review request whose title and description explain wh
 - Analyze the diff before drafting the title or body. If the diff shows what changed but not why, ask the user for the missing intent.
 - Make the title follow conventional commit style while stating the reason or outcome, not an implementation inventory.
 - Fill the description from local templates, recent review descriptions, linked issues, commit messages, and the diff, in that order.
-- Keep the description reviewer-oriented: lead with why, cover what in bullets, call out risks and verification.
-- Add inline comments only for areas that are genuinely dubious, surprising, risky, or likely to attract reviewer attention.
+- Keep the description reviewer-oriented: lead with why, cover what in bullets, call out risks, review focus, and verification.
+- Treat inline comments as reviewer signposts, not defenses: use them to explain non-obvious intent, tradeoffs, and constraints at the exact changed lines where reviewers will need that context.
+- Add inline comments for complex, major, or potentially contentious changes when a brief line-level note would prevent confusion or repeated review questions.
 - Do not create a review request until the local working tree and branch state are understood.
 
 ## Workflow
@@ -30,7 +31,8 @@ Use this skill to create a review request whose title and description explain wh
    - Diff source against target with commit summaries and full file changes.
    - Read relevant files when the diff alone is not enough.
    - Read linked issues, tickets, or specs from branch names, commit messages, and changed docs when discoverable.
-   - Write down the inferred why, what, risk areas, and verification evidence.
+   - Write down the inferred why, what, risk areas, verification evidence, and candidate inline-comment locations.
+   - For each candidate inline comment, note the exact changed file/line, the reviewer question it answers, and the shortest useful comment body.
    - If the why is unclear or ambiguous, ask the user before drafting.
 3. Gather description inputs:
    - Load the provider reference from `references/` for exact create, template, recent-review, and inline-comment commands.
@@ -42,7 +44,7 @@ Use this skill to create a review request whose title and description explain wh
    - Opening: one or two sentences explaining the reason for the change.
    - What changed: bullets grouped by reviewer-relevant behavior or subsystem.
    - Verification: commands run, manual checks, or "Not run" with a reason.
-   - Risk/review focus: call out migrations, compatibility, security, behavior changes, follow-up work, or intentionally narrow choices.
+   - Risk/review focus: call out migrations, compatibility, security, behavior changes, follow-up work, intentionally narrow choices, and where inline comments will provide line-level context.
    - Preserve required template sections even when the answer is `N/A`.
 5. Create the review request:
    - Prefer file-backed body input over shell-quoted multiline text.
@@ -50,9 +52,11 @@ Use this skill to create a review request whose title and description explain wh
    - Use draft mode when the branch is incomplete, checks have not run, or the user asks for a draft.
    - Capture the created URL.
 6. Add inline comments when useful:
-   - Only comment on specific changed lines that need reviewer context.
-   - Explain the concern or tradeoff, not the obvious code.
-   - Prefer one concise comment per concern.
+   - Prefer a small set of high-signal comments on the lines most likely to make review harder without context.
+   - Comment on specific changed lines that carry complex logic, major behavior shifts, compatibility constraints, security/performance tradeoffs, intentionally narrow scope, or contentious product/architecture choices.
+   - Explain the intent, constraint, or tradeoff, not the obvious code.
+   - Keep each comment brief enough to scan during review; usually one or two sentences.
+   - Prefer one concise comment per concern, and skip comments already covered clearly by nearby code comments or the review description.
    - If the provider CLI cannot create reliable inline comments, use the provider API reference or report the exact comment text and location for manual posting.
 7. Finish with status:
    - Review request URL.
@@ -114,14 +118,16 @@ Adapt to the repository template, but keep this information available:
 
 ## Inline Comment Criteria
 
-Add an inline comment when at least one is true:
+Use inline comments to make the review easier, not longer. Add one when at least one is true:
 
+- The change is large or central enough that reviewers need an entry point into the reasoning.
 - The code is correct but surprising without context.
 - The approach intentionally avoids a larger refactor.
 - A changed line carries a compatibility, migration, security, or performance tradeoff.
+- A product, API, data-model, or architecture choice is likely to be contentious.
 - Reviewers are likely to ask why a narrow or odd-looking choice was made.
 
-Do not add inline comments that restate the diff, apologize for code, or preemptively defend every decision.
+Do not add inline comments that restate the diff, apologize for code, preemptively defend every decision, or turn the review into a guided tour of straightforward changes.
 
 ## References
 
