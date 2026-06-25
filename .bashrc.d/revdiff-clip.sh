@@ -3,7 +3,7 @@ revdiff-clip() {
   local tmp revdiff_status xclip_status
 
   tmp=$(mktemp) || return $?
-  revdiff -o "$tmp" "$@"
+  revdiff --untracked -o "$tmp" "$@"
   revdiff_status=$?
 
   if [[ -s "$tmp" ]]; then
