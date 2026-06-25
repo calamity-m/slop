@@ -21,6 +21,7 @@ wk.add({
 	{ "<leader>g", group = "Goto / LSP" },
 	{ "<leader>G", group = "Git" },
 	{ "<leader>Gt", group = "Git Toggles" },
+	{ "<leader>Gv", group = "Git Diffview" },
 	{ "<leader>M", group = "Mason" },
 	{ "<leader>v", group = "Vim" },
 	{ "<leader>vp", group = "Pack" },
