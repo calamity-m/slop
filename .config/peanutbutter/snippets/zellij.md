@@ -49,20 +49,6 @@ project="$PWD"
 tab_name="$(basename "$project")-agents"
 zellij action rename-tab "$tab_name"
 cd "$project" && zellij action override-layout ~/.config/zellij/layouts/agent-stack.kdl --apply-only-to-active-tab
-tab_id="$(zellij action current-tab-info --json | jq -r '.tab_id')"
-i=0
-zellij action list-panes --json --all --tab --state --geometry \
-    | jq -r --argjson tab_id "$tab_id" '[.[] | select(.tab_id == $tab_id and (.is_plugin | not) and (.is_floating | not))] | sort_by(.pane_y, .pane_x, .id) | .[].id' \
-    | while IFS= read -r pane_id; do
-        i=$((i + 1))
-        case "$i" in
-            1) pane_name="agent-1" ;;
-            2) pane_name="agent-2" ;;
-            3) pane_name="nvim" ;;
-            *) continue ;;
-        esac
-        zellij action rename-pane --pane-id "terminal_${pane_id}" "$pane_name"
-    done
 ```
 
 ## start named sessions
@@ -103,6 +89,14 @@ zellij action rename-session <@session_name>
 
 ```bash
 zellij action rename-tab <@tab_name>
+```
+
+## rename current tab to cwd
+
+Rename the current zellij tab to the current directory name.
+
+```bash
+zellij action rename-tab "$(basename "$PWD")"
 ```
 
 ## detach current session
