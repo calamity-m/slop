@@ -166,11 +166,24 @@ keybinds clear-defaults=true {
         bind "Alt [" { PreviousSwapLayout; }
         bind "Alt ]" { NextSwapLayout; }
         bind "Alt f" { ToggleFloatingPanes; }
+        bind "Alt g" {
+            Run "lazygit" {
+                floating true
+                name "lazygit"
+                width "80%"
+                height "80%"
+                x "10%"
+                y "10%"
+                close_on_exit true
+            }
+        }
         bind "Alt h" { MoveFocusOrTab "left"; }
         bind "Alt i" { MoveTab "left"; }
         bind "Alt j" { MoveFocus "down"; }
         bind "Alt k" { MoveFocus "up"; }
         bind "Alt l" { MoveFocusOrTab "right"; }
+        bind "Alt ," { GoToPreviousTab; }
+        bind "Alt ." { GoToNextTab; }
         bind "Alt n" { NewPane; }
         bind "Alt o" { MoveTab "right"; }
         bind "Alt p" { TogglePaneInGroup; }
