@@ -16,8 +16,9 @@ local function delete_buffers(except_current, force)
   local skipped = 0
 
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buflisted and not (except_current and buf == current) then
-      if vim.bo[buf].buftype == "terminal" then
+    local should_delete = vim.api.nvim_buf_is_loaded(buf) and not (except_current and buf == current)
+    if should_delete and (force or vim.bo[buf].buflisted) then
+      if vim.bo[buf].buftype == "terminal" and not force then
         skipped = skipped + 1
       elseif buf == current then
         table.insert(buffers, buf)
