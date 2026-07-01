@@ -1,5 +1,11 @@
 local fzf = require("fzf-lua")
 
+local file_picker_opts = {
+	hidden = true,
+	fd_opts = "--color=never --type f --type l --hidden --exclude .git --exclude .jj",
+	rg_opts = "--color=never --files --hidden --glob '!.git/**' --glob '!.jj/**'",
+}
+
 fzf.setup({
 	"fzf-native",
 	winopts = {
@@ -19,8 +25,10 @@ fzf.setup({
 			["ctrl-q"] = "select-all+accept",
 		},
 	},
+	files = file_picker_opts,
+	global = file_picker_opts,
 	grep = {
-		rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/' --max-columns=4096 -e",
+		rg_opts = "--column --line-number --no-heading --color=always --smart-case --hidden --glob '!.git/**' --max-columns=4096 -e",
 	},
 })
 
