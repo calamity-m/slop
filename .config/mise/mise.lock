@@ -309,23 +309,23 @@ url = "https://github.com/calamity-m/fml/releases/download/v0.11.1/fml-x86_64-un
 url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/454368051"
 
 [[tools."github:calamity-m/peanutbutter"]]
-version = "0.20.0"
+version = "0.22.0"
 backend = "github:calamity-m/peanutbutter"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64"]
-checksum = "sha256:908a239a50ac452c030777e61908dc2bf04a4cfd7f955fc00b65590996dfdb8a"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.20.0/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/453623071"
+checksum = "sha256:56ee2382e8c1b55cbda772e094d35b5037947654bb71b934614ecaeac2a29a34"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.22.0/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/463179875"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64-musl"]
-checksum = "sha256:5611c4fd22d9472975cc91955c7d9485fadacae48017cdf44bad7c29aeed1d5e"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.20.0/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/453623072"
+checksum = "sha256:47833578bfec74a504489d280a5a612163fe184133153492567afcb4e5ff974f"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.22.0/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/463179874"
 
 [tools."github:calamity-m/peanutbutter"."platforms.windows-x64"]
-checksum = "sha256:7003a17776d0a770c38a92589242a2aaa20f130f6cbab6d546a71c13dc7bdacf"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.20.0/peanutbutter-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/453623070"
+checksum = "sha256:728e179af00c5b540f01d2725633f2950a5c5ea8e8f80d02142b1a2ffbc9869c"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.22.0/peanutbutter-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/463179873"
 
 [[tools."github:ogulcancelik/herdr"]]
 version = "0.7.1"
@@ -362,38 +362,38 @@ url = "https://github.com/ogulcancelik/herdr/releases/download/v0.7.1/herdr-maco
 url_api = "https://api.github.com/repos/ogulcancelik/herdr/releases/assets/456674307"
 
 [[tools."github:umputun/revdiff"]]
-version = "1.8.1"
+version = "1.9.1"
 backend = "github:umputun/revdiff"
 
 [tools."github:umputun/revdiff"."platforms.linux-arm64"]
-checksum = "sha256:02f1b9e9c3d2b3ab08b4987fb3e9b31bf0e7cdc5aa6325165822acc93b20effe"
-url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945985"
+checksum = "sha256:926c5b86c8c1f26691f28233bc58d5c4479867526c1e70bad5ad6cd9d8e1356a"
+url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849737"
 
 [tools."github:umputun/revdiff"."platforms.linux-arm64-musl"]
-checksum = "sha256:02f1b9e9c3d2b3ab08b4987fb3e9b31bf0e7cdc5aa6325165822acc93b20effe"
-url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945985"
+checksum = "sha256:926c5b86c8c1f26691f28233bc58d5c4479867526c1e70bad5ad6cd9d8e1356a"
+url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849737"
 
 [tools."github:umputun/revdiff"."platforms.linux-x64"]
-checksum = "sha256:706a3c0ce14d42579cdd25cd87a3a69816e89b3a4b17d1f8bbb0e6c2351bf45a"
-url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945984"
+checksum = "sha256:38a37e94f0ac4ee59aa80513ea5532341ad4cbc1b6c8b967c105404f8c607aaf"
+url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849739"
 
 [tools."github:umputun/revdiff"."platforms.linux-x64-musl"]
-checksum = "sha256:706a3c0ce14d42579cdd25cd87a3a69816e89b3a4b17d1f8bbb0e6c2351bf45a"
-url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945984"
+checksum = "sha256:38a37e94f0ac4ee59aa80513ea5532341ad4cbc1b6c8b967c105404f8c607aaf"
+url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849739"
 
 [tools."github:umputun/revdiff"."platforms.macos-arm64"]
-checksum = "sha256:fc1cddfb667e4eecac51420d000d1f700231842d18efee8c50356eef2184209e"
-url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945983"
+checksum = "sha256:7fa31b686894e22c230db8dc0754ad64cd0dccb4f4ed024ccd98c129f45a3bbd"
+url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849736"
 
 [tools."github:umputun/revdiff"."platforms.macos-x64"]
-checksum = "sha256:57ab015702ab4379ba46310ee976972289aa7dfa10a928d6bd8c0118d26ff39b"
-url = "https://github.com/umputun/revdiff/releases/download/v1.8.1/revdiff_1.8.1_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/456945982"
+checksum = "sha256:e5e8227c4dfc33507642fefadad2afe4b0633feb2cd2e18cb2414567ba2e2123"
+url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849738"
 
 [[tools.glab]]
 version = "1.105.0"
@@ -435,36 +435,36 @@ url = "https://gitlab.com/gitlab-org/cli/-/releases/v1.105.0/downloads/glab_1.10
 url_api = "https://gitlab.com/api/v4/projects/gitlab-org%2Fcli/packages/generic/glab/1%2E105%2E0/glab_1%2E105%2E0_windows_amd64%2Ezip"
 
 [[tools.gradle]]
-version = "9.6.0"
+version = "9.6.1"
 backend = "aqua:gradle/gradle"
 
 [tools.gradle."platforms.linux-arm64"]
-checksum = "sha256:bbaeb2fef8710818cf0e261201dab964c572f92b942812df0c3620d62a529a01"
-url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.0/gradle-9.6.0-bin.zip"
+checksum = "sha256:9c0f7faeeb306cb14e4279a3e084ca6b596894089a0638e68a07c945a32c9e14"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.1/gradle-9.6.1-bin.zip"
 
 [tools.gradle."platforms.linux-arm64-musl"]
-checksum = "sha256:bbaeb2fef8710818cf0e261201dab964c572f92b942812df0c3620d62a529a01"
-url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.0/gradle-9.6.0-bin.zip"
+checksum = "sha256:9c0f7faeeb306cb14e4279a3e084ca6b596894089a0638e68a07c945a32c9e14"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.1/gradle-9.6.1-bin.zip"
 
 [tools.gradle."platforms.linux-x64"]
-checksum = "sha256:bbaeb2fef8710818cf0e261201dab964c572f92b942812df0c3620d62a529a01"
-url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.0/gradle-9.6.0-bin.zip"
+checksum = "sha256:9c0f7faeeb306cb14e4279a3e084ca6b596894089a0638e68a07c945a32c9e14"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.1/gradle-9.6.1-bin.zip"
 
 [tools.gradle."platforms.linux-x64-musl"]
-checksum = "sha256:bbaeb2fef8710818cf0e261201dab964c572f92b942812df0c3620d62a529a01"
-url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.0/gradle-9.6.0-bin.zip"
+checksum = "sha256:9c0f7faeeb306cb14e4279a3e084ca6b596894089a0638e68a07c945a32c9e14"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.1/gradle-9.6.1-bin.zip"
 
 [tools.gradle."platforms.macos-arm64"]
-checksum = "sha256:bbaeb2fef8710818cf0e261201dab964c572f92b942812df0c3620d62a529a01"
-url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.0/gradle-9.6.0-bin.zip"
+checksum = "sha256:9c0f7faeeb306cb14e4279a3e084ca6b596894089a0638e68a07c945a32c9e14"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.1/gradle-9.6.1-bin.zip"
 
 [tools.gradle."platforms.macos-x64"]
-checksum = "sha256:bbaeb2fef8710818cf0e261201dab964c572f92b942812df0c3620d62a529a01"
-url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.0/gradle-9.6.0-bin.zip"
+checksum = "sha256:9c0f7faeeb306cb14e4279a3e084ca6b596894089a0638e68a07c945a32c9e14"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.1/gradle-9.6.1-bin.zip"
 
 [tools.gradle."platforms.windows-x64"]
-checksum = "sha256:bbaeb2fef8710818cf0e261201dab964c572f92b942812df0c3620d62a529a01"
-url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.0/gradle-9.6.0-bin.zip"
+checksum = "sha256:9c0f7faeeb306cb14e4279a3e084ca6b596894089a0638e68a07c945a32c9e14"
+url = "https://github.com/gradle/gradle-distributions/releases/download/v9.6.1/gradle-9.6.1-bin.zip"
 
 [[tools.helm]]
 version = "4.2.2"
@@ -690,38 +690,38 @@ checksum = "sha256:805bfcb2445273b77a32b7758dfb5d2d8dbd7b80b7336ab868935584a2fad
 url = "https://github.com/jesseduffield/lazygit/releases/download/v0.62.2/lazygit_0.62.2_windows_x86_64.zip"
 
 [[tools.mark]]
-version = "16.4.0"
+version = "16.5.0"
 backend = "github:kovetskiy/mark"
 
 [tools.mark."platforms.linux-arm64"]
-checksum = "sha256:ad8af8896e9a76b8ae73d8981c556087eeba534f1381802c71963d93f4e9e5c0"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251511"
+checksum = "sha256:eda9f9c0eb128226f98010a4977430deffa47b00ad516f296c9b865a2d5ad1e4"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.5.0/mark_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/461455200"
 
 [tools.mark."platforms.linux-arm64-musl"]
-checksum = "sha256:ad8af8896e9a76b8ae73d8981c556087eeba534f1381802c71963d93f4e9e5c0"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251511"
+checksum = "sha256:eda9f9c0eb128226f98010a4977430deffa47b00ad516f296c9b865a2d5ad1e4"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.5.0/mark_Linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/461455200"
 
 [tools.mark."platforms.linux-x64"]
-checksum = "sha256:e66a99199006ad3e2011d15f53aa903d75a865c8c6298eaa7ccb793109a6f191"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251510"
+checksum = "sha256:af45871014ae5b5495da1046728beb52c8bb053e7b48c33c3a85b65d94f2c2c3"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.5.0/mark_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/461455199"
 
 [tools.mark."platforms.linux-x64-musl"]
-checksum = "sha256:e66a99199006ad3e2011d15f53aa903d75a865c8c6298eaa7ccb793109a6f191"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Linux_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251510"
+checksum = "sha256:af45871014ae5b5495da1046728beb52c8bb053e7b48c33c3a85b65d94f2c2c3"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.5.0/mark_Linux_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/461455199"
 
 [tools.mark."platforms.macos-arm64"]
-checksum = "sha256:1da4e1962df93a0fa4e2862c81a26d4d5e3c1e6acac29e27bff6ab594778d307"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251512"
+checksum = "sha256:342b411da93bdb0a78379552ef83fb92fc261d340c2a6be3547f2271599cf5e6"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.5.0/mark_Darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/461455201"
 
 [tools.mark."platforms.macos-x64"]
-checksum = "sha256:5c62a03d61cf4ce1be94c1d49b7d60e257a9d7b23427b3b12d998521bf398ee5"
-url = "https://github.com/kovetskiy/mark/releases/download/v16.4.0/mark_Darwin_x86_64.tar.gz"
-url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/423251509"
+checksum = "sha256:875ff703662e3f32d30a58d5d959313d13f0a618e0eeb1be9d8881944d64b080"
+url = "https://github.com/kovetskiy/mark/releases/download/v16.5.0/mark_Darwin_x86_64.tar.gz"
+url_api = "https://api.github.com/repos/kovetskiy/mark/releases/assets/461455202"
 
 [[tools.minikube]]
 version = "1.38.1"
@@ -899,36 +899,36 @@ checksum = "sha256:e3d87403b25e1e88addec6548bdbfdbee772a5c313c9f6f96c495b8e163f1
 url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Windows_x86_64.zip"
 
 [[tools.worktrunk]]
-version = "0.61.0"
+version = "0.64.0"
 backend = "aqua:max-sixty/worktrunk"
 
 [tools.worktrunk."platforms.linux-arm64"]
-checksum = "sha256:851c3d6767580b46428e3f6f3447a689ff3bb1dea0fa3c43f5df4b6e0168b04d"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.61.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
+checksum = "sha256:41d8c5dba82feee0c877ad58b1e33719289d5dd125026d5b389ca14cd6b30377"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-arm64-musl"]
-checksum = "sha256:851c3d6767580b46428e3f6f3447a689ff3bb1dea0fa3c43f5df4b6e0168b04d"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.61.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
+checksum = "sha256:41d8c5dba82feee0c877ad58b1e33719289d5dd125026d5b389ca14cd6b30377"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-x64"]
-checksum = "sha256:95843c2c8cc5c46c1d06e73db7499d77e8224b2a784348b80bb0eb2edd50ec00"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.61.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
+checksum = "sha256:f5dda9b8139289eeb159e710e08ccf58495d385016fd94a0b4fe3212e13936af"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-x64-musl"]
-checksum = "sha256:95843c2c8cc5c46c1d06e73db7499d77e8224b2a784348b80bb0eb2edd50ec00"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.61.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
+checksum = "sha256:f5dda9b8139289eeb159e710e08ccf58495d385016fd94a0b4fe3212e13936af"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.macos-arm64"]
-checksum = "sha256:adc53a7ebdf89220f7988c0871382cb948115cd89cd6ea2f98d7710069cadde9"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.61.0/worktrunk-aarch64-apple-darwin.tar.xz"
+checksum = "sha256:b14052be9feb6547b3cb78a0352bef5cd8bd9cc790cb6d0642be3372d3ab2588"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-aarch64-apple-darwin.tar.xz"
 
 [tools.worktrunk."platforms.macos-x64"]
-checksum = "sha256:8773e0938e61d5de254605134526f01dd593498acb8602f042eeb65679d8b40a"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.61.0/worktrunk-x86_64-apple-darwin.tar.xz"
+checksum = "sha256:10cbbd413cc44435715c1363eeddc54df67bb4677a9f1cd4821182fe27dc447f"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-x86_64-apple-darwin.tar.xz"
 
 [tools.worktrunk."platforms.windows-x64"]
-checksum = "sha256:dfd658266e4b6a804546c42b0df87aa18a2f6cfafa7ae7297c3ba6c264c1adb8"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.61.0/worktrunk-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:d56887e7b9933b9983ea4de35195b9d2ae092d3efba028d4b6bc400d93169d2a"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-x86_64-pc-windows-msvc.zip"
 
 [[tools.zellij]]
 version = "0.44.3"

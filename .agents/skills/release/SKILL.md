@@ -25,6 +25,10 @@ Bump the project version, verify the build, commit, and push. Always confirm the
 5. **Stage and commit** — stage only version file(s) and lock files. Commit with `chore(release): vX.Y.Z`.
 6. **Push** — push the commit to origin. Report the result and the new version.
 7. **Tag** — check whether the repo uses manual git tags (look for existing version tags via `git tag --list` matching `v*` or `*.*.*`). If tags are present, create an annotated tag for the new version (`git tag -a vX.Y.Z -m "release vX.Y.Z"`) and push it with `git push --tags`. If no prior tags exist, ask the user whether to tag before creating one.
+8. **Watch the release run** — if the repo has a GitHub Actions workflow triggered on tag push (check `.github/workflows/*.yml` for `on: push: tags:`) and `gh` is available, find the run for the pushed tag (`gh run list --workflow=<file> --limit 1` or filter by the tag) and watch it to completion with `gh run watch <run-id> --exit-status`. Do not report the release as done while the run is still queued or in progress.
+   - If it fails, pull the failing step's logs (`gh run view <run-id> --log-failed`) and root-cause it — don't just report "it failed." Distinguish real regressions from environment flakiness (e.g. platform-specific bugs that only surface on a given OS runner, or tests that race on shared state under parallel execution).
+   - Fix the root cause, commit, and re-run the release: if the fix requires moving the tag (delete local + remote tag, push the fix, retag, push tag again), do that rather than leaving a tag pointing at a broken commit. Confirm with the user before deleting/force-moving a tag if a GitHub Release object was already published for it.
+   - If no matching workflow exists or `gh` isn't available, say so and skip this step.
 
 ## Bump Type Reference
 
@@ -39,4 +43,5 @@ Bump the project version, verify the build, commit, and push. Always confirm the
 - State the new version and commit hash.
 - List the files changed.
 - Note whether a tag was created and pushed.
-- If anything was skipped (no tests found, lock file absent, no existing tags), say so explicitly.
+- Note the outcome of the CI/release run if one was watched (success, or what was fixed and re-run).
+- If anything was skipped (no tests found, lock file absent, no existing tags, no CI workflow, `gh` unavailable), say so explicitly.
