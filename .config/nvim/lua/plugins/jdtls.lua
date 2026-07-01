@@ -27,6 +27,23 @@ function M.setup()
 		{ trimempty = true }
 	))
 
+	local root_markers = { "settings.gradle", "settings.gradle.kts", "gradlew", "mvnw", ".git" }
+	local fallback_root_markers = { "pom.xml", "build.gradle", "build.gradle.kts" }
+
+	local function find_root_dir(bufnr)
+		-- Prefer repository/build roots so Gradle multi-project builds can see settings.gradle,
+		-- buildSrc, included builds, and sibling subprojects. Standalone projects still fall
+		-- back to their nearest build file when no repo-level marker exists.
+		return vim.fs.root(bufnr, root_markers) or vim.fs.root(bufnr, fallback_root_markers) or vim.fn.getcwd()
+	end
+
+	local function workspace_dir_for(root_dir)
+		local root = root_dir or vim.fn.getcwd()
+		local project_name = vim.fn.fnamemodify(root, ":t")
+		local root_hash = vim.fn.sha256(root):sub(1, 8)
+		return vim.fn.stdpath("data") .. "/jdtls-workspace/" .. project_name .. "-" .. root_hash
+	end
+
 	local function build_settings(root_dir)
 		local settings = vim.tbl_deep_extend("force", {
 			java = {
@@ -84,11 +101,9 @@ function M.setup()
 
 	vim.api.nvim_create_autocmd("FileType", {
 		pattern = "java",
-		callback = function()
-			local root_dir = vim.fs.root(0, { "pom.xml", "build.gradle", "build.gradle.kts", ".git" })
-			local workspace_dir = vim.fn.stdpath("data")
-				.. "/jdtls-workspace/"
-				.. vim.fn.fnamemodify(root_dir or vim.fn.getcwd(), ":t")
+		callback = function(event)
+			local root_dir = find_root_dir(event.buf)
+			local workspace_dir = workspace_dir_for(root_dir)
 			local cmd = { mason_path .. "/bin/jdtls", "-data", workspace_dir }
 			if vim.fn.filereadable(lombok_path) == 1 then
 				-- JDTLS needs Lombok as a JVM agent to see generated methods and constructors.
