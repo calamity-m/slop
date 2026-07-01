@@ -12,6 +12,7 @@ Symlink dotfiles from this repository into $HOME.
 Creates:
   ~/.agents/AGENTS.md -> <repo>/.agents/AGENTS.md
   ~/.config/skills    -> <repo>/.agents/skills
+  ~/.config/herdr/config.toml -> <repo>/.config/herdr/config.toml
   ~/.config/mise      -> <repo>/.config/mise
   ~/.config/nvim      -> <repo>/.config/nvim
   ~/.config/snippets  -> <repo>/.config/snippets
@@ -133,6 +134,8 @@ ensure_symlink "$HOME/.agents/AGENTS.md" "$repo_dir/.agents/AGENTS.md" || true
 ensure_symlink "$HOME/.agents/skills" "$repo_dir/.agents/skills" || true
 ensure_symlink "$HOME/.agents/prompts" "$repo_dir/.agents/prompts" || true
 ensure_symlink "$HOME/.scripts" "$repo_dir/.scripts" || true
+ensure_dir "$HOME/.config/herdr" || true
+ensure_symlink "$HOME/.config/herdr/config.toml" "$repo_dir/.config/herdr/config.toml" || true
 ensure_symlink "$HOME/.config/mise" "$repo_dir/.config/mise" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/snippets" "$repo_dir/.config/snippets" || true
@@ -189,6 +192,7 @@ log "  agents context: ~/.agents/AGENTS.md -> $repo_dir/.agents/AGENTS.md"
 log "  skills: ~/.agents/skills -> $repo_dir/.agents/skills"
 log "  prompts: ~/.agents/prompts -> $repo_dir/.agents/prompts"
 log "  scripts: ~/.scripts -> $repo_dir/.scripts"
+log "  herdr:   ~/.config/herdr/config.toml -> $repo_dir/.config/herdr/config.toml"
 log "  mise:   ~/.config/mise -> $repo_dir/.config/mise"
 log "  nvim:     ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  snippets: ~/.config/snippets -> $repo_dir/.config/snippets"
