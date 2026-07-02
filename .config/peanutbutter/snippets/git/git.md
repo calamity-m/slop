@@ -107,6 +107,14 @@ git switch main || git switch master
 git branch --format='%(refname:short)' | grep -Ev '^(main|master)$' | xargs -r git branch -D
 ```
 
+## git rebase onto branch's own first commit
+
+Interactive rebase starting only from where this branch diverged from `<@base:?main>`, instead of onto `<@base:?main>`'s current tip. Lets you squash and reword your branch's commits without pulling in upstream changes that would cause conflicts.
+
+```bash
+git rebase -i "$(git merge-base <@base:?main> HEAD)"
+```
+
 ## git delete branch on remote and local
 
 ```bash
