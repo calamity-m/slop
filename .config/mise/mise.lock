@@ -309,23 +309,23 @@ url = "https://github.com/calamity-m/fml/releases/download/v0.11.1/fml-x86_64-un
 url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/454368051"
 
 [[tools."github:calamity-m/peanutbutter"]]
-version = "0.22.0"
+version = "0.23.0"
 backend = "github:calamity-m/peanutbutter"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64"]
-checksum = "sha256:56ee2382e8c1b55cbda772e094d35b5037947654bb71b934614ecaeac2a29a34"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.22.0/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/463179875"
+checksum = "sha256:be8bbd91c330cf50482f70158fbcb387b282877e21ed63ccd8f6bbefdf6d7d86"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.23.0/peanutbutter-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/464221093"
 
 [tools."github:calamity-m/peanutbutter"."platforms.linux-x64-musl"]
-checksum = "sha256:47833578bfec74a504489d280a5a612163fe184133153492567afcb4e5ff974f"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.22.0/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/463179874"
+checksum = "sha256:ee1fd92922ad6d06c0c11bf7dbf8bd2472bfb4a00813d5d08bf0029ac56889f4"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.23.0/peanutbutter-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/464221094"
 
 [tools."github:calamity-m/peanutbutter"."platforms.windows-x64"]
-checksum = "sha256:728e179af00c5b540f01d2725633f2950a5c5ea8e8f80d02142b1a2ffbc9869c"
-url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.22.0/peanutbutter-x86_64-pc-windows-msvc.zip"
-url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/463179873"
+checksum = "sha256:fd3db8d01eac4aa7e03a4b6f103d901b8f1637456e4e365488f327a8c36bbb61"
+url = "https://github.com/calamity-m/peanutbutter/releases/download/v0.23.0/peanutbutter-x86_64-pc-windows-msvc.zip"
+url_api = "https://api.github.com/repos/calamity-m/peanutbutter/releases/assets/464221095"
 
 [[tools."github:ogulcancelik/herdr"]]
 version = "0.7.1"
@@ -562,36 +562,36 @@ url = "https://github.com/jwt-rs/jwt-ui/releases/download/v1.3.0/jwtui-windows.t
 url_api = "https://api.github.com/repos/jwt-rs/jwt-ui/releases/assets/211612664"
 
 [[tools.k0sctl]]
-version = "0.31.0"
+version = "0.31.1"
 backend = "aqua:k0sproject/k0sctl"
 
 [tools.k0sctl."platforms.linux-arm64"]
-checksum = "sha256:b56eacf956419550557eabe2309ae51a24bdf16441da4d52e5416846b893b95d"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.0/k0sctl-linux-arm64"
+checksum = "sha256:9107ce95f3762b2afbd0e5b9c7d4145e5749b36f3e1976c91873d04f6ae4f98f"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-linux-arm64"
 
 [tools.k0sctl."platforms.linux-arm64-musl"]
-checksum = "sha256:b56eacf956419550557eabe2309ae51a24bdf16441da4d52e5416846b893b95d"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.0/k0sctl-linux-arm64"
+checksum = "sha256:9107ce95f3762b2afbd0e5b9c7d4145e5749b36f3e1976c91873d04f6ae4f98f"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-linux-arm64"
 
 [tools.k0sctl."platforms.linux-x64"]
-checksum = "sha256:413deec14e9b8ab7b600cf2f43b0db4d1141dbe8bd88e7003f6057dc3f4c605f"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.0/k0sctl-linux-amd64"
+checksum = "sha256:c7dc5cdc7f8c006249d573229302612b8ef323ef4faff6a68ebe8c4aba83772d"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-linux-amd64"
 
 [tools.k0sctl."platforms.linux-x64-musl"]
-checksum = "sha256:413deec14e9b8ab7b600cf2f43b0db4d1141dbe8bd88e7003f6057dc3f4c605f"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.0/k0sctl-linux-amd64"
+checksum = "sha256:c7dc5cdc7f8c006249d573229302612b8ef323ef4faff6a68ebe8c4aba83772d"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-linux-amd64"
 
 [tools.k0sctl."platforms.macos-arm64"]
-checksum = "sha256:c8636a775c3caee76ee823f883fad45699f253ee963ae1a0212a7e8b9181ff44"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.0/k0sctl-darwin-arm64"
+checksum = "sha256:1554b0a6643af6ef63c66d47c12e704e5e0f86d6480e8479f0a68dc2c179cd1a"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-darwin-arm64"
 
 [tools.k0sctl."platforms.macos-x64"]
-checksum = "sha256:6dcbc26877148b0d98ce246612a3856830cc4b2c63e61c843075d85b7f927dd3"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.0/k0sctl-darwin-amd64"
+checksum = "sha256:dda7dd02d9a9c962e8685f46e03715aac0c22c1c2a0b761dbee675e3bc4eb7f0"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-darwin-amd64"
 
 [tools.k0sctl."platforms.windows-x64"]
-checksum = "sha256:7d67c45a1f22351b276db3ffb423cec05458f71449884d4d6240740ef8fe98e5"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.0/k0sctl-win-amd64.exe"
+checksum = "sha256:77f83e76e0dafc372cda969c6e2206230900e83397b384c23868b323adcc1f96"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-win-amd64.exe"
 
 [[tools.k9s]]
 version = "0.51.0"
