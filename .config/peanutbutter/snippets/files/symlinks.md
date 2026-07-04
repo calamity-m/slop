@@ -17,3 +17,9 @@ ln -sfn <@source> <@dest>
 ```bash
 unlink <@symlink>
 ```
+
+## symlink directory
+
+```sh
+ln -s "$(pwd)/<@source>" <@dest>
+```
