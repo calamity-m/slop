@@ -37,7 +37,7 @@ version = "2.30.0"
 backend = "cargo:lumen"
 
 [[tools."cargo:mermaid-rs-renderer"]]
-version = "0.2.2"
+version = "0.3.0"
 backend = "cargo:mermaid-rs-renderer"
 
 [[tools.dive]]
@@ -185,42 +185,42 @@ checksum = "sha256:521a974dc32e93404265e55bffaf71a59e05e80abdf8ca4afb21a6030dc76
 url = "https://github.com/junegunn/fzf/releases/download/v0.73.1/fzf-0.73.1-windows_amd64.zip"
 
 [[tools.gh]]
-version = "2.95.0"
+version = "2.96.0"
 backend = "aqua:cli/cli"
 
 [tools.gh."platforms.linux-arm64"]
-checksum = "sha256:d41e0b3b6218e5741c8bb4db39b16e53a59e0e06299a8489bd38f623ef7ebaae"
-url = "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_linux_arm64.tar.gz"
+checksum = "sha256:06f86ec7103d41993b76cd78072f43595c34aaa56506d971d9860e67140bf909"
+url = "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-arm64-musl"]
-checksum = "sha256:d41e0b3b6218e5741c8bb4db39b16e53a59e0e06299a8489bd38f623ef7ebaae"
-url = "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_linux_arm64.tar.gz"
+checksum = "sha256:06f86ec7103d41993b76cd78072f43595c34aaa56506d971d9860e67140bf909"
+url = "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_arm64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64"]
-checksum = "sha256:25d1e4729e8808c9ed3d613e96ebd3f3e44446f2d368c89d878a71a36ddb3d8c"
-url = "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_linux_amd64.tar.gz"
+checksum = "sha256:83d5c2ccad5498f58bf6368acb1ab32588cf43ab3a4b1c301bf36328b1c8bd60"
+url = "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.linux-x64-musl"]
-checksum = "sha256:25d1e4729e8808c9ed3d613e96ebd3f3e44446f2d368c89d878a71a36ddb3d8c"
-url = "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_linux_amd64.tar.gz"
+checksum = "sha256:83d5c2ccad5498f58bf6368acb1ab32588cf43ab3a4b1c301bf36328b1c8bd60"
+url = "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_linux_amd64.tar.gz"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-arm64"]
-checksum = "sha256:3677f9c27965825f9c7d50395473c134edaea4b484373ef6b25de653570a0489"
-url = "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_macOS_arm64.zip"
+checksum = "sha256:f23a0c37d963aacc3bed703ccbd59b41c5ca22101fab7f00eb2b7cad23aba463"
+url = "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_macOS_arm64.zip"
 provenance = "github-attestations"
 
 [tools.gh."platforms.macos-x64"]
-checksum = "sha256:985707e9ac60c95ed51cddd808c338b481abe69fffa77e9d6547c3750045f77e"
-url = "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_macOS_amd64.zip"
+checksum = "sha256:4bd449df9ad639391bc62b8032546f0fe9edcd8526e06682a4f88abd8c5d163c"
+url = "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_macOS_amd64.zip"
 provenance = "github-attestations"
 
 [tools.gh."platforms.windows-x64"]
-checksum = "sha256:19a7154161ada9cfaa9e57edb752ecc679b75c391a62e4f7b586eea1df30b5bb"
-url = "https://github.com/cli/cli/releases/download/v2.95.0/gh_2.95.0_windows_amd64.zip"
+checksum = "sha256:c2d6acc935cd2f00e2144d7e036d5cd82e6b6bd5594e8c75aa75ef2a4ed6aac3"
+url = "https://github.com/cli/cli/releases/download/v2.96.0/gh_2.96.0_windows_amd64.zip"
 provenance = "github-attestations"
 
 [[tools.git-cliff]]
@@ -362,38 +362,38 @@ url = "https://github.com/ogulcancelik/herdr/releases/download/v0.7.1/herdr-maco
 url_api = "https://api.github.com/repos/ogulcancelik/herdr/releases/assets/456674307"
 
 [[tools."github:umputun/revdiff"]]
-version = "1.9.1"
+version = "1.10.0"
 backend = "github:umputun/revdiff"
 
 [tools."github:umputun/revdiff"."platforms.linux-arm64"]
-checksum = "sha256:926c5b86c8c1f26691f28233bc58d5c4479867526c1e70bad5ad6cd9d8e1356a"
-url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849737"
+checksum = "sha256:7eeb2a2ab6647d980400bd2444361a74623b6539b0cb57acc17dc374c1389450"
+url = "https://github.com/umputun/revdiff/releases/download/v1.10.0/revdiff_1.10.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/465024897"
 
 [tools."github:umputun/revdiff"."platforms.linux-arm64-musl"]
-checksum = "sha256:926c5b86c8c1f26691f28233bc58d5c4479867526c1e70bad5ad6cd9d8e1356a"
-url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_linux_arm64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849737"
+checksum = "sha256:7eeb2a2ab6647d980400bd2444361a74623b6539b0cb57acc17dc374c1389450"
+url = "https://github.com/umputun/revdiff/releases/download/v1.10.0/revdiff_1.10.0_linux_arm64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/465024897"
 
 [tools."github:umputun/revdiff"."platforms.linux-x64"]
-checksum = "sha256:38a37e94f0ac4ee59aa80513ea5532341ad4cbc1b6c8b967c105404f8c607aaf"
-url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849739"
+checksum = "sha256:b21fda457e6da1025943288141d828c36b0bfd8df7c7e517dee61df6a9652933"
+url = "https://github.com/umputun/revdiff/releases/download/v1.10.0/revdiff_1.10.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/465024900"
 
 [tools."github:umputun/revdiff"."platforms.linux-x64-musl"]
-checksum = "sha256:38a37e94f0ac4ee59aa80513ea5532341ad4cbc1b6c8b967c105404f8c607aaf"
-url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_linux_amd64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849739"
+checksum = "sha256:b21fda457e6da1025943288141d828c36b0bfd8df7c7e517dee61df6a9652933"
+url = "https://github.com/umputun/revdiff/releases/download/v1.10.0/revdiff_1.10.0_linux_amd64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/465024900"
 
 [tools."github:umputun/revdiff"."platforms.macos-arm64"]
-checksum = "sha256:7fa31b686894e22c230db8dc0754ad64cd0dccb4f4ed024ccd98c129f45a3bbd"
-url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_darwin_arm64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849736"
+checksum = "sha256:c313eb72b446fd6b6ec2d1519e79be04eb7eae202a485ef1835c61da94149292"
+url = "https://github.com/umputun/revdiff/releases/download/v1.10.0/revdiff_1.10.0_darwin_arm64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/465024898"
 
 [tools."github:umputun/revdiff"."platforms.macos-x64"]
-checksum = "sha256:e5e8227c4dfc33507642fefadad2afe4b0633feb2cd2e18cb2414567ba2e2123"
-url = "https://github.com/umputun/revdiff/releases/download/v1.9.1/revdiff_1.9.1_darwin_amd64.tar.gz"
-url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/461849738"
+checksum = "sha256:47eb271ff4978060beb00b5664155238eb3697a49c32e12b0679fdababc2eb2f"
+url = "https://github.com/umputun/revdiff/releases/download/v1.10.0/revdiff_1.10.0_darwin_amd64.tar.gz"
+url_api = "https://api.github.com/repos/umputun/revdiff/releases/assets/465024899"
 
 [[tools.glab]]
 version = "1.106.0"
@@ -562,36 +562,36 @@ url = "https://github.com/jwt-rs/jwt-ui/releases/download/v1.3.0/jwtui-windows.t
 url_api = "https://api.github.com/repos/jwt-rs/jwt-ui/releases/assets/211612664"
 
 [[tools.k0sctl]]
-version = "0.31.1"
+version = "0.32.0"
 backend = "aqua:k0sproject/k0sctl"
 
 [tools.k0sctl."platforms.linux-arm64"]
-checksum = "sha256:9107ce95f3762b2afbd0e5b9c7d4145e5749b36f3e1976c91873d04f6ae4f98f"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-linux-arm64"
+checksum = "sha256:ddcb55ba1b258a5b44e6fdc7c2feb6a318ceed4fa08c19d367175be6f62c0a16"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.32.0/k0sctl-linux-arm64"
 
 [tools.k0sctl."platforms.linux-arm64-musl"]
-checksum = "sha256:9107ce95f3762b2afbd0e5b9c7d4145e5749b36f3e1976c91873d04f6ae4f98f"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-linux-arm64"
+checksum = "sha256:ddcb55ba1b258a5b44e6fdc7c2feb6a318ceed4fa08c19d367175be6f62c0a16"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.32.0/k0sctl-linux-arm64"
 
 [tools.k0sctl."platforms.linux-x64"]
-checksum = "sha256:c7dc5cdc7f8c006249d573229302612b8ef323ef4faff6a68ebe8c4aba83772d"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-linux-amd64"
+checksum = "sha256:89568e506bec81a4c84519ab1bffb5f1aa96d94a1863397ee186ec58dac09452"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.32.0/k0sctl-linux-amd64"
 
 [tools.k0sctl."platforms.linux-x64-musl"]
-checksum = "sha256:c7dc5cdc7f8c006249d573229302612b8ef323ef4faff6a68ebe8c4aba83772d"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-linux-amd64"
+checksum = "sha256:89568e506bec81a4c84519ab1bffb5f1aa96d94a1863397ee186ec58dac09452"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.32.0/k0sctl-linux-amd64"
 
 [tools.k0sctl."platforms.macos-arm64"]
-checksum = "sha256:1554b0a6643af6ef63c66d47c12e704e5e0f86d6480e8479f0a68dc2c179cd1a"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-darwin-arm64"
+checksum = "sha256:aecdeba4f10de065c3ad3dd19d4e32d76cd475b7efac654c1ec1e84f2c460bf0"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.32.0/k0sctl-darwin-arm64"
 
 [tools.k0sctl."platforms.macos-x64"]
-checksum = "sha256:dda7dd02d9a9c962e8685f46e03715aac0c22c1c2a0b761dbee675e3bc4eb7f0"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-darwin-amd64"
+checksum = "sha256:86a707285f484df669a14536c4dc65fa89a2f909de5a5dc259ffd2fe3099804b"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.32.0/k0sctl-darwin-amd64"
 
 [tools.k0sctl."platforms.windows-x64"]
-checksum = "sha256:77f83e76e0dafc372cda969c6e2206230900e83397b384c23868b323adcc1f96"
-url = "https://github.com/k0sproject/k0sctl/releases/download/v0.31.1/k0sctl-win-amd64.exe"
+checksum = "sha256:4e1f852c1d3235d0f00e541683543999e67783c11d5bba9828d461238886cbfb"
+url = "https://github.com/k0sproject/k0sctl/releases/download/v0.32.0/k0sctl-win-amd64.exe"
 
 [[tools.k9s]]
 version = "0.51.0"
@@ -899,36 +899,36 @@ checksum = "sha256:e3d87403b25e1e88addec6548bdbfdbee772a5c313c9f6f96c495b8e163f1
 url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Windows_x86_64.zip"
 
 [[tools.worktrunk]]
-version = "0.64.0"
+version = "0.65.0"
 backend = "aqua:max-sixty/worktrunk"
 
 [tools.worktrunk."platforms.linux-arm64"]
-checksum = "sha256:41d8c5dba82feee0c877ad58b1e33719289d5dd125026d5b389ca14cd6b30377"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
+checksum = "sha256:9d08816479020f1d8988c944e7d7ad3544328e30ecb1d42e5ee754ddcb17ced4"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.65.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-arm64-musl"]
-checksum = "sha256:41d8c5dba82feee0c877ad58b1e33719289d5dd125026d5b389ca14cd6b30377"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
+checksum = "sha256:9d08816479020f1d8988c944e7d7ad3544328e30ecb1d42e5ee754ddcb17ced4"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.65.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-x64"]
-checksum = "sha256:f5dda9b8139289eeb159e710e08ccf58495d385016fd94a0b4fe3212e13936af"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
+checksum = "sha256:d9fde1f936c7df759760f6eb16e178e7039733587f1ea9931076dbe256fe6f85"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.65.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-x64-musl"]
-checksum = "sha256:f5dda9b8139289eeb159e710e08ccf58495d385016fd94a0b4fe3212e13936af"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
+checksum = "sha256:d9fde1f936c7df759760f6eb16e178e7039733587f1ea9931076dbe256fe6f85"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.65.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.macos-arm64"]
-checksum = "sha256:b14052be9feb6547b3cb78a0352bef5cd8bd9cc790cb6d0642be3372d3ab2588"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-aarch64-apple-darwin.tar.xz"
+checksum = "sha256:5f8b1e3029a82a521bd571f88b19640a7363ab93b215487a2f674ffcac772be9"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.65.0/worktrunk-aarch64-apple-darwin.tar.xz"
 
 [tools.worktrunk."platforms.macos-x64"]
-checksum = "sha256:10cbbd413cc44435715c1363eeddc54df67bb4677a9f1cd4821182fe27dc447f"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-x86_64-apple-darwin.tar.xz"
+checksum = "sha256:1e186ed46e549695c8b325f728f6e38557e50005ae1a710365009941f9468cf9"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.65.0/worktrunk-x86_64-apple-darwin.tar.xz"
 
 [tools.worktrunk."platforms.windows-x64"]
-checksum = "sha256:d56887e7b9933b9983ea4de35195b9d2ae092d3efba028d4b6bc400d93169d2a"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.64.0/worktrunk-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:11da7702f84d1326b72e579eabe69376524cf8cd1ff113da742d8730f8c61d49"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.65.0/worktrunk-x86_64-pc-windows-msvc.zip"
 
 [[tools.zellij]]
 version = "0.44.3"
