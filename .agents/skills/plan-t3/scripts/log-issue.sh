@@ -3,7 +3,7 @@
 # plan-t3 bundle's issues.md.
 #
 # Usage: log-issue.sh <bundle-dir|issues.md> <author> <source> <message...>
-#   e.g. log-issue.sh ~/.agents/plans/slop/t3/oauth-refresh agent:claude self \
+#   e.g. log-issue.sh .agents/plans/t3/oauth-refresh agent:claude self \
 #          "Deliverable 2 blocked: token endpoint undocumented."
 #
 # The source names what raised the issue (self, grugbrain, peer-review, user,

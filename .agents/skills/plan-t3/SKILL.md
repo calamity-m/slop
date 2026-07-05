@@ -39,10 +39,10 @@ Pick the mode from what the user is asking:
 
 ## The bundle
 
-Plans live **outside the repo** at `~/.agents/plans/<repo>/t3/<slug>/`
-so they can never be accidentally committed. That location is fixed —
-never redirect it (no env overrides, no temp dirs); a plan in `/tmp` dies
-with the session.
+Plans live **in the repo** at `.agents/plans/t3/<slug>/`, gitignored so
+they're never accidentally committed. That location is fixed — never
+redirect it (no env overrides, no temp dirs); a plan in `/tmp` dies with
+the session.
 Four files, four distinct jobs — do not let content bleed between them:
 
 | File              | Audience                   | Job                                                                                                            |
@@ -59,10 +59,10 @@ scripts/init-plan.sh <slug> --title "Human Title"
 ```
 
 (Run it with a path relative to this skill directory. Slug is kebab-case,
-1-3 words, e.g. `oauth-refresh`, `producer-config`.) The script derives
-`<repo>` from the git root, seeds all four files from `templates/`, never
+1-3 words, e.g. `oauth-refresh`, `producer-config`.) The script resolves the
+path from the git root, seeds all four files from `templates/`, never
 overwrites, and prints the paths. To find existing bundles:
-`ls ~/.agents/plans/*/t3/` or `ls ~/.agents/plans/$(basename "$(git rev-parse --show-toplevel)")/t3/`.
+`ls .agents/plans/t3/`.
 
 Whenever a stage below (or implement mode) says to log something in
 `issues.md`, use the bundled helper rather than editing the file — it keeps
@@ -213,7 +213,7 @@ reviewer count, findings, what changed — and move surviving risks into the
    session, so it must stand alone:
 
 ```text
-Implement the plan-t3 bundle at ~/.agents/plans/<repo>/t3/<slug>/ (invoke the
+Implement the plan-t3 bundle at <repo>/.agents/plans/t3/<slug>/ (invoke the
 plan-t3 skill in implement mode). Read plan.md fully before writing code,
 work the deliverables in order, track progress in deliverables.md, and log
 any plan gaps or deviations in issues.md.
@@ -224,7 +224,7 @@ any plan gaps or deviations in issues.md.
 For the fresh session executing an approved bundle:
 
 1. **Locate** the bundle (path from the handoff prompt, else
-   `ls ~/.agents/plans/<repo>/t3/`; ask if multiple match).
+   `ls .agents/plans/t3/`; ask if multiple match).
 2. **Load** `plan.md` in full, then `deliverables.md` and `issues.md`. Honor
    the Implementor instructions section in `plan.md` — it is the contract.
 3. **Work deliverables in order.** Tick tasks and update the status board in

@@ -23,20 +23,19 @@ user's call; don't stretch the single-file format to cover it.
 
 ## The plan file
 
-Plans live **outside the repo** at `~/.agents/plans/<repo>/t1/<slug>.md`
-so they can never be accidentally committed. That location is fixed —
-never redirect it (no env overrides, no temp dirs); a plan in `/tmp` dies
-with the session. Create with the bundled script — never hand-roll the
-file:
+Plans live **in the repo** at `.agents/plans/t1/<slug>.md`, gitignored so
+they're never accidentally committed. That location is fixed — never
+redirect it (no env overrides, no temp dirs); a plan in `/tmp` dies with the
+session. Create with the bundled script — never hand-roll the file:
 
 ```bash
 scripts/init-plan.sh <slug> --title "Human Title"
 ```
 
 (Path relative to this skill directory; slug is kebab-case, 1-3 words.) The
-script derives `<repo>` from the git root, seeds the file from
+script resolves the path from the git root, seeds the file from
 `templates/plan.md`, never overwrites, and prints the path. Existing plans:
-`ls ~/.agents/plans/$(basename "$(git rev-parse --show-toplevel)")/t1/`.
+`ls .agents/plans/t1/`.
 
 ## Plan mode
 
@@ -94,7 +93,7 @@ user's go-ahead. Then the context call:
   → emit the handoff prompt instead:
 
 ```text
-Implement the plan-t1 file at ~/.agents/plans/<repo>/t1/<slug>.md (invoke
+Implement the plan-t1 file at <repo>/.agents/plans/t1/<slug>.md (invoke
 the plan-t1 skill in implement mode). Read it fully before writing code,
 tick tasks as you complete them, and log deviations in its Log section.
 ```
@@ -106,8 +105,8 @@ paste. When unsure, say which way you lean and let the user pick.
 
 Whether same-session or fresh:
 
-1. **Locate** the file (handoff path, else `ls ~/.agents/plans/<repo>/t1/`;
-   ask if multiple match) and read it fully.
+1. **Locate** the file (handoff path, else `ls .agents/plans/t1/`; ask if
+   multiple match) and read it fully.
 2. Set Status to `in-progress`. Work deliverables in order, ticking tasks as
    they complete.
 3. When reality disagrees with the plan, prepend a dated `Log` entry

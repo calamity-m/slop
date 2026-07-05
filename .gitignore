@@ -1,6 +1,7 @@
 out/
 nvim-pack-lock.json
 .agents/skills/.system/
+.agents/plans/
 .codex
 nvim.log
 .config/nvim/lua/local/*.lua
