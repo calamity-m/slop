@@ -111,9 +111,11 @@ Whether same-session or fresh:
 2. Set Status to `in-progress`. Work deliverables in order, ticking tasks as
    they complete.
 3. When reality disagrees with the plan, prepend a dated `Log` entry
-   (`- **YYYY-MM-DD — agent:claude** — ...`) with the gap and the resolution
-   you chose — no silent deviation. A gap big enough to change scope goes to
-   the user instead.
+   (`- **YYYY-MM-DD — agent:claude - source:self** - ...`) with the gap and
+   the resolution you chose — no silent deviation. The `source:<origin>` tag
+   records what raised the issue (`source:self` for implementor self-review,
+   `source:grugbrain`, `source:peer-review`, `source:user`, etc.). A gap big
+   enough to change scope goes to the user instead.
 4. Run the Verification section, then set Status to `done`.
 
 ## Scope boundary

@@ -2,21 +2,22 @@
 # log-issue.sh — prepend a dated, signed entry to the Log section of a
 # plan-t3 bundle's issues.md.
 #
-# Usage: log-issue.sh <bundle-dir|issues.md> <author> <message...>
-#   e.g. log-issue.sh ~/.agents/plans/slop/t3/oauth-refresh agent:claude \
+# Usage: log-issue.sh <bundle-dir|issues.md> <author> <source> <message...>
+#   e.g. log-issue.sh ~/.agents/plans/slop/t3/oauth-refresh agent:claude self \
 #          "Deliverable 2 blocked: token endpoint undocumented."
 #
-# New entries go newest-at-top, directly under the "## Log" heading (after
-# any template comment), so the format and ordering never drift between
+# The source names what raised the issue (self, grugbrain, peer-review, user,
+# etc.). New entries go newest-at-top, directly under the "## Log" heading
+# (after any template comment), so the format and ordering never drift between
 # planning reviews and implementation sessions.
 set -euo pipefail
 
-if [ $# -lt 3 ]; then
-  echo "usage: log-issue.sh <bundle-dir|issues.md> <author> <message...>" >&2
+if [ $# -lt 4 ]; then
+  echo "usage: log-issue.sh <bundle-dir|issues.md> <author> <source> <message...>" >&2
   exit 2
 fi
 
-target="$1"; author="$2"; shift 2
+target="$1"; author="$2"; source="$3"; shift 3
 message="$*"
 
 if [ -d "$target" ]; then
@@ -33,7 +34,7 @@ if ! grep -q '^## Log$' "$file"; then
   exit 1
 fi
 
-entry="- **$(date +%Y-%m-%d) — $author** — $message"
+entry="- **$(date +%Y-%m-%d) — $author - source:$source** - $message"
 
 tmp="$(mktemp "$(dirname "$file")/.log-issue.XXXXXX")"
 # Insert after "## Log" plus any trailing blank lines / HTML comment block,

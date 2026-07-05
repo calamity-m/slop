@@ -69,12 +69,15 @@ Whenever a stage below (or implement mode) says to log something in
 the entry format and newest-at-top ordering from drifting across sessions:
 
 ```bash
-scripts/log-issue.sh <bundle-dir> <author> "<message>"
+scripts/log-issue.sh <bundle-dir> <author> <source> "<message>"
 ```
 
 Sign as `agent:claude` (append a role in parens when useful, e.g.
-`agent:claude (peer review)`). Edit `issues.md` directly only for the Risks
-register, which the helper deliberately does not touch.
+`agent:claude (peer review)`). Set `<source>` to what raised the issue:
+`self` for implementor self-review, `grugbrain`, `peer-review`, `user`, etc.
+Entries are formatted as `- **YYYY-MM-DD — agent:claude - source:self** - ...`.
+Edit `issues.md` directly only for the Risks register, which the helper
+deliberately does not touch.
 
 ## Plan mode pipeline
 
@@ -117,7 +120,7 @@ already crisp — and say so with a one-line reason so the user can override.
 After the grill, run `init-plan.sh` and record the shared-understanding
 summary: Problem + Scope go into `overview.md`; confirmed facts and key terms
 seed `plan.md`'s Context; deferred open questions become `issues.md` log
-entries via `log-issue.sh`, one per question.
+entries via `log-issue.sh` with the appropriate source, one per question.
 
 ### Stage 3 — Solution Exploration
 
@@ -196,8 +199,9 @@ angle instead of converging with the others.
 Merge findings: discard duplicates and nitpicks; apply unambiguous fixes
 directly to the bundle; collect decision-required findings and ask the user
 in one grouped message. Log the review via `log-issue.sh` as
-`agent:claude (peer review)` — one summary entry: reviewer count, findings,
-what changed — and move surviving risks into the `issues.md` Risks register.
+`agent:claude (peer review)` with source `peer-review` — one summary entry:
+reviewer count, findings, what changed — and move surviving risks into the
+`issues.md` Risks register.
 
 ### Stage 6 — Plan Delivery
 
@@ -227,10 +231,11 @@ For the fresh session executing an approved bundle:
    `deliverables.md` as you go; set `overview.md` status to `in-progress` on
    start, `done` when everything is complete.
 4. **`plan.md` is frozen.** When reality disagrees with it, log the gap and
-   the resolution you chose via `log-issue.sh`. Silent deviation
-   is the failure mode this whole structure exists to prevent. If the gap is
-   big enough to change scope, stop and tell the user — that's a plan-mode
-   revision, not an implement-mode judgment call.
+   the resolution you chose via `log-issue.sh` with the source that raised it
+   (`self` for implementor self-review). Silent deviation is the failure mode
+   this whole structure exists to prevent. If the gap is big enough to change
+   scope, stop and tell the user — that's a plan-mode revision, not an
+   implement-mode judgment call.
 5. Between sessions, `deliverables.md` + `issues.md` are the resume state; a
    later agent (or you, after compaction) re-enters at step 1.
 

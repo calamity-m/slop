@@ -41,6 +41,6 @@ if any were close.>
 
 ## Log
 
-<!-- Dated notes: deviations from plan, surprises, resolutions. Newest at top. -->
+<!-- Dated notes: deviations from plan, surprises, resolutions. Newest at top. Format: - **YYYY-MM-DD — agent:<name> - source:<origin>** - note. -->
 
-- **{{DATE}} — agent:plan-t1** — Plan created.
+- **{{DATE}} — agent:plan-t1 - source:self** - Plan created.

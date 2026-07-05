@@ -22,8 +22,10 @@ open questions belong under Log, not here.
 
 <!--
 Dated, signed entries: review findings, open questions, blockers,
-implementor deviations, resolutions. Newest at top. Prefer
+implementor deviations, resolutions. Newest at top. Include a source tag for
+what raised each issue, e.g. `source:self`, `source:grugbrain`,
+`source:peer-review`, or `source:user`. Prefer
 ~/.agents/skills/plan-t3/scripts/log-issue.sh to add entries.
 -->
 
-- **{{DATE}} — agent:plan-t3** — Bundle created.
+- **{{DATE}} — agent:plan-t3 - source:self** - Bundle created.

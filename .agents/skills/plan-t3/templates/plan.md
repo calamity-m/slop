@@ -20,8 +20,9 @@ You are implementing this plan in a fresh session. Before writing any code:
 3. Track progress in `deliverables.md` — tick tasks as you complete them and
    date each deliverable's start/finish.
 4. When you hit something this plan got wrong, ambiguous, or missing: log it
-   in `issues.md` (use `~/.agents/skills/plan-t3/scripts/log-issue.sh` if
-   present, otherwise add a dated entry to the top of its Log section),
+   in `issues.md` (use `~/.agents/skills/plan-t3/scripts/log-issue.sh` with
+   `source:self` if present, otherwise add a dated entry to the top of its
+   Log section using `- **YYYY-MM-DD — agent:<name> - source:self** - ...`),
    decide the smallest reasonable resolution, and record what you chose. Do
    not silently deviate.
 5. Update `overview.md` status to `in-progress` when you start and `done` when
