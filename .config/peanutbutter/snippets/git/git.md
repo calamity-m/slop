@@ -21,6 +21,10 @@ variables:
       - "*.pdf"
       - "*.jpg"
       - "*.gif"
+  branch:
+    command: git branch --format='%(refname:short)'
+  upstream_branch:
+    command: git branch --remotes --format='%(refname:short)' | sed 's#^[^/]*/##' | sort -u
 ---
 
 # Git Snippets
@@ -105,6 +109,60 @@ git branch -vv | awk '/: gone]/{print $1 == "*" ? $2 : $1}' | xargs -r git branc
 ```bash
 git switch main || git switch master
 git branch --format='%(refname:short)' | grep -Ev '^(main|master)$' | xargs -r git branch -D
+```
+
+## git merge upstream branch into current branch
+
+Fetches `<@remote>` and merges the selected upstream branch into your current branch.
+
+```bash
+git fetch <@remote>
+git merge <@remote>/<@upstream_branch:?main>
+```
+
+## git rebase current branch onto upstream branch
+
+Fetches `<@remote>` and rebases your current branch on top of the selected upstream branch.
+
+```bash
+git fetch <@remote>
+git rebase <@remote>/<@upstream_branch:?main>
+```
+
+## git accept upstream changes during merge conflict
+
+During a merge, accepts the version from the branch being merged in (`--theirs`) for all currently conflicted files, then stages them.
+
+```bash
+git diff --name-only --diff-filter=U -z | xargs -0 -r git checkout --theirs --
+git diff --name-only --diff-filter=U -z | xargs -0 -r git add --
+```
+
+## git accept my changes during merge conflict
+
+During a merge, keeps your current branch version (`--ours`) for all currently conflicted files, then stages them.
+
+```bash
+git diff --name-only --diff-filter=U -z | xargs -0 -r git checkout --ours --
+git diff --name-only --diff-filter=U -z | xargs -0 -r git add --
+```
+
+## git accept upstream changes during rebase conflict
+
+During a rebase, accepts the upstream/base version (`--ours`) for all currently conflicted files, then stages them. This is reversed from merge conflict wording.
+
+```bash
+git diff --name-only --diff-filter=U -z | xargs -0 -r git checkout --ours --
+git diff --name-only --diff-filter=U -z | xargs -0 -r git add --
+```
+
+## git accept my changes during rebase conflict
+
+During a rebase, accepts your rebased commit's version (`--theirs`) for all currently conflicted files, then stages them. This is reversed from merge conflict wording.
+
+```bash
+git diff --name-only --diff-filter=U -z | xargs -0 -r git checkout --theirs --
+git diff --name-only --diff-filter=U -z | xargs -0 -r git add --
 ```
 
 ## git rebase onto branch's own first commit
