@@ -1,0 +1,4 @@
+theme = "gruvbox-dark"
+mouse = true
+leader = " "
+comment_vim = true

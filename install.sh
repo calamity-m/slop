@@ -16,6 +16,7 @@ Creates:
   ~/.config/mise      -> <repo>/.config/mise
   ~/.config/nvim      -> <repo>/.config/nvim
   ~/.config/snippets  -> <repo>/.config/snippets
+  ~/.config/tuicr     -> <repo>/.config/tuicr
   ~/.config/zellij       -> <repo>/.config/zellij
   ~/.config/peanutbutter -> <repo>/.config/peanutbutter
   ~/.config/peanutbutter-private/snippets (directory)
@@ -139,6 +140,7 @@ ensure_symlink "$HOME/.config/herdr/config.toml" "$repo_dir/.config/herdr/config
 ensure_symlink "$HOME/.config/mise" "$repo_dir/.config/mise" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/snippets" "$repo_dir/.config/snippets" || true
+ensure_symlink "$HOME/.config/tuicr" "$repo_dir/.config/tuicr" || true
 ensure_symlink "$HOME/.config/zellij" "$repo_dir/.config/zellij" || true
 ensure_symlink "$HOME/.config/peanutbutter" "$repo_dir/.config/peanutbutter" || true
 ensure_dir "$HOME/.config/peanutbutter-private/snippets" || true
@@ -196,6 +198,7 @@ log "  herdr:   ~/.config/herdr/config.toml -> $repo_dir/.config/herdr/config.to
 log "  mise:   ~/.config/mise -> $repo_dir/.config/mise"
 log "  nvim:     ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  snippets: ~/.config/snippets -> $repo_dir/.config/snippets"
+log "  tuicr:    ~/.config/tuicr -> $repo_dir/.config/tuicr"
 log "  vscode:   ~/.config/Code/User/snippets -> ~/.config/snippets"
 log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
 log "  peanutbutter:  ~/.config/peanutbutter -> $repo_dir/.config/peanutbutter"
