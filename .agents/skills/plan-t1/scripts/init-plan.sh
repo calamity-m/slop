@@ -3,10 +3,12 @@
 #
 # Usage: init-plan.sh <slug> [--title "Human Title"] [--repo <name>]
 #
-# Plan lands at $PLAN_T1_ROOT/<repo>/t1/<slug>.md (default root:
-# ~/.agents/plans). <repo> defaults to the git-root basename, falling back
-# to the cwd basename. Never overwrites; re-running against an existing
-# plan prints its path and exits 0 so the skill can resume safely.
+# Plan lands at ~/.agents/plans/<repo>/t1/<slug>.md. The root is fixed on
+# purpose: plans must outlive the session, so no env override is offered —
+# agents have used one to dump plans into /tmp. <repo> defaults to the
+# git-root basename, falling back to the cwd basename. Never overwrites;
+# re-running against an existing plan prints its path and exits 0 so the
+# skill can resume safely.
 set -euo pipefail
 
 usage() {
@@ -14,10 +16,8 @@ usage() {
 Usage: init-plan.sh <slug> [--title "Human Title"] [--repo <name>]
 
 Creates a single-file plan-t1 plan (context, approach, deliverables with
-checklists, verification, log) seeded from the template.
-
-Environment:
-  PLAN_T1_ROOT     plan root (default: ~/.agents/plans)
+checklists, verification, log) seeded from the template at
+~/.agents/plans/<repo>/t1/<slug>.md.
 EOF
 }
 
@@ -48,8 +48,7 @@ if [ -z "$title" ]; then
   title="$slug"
 fi
 
-root="${PLAN_T1_ROOT:-$HOME/.agents/plans}"
-plan="$root/$repo/t1/$slug.md"
+plan="$HOME/.agents/plans/$repo/t1/$slug.md"
 template="$(cd "$(dirname "${BASH_SOURCE[0]}")/../templates" && pwd)/plan.md"
 today="$(date +%Y-%m-%d)"
 

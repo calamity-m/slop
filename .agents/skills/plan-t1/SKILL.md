@@ -24,8 +24,10 @@ user's call; don't stretch the single-file format to cover it.
 ## The plan file
 
 Plans live **outside the repo** at `~/.agents/plans/<repo>/t1/<slug>.md`
-(overridable via `PLAN_T1_ROOT`) so they can never be accidentally
-committed. Create with the bundled script — never hand-roll the file:
+so they can never be accidentally committed. That location is fixed —
+never redirect it (no env overrides, no temp dirs); a plan in `/tmp` dies
+with the session. Create with the bundled script — never hand-roll the
+file:
 
 ```bash
 scripts/init-plan.sh <slug> --title "Human Title"

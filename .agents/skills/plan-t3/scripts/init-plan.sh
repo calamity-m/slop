@@ -3,7 +3,9 @@
 #
 # Usage: init-plan.sh <slug> [--title "Human Title"] [--repo <name>]
 #
-# Bundle lands in $PLAN_T3_ROOT/<repo>/t3/<slug>/ (default root: ~/.agents/plans).
+# Bundle lands in ~/.agents/plans/<repo>/t3/<slug>/. The root is fixed on
+# purpose: plans must outlive the session, so no env override is offered —
+# agents have used one to dump plans into /tmp.
 # <repo> defaults to the git-root basename, falling back to the cwd basename.
 # Existing bundle files are never overwritten; re-running against an existing
 # bundle prints its paths and exits 0 so the skill can resume safely.
@@ -19,8 +21,7 @@ Creates a plan-t3 bundle directory with four files seeded from templates:
   deliverables.md  progress tracker (updated during implementation)
   issues.md        risk/issue register (appended by reviews and implementors)
 
-Environment:
-  PLAN_T3_ROOT     bundle root (default: ~/.agents/plans)
+The bundle lands at ~/.agents/plans/<repo>/t3/<slug>/.
 EOF
 }
 
@@ -51,8 +52,7 @@ if [ -z "$title" ]; then
   title="$slug"
 fi
 
-root="${PLAN_T3_ROOT:-$HOME/.agents/plans}"
-bundle="$root/$repo/t3/$slug"
+bundle="$HOME/.agents/plans/$repo/t3/$slug"
 templates_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/../templates" && pwd)"
 today="$(date +%Y-%m-%d)"
 

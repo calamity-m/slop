@@ -40,7 +40,9 @@ Pick the mode from what the user is asking:
 ## The bundle
 
 Plans live **outside the repo** at `~/.agents/plans/<repo>/t3/<slug>/`
-(overridable via `PLAN_T3_ROOT`) so they can never be accidentally committed.
+so they can never be accidentally committed. That location is fixed —
+never redirect it (no env overrides, no temp dirs); a plan in `/tmp` dies
+with the session.
 Four files, four distinct jobs — do not let content bleed between them:
 
 | File              | Audience                   | Job                                                                                                            |
