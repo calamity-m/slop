@@ -17,6 +17,7 @@ Use this skill to work an existing review until failed checks and review feedbac
 - Do not reply to or resolve a thread until you know whether it was fixed, rejected with rationale, or only informational.
 - If a review comment conflicts with codebase evidence, tests, or another comment, state the disagreement plainly and cite the evidence.
 - Use subagents only when the active request explicitly authorizes delegation. Otherwise, perform the same analysis locally.
+- Never commit, push, reply, or resolve without user approval. Present the proposed fixes, commit plan, and reply text to the user and wait for explicit approval before acting; act only on what was approved.
 
 ## Checkpoint
 
@@ -64,8 +65,8 @@ The checkpoint must always include the next intended step so a compacted or resu
    - For each failed job, collect the relevant log excerpt.
    - Correlate each failure with the diff before editing.
    - If delegation is authorized, spawn one analysis subagent per failed job.
-   - Apply fixes that are backed by logs and code evidence.
-   - Commit and push any check-related fixes.
+   - Propose fixes that are backed by logs and code evidence: show the user each failure, the intended change, and the commit plan, then wait for approval.
+   - Apply, commit, and push only the approved check-related fixes.
    - Update the checkpoint with statuses, fixes, commits, and the next step.
    - If changes were pushed, re-check status and repeat this step until no actionable failures remain.
 4. Review threads and comments:
@@ -73,15 +74,17 @@ The checkpoint must always include the next intended step so a compacted or resu
    - Group comments by file, line, and underlying concern.
    - Identify comments already addressed by existing commits.
    - If delegation is authorized, spawn bounded analysis subagents for independent threads or thread groups.
-   - Apply accepted fixes locally.
-   - Commit and push coherent batches.
+   - Propose a decision per comment group: fix, disagree, or informational, with the intended change for each fix, then wait for the user's approval.
+   - Apply approved fixes locally.
+   - Commit and push approved coherent batches.
    - Update the checkpoint with comment decisions, fixes, commits, and the next step.
    - If code changed, return to check status before replying.
 5. Reply to threads and comments:
+   - Draft the reply text for each thread and show the user which threads will be replied to or resolved; wait for approval before posting.
    - Reply to fixed threads with the commit SHA or concise change summary.
    - Reply to disagreed threads with evidence and rationale.
    - Reply to informational threads only when a response is useful.
-   - Resolve threads only when the concern is actually addressed and the provider supports resolution.
+   - Resolve threads only when the concern is actually addressed, the provider supports resolution, and the user approved resolving them.
    - Update the checkpoint with reply and resolution state.
 6. Finish with status:
    - Commits created and pushed.
@@ -99,6 +102,7 @@ The checkpoint must always include the next intended step so a compacted or resu
 
 ## Commit And Push Policy
 
+- Commit and push only batches the user has approved.
 - Stage only files changed for the current fix.
 - Prefer one commit per coherent cause: one failed job, one review concern, or a tightly related group.
 - Use the repository's commit-message convention when obvious.

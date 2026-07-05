@@ -18,6 +18,7 @@ Use this skill to review an existing PR/MR as a reviewer. The goal is to underst
 - Use the `code-review` skill (`.agents/skills/code-review/SKILL.md`) as the standard for the code-quality pass, whether performed locally or by an authorized subagent.
 - Do not post style-only, speculative, or nitpick comments unless they materially affect review quality.
 - Use subagents only when the active request explicitly authorizes delegation. If delegation is not authorized, perform the same code-quality pass locally and record that choice.
+- Never post a comment without user approval. Present every proposed comment to the user with its file, line, and exact text, wait for explicit approval, and post only the approved comments.
 
 ## Review Record
 
@@ -44,8 +45,8 @@ Update the record after every phase:
 - After reading the MR diff.
 - After reading existing base-branch code.
 - After completing the code-quality pass.
-- Before posting comments.
-- After posting comments.
+- After proposing comments and receiving the user's approval decisions.
+- After posting approved comments.
 
 The record must always include the next intended step so a compacted or resumed session can continue without guessing.
 
@@ -83,13 +84,15 @@ The record must always include the next intended step so a compacted or resumed 
    - If delegation is authorized, spawn a subagent to run `/code-review` on the changed area and ask for findings grounded in current branch files.
    - If delegation is not authorized, perform that pass locally using the same `code-review` criteria.
    - Compile findings into the review record, separating confirmed issues from observations and questions.
-9. Decide what to post:
+9. Propose comments and get approval:
    - Convert only confirmed, actionable findings into review comments.
    - Attach each code finding to the most specific changed line that supports it.
    - Use a detached PR/MR comment only for review-request-level concerns such as an absent rationale, misleading description, or insufficient reason for the MR to exist.
-10. Post comments and finish:
+   - Show the user every proposed comment with file, line, and exact text, plus any findings deliberately not proposed.
+   - Wait for explicit approval; drop or revise comments the user rejects, and record each decision.
+10. Post approved comments and finish:
 
-- Post concise line comments with evidence, impact, and the smallest useful ask.
+- Post only user-approved comments as concise line comments with evidence, impact, and the smallest useful ask.
 - Avoid broad summaries unless the provider requires a review submission body.
 - Update the record with every posted comment, skipped finding, and remaining uncertainty.
 - Finish with review URL, record path, comments posted, and any findings deliberately not posted.
@@ -133,7 +136,8 @@ Review pass:
 
 Comments:
 
-- To post:
+- Proposed:
+- Approved/rejected by user:
 - Posted:
 - Skipped with reason:
 
