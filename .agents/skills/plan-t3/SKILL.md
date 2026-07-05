@@ -1,6 +1,6 @@
 ---
 name: plan-t3
-description: Expensive, sub-agent-heavy planning operation producing a four-file plan bundle (overview, plan, deliverables, issues) under ~/.agents/plans, built for handoff to a fresh implementation session. Use for long-term planning, complex feature additions, large-scale refactors, or work with many cross-cutting concerns — whenever the user says "plan t3", "t3 plan", asks for a serious/deep/heavyweight plan, or wants to implement, resume, or check progress on an existing plan-t3 bundle. Not for small, contained work needing fast turnaround. Supersedes bigplan for new plans.
+description: Planning for complex features, long-term efforts and cross-cutting concerns. Use when the user mentions "t3 plan" or "plan t3".
 ---
 
 # Plan T3
@@ -43,12 +43,12 @@ Plans live **outside the repo** at `~/.agents/plans/<repo>/t3/<slug>/`
 (overridable via `PLAN_T3_ROOT`) so they can never be accidentally committed.
 Four files, four distinct jobs — do not let content bleed between them:
 
-| File | Audience | Job |
-|------|----------|-----|
-| `overview.md` | Team lead / user | Vet and approve the solution in two minutes |
-| `plan.md` | Fresh implementation agent | Full instruction: context, design, deliverables, acceptance. More is better. Frozen once implementation starts |
-| `deliverables.md` | Implementation agent | The only file that tracks progress |
-| `issues.md` | Everyone | Risk register + dated append-only log |
+| File              | Audience                   | Job                                                                                                            |
+| ----------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `overview.md`     | Team lead / user           | Vet and approve the solution in two minutes                                                                    |
+| `plan.md`         | Fresh implementation agent | Full instruction: context, design, deliverables, acceptance. More is better. Frozen once implementation starts |
+| `deliverables.md` | Implementation agent       | The only file that tracks progress                                                                             |
+| `issues.md`       | Everyone                   | Risk register + dated append-only log                                                                          |
 
 Create the bundle with the bundled script — never hand-roll the files:
 
@@ -88,7 +88,7 @@ one obvious file and missing the second registration point, the config that
 gates the feature, the test that encodes the real contract. Guard against it
 structurally:
 
-1. From the user's brief, list the *angles* the work touches — not files,
+1. From the user's brief, list the _angles_ the work touches — not files,
    angles: entry points, adjacent subsystems, configuration, tests,
    conventions/prior art for similar changes, and (when relevant) git history
    of the affected area.
@@ -98,8 +98,8 @@ structurally:
    roles, established conventions, surprises, and open questions — a digest,
    not file dumps.
 3. Synthesize the digests into a working context map. Then run the coverage
-   check: *for each thing the brief promises, do I know where it lives, what
-   touches it, and how similar changes were done before?* Any "no" gets one
+   check: _for each thing the brief promises, do I know where it lives, what
+   touches it, and how similar changes were done before?_ Any "no" gets one
    more targeted sub-agent before you proceed.
 
 Do not skip fan-out because the task "looks contained" — contained-looking

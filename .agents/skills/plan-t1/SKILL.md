@@ -1,6 +1,6 @@
 ---
 name: plan-t1
-description: Fast, lightweight planning for contained work — small features, focused fixes, single-subsystem changes needing a plan but not a heavyweight one. Produces one plan-plus-deliverables file under ~/.agents/plans/<repo>/t1/, and the planner often implements it in the same session. Use whenever the user says "plan t1", "t1 plan", asks for a quick/light/small plan, or wants to implement or resume an existing plan-t1 file. Not for long-term efforts, large refactors, or work with many cross-cutting concerns.
+description: Faster and tighter feedback loop plans. Use when the user mentions "t1 plan" or "plan t1".
 ---
 
 # Plan T1
