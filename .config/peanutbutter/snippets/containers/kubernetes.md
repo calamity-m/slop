@@ -10,6 +10,10 @@ variables:
       - configmap
       - ingress
       - httproutes.gateway.networking.k8s.io
+  pod:
+    command: "kubectl get pod --no-headers -o custom-columns=NAME:.metadata.name"
+  pod-command:
+    default: "sh"
 ---
 
 # Kubernetes
@@ -25,24 +29,18 @@ kubectl get secret \
 echo
 ```
 
-## Get a shell in a pod's default container
-
-```bash
-kubectl exec -it <@pod:kubectl get pod --no-headers -o custom-columns=NAME:.metadata.name> -- sh
-```
-
 ## Run a command in a pod's default container
 
 ```bash
-kubectl exec -it <@pod:kubectl get pod --no-headers -o custom-columns=NAME:.metadata.name> -- <@command>
+kubectl exec -it <@pod> -- <@pod-command>
 ```
 
-## Get a shell in a specific container inside a pod
+## Get a command in a specific container inside a pod
 
 ```bash
-kubectl exec -it <@pod:kubectl get pod --no-headers -o custom-columns=NAME:.metadata.name> \
+kubectl exec -it <@pod> \
   -c <@container:kubectl get pod <#pod> -o jsonpath='{.spec.containers[*].name}' | tr ' ' '\n'> \
-  -- sh
+  -- <@pod-command>
 ```
 
 ## Explain a Kubernetes resource
