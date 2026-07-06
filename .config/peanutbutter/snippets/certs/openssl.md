@@ -65,6 +65,12 @@ openssl pkcs12 -in <@p12> -info -noout
 openssl pkcs12 -legacy -in <@p12> -info -noout
 ```
 
+## Change passphrase on p12
+
+```bash
+openssl pkcs12 -in <@p12> -nodes | openssl pkcs12 -export -out <@out_p12>
+```
+
 ## Create RSA key
 
 ```bash
