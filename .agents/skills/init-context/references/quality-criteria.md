@@ -33,10 +33,10 @@ Maps to template section 2 (Verification).
 
 Maps to template section 3.
 
-- **15**: Doc format named for the actual language(s) (rustdoc, JSDoc, docstrings — not all of them), and the repo's real `why`-worthy invariants named (event ordering, async cancellation, store/search, etc.). No generic placeholders.
-- **10**: Right format named but invariants vague or generic.
-- **5**: Generic ("document your code") or wrong-language guidance left in.
-- **0**: No documentation guidance.
+- **15**: Only project-specific content: doc conventions that refine or deviate from the language default, and the repo's real `why`-worthy invariants named (event ordering, async cancellation, store/search, etc.). No generic commenting advice and no restating the language's default doc format — an agent already knows Rust uses rustdoc.
+- **10**: Real conventions or invariants present, but mixed with generic advice or left vague.
+- **5**: Generic ("document your code"), nothing beyond naming the language's default doc format, or wrong-language guidance left in.
+- **0**: Section missing in a repo that clearly has documentation conventions or bite-prone invariants. A section honestly omitted from a repo that has neither scores full marks instead.
 
 ### 4. Project Rules Specificity (10 points)
 
@@ -51,7 +51,7 @@ Long lists here are a smell — keep it to the rules that matter.
 
 ### 5. Conciseness (10 points)
 
-- **10**: Dense. Every line earns its place. No restating what code or filenames already say.
+- **10**: Dense. Every line earns its place. No restating what code or filenames already say. A healthy file is usually 40–100 lines; past ~150, expect cuts.
 - **7**: Mostly tight, occasional padding.
 - **3**: Verbose. Multiple paragraphs where a list would do.
 - **0**: Mostly filler.
@@ -72,7 +72,7 @@ Long lists here are a smell — keep it to the rules that matter.
 
 ### 8. Surgical Update Hygiene (10 points)
 
-Only scored when **updating** an existing file. When creating from scratch, drop this criterion and score out of 90, then apply the same thresholds proportionally (e.g. ≥ 85/100 becomes ≥ 76/90; 70/100 becomes 63/90).
+Only scored when **updating** an existing file. When creating from scratch, drop this criterion and score out of 90, applying the thresholds at roughly 85%, 70%, and 50% of the 90-point total.
 
 - **10**: User-written content outside the template's sections is preserved. Updates land in the right sections without rewriting unrelated prose. No silent deletions.
 - **5**: Some unrelated content rewritten or moved without need.
@@ -82,15 +82,15 @@ Only scored when **updating** an existing file. When creating from scratch, drop
 
 1. Read the existing `AGENTS.md` / `CLAUDE.md` end-to-end before scoring.
 2. Cross-reference against the actual repo:
-   - Try at least one documented command.
+   - Try at least one documented command — prefer cheap, read-only ones (lint, typecheck, `--help`, dry runs); never run anything that deploys, migrates, or mutates state.
    - Open at least two referenced paths.
    - Check the language and framework against lock / manifest files.
 3. Score each criterion. Note specific issues.
 4. Decide:
    - **Score ≥ 85**: leave as-is or apply only the minor fixes the user asked for.
-   - **70–84**: targeted updates to the lowest-scoring sections.
-   - **50–69**: substantial rewrite of weak sections; preserve anything strong.
-   - **< 50**: propose a near-rewrite to the user before doing it; do not silently overwrite.
+   - **70–84**: targeted updates to the lowest-scoring sections; keep the file's existing structure.
+   - **50–69**: substantial rewrite of weak sections; preserve anything strong; adopt the template structure only where it does not displace user-written guidance.
+   - **< 50**: propose a near-rewrite — including restructuring to the template — to the user before doing it; do not silently overwrite.
 5. List concrete improvements before editing. Apply them surgically.
 
 ## Red Flags

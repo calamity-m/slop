@@ -12,32 +12,18 @@
 
 ## 2. Verification
 
-<Concrete checks for this repo. Prefer copy-pasteable commands and name when to use each.>
+<Concrete checks for this repo. Prefer copy-pasteable commands proven by CI or manifest scripts, and pair each with when to run it.>
 
-For multi-step tasks, use a brief plan with checks:
-
-```text
-1. [Step] -> verify: [check]
-2. [Step] -> verify: [check]
-3. [Step] -> verify: [check]
-```
-
-Strong success criteria let agents loop independently. Weak criteria require clarification.
+- <check — e.g. `cargo test --workspace` — before any commit touching `src/`>
+- <check — e.g. `npm run typecheck` — after changing shared types>
+- <check — e.g. how to validate a config or generated file that tests do not cover>
 
 ## 3. In-Code Documentation
 
-<Name the actual language's doc format and the repo's real invariants worth a comment. Drop formats the repo doesn't use.>
+<Only what is project-specific: doc conventions that refine or deviate from the language default, and the repo's real invariants that earn a `why` comment — the things that bite when changed blind. Generic commenting advice ("comment the why", "keep comments short") belongs in user-level context, not here. Split by language in a multi-language repo. Delete this section if the repo has no conventions worth stating.>
 
-For public <language> items:
-
-- Use the language's doc-comment format (<the actual one — rustdoc, docstrings, JSDoc, etc.>).
-- Describe what the item is for and any non-obvious parameter, return, environment, filesystem, or concurrency constraint.
-- If the types and names make everything clear, a one-liner is enough.
-
-For internal code, comment the why, not the what:
-
-- <Name the repo's real invariants that earn a short comment — the things that bite when changed blind.>
-- Keep comments short. Delete comments that merely restate the code.
+- <convention — e.g. "docstrings follow Google style" or "no JSDoc type annotations; TypeScript carries the types">
+- <invariant worth a `why` comment — e.g. event ordering, async cancellation, a lock hierarchy>
 
 ## 4. Key Decisions
 
