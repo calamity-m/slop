@@ -14,7 +14,7 @@ Extract only what matters from the current session and write it to a file. Do no
 
 ## Output file
 
-Write to `.steer/handoff-<YYYYMMDD-HHMMSS>.md` in the repo root, creating `.steer/` if it does not exist. Use the actual current timestamp.
+Write to `.agents/steer/handoff-<YYYYMMDD-HHMMSS>.md` in the repo root, creating `.agents/steer/` if it does not exist. Use the actual current timestamp.
 
 ## Handoff doc format
 
@@ -26,25 +26,32 @@ Keep the entire file under 100 lines. Each section has a hard limit — cut to f
 **Timestamp:** <ISO datetime>
 
 ## Original prompt
+
 <!-- 1–3 sentences. The user's original request, query, or instruction that started this session — as literally as you can recall it. Not a paraphrase of the goal; the actual starting point. -->
 
 ## What was being attempted
+
 <!-- 2–4 sentences max. The goal, not the journey. -->
 
 ## Current state
+
 <!-- Bullet list, 6 items max. What exists or changed that the next agent must know about.
      File paths, partial states, commands that ran, side effects. -->
 
 ## What went wrong
+
 <!-- 2–4 sentences. The failure mode — not a chronology of attempts. -->
 
 ## Dead ends — do not retry these
+
 <!-- Bullet list, 4 items max. Specific approaches that failed and why. -->
 
 ## Open unknowns
+
 <!-- Bullet list, 4 items max. Gaps that caused or worsened the failure. -->
 
 ## Suggested next approach
+
 <!-- 2–4 sentences or a short bullet list. Only if there is a reasonable lead; omit if genuinely unknown. -->
 ```
 
