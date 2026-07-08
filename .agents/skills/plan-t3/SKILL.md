@@ -182,7 +182,10 @@ to hit:
   is a guess delegated to someone with less context than you.
 
 Then fill `deliverables.md` (status board + mirrored task checklists) and
-draft `overview.md`.
+draft `overview.md`. Before moving to Peer Review, sweep every file in the
+bundle for leftover template scaffolding: every `<...>` placeholder and every
+`<!-- -->` comment must be gone — replaced with real content, or deleted if
+it was only instructional.
 
 ### Stage 5 — Peer Review
 

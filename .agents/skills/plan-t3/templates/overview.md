@@ -1,15 +1,13 @@
 # Overview: {{TITLE}}
 
-<!--
-Audience: a team lead deciding whether to approve this work.
-Keep it short enough to read in two minutes. No implementation detail —
-that lives in plan.md. Bundle: {{BUNDLE}}
--->
+Audience: a team lead deciding whether to approve this work. Keep it short
+enough to read in two minutes. No implementation detail — that lives in
+plan.md.
 
 - **Repo**: {{REPO}}
 - **Bundle**: `{{BUNDLE}}`
 - **Created**: {{DATE}}
-- **Status**: draft <!-- draft | approved | in-progress | done | abandoned -->
+- **Status**: draft _(draft / approved / in-progress / done / abandoned)_
 
 ## Problem
 

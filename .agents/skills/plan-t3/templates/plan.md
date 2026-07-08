@@ -1,14 +1,13 @@
 # Plan: {{TITLE}}
 
-<!--
-Audience: a FRESH implementation agent with zero conversation context —
-treat them as a capable mid-level engineer executing a pathway a senior
-engineer (the planner) has already defined. Assume the reader knows nothing
-that is not written here or discoverable in the repo; every judgment call
-should already be made. More instruction is better. Bundle: {{BUNDLE}}
--->
+Audience: a FRESH implementation agent with zero conversation context — treat
+them as a capable mid-level engineer executing a pathway a senior engineer
+(the planner) has already defined. Assume the reader knows nothing that is
+not written here or discoverable in the repo; every judgment call should
+already be made. More instruction is better.
 
 - **Repo**: {{REPO}}
+- **Bundle**: `{{BUNDLE}}`
 - **Created**: {{DATE}}
 
 ## Implementor instructions
@@ -52,12 +51,10 @@ Name real files, functions, and commands.>
 
 ## Deliverables
 
-<!--
 Vertical slices of value, each independently verifiable. Numbers are stable:
 mark dropped ones "(dropped)" rather than renumbering. The checklist copies
 of these live in deliverables.md — this section carries the full description,
 constraints, and acceptance criteria.
--->
 
 ### Deliverable 1. <short name>
 

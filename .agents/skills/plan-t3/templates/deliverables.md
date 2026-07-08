@@ -1,20 +1,19 @@
 # Deliverables: {{TITLE}}
 
-<!--
-Audience: the implementation agent (writes) and the user (reads at a glance).
-This file is the ONLY progress tracker — plan.md is not edited during
-implementation. Keep entries terse; detail lives in plan.md.
-Bundle: {{BUNDLE}}
--->
+Audience: the implementation agent (writes) and the user (reads at a
+glance). This file is the ONLY progress tracker — plan.md is not edited
+during implementation. Keep entries terse; detail lives in plan.md.
+
+- **Bundle**: `{{BUNDLE}}`
 
 ## Status board
+
+Status values: todo / in-progress / done / blocked / dropped.
 
 | # | Deliverable | Status | Started | Finished |
 |---|-------------|--------|---------|----------|
 | 1 | <short name> | todo | | |
 | 2 | <short name> | todo | | |
-
-<!-- Status: todo | in-progress | done | blocked | dropped -->
 
 ## Deliverable 1. <short name>
 

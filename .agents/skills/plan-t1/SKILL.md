@@ -82,6 +82,9 @@ Fill the plan file. The standard to hit:
 - Sweep for research markers ("TBD", "unclear", "figure out later"): resolve
   them by reading code now, or surface them to the user. Hedges don't ship
   in a plan file.
+- Sweep for template scaffolding: every `<...>` placeholder and every
+  `<!-- -->` comment must be gone from the final file — replaced with real
+  content, or deleted if it was only instructional.
 
 ### 5. Delivery
 

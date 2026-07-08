@@ -1,17 +1,15 @@
 # Plan (T1): {{TITLE}}
 
-<!--
-Single-file plan + deliverables tracker for a contained piece of work.
-The implementor may be the planning agent (same session) or a fresh one —
-write Context and Approach so either can execute without the chat.
-Implementor: tick tasks here as you go, set Status, and log deviations
-under Log rather than silently diverging.
-File: {{FILE}}
--->
+Single-file plan + deliverables tracker for a contained piece of work. The
+implementor may be the planning agent (same session) or a fresh one — write
+Context and Approach so either can execute without the chat. Implementor:
+tick tasks here as you go, set Status, and log deviations under Log rather
+than silently diverging.
 
 - **Repo**: {{REPO}}
 - **Created**: {{DATE}}
-- **Status**: draft <!-- draft | in-progress | done | abandoned -->
+- **File**: {{FILE}}
+- **Status**: draft _(draft / in-progress / done / abandoned)_
 
 ## Context
 
@@ -41,6 +39,7 @@ if any were close.>
 
 ## Log
 
-<!-- Dated notes: deviations from plan, surprises, resolutions. Newest at top. Format: - **YYYY-MM-DD — agent:<name> - source:<origin>** - note. -->
+Dated notes: deviations from plan, surprises, resolutions. Newest at top.
+Format: `- **YYYY-MM-DD — agent:<name> - source:<origin>** - note.`
 
 - **{{DATE}} — agent:plan-t1 - source:self** - Plan created.
