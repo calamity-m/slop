@@ -13,14 +13,16 @@ conversation context** can implement it.
 Two facts drive every design choice here:
 
 1. **The implementor is not you.** The user always starts a new session for
-   implementation, and the implementor is best treated as a **mid-level
-   engineer**: competent with code, reliable at executing a clear pathway,
-   but not equipped to make the architectural judgment calls you are making
-   now. You are the senior engineer defining that pathway. Anything that
-   lives only in this conversation is lost, and any decision you leave open
-   gets made by someone with less context and less judgment than you have
-   at this moment — so write everything the implementor needs into the
-   bundle, decisions included.
+   implementation, and the implementor is best treated as a **junior
+   engineer who executes literally**: it follows explicit instructions
+   faithfully, but wherever the plan leaves a gap it will improvise — and
+   its improvisations are confident, plausible-looking, and frequently
+   wrong. You are the senior engineer; nothing may be left to its judgment.
+   Anything that lives only in this conversation is lost, and any decision
+   you leave open gets made by someone with far less context and far worse
+   judgment than you have at this moment — so write everything the
+   implementor needs into the bundle, decisions included, in imperative
+   do-this form rather than descriptive prose.
 2. **Your context window is the scarce resource.** Planning burns context
    fast. Push exploration, review, and comparison work into sub-agents that
    return digests; keep the main thread for synthesis and user interaction.
@@ -149,10 +151,12 @@ and why they lost in `overview.md`.
 
 ### Stage 4 — Plan Writing
 
-Write `plan.md` as the senior engineer handing a pathway to a mid-level
-implementor: they will execute what you specify well, and improvise poorly
-where you left gaps. The template's structure is the contract; the standard
-to hit:
+Write `plan.md` as the senior engineer handing a pathway to a junior,
+literal-minded implementor: it executes what you specify faithfully and
+improvises badly — with full confidence — anywhere you left a gap. Write
+instructions, not descriptions: "add field X to struct Y in `path/file`",
+not "the config should support X". The template's structure is the
+contract; the standard to hit:
 
 - **Context as settled fact.** Everything from Stage 1 the implementor needs,
   written declaratively. No "as discussed", no chat references — the
@@ -171,6 +175,14 @@ to hit:
   not horizontal layers. Each has concrete acceptance criteria: the command
   to run, the behavior to observe. Order them so value is proven early, not
   only at the end.
+- **Every task passes the specificity bar.** A task names the file (and the
+  function/symbol where one applies), states the exact change as an
+  imperative, and ends with how to verify it — a command to run or a
+  behavior to observe. The test: *could this task be executed without
+  making a single decision?* If not, either split it into tasks that pass,
+  or make the decision now and write it in. "Wire up the config" fails;
+  "add `retry_limit int` to `Config` in `internal/server/config.go`,
+  default 3, then `go build ./...`" passes.
 - **Decisions, not options.** The plan records what was chosen and why, never
   a menu. If you catch yourself writing alternatives, the decision belongs
   back in Stage 3.

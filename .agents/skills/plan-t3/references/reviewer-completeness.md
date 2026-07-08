@@ -14,9 +14,10 @@ issues.md). Read everything, then produce findings for your angle only.
 
 ## Your angle
 
-Your test for every finding: *could a mid-level engineer, starting from only
-this bundle and the repo, do the work without guessing and without having to
-make an architectural judgment call the plan should have made for them?*
+Your test for every finding: *could a junior engineer who executes
+instructions literally, starting from only this bundle and the repo, do the
+work without guessing, without deciding anything, and without having to make
+an architectural judgment call the plan should have made for them?*
 
 Look for:
 

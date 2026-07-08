@@ -1,10 +1,11 @@
 # Plan: {{TITLE}}
 
 Audience: a FRESH implementation agent with zero conversation context — treat
-them as a capable mid-level engineer executing a pathway a senior engineer
-(the planner) has already defined. Assume the reader knows nothing that is
-not written here or discoverable in the repo; every judgment call should
-already be made. More instruction is better.
+them as a junior engineer who executes instructions literally and improvises
+badly wherever the plan is silent. Assume the reader knows nothing that is
+not written here or discoverable in the repo; every judgment call is already
+made, and every task is an imperative naming real files and real changes.
+More instruction is better.
 
 - **Repo**: {{REPO}}
 - **Bundle**: `{{BUNDLE}}`
@@ -63,10 +64,12 @@ constraints, and acceptance criteria.
 **Acceptance**: <concrete, checkable done-state — the command to run, the
 behavior to observe, the test that must pass.>
 
-**Tasks**:
+**Tasks**: each task is an imperative naming the file (and function/symbol
+where one applies) and the exact change, and ends with a verify step. A task
+that requires the implementor to decide anything is not done being written.
 
-1. <concrete step>
-2. <concrete step>
+1. <imperative change naming file/function> — verify: <command or observation>
+2. <imperative change naming file/function> — verify: <command or observation>
 
 ### Deliverable 2. <short name>
 
