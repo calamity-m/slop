@@ -23,6 +23,18 @@
         "path": "./rust-tokio.json"
       },
       {
+        "language": "go",
+        "path": "./go.json"
+      },
+      {
+        "language": "go",
+        "path": "./go-test.json"
+      },
+      {
+        "language": "python",
+        "path": "./python.json"
+      },
+      {
         "language": "java",
         "path": "./java.json"
       },
