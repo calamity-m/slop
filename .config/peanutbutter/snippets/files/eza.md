@@ -31,7 +31,7 @@ eza -lha -s <@sort>
 Equivalent to the `ls -lsha` habit: `-l` uses long listing, `-a` includes hidden files, and `-S` adds the allocated block-size column. `--header` labels the columns and `--icons` keeps the output consistent with the shell aliases.
 
 ```bash
-eza -laS --header --icons <@path>
+eza -laS --header --icons auto <@path>
 ```
 
 ## eza list directories in a directory
@@ -71,5 +71,5 @@ Example:
 ```
 
 ```bash
-eza --tree --git-ignore --all --icons <@directory>
+eza --tree --git-ignore --all --icons auto <@directory>
 ```
