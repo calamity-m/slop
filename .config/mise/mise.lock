@@ -308,6 +308,20 @@ checksum = "sha256:fdf7213a14ee74dc0635c81fca9257a962a8ade1f175fab923ef1a1e560c9
 url = "https://github.com/calamity-m/fml/releases/download/v0.11.1/fml-x86_64-unknown-linux-musl.tar.gz"
 url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/454368051"
 
+[[tools."github:calamity-m/jam"]]
+version = "0.1.1"
+backend = "github:calamity-m/jam"
+
+[tools."github:calamity-m/jam"."platforms.linux-x64"]
+checksum = "sha256:1edcdd2b991cb40edf58794e703e2a85c2d35b78594afd3d75acbf7fa5c8c012"
+url = "https://github.com/calamity-m/jam/releases/download/v0.1.1/jam-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/jam/releases/assets/466917355"
+
+[tools."github:calamity-m/jam"."platforms.linux-x64-musl"]
+checksum = "sha256:330b54036263ee4126f1c1b4b5a910d5adf5fda194881dd48125b2b3a44eaa0c"
+url = "https://github.com/calamity-m/jam/releases/download/v0.1.1/jam-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/jam/releases/assets/466917354"
+
 [[tools."github:calamity-m/peanutbutter"]]
 version = "0.25.0"
 backend = "github:calamity-m/peanutbutter"
