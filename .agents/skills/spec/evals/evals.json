@@ -1,0 +1,26 @@
+{
+  "skill_name": "spec",
+  "evals": [
+    {
+      "id": 0,
+      "name": "rate-limiting",
+      "prompt": "We run a notifications-api service (Go, Postgres, Redis-backed queue, deployed on k8s, ~500 req/s at peak). It exposes POST /v1/messages (enqueue a message for delivery), GET /v1/messages/{id} (delivery status), and POST /v1/webhooks (register a callback URL). Auth is a per-customer API key in the Authorization header. Right now any API key can call POST /v1/messages as often as it wants. Last week one customer's runaway script pushed ~40k messages in under a minute, which backed up the shared Redis queue and delayed delivery for every other customer for ~20 minutes. We want per-API-key rate limiting on the write endpoints so one customer can't starve the others. Write me a spec for this.",
+      "expected_output": "A single spec markdown file with a clear problem statement (noisy-neighbor starvation), measurable goals/non-goals, numbered testable FRs (per-key limits, 429 behavior, limit scope) and NFRs (added latency budget, where counters live), a design with control flow for the limit check, edge cases (burst vs sustained, key rotation, clock skew, Redis unavailable), and acceptance criteria mapped to requirement numbers. No leftover template placeholders.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "name": "idempotency",
+      "prompt": "Our payments-service (Node/TypeScript, Postgres) exposes POST /charges, which creates a charge against a customer's saved card via an external processor (Stripe-like). Clients retry the request when they hit a network timeout. Over the last quarter we had roughly 30 duplicate charges: a client timed out waiting for a response that actually succeeded, retried, and got charged a second time. We want to add idempotency keys so that a retried request with the same key returns the original result instead of creating a second charge. Write a spec for it.",
+      "expected_output": "A single spec markdown file with a clear problem (retries causing duplicate charges), measurable goals/non-goals, numbered testable FRs (key required/optional, same key returns original response, key scoping, TTL) and NFRs (storage, added latency), a design with control flow covering the concurrent-retry race, edge cases (same key different payload, in-flight duplicate, key reuse after TTL, processor succeeded but store write failed), and acceptance criteria mapped to requirements. No leftover template placeholders.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "incremental-sync",
+      "prompt": "We sync inventory from our warehouse system into catalog-db (Postgres) with a nightly cron job that does a full table replace: TRUNCATE then bulk-insert all rows. It's grown to ~2M SKUs and now takes about 3 hours. Worse, because of the truncate, the catalog table is briefly empty mid-sync, so around 2am the storefront shows 'out of stock' for every product for several minutes. We want to move to an incremental sync that applies only the deltas since the last run and never leaves the catalog in an empty or partial state that customers can see. Spec it.",
+      "expected_output": "A single spec markdown file with a clear problem (full-replace causes empty catalog + long runtime), measurable goals/non-goals, numbered testable FRs (delta detection, upsert/delete handling, atomic visibility/no empty state) and NFRs (runtime budget, correctness after failure), a design with control flow for a delta run and how atomic swap/visibility is achieved, edge cases (deleted SKUs, mid-run failure, warehouse full-refresh signal, first run with no prior state, schema drift), and acceptance criteria mapped to requirements. No leftover template placeholders.",
+      "files": []
+    }
+  ]
+}
