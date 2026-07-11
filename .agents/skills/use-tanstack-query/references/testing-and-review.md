@@ -63,10 +63,11 @@ For queries, cover:
 
 For SSE-backed queries, also cover:
 
-- one initial snapshot followed by validated create/update/delete events;
+- the declared ownership mode: authoritative row stream or snapshot synchronization;
+- authoritative replacement snapshots, or scan start/batch/complete boundaries with generation resets;
 - duplicate and out-of-order event IDs or entity versions;
-- a disconnect, reconnect, replay, and unrecoverable-gap invalidation;
-- events racing the initial snapshot and mutation responses;
+- a disconnect, reconnect, replay, and unrecoverable-gap restart or invalidation;
+- stream generations racing reconnects, and snapshot events racing mutation responses when applicable;
 - malformed or unauthorized events without cache corruption;
 - cleanup on key change and unmount, including React Strict Mode setup/cleanup; and
 - bounded work under bursts rather than one refetch per event.
@@ -172,4 +173,4 @@ The dehydrated data is stale under browser defaults, keys/options differ between
 - Do tests cover error, empty, background refresh, parameter changes, and mutation failure?
 - Have installed types, lint, tests, and nearby project conventions been checked?
 - If SSR, persistence, or offline mutation replay is used, are serialization, privacy, cache compatibility, and per-request isolation verified?
-- If SSE is used, is the finite snapshot separate from the stream, is connection cleanup reliable, and are replay gaps, ordering, authorization, and high event rates handled?
+- If SSE is used, is its authority and event contract explicit, is connection cleanup reliable, and are generation changes, replay gaps, ordering, authorization, and high event rates handled?

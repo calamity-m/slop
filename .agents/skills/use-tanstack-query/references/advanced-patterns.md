@@ -140,11 +140,11 @@ For offline mutations, define mutation defaults with stable mutation keys so res
 
 Use `refetchInterval` for polling only when staleness tolerance and server cost justify it. Pause or vary it based on visibility and query data using APIs supported by installed types. Prevent overlapping ad hoc timers; Query already coordinates observers and requests.
 
-For WebSocket or generic push events:
+For WebSocket or generic push events that synchronize a finite query:
 
 - update an exact cache entry with a complete versioned event; or
 - invalidate affected key prefixes when the event only signals change.
 
-Include entity versions or timestamps to reject out-of-order events. Push delivery does not remove the need for initial queries, reconnect recovery, authorization, or periodic reconciliation.
+Include entity versions or timestamps to reject out-of-order events. Snapshot-synchronization push still needs an initial query and reconnect recovery. An authoritative row stream can instead materialize its own snapshots or batches, but it still needs explicit ordering, recovery, authorization, and lifecycle rules.
 
-For SSE transport ownership, snapshot races, reconnection, cache-update examples, and testing, read [server-sent-events.md](server-sent-events.md).
+For SSE authority, generation-scoped scans, transport ownership, reconnection, cache materialization, and testing, read [server-sent-events.md](server-sent-events.md).

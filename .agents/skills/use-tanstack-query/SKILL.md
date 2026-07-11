@@ -1,6 +1,6 @@
 ---
 name: use-tanstack-query
-description: Build, configure, debug, test, or review asynchronous server-state flows with TanStack Query v5, especially @tanstack/react-query. Use for QueryClient setup, query keys and options, request lifecycles, dependent or parallel queries, pagination and infinite queries, mutations, invalidation, optimistic updates, prefetching, cancellation, SSR and hydration, persistence and offline behavior, Server-Sent Events (SSE) and other push-driven cache updates, cache debugging, or migration away from effect-driven fetching. This skill is self-contained for work without internet access.
+description: Build, configure, debug, test, or review asynchronous server-state flows with TanStack Query v5, especially @tanstack/react-query. Use for QueryClient setup, query keys and options, request lifecycles, dependent or parallel queries, pagination and infinite queries, mutations, invalidation, optimistic updates, prefetching, cancellation, SSR and hydration, persistence and offline behavior, authoritative Server-Sent Events (SSE) streams and push-driven cache updates, cache debugging, or migration away from effect-driven fetching. This skill is self-contained for work without internet access.
 ---
 
 # Use TanStack Query
@@ -12,7 +12,7 @@ Use TanStack Query v5 as a server-state cache and async lifecycle manager. Do no
 - Read [references/fundamentals.md](references/fundamentals.md) for every task. It defines ownership, QueryClient setup, keys, query functions, defaults, state semantics, and query composition.
 - Read [references/mutations-and-cache.md](references/mutations-and-cache.md) when implementing writes, invalidation, direct cache updates, or optimistic behavior.
 - Read [references/advanced-patterns.md](references/advanced-patterns.md) for pagination, infinite queries, prefetching, routers, SSR/hydration, persistence, offline behavior, or cancellation.
-- Read [references/server-sent-events.md](references/server-sent-events.md) when loading an initial snapshot and keeping it synchronized with SSE, updating or invalidating caches from events, recovering reconnect gaps, or testing stream behavior.
+- Read [references/server-sent-events.md](references/server-sent-events.md) when SSE is the authoritative data source, when it synchronizes an initial snapshot, when materializing stream results into a Query cache, or when recovering and testing stream behavior.
 - Read [references/testing-and-review.md](references/testing-and-review.md) before finalizing an implementation, diagnosing a bug, or reviewing Query code.
 
 ## Workflow
@@ -20,6 +20,7 @@ Use TanStack Query v5 as a server-state cache and async lifecycle manager. Do no
 1. Inspect `package.json`, the lockfile, the application root, API-client conventions, and nearby Query usage. Confirm the installed package is v5-compatible; trust installed types when a minor-version API differs.
 2. Identify ownership before writing hooks:
    - Put remote, asynchronously synchronized data in Query.
+   - When a long-lived stream is the only authoritative transport, use an explicit stream lifecycle and choose a dedicated store or Query cache only for its materialized result.
    - Keep ephemeral UI state, form drafts, and purely local state outside Query.
    - Treat route/search state as an input to query keys, not a second copy of cached server data.
 3. Define the server contract and key factory. Put every input that can change returned data in the key, including resource identity, tenant, locale, filters, sort, page, and authorization scope when cache sharing would otherwise be unsafe.
@@ -27,7 +28,7 @@ Use TanStack Query v5 as a server-state cache and async lifecycle manager. Do no
 5. Choose freshness deliberately. Set `staleTime` from how long data remains trustworthy; set `gcTime` from how long inactive data is worth retaining. Do not use either value to paper over a bad key or invalidation design.
 6. Model reads declaratively with `queryOptions`, `useQuery`, `useQueries`, or `useInfiniteQuery`. Prefer keys and `enabled`/`skipToken` over imperative refetch effects.
 7. Model writes with `useMutation`. Choose the least complex correct reconciliation strategy: invalidate, update from an authoritative response, optimistic UI, then full optimistic cache rollback.
-8. When the server pushes changes, load a finite HTTP snapshot with Query and manage the SSE connection as a separate lifecycle. Apply validated, versioned events with exact immutable cache updates when safe; otherwise invalidate the affected keys. See [references/server-sent-events.md](references/server-sent-events.md).
+8. When the server pushes data, first identify the ownership contract. If SSE is authoritative, manage the connection as a stream lifecycle and materialize its replacement snapshots or generation-scoped batches directly into a stream store or Query cache. If SSE only announces changes to a finite HTTP snapshot, patch or invalidate that snapshot. See [references/server-sent-events.md](references/server-sent-events.md).
 9. Render data state separately from transport state. Preserve useful stale data during background refetches and show blocking UI only when no usable data exists. Represent stream connectivity separately from Query's fetch state.
 10. Verify cache behavior across navigation, parameter changes, concurrent mutations, stream reconnects and gaps, failures, refocus/reconnect, and unmount/cancellation using [references/testing-and-review.md](references/testing-and-review.md).
 
@@ -44,7 +45,7 @@ Use TanStack Query v5 as a server-state cache and async lifecycle manager. Do no
 - Await or return invalidation when mutation pending state must include reconciliation.
 - Add optimistic cache updates only when every affected cache entry can be identified and rolled back correctly.
 - Do not put credentials, non-serializable objects, unstable class instances, or functions in query keys.
-- Do not use a never-resolving SSE subscription as a `queryFn`. Queries load finite snapshots; a separately owned stream synchronizes the cache and must be closed on cleanup.
+- Do not use a never-resolving SSE subscription as a `queryFn`. Own the connection separately and close it on cleanup. An authoritative stream may populate a dedicated stream store or materialize defined snapshots into Query's cache; Query status does not represent stream progress or connectivity.
 
 ## Version Fence
 

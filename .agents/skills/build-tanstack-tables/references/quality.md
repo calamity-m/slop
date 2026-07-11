@@ -67,11 +67,11 @@ Then test behavior through the UI with the project's normal React test stack:
 
 For SSE-backed tables, additionally test:
 
-1. Apply a versioned update to a visible row without losing selection or expansion keyed by domain ID.
-2. Delete a selected row and reconcile selection, row count, empty-page navigation, and focus.
-3. Receive a create/update that may change filter membership or sort position; verify exact patching is used only when the page remains provably correct and otherwise verify invalidation.
+1. Apply a replacement snapshot or current-generation batch without losing selection or expansion keyed by domain ID.
+2. Start a new scan generation; verify stale rows are cleared or retained exactly as the contract declares and late batches from the old generation are ignored.
+3. Complete an empty or partial scan and reconcile selection, totals, focus, and progress state.
 4. Change table request state; verify the old stream closes and events cannot write into the new key.
-5. Disconnect and reconnect with replay, duplicate events, and an unrecoverable gap.
+5. Disconnect and reconnect with replay, duplicate events, and an unrecoverable gap or scan restart.
 6. Deliver an event while a cell has an unsaved draft; verify the declared merge, conflict, or defer policy.
 
 Prefer observable UI and request assertions over snapshots of internal Table objects. Use fake timers only around debouncing, and restore them after each test.
@@ -94,6 +94,6 @@ Prefer observable UI and request assertions over snapshots of internal Table obj
 | Next remains enabled incorrectly | Missing/unknown total or placeholder count | Supply `rowCount`/`pageCount` and gate transient navigation |
 | Cell shows `[object Object]` or sorts strangely | Accessor returns non-primitive data | Return a primitive or define matching render/sort/filter functions |
 | Refresh error removes usable table | Error branch ignores cached data | Distinguish initial error from refetch error with existing data |
-| Live row appears on the wrong page or in the wrong order | SSE event was appended without applying server-owned filter/sort/page rules | Invalidate affected pages or patch only when membership and rank are provably unchanged |
+| Live rows duplicate, mix scans, or appear in the wrong order | Replacement snapshots and scan batches are conflated, or old generations remain active | Encode event semantics and generation IDs; replace or accumulate only as declared and ignore obsolete generations |
 | Selection jumps after a live update | Row indexes or mutable fields are used as identity | Use a durable domain ID with `getRowId` and reconcile deleted IDs |
 | Duplicate connections or updates | Stream setup leaked across remounts or each row opened a connection | Own one connection at the resource boundary and close it during every cleanup |

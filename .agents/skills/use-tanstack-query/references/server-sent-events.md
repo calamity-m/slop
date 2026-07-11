@@ -2,152 +2,246 @@
 
 ## Contents
 
-- Ownership model
-- Transport and event contract
-- Snapshot plus stream pattern
-- Cache reconciliation
+- Authority model
+- Authoritative scan contract
+- Connection ownership
+- Materialization pattern
+- Query integration
 - Ordering and reconnect recovery
 - Authentication and lifecycle
 - Performance and testing
 
-## Ownership Model
+## Authority Model
 
-Use TanStack Query to load and cache a finite authoritative snapshot. Use SSE as a separately owned synchronization channel that updates or invalidates that cache.
+Decide what SSE means before choosing a cache strategy:
 
-Do not make `queryFn` open an `EventSource` and return a promise that resolves only when the stream closes. That leaves the query pending indefinitely and misuses retry, cancellation, freshness, and garbage collection. A typical flow is:
+- **Authoritative row stream:** SSE carries the row data consumers should render. A long-lived scan may periodically emit complete replacement snapshots or emit batches that build one generation of results. Materialize those payloads directly; there may be no row query to invalidate.
+- **Snapshot synchronization:** a finite HTTP query owns the authoritative snapshot and SSE carries entity changes or “data changed” notifications. Patch the snapshot when exact reconciliation is safe; otherwise invalidate it.
 
-1. Fetch a snapshot with a normal query.
-2. Open one stream at the narrowest shared resource boundary that needs live updates.
-3. Validate each event and reconcile the relevant cache entries.
-4. Recover missed events with replay or invalidation/refetch.
-5. Close the stream when its resource, tenant, or authorization scope changes and on unmount.
+Do not silently turn the first contract into the second. If the backend spends minutes scanning and returns rows through SSE, refetching an unrelated HTTP endpoint on every message discards the stream's value and creates competing sources of truth.
 
-Connection state such as `connecting`, `open`, `reconnecting`, and `closed` is transport/UI state, not snapshot data. Keep it in local state or a shared connection store when multiple consumers need it. Query's `isFetching` does not describe SSE connectivity.
+An SSE connection still must not be a never-resolving `queryFn`. Query functions model finite promise lifecycles; stream connection, progress, completion, and reconnect state need a separately owned lifecycle. The materialized result can live in a dedicated external store or, when shared Query-cache access is useful, be written immutably to a well-defined cache entry. Query's `isPending`, `isFetching`, retry, `staleTime`, and `gcTime` do not describe stream state.
 
-## Transport And Event Contract
+## Authoritative Scan Contract
 
-Prefer a small discriminated, versioned event envelope:
+Make replacement versus accumulation unambiguous. A useful generation-scoped contract is:
 
 ```ts
-type ProjectEvent =
-  | { id: string; type: 'project.updated'; project: Project; version: number }
-  | { id: string; type: 'project.deleted'; projectId: string; version: number }
-  | { id: string; type: 'projects.changed'; reason?: string }
-  | { id: string; type: 'stream.reset' }
+type ScanEvent<Row> =
+  | {
+      id: string
+      type: 'scan.started'
+      scanId: string
+      sequence: number
+    }
+  | {
+      id: string
+      type: 'rows.snapshot'
+      scanId: string
+      sequence: number
+      rows: Row[]
+    }
+  | {
+      id: string
+      type: 'rows.batch'
+      scanId: string
+      sequence: number
+      rows: Row[]
+    }
+  | {
+      id: string
+      type: 'scan.progress'
+      scanId: string
+      sequence: number
+      scanned: number
+      total?: number
+    }
+  | {
+      id: string
+      type: 'scan.completed'
+      scanId: string
+      sequence: number
+      rowCount: number
+    }
+  | {
+      id: string
+      type: 'scan.failed'
+      scanId: string
+      sequence: number
+      error: { code: string; message: string }
+    }
 ```
 
-Validate parsed JSON at the transport boundary before touching the cache. Treat event names, IDs, entity IDs, versions, tenant scope, and payloads as untrusted input. A complete entity plus a monotonic version is easier to reconcile safely than an ambiguous partial patch.
+The protocol must define each payload's semantics:
 
-Native browser `EventSource` uses a long-lived GET request, automatically reconnects, and processes SSE `id`/`retry` fields. It cannot set arbitrary request headers. Same-origin cookies are sent normally; cross-origin cookie use requires an appropriate `withCredentials` setup plus server CORS policy. When the endpoint requires bearer headers, POST bodies, custom retry policy, or detailed HTTP status handling, use a repository-approved fetch-based SSE client and verify its abort, parsing, credential, and reconnection behavior from installed types.
+- `rows.snapshot` replaces all materialized rows for its scope.
+- `rows.batch` contributes to the named scan generation. Define whether duplicate row IDs replace earlier values and whether event order defines display order.
+- `scan.started` establishes the current generation and declares whether the previous result is cleared immediately or remains visible as explicitly stale data.
+- `scan.completed` confirms that the accumulated generation is complete; zero rows is a successful empty result.
+- A new `scanId`, reset event, changed subscription scope, or unrecoverable replay gap cannot be merged accidentally with the old generation.
 
-The server should send a suitable `text/event-stream` response, periodic heartbeats where infrastructure needs them, cache/proxy headers appropriate to the deployment, stable event IDs, and replay support if lossless recovery matters.
+Validate event names, IDs, generation IDs, sequences, tenant/resource scope, row payloads, and progress values before updating state. Use a durable row ID. Prefer monotonic sequence numbers within a generation and define whether stale, duplicate, and skipped sequences are ignored, replayed, or force a generation restart.
 
-## Snapshot Plus Stream Pattern
+## Connection Ownership
 
-Keep key factories and snapshot options reusable. Put stream scope inputs in both the snapshot key and stream URL without exposing secrets:
+Open one stream at the narrowest shared resource boundary that consumes it: a route/provider, resource hook, or reference-counted subscription manager. Never open a connection per row. Scope it to every input that changes the streamed result, such as tenant, resource, scan parameters, filters, sort, or authorization scope.
 
-```tsx
-function useLiveProjects(tenantId: string) {
-  const queryClient = useQueryClient()
-  const projectsQuery = useQuery(projectsOptions(tenantId))
-  const [streamState, setStreamState] = useState<
-    'connecting' | 'open' | 'reconnecting'
-  >('connecting')
+Keep connection state separate from materialized data:
 
-  useEffect(() => {
-    if (!tenantId) return
+```ts
+type StreamStatus =
+  | 'connecting'
+  | 'scanning'
+  | 'complete'
+  | 'reconnecting'
+  | 'failed'
+```
 
-    let disposed = false
-    const source = new EventSource(
-      `/api/projects/events?tenantId=${encodeURIComponent(tenantId)}`,
-    )
+Close the old stream before subscribing to a new scope, reject late callbacks from disposed connections, and clean up listeners on unmount. React Strict Mode may set up, clean up, and set up again in development; correct cleanup makes that safe.
 
-    source.onopen = () => setStreamState('open')
-    source.onerror = () => {
-      if (!disposed) setStreamState('reconnecting')
-      // Native EventSource reconnects automatically; do not create another timer here.
+Native browser `EventSource` uses a long-lived GET, automatically reconnects, and processes SSE `id` and `retry` fields. It cannot set arbitrary request headers. Same-origin cookies are sent normally; cross-origin cookies require an appropriate `withCredentials` and CORS policy. Use a repository-approved fetch-based SSE client when bearer headers, POST bodies, custom retry behavior, or detailed status handling are required, and verify its abort and parsing behavior from installed types.
+
+## Materialization Pattern
+
+Put generation checks and row semantics in one reducer or store rather than scattering them across components:
+
+```ts
+type ScanResult<Row> = {
+  scanId: string | null
+  lastSequence: number
+  rows: Row[]
+  status: StreamStatus
+  scanned: number
+  total?: number
+  error?: { code: string; message: string }
+}
+
+function applyScanEvent<Row extends { id: string }>(
+  state: ScanResult<Row>,
+  event: ScanEvent<Row>,
+): ScanResult<Row> {
+  if (event.type === 'scan.started') {
+    if (event.scanId === state.scanId && event.sequence <= state.lastSequence) {
+      return state
     }
-
-    const onProjectUpdated = (message: MessageEvent<string>) => {
-      const event = parseProjectUpdatedEvent(message.data)
-      if (!event) return
-
-      queryClient.setQueryData<Project>(
-        projectKeys.detail(event.project.id),
-        (old) => (!old || event.version > old.version ? event.project : old),
-      )
-      // List membership and ordering may have changed.
-      void queryClient.invalidateQueries({ queryKey: projectKeys.lists() })
+    return {
+      scanId: event.scanId,
+      lastSequence: event.sequence,
+      rows: [],
+      status: 'scanning',
+      scanned: 0,
     }
+  }
 
-    source.addEventListener('project.updated', onProjectUpdated)
+  if (event.scanId !== state.scanId || event.sequence <= state.lastSequence) {
+    return state
+  }
 
-    return () => {
-      disposed = true
-      source.removeEventListener('project.updated', onProjectUpdated)
-      source.close()
+  if (event.type === 'rows.snapshot') {
+    return { ...state, lastSequence: event.sequence, rows: event.rows }
+  }
+
+  if (event.type === 'rows.batch') {
+    return {
+      ...state,
+      lastSequence: event.sequence,
+      rows: upsertRowsInContractOrder(state.rows, event.rows),
     }
-  }, [queryClient, tenantId])
+  }
 
-  return { ...projectsQuery, streamState }
+  if (event.type === 'scan.progress') {
+    return {
+      ...state,
+      lastSequence: event.sequence,
+      scanned: event.scanned,
+      total: event.total,
+    }
+  }
+
+  if (event.type === 'scan.completed') {
+    return { ...state, lastSequence: event.sequence, status: 'complete' }
+  }
+
+  return {
+    ...state,
+    lastSequence: event.sequence,
+    status: 'failed',
+    error: event.error,
+  }
 }
 ```
 
-Adapt this outline to local React lifecycle helpers and validation conventions. `QueryClient` is stable, so including it in dependencies is correct. React Strict Mode may set up, clean up, and set up again in development; reliable cleanup makes that harmless. Do not suppress dependency checks to keep a connection tied to stale resource inputs.
+This example clears rows on `scan.started`; retain the previous generation only when the product explicitly prefers stale rows during a rescan, and label them as stale until the new generation supplies a replacement. `upsertRowsInContractOrder` must be defined from backend semantics rather than guessed client sorting.
 
-If many components observe the same stream, own one connection in a provider, route boundary, or reference-counted subscription manager. Never open one connection per row. Confirm browser and server connection limits before using multiple named streams.
+## Query Integration
 
-## Cache Reconciliation
+TanStack Query is optional for an authoritative stream's row collection. Prefer a dedicated external store when SSE is the only way rows load and stream status/progress are first-class. This avoids inventing a fake query function or implying that Query retries and freshness control the stream.
 
-Choose the narrowest strategy that remains correct:
+Use Query alongside that store for naturally finite work such as:
 
-- Use `setQueryData` for an exact detail key when the event contains a complete authoritative entity and version.
-- Use `setQueriesData` only when its filter and updater understand every matched cache shape.
-- Invalidate a list prefix when an event can change membership, ordering, aggregates, counts, permissions, or fields omitted by the event.
-- Remove or set a detail entry deliberately after deletion, and invalidate lists that may contain it.
-- Invalidate broadly on `stream.reset`, unknown schema versions, or unrecoverable replay gaps.
+- loading schema or scan configuration;
+- starting, cancelling, or retrying a scan through a finite request;
+- loading row details on demand; and
+- mutations whose finite responses need normal reconciliation.
 
-Update immutably and return the old object for duplicate or older versions so structural sharing avoids needless renders. Do not write `undefined` as successful data. Do not reuse finite-query update logic for the `{ pages, pageParams }` shape of an infinite query.
+Materialize the authoritative result into Query's cache when multiple existing consumers need Query-keyed access or persistence and the application has an explicit observer abstraction for stream-produced entries:
 
-Avoid invalidating on every high-rate event. Buffer a short burst, deduplicate by entity/version, apply one immutable cache update, or coalesce the burst into one invalidation. Bound buffers and flush them on cleanup when correctness requires it. Prefer a periodic reconciliation refetch when the stream is advisory or event volume makes exact client projection too costly.
+```ts
+function publishScanEvent(
+  queryClient: QueryClient,
+  scope: ScanScope,
+  event: ScanEvent<ResultRow>,
+) {
+  queryClient.setQueryData<ScanResult<ResultRow>>(
+    scanKeys.result(scope),
+    (old) => applyScanEvent(old ?? emptyScanResult(), event),
+  )
+}
+```
+
+The stream handler is the producer of that entry. Do not attach a never-resolving `queryFn`, refetch on every row batch, or interpret Query status as scan status. Preserve one exact cache shape, update immutably, and include every stream-scope input in the key. If a finite HTTP snapshot also exists, give its cache entry a distinct ownership contract and define explicitly which source can replace which data.
+
+For notification-style SSE, use the conventional Query strategy instead: apply a complete authoritative entity with `setQueryData`, or invalidate the affected finite-query keys when membership, ordering, counts, or omitted fields cannot be projected safely.
 
 ## Ordering And Reconnect Recovery
 
-Initial loading and streaming have a race: an event can arrive before an older snapshot response and then be overwritten. Pick an explicit protocol:
+Native `EventSource` sends the last processed event ID on reconnect when the server supports the protocol. The server must retain enough history to replay from it. Event IDs help transport replay, while generation and sequence fields protect the row model.
 
-- Return a snapshot cursor/version, then subscribe with `after=<cursor>` and replay later events.
-- Establish the subscription first, buffer events, load the snapshot, then apply only buffered events newer than the snapshot cursor.
-- Include monotonic entity versions in both snapshots and events and reject older writes in every reconciliation path.
+For an authoritative scan, choose one recovery rule:
 
-SSE event IDs help reconnect transport but do not by themselves define entity conflict resolution. Design event processing to tolerate duplicates. If global ordering is unavailable, use per-entity versions and invalidate aggregates or lists that cannot be safely projected.
+- replay every missing event for the same `scanId` and continue accumulation;
+- send a fresh `rows.snapshot` that replaces the materialized collection; or
+- start a new generation and clear or mark the previous result stale.
 
-Native `EventSource` sends the last processed event ID when it reconnects according to the SSE protocol. The server must retain enough history to replay from it. If the server reports a reset/gap or cannot replay, invalidate/refetch the affected keys before treating the cache as current. Consider a low-frequency reconciliation query even with replay when correctness is important.
+Never keep appending after an unknown gap. Never let late events from an obsolete scan overwrite the current generation. If the stream periodically emits complete snapshots, a later valid snapshot can be the recovery boundary without an HTTP refetch.
 
-Coordinate push events with mutations. An optimistic or authoritative mutation response can race an SSE echo. Use operation IDs or versions to deduplicate, and never let an older rollback overwrite a newer pushed value.
+Coordinate mutations with streamed data. If a user mutates a row while a scan is active, define whether the next authoritative snapshot wins, versions merge fields, or the UI flags a conflict. Use operation IDs or versions when mutation responses can race stream echoes.
 
 ## Authentication And Lifecycle
 
-Keep stream scope aligned with cache scope. On logout, tenant change, permission change, or token rotation as required by the transport:
+On logout, tenant change, permission change, or relevant token rotation:
 
 - close the old connection before opening the new one;
-- ensure late callbacks from the disposed source cannot write to cache;
-- clear or invalidate data that the new principal must not see; and
-- reconnect through the application's normal authentication refresh boundary.
+- prevent disposed callbacks from writing data;
+- clear data the new principal must not see; and
+- reconnect through the application's normal authentication boundary.
 
-Do not put bearer tokens in query strings because URLs leak through logs, history, and monitoring. Prefer secure cookies for native `EventSource`, or an approved fetch-based client when headers are required. Treat repeated authorization failures as terminal until credentials change rather than creating a tight reconnect loop.
-
-Browser offline/online signals are hints, not proof that the stream is healthy. Show a non-blocking stale/reconnecting indicator while cached data remains usable, and expose an explicit refresh path when recovery fails.
+Do not put bearer tokens in query strings. Treat repeated authorization failures as terminal until credentials change rather than creating a tight reconnect loop. Browser online/offline signals are hints, not proof that the stream is healthy.
 
 ## Performance And Testing
 
-Test the stream adapter independently with synthetic SSE frames or the repository's network mock layer, then test cache-visible behavior with a fresh `QueryClient`. Cover:
+For high-rate scans, batch state publication on a bounded interval, deduplicate rows by durable ID, and preserve unchanged row objects. Bound all queues. If every event is a full replacement snapshot, avoid also replaying it as individual row updates. Use pagination or virtualization to control rendered DOM size; they do not reduce the memory required to retain a complete client-side scan.
 
-- initial snapshot success/error and stream connection timing;
-- create, update, delete, reset, malformed, duplicate, and out-of-order events;
-- snapshot/event and mutation/event races;
-- reconnect with replay and reconnect with an unrecoverable gap;
-- cleanup after key changes, unmount, logout, and Strict Mode remounts;
-- one shared connection for multiple observers; and
-- burst coalescing without unbounded queues or refetch storms.
+Test the stream adapter independently with synthetic SSE frames, then test visible behavior. Cover:
 
-Assert rendered data and connection indicators first. Inspect cache entries, event cursors, and connection counts when those contracts are under test. Use a controllable fake stream rather than wall-clock network timing, and ensure every source, timer, and listener is disposed after each test.
+- first-event loading, successful empty completion, partial progress, and failure;
+- replacement snapshots and generation-scoped batch accumulation;
+- duplicate, stale, skipped, and out-of-order sequences;
+- a new scan starting before the previous scan completes;
+- reconnect by replay, replacement snapshot, and clean generation restart;
+- scope changes and unmount preventing late writes;
+- mutation/stream conflicts when rows are editable;
+- one shared connection for multiple consumers; and
+- burst handling without unbounded queues or one render per raw row.
+
+Assert rows, progress, completion, errors, and reconnect feedback first. Inspect the external store or Query cache only when its shape is itself under test. Ensure every source, timer, listener, and test QueryClient is disposed.
