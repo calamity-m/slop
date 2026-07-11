@@ -1,8 +1,8 @@
 # Long format with headers and icons
-alias ll='eza -l --header --icons'
+alias ll='eza -l --header --icons auto'
 
 # Long format including hidden files
-alias la='eza -la --header --icons'
+alias la='eza -la --header --icons auto'
 
 # Muscle-memory compatibility for `ls -lsha`.
 unalias ls 2>/dev/null || true
