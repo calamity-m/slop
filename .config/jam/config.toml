@@ -1,0 +1,6 @@
+[tui]
+# Exit jam after Enter successfully focuses the selected agent pane.
+quit_on_focus = true
+
+# Close jam's own multiplexer pane whenever the TUI exits.
+close_pane_on_quit = true
