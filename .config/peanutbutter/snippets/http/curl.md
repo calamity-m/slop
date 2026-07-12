@@ -13,6 +13,11 @@ variables:
     default: https://
   output_file:
     default: output.txt
+  method:
+    suggestions:
+      - POST
+      - PUT
+      - PATCH
 ---
 
 # Curl Snippets
@@ -44,7 +49,7 @@ curl --output '<@output_file>' '<@url>'
 ## curl with json body
 
 ```bash
-curl -X <@method:echo "POST\nPUT\nPATCH"> \
+curl -X <@method> \
   -H 'Content-Type: application/json' \
   --data-binary @- \
   '<@url>' <<'JSON'
@@ -55,7 +60,7 @@ JSON
 ## curl with form url encoded
 
 ```bash
-curl -X <@method:echo "POST\nPUT\nPATCH"> \
+curl -X <@method> \
   -H 'Content-Type: application/x-www-form-urlencoded' \
   -d '<@field>=<@value>' \
   '<@url>'
@@ -84,8 +89,4 @@ curl -sI @<url> -o/dev/null -w '%{http_version}\n'
 
 ```bash
 curl -I --http2 <@url>
-```
-
-```
-
 ```
