@@ -60,3 +60,32 @@ curl -X <@method:echo "POST\nPUT\nPATCH"> \
   -d '<@field>=<@value>' \
   '<@url>'
 ```
+
+## curl against sse endpoint to test
+
+```bash
+curl -N -H "Accept: text/event-stream" <@sse_endpoint:?https://stream.wikimedia.org/v2/stream/recentchange>
+```
+
+## curl test http version
+
+Output will be the http version used, i.e. 2 or 1.1.
+
+```bash
+curl -sI @<url> -o/dev/null -w '%{http_version}\n'
+```
+
+## curl test http/2 support explicitly
+
+**What to look for in the output:**
+
+- If HTTP/2 is supported, the very first line of the response headers will explicitly state HTTP/2 200 (or another status code).
+- If it is not supported, the server will negotiate a fallback, and you will see HTTP/1.1 200 OK instead.
+
+```bash
+curl -I --http2 <@url>
+```
+
+```
+
+```
