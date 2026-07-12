@@ -1,6 +1,6 @@
 ---
 name: build-tanstack-tables
-description: Build, configure, debug, or review React data grids using TanStack Table v8, Material React Table v3, and TanStack Query v5. Use for static or server-defined columns, asynchronously loaded rows and schemas, client-side or manual server-side pagination/sorting/filtering, controlled table state, Query integration, Server-Sent Events (SSE) and live row updates, Material UI table configuration, loading/error/empty states, row selection, rendering, performance, accessibility, and tests. This skill is self-contained for work without internet access.
+description: Build, configure, debug, or review React data grids using TanStack Table, Material React Table, and TanStack Query.
 ---
 
 # Build TanStack Tables

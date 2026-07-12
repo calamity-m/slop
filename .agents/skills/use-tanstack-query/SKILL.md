@@ -1,6 +1,6 @@
 ---
 name: use-tanstack-query
-description: Build, configure, debug, test, or review asynchronous server-state flows with TanStack Query v5, especially @tanstack/react-query. Use for QueryClient setup, query keys and options, request lifecycles, dependent or parallel queries, pagination and infinite queries, mutations, invalidation, optimistic updates, prefetching, cancellation, SSR and hydration, persistence and offline behavior, authoritative Server-Sent Events (SSE) streams and push-driven cache updates, cache debugging, or migration away from effect-driven fetching. This skill is self-contained for work without internet access.
+description: Build, configure, debug, test, or review asynchronous server-state flows with TanStack Query, especially @tanstack/react-query.
 ---
 
 # Use TanStack Query
