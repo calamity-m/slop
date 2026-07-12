@@ -309,18 +309,18 @@ url = "https://github.com/calamity-m/fml/releases/download/v0.11.1/fml-x86_64-un
 url_api = "https://api.github.com/repos/calamity-m/fml/releases/assets/454368051"
 
 [[tools."github:calamity-m/jam"]]
-version = "0.1.1"
+version = "0.1.2"
 backend = "github:calamity-m/jam"
 
 [tools."github:calamity-m/jam"."platforms.linux-x64"]
-checksum = "sha256:1edcdd2b991cb40edf58794e703e2a85c2d35b78594afd3d75acbf7fa5c8c012"
-url = "https://github.com/calamity-m/jam/releases/download/v0.1.1/jam-x86_64-unknown-linux-gnu.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/jam/releases/assets/466917355"
+checksum = "sha256:b2797b59189e29bd8becd59cec877eee5d5b3707263fb2d051df95afda3df56c"
+url = "https://github.com/calamity-m/jam/releases/download/v0.1.2/jam-x86_64-unknown-linux-gnu.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/jam/releases/assets/473823203"
 
 [tools."github:calamity-m/jam"."platforms.linux-x64-musl"]
-checksum = "sha256:330b54036263ee4126f1c1b4b5a910d5adf5fda194881dd48125b2b3a44eaa0c"
-url = "https://github.com/calamity-m/jam/releases/download/v0.1.1/jam-x86_64-unknown-linux-musl.tar.gz"
-url_api = "https://api.github.com/repos/calamity-m/jam/releases/assets/466917354"
+checksum = "sha256:8172484a225d920de6356f8f7cd3881d33e7a80af6735882cdcfd094fc06c892"
+url = "https://github.com/calamity-m/jam/releases/download/v0.1.2/jam-x86_64-unknown-linux-musl.tar.gz"
+url_api = "https://api.github.com/repos/calamity-m/jam/releases/assets/473823202"
 
 [[tools."github:calamity-m/peanutbutter"]]
 version = "0.25.0"
@@ -913,36 +913,36 @@ checksum = "sha256:e3d87403b25e1e88addec6548bdbfdbee772a5c313c9f6f96c495b8e163f1
 url = "https://github.com/charmbracelet/vhs/releases/download/v0.11.0/vhs_0.11.0_Windows_x86_64.zip"
 
 [[tools.worktrunk]]
-version = "0.66.0"
+version = "0.67.0"
 backend = "aqua:max-sixty/worktrunk"
 
 [tools.worktrunk."platforms.linux-arm64"]
-checksum = "sha256:ce2dad81c05029c6107bc8ae2791da490485f451658eaf206f3a482250e88a5e"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.66.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
+checksum = "sha256:5bf0590928a3db4751d1508007ba9f164cd49e75930565f5868136e351368adc"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.67.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-arm64-musl"]
-checksum = "sha256:ce2dad81c05029c6107bc8ae2791da490485f451658eaf206f3a482250e88a5e"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.66.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
+checksum = "sha256:5bf0590928a3db4751d1508007ba9f164cd49e75930565f5868136e351368adc"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.67.0/worktrunk-aarch64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-x64"]
-checksum = "sha256:587d619d065f970158f2360c092df55d62c2cbe915fc4875ea7ddc9965b4bc80"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.66.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
+checksum = "sha256:f580b7d12ca9bd750c17e5af05f509f9dfa3523661b982572684c6f541cf661f"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.67.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.linux-x64-musl"]
-checksum = "sha256:587d619d065f970158f2360c092df55d62c2cbe915fc4875ea7ddc9965b4bc80"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.66.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
+checksum = "sha256:f580b7d12ca9bd750c17e5af05f509f9dfa3523661b982572684c6f541cf661f"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.67.0/worktrunk-x86_64-unknown-linux-musl.tar.xz"
 
 [tools.worktrunk."platforms.macos-arm64"]
-checksum = "sha256:0773665530753781aabb6da58dfef57eddd485cc5838429328d59f47e497452e"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.66.0/worktrunk-aarch64-apple-darwin.tar.xz"
+checksum = "sha256:f94431e961c77d988a07e740f80e1b34e4cd8b70853af13fe30562b68bc5f97f"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.67.0/worktrunk-aarch64-apple-darwin.tar.xz"
 
 [tools.worktrunk."platforms.macos-x64"]
-checksum = "sha256:77ed5266e6964d08c61ce6e88560c59cc4c11277d69ffbf116cef162be2db430"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.66.0/worktrunk-x86_64-apple-darwin.tar.xz"
+checksum = "sha256:f1400f14169052a87c622c1258ee00b8085279c88cba0f6f5bfa895fb71d3662"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.67.0/worktrunk-x86_64-apple-darwin.tar.xz"
 
 [tools.worktrunk."platforms.windows-x64"]
-checksum = "sha256:c5c032cbf2b29950e23e777973dc65fbd77ea0463f1e2452360d8efc74c3a43d"
-url = "https://github.com/max-sixty/worktrunk/releases/download/v0.66.0/worktrunk-x86_64-pc-windows-msvc.zip"
+checksum = "sha256:4a3af596f0c2c6c7e3142efd979ed7921441f163ae17c2f8f41e0d96051652f4"
+url = "https://github.com/max-sixty/worktrunk/releases/download/v0.67.0/worktrunk-x86_64-pc-windows-msvc.zip"
 
 [[tools.zellij]]
 version = "0.44.3"
