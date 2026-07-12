@@ -1,6 +1,7 @@
 ---
 name: spec
 description: Write an engineering-focused PRD/spec that defines the problem, testable requirements, solution design, edge cases, and acceptance criteria for a feature or system change. Use whenever the user asks for a spec, PRD, requirements doc, design doc, or wants to pin down what to build and what "done" means before any implementation planning. Not for implementation task lists or work breakdowns.
+disable-model-invocation: true
 ---
 
 # Spec

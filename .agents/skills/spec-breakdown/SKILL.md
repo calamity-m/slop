@@ -1,6 +1,7 @@
 ---
 name: spec-breakdown
 description: Break an engineering spec/PRD document into a sequenced set of implementation tickets — one markdown file per ticket plus an index — and optionally publish them as issues to GitHub, GitLab, or Jira. Use whenever the user wants to turn a spec, PRD, or requirements doc into tickets, issues, stories, or a work breakdown, or asks to publish a breakdown to a tracker. Not for writing the spec itself or for implementing the tickets.
+disable-model-invocation: true
 ---
 
 # Spec breakdown

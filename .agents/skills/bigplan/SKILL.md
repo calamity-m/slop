@@ -1,6 +1,7 @@
 ---
 name: bigplan
 description: Create a living plan document designed for complex features and refactors. Use when the user wants to review an existing bigplan, asks for a new plan, or to mark deliverables in implementation.
+disable-model-invocation: true
 ---
 
 # BIGPLAN
