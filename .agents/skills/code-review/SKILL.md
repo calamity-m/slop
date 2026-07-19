@@ -27,7 +27,7 @@ Review code and code paths with a direct, opinionated eye. Call out what is wron
    - **Sibling finder**: find classes, modules, or files that serve the same role as the code under review. Read 2-3 siblings in full. See `references/sibling-patterns.md` for what to extract.
    - **Control-flow tracer**: follow 2-3 representative call chains from public entry points to their terminal operations. See `references/control-flow.md` for the taxonomy. Report which style the codebase uses.
 
-2. **Detect language** and load the relevant language lens (`languages/<lang>.md`).
+2. **Detect language** and load the relevant language lens (`languages/<lang>.md`). If no lens exists for the language, skip step 4 and state in the output that the review used universal lenses only.
 
 3. **Apply universal lenses:**
    - **Consistency**: code must follow the conventions established by its siblings. The sibling code is the standard — not an external style guide. A new pattern is only acceptable if it is clearly better, not just different. Flag deviations in:
@@ -115,3 +115,5 @@ Omit any section that has no findings. If there are no findings at all, say so p
 - `languages/go.md` — Go goroutine safety, error handling, interface design
 - `languages/python.md` — Python typing, mutability, exception handling, performance gotchas
 - `languages/java.md` — Java nullability, generics, concurrency, resource management
+- `languages/shell.md` — Shell quoting, failure handling, unsafe filesystem operations, portability
+- `languages/lua.md` — Lua nil-safety, global leakage, table sharing, Neovim config gotchas
