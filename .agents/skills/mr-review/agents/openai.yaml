@@ -1,4 +1,0 @@
-interface:
-  display_name: "MR Review"
-  short_description: "Review PRs and MRs with code-quality focus"
-  default_prompt: "Use $mr-review to review this pull request or merge request and leave line-specific findings."

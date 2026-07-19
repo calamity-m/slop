@@ -36,10 +36,6 @@ url = "https://github.com/sharkdp/bat/releases/download/v0.26.1/bat-v0.26.1-x86_
 version = "2.30.0"
 backend = "cargo:lumen"
 
-[[tools."cargo:mermaid-rs-renderer"]]
-version = "0.3.1"
-backend = "cargo:mermaid-rs-renderer"
-
 [[tools.dive]]
 version = "0.13.1"
 backend = "aqua:wagoodman/dive"

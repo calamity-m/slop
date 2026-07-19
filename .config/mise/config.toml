@@ -25,7 +25,6 @@ helm = "latest"
 kubectl = "latest"
 k0sctl = "latest"
 minikube = "latest"
-"cargo:mermaid-rs-renderer" = "latest"
 mark = "latest"
 jwtui = { version = "latest", exe = "jwtui" }
 jwt = "latest"

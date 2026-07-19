@@ -1,4 +1,0 @@
-interface:
-  display_name: "Use TanStack Query"
-  short_description: "Build reliable TanStack Query data flows"
-  default_prompt: "Use $use-tanstack-query to design or improve this TanStack Query v5 data flow."
