@@ -4,7 +4,8 @@
 # Usage: init-breakdown.sh <spec-slug> [--title "Human Title"]
 #
 # Index lands at <git-root>/docs/specs/<spec-slug>/tickets.md, beside the
-# spec it derives from (docs/specs/<spec-slug>.md). Committed like the spec —
+# spec it derives from (docs/specs/<spec-slug>/spec.md). Committed like the
+# spec —
 # the markdown breakdown is the source of truth even after publishing to a
 # tracker. <git-root> falls back to the cwd when not in a git repo. Never
 # overwrites; re-running against an existing index prints its path and exits
@@ -48,8 +49,8 @@ index="$root/docs/specs/$slug/tickets.md"
 template="$(cd "$(dirname "${BASH_SOURCE[0]}")/../templates" && pwd)/tickets.md"
 today="$(date +%Y-%m-%d)"
 
-if [ ! -e "$root/docs/specs/$slug.md" ]; then
-  echo "warning: no spec found at docs/specs/$slug.md — index still created" >&2
+if [ ! -e "$root/docs/specs/$slug/spec.md" ]; then
+  echo "warning: no spec found at docs/specs/$slug/spec.md — index still created" >&2
 fi
 
 if [ -e "$index" ]; then

@@ -3,11 +3,12 @@
 #
 # Usage: init-spec.sh <slug> [--title "Human Title"]
 #
-# Spec lands at <git-root>/docs/specs/<slug>.md. Specs are durable review
-# artifacts meant to be committed, unlike plans — hence docs/, not a
-# gitignored area. <git-root> falls back to the cwd when not in a git repo.
-# Never overwrites; re-running against an existing spec prints its path and
-# exits 0 so the skill can resume safely.
+# Spec lands at <git-root>/docs/specs/<slug>/spec.md. Specs are durable
+# review artifacts meant to be committed, unlike plans — hence docs/, not a
+# gitignored area. The per-slug directory leaves room for sibling files
+# (diagrams, ADRs) alongside spec.md. <git-root> falls back to the cwd when
+# not in a git repo. Never overwrites; re-running against an existing spec
+# prints its path and exits 0 so the skill can resume safely.
 set -euo pipefail
 
 usage() {
@@ -16,7 +17,7 @@ Usage: init-spec.sh <slug> [--title "Human Title"]
 
 Creates an engineering spec (problem, goals, requirements, design, edge
 cases, acceptance criteria) seeded from the template at
-<git-root>/docs/specs/<slug>.md.
+<git-root>/docs/specs/<slug>/spec.md.
 EOF
 }
 
@@ -44,7 +45,7 @@ fi
 
 spec_root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 repo="$(basename "$spec_root")"
-spec="$spec_root/docs/specs/$slug.md"
+spec="$spec_root/docs/specs/$slug/spec.md"
 template="$(cd "$(dirname "${BASH_SOURCE[0]}")/../templates" && pwd)/spec.md"
 today="$(date +%Y-%m-%d)"
 

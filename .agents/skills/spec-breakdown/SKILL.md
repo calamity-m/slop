@@ -21,11 +21,12 @@ wants the tickets executed, surface that and let them choose the next step.
 
 ## The breakdown files
 
-For a spec at `docs/specs/<spec-slug>.md`, the breakdown lives at
-`docs/specs/<spec-slug>/`:
+For a spec at `docs/specs/<spec-slug>/spec.md`, the breakdown lives
+alongside it in the same directory:
 
 ```
 docs/specs/<spec-slug>/
+├── spec.md                 # the spec this breakdown derives from
 ├── tickets.md              # index: sequencing, checklist, issue URLs
 ├── T1-<ticket-slug>.md     # one ticket = one file = one issue
 └── T2-<ticket-slug>.md
@@ -50,7 +51,7 @@ yourself.
 
 ### 1. Read the spec
 
-Locate it (user-named, else `ls docs/specs/*.md`; ask if several match) and
+Locate it (user-named, else `ls docs/specs/*/spec.md`; ask if several match) and
 read it fully. Two checks before deriving anything:
 
 - **Open questions**: an unresolved question becomes a blocked or wrong

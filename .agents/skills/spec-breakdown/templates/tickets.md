@@ -4,7 +4,7 @@ Audience: whoever drives the work — a human picking tickets off the list, or
 an agent implementing the set end-to-end. Each ticket is a standalone file in
 this directory; this index carries ordering and status only.
 
-- **Spec**: `docs/specs/{{SPEC_SLUG}}.md`
+- **Spec**: `docs/specs/{{SPEC_SLUG}}/spec.md`
 - **Created**: {{DATE}}
 - **Published to**: none _(none / github / gitlab / jira — add the parent
   issue/epic URL once published)_

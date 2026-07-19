@@ -4,7 +4,7 @@
 matters. This whole file below the H1 becomes the issue body when published,
 so write it for someone (or some agent) picking up only this ticket.>
 
-- **Spec**: `docs/specs/{{SPEC_SLUG}}.md` <— name the sections that govern
+- **Spec**: `docs/specs/{{SPEC_SLUG}}/spec.md` <— name the sections that govern
   this ticket, e.g. "Design › Control flow: token refresh", rather than
   restating them>
 - **Implements**: <FR-n / NFR-n from the spec>

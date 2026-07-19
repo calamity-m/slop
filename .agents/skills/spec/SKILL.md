@@ -21,7 +21,7 @@ questions with an owner.
 
 ## The spec file
 
-Specs live **in the repo** at `docs/specs/<slug>.md` — they are review
+Specs live **in the repo** at `docs/specs/<slug>/spec.md` — they are review
 artifacts meant to be committed and to outlive the work, so they never go
 in temp dirs or gitignored areas. Create with the bundled script — never
 hand-roll the file:
