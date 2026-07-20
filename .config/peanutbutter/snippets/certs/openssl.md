@@ -7,6 +7,10 @@ variables:
     command: rg --files -g '*.crt' -g '*.pem'
   p12:
     command: rg --files -g '*.p12' -g '*.pfx'
+  out_crt:
+    default: client.crt
+  out_key:
+    default: client.key
 ---
 
 # Cert Snippets
