@@ -11,6 +11,10 @@ variables:
     default: client.crt
   out_key:
     default: client.key
+  bits:
+    suggestions:
+      - 4096
+      - 2048
 ---
 
 # Cert Snippets
@@ -78,5 +82,5 @@ openssl pkcs12 -in <@p12> -nodes | openssl pkcs12 -export -out <@out_p12>
 ## Create RSA key
 
 ```bash
-openssl genrsa -out <@out_key> <@bits:echo "4096\n2048">
+openssl genrsa -out <@out_key> <@bits>
 ```
