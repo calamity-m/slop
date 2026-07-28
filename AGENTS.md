@@ -9,7 +9,7 @@ Personal dotfiles for Neovim, Bash, Zellij, mise, Peanutbutter snippets, and reu
 - Keep `install.sh` conservative: preserve `ensure_symlink` behavior where real files are skipped unless `--force` is passed.
 - Do not bulk-format `.config/zellij/config.kdl`; `.config/nvim/lua/plugins/conform.lua` intentionally disables `kdlfmt` for that file.
 - Respect `.gitignore`: local Neovim overrides live under `.config/nvim/lua/local/*.lua`, private skills live under `.skills/private/`, tracked prompts live under `.agents/prompts/*.md`, and only explicitly listed `.bashrc.d/*.sh` files are tracked.
-- Skills under `.skills/{general,fermenting,deprecated,private}/*/SKILL.md` are executable agent instructions. Keep references relative to each skill directory and verify any referenced scripts or docs exist.
+- Skills under `.skills/{general,management,development,fermenting,deprecated,private}/*/SKILL.md` are executable agent instructions. Keep references relative to each skill directory and verify any referenced scripts or docs exist.
 
 ## 2. Verification
 
@@ -59,7 +59,7 @@ For internal code, comment the why, not the what:
 - Debugger setup lives in `.config/nvim/lua/plugins/dap.lua`; language-specific launch/test workflows live under `.config/nvim/lua/plugins/dap/`.
 - Formatting is centralized in `.config/nvim/lua/plugins/conform.lua`; `format_on_save` is enabled, Prettier only runs when `has_prettier_config(ctx)` finds config, and `WriteNoFormat`/`ConformDir` are the escape hatches.
 - Zellij integration is split: `.config/nvim/lua/zellij.lua` renames panes through `zellij action rename-pane`, while `.config/zellij/config.kdl` uses `clear-defaults=true`, `default_mode "locked"`, custom themes, and disabled `web_sharing`.
-- Tracked skills live under `.skills/{general,fermenting,deprecated}`, while ignored local skills live under `.skills/private`; `install.sh` links each directory's contents into `~/.agents/skills`. Skills and `.agents/prompts` are plain Markdown/YAML/shell dotfiles, not built artifacts.
+- Tracked skills live under `.skills/{general,management,development,fermenting,deprecated}`, while ignored local skills live under `.skills/private`; `install.sh` links each directory's contents into `~/.agents/skills`. Skills and `.agents/prompts` are plain Markdown/YAML/shell dotfiles, not built artifacts.
 
 ## 5. Local Notes
 

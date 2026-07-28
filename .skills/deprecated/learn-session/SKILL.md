@@ -26,7 +26,7 @@ Review the conversation currently in context and extract knowledge worth persist
 
 2. For each candidate, read only the existing files relevant to that candidate to rule out duplication and pick a destination. Do not sweep every knowledge file up front. Depending on the candidate, that means some of:
    - `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules`, `.cursor/rules/*`
-   - Shared skills/agents: `.skills/{general,fermenting,deprecated,private}/*/SKILL.md`, `.agents/agents/*.md`
+   - Shared skills/agents: `.skills/{general,management,development,fermenting,deprecated,private}/*/SKILL.md`, `.agents/agents/*.md`
    - Provider-specific docs and config: `.claude/agents/*.md`, `.claude/settings.json` (hooks), `.codex/agents/*.md`, `.pi/agent/prompts/*.md`
 
 3. Classify each candidate into exactly one destination:

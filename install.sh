@@ -11,7 +11,7 @@ Symlink dotfiles from this repository into $HOME.
 
 Creates:
   ~/.agents/AGENTS.md -> <repo>/.agents/AGENTS.md
-  ~/.agents/skills (directory populated from <repo>/.skills/{general,fermenting,deprecated,private}/*)
+  ~/.agents/skills (directory populated from <repo>/.skills/{general,management,development,fermenting,deprecated,private}/*)
   ~/.config/herdr/config.toml -> <repo>/.config/herdr/config.toml
   ~/.config/jam       -> <repo>/.config/jam
   ~/.config/mise      -> <repo>/.config/mise
@@ -177,6 +177,8 @@ ensure_symlink "$HOME/.agents/AGENTS.md" "$repo_dir/.agents/AGENTS.md" || true
 ensure_dir "$repo_dir/.skills/private" || true
 if prepare_skills_dir; then
   link_skill_dir "$repo_dir/.skills/general"
+  link_skill_dir "$repo_dir/.skills/management"
+  link_skill_dir "$repo_dir/.skills/development"
   link_skill_dir "$repo_dir/.skills/fermenting"
   link_skill_dir "$repo_dir/.skills/deprecated"
   link_skill_dir "$repo_dir/.skills/private"
@@ -240,7 +242,7 @@ ensure_symlink "$codex_root/skills" "$HOME/.agents/skills" || true
 log ""
 log "install complete"
 log "  agents context: ~/.agents/AGENTS.md -> $repo_dir/.agents/AGENTS.md"
-log "  skills: ~/.agents/skills/* <- $repo_dir/.skills/{general,fermenting,deprecated,private}/*"
+log "  skills: ~/.agents/skills/* <- $repo_dir/.skills/{general,management,development,fermenting,deprecated,private}/*"
 log "  prompts: ~/.agents/prompts -> $repo_dir/.agents/prompts"
 log "  scripts: ~/.scripts -> $repo_dir/.scripts"
 log "  herdr:   ~/.config/herdr/config.toml -> $repo_dir/.config/herdr/config.toml"
