@@ -11,7 +11,7 @@ Symlink dotfiles from this repository into $HOME.
 
 Creates:
   ~/.agents/AGENTS.md -> <repo>/.agents/AGENTS.md
-  ~/.config/skills    -> <repo>/.agents/skills
+  ~/.agents/skills (directory populated from <repo>/.skills/{general,fermenting,deprecated,private}/*)
   ~/.config/herdr/config.toml -> <repo>/.config/herdr/config.toml
   ~/.config/jam       -> <repo>/.config/jam
   ~/.config/mise      -> <repo>/.config/mise
@@ -129,11 +129,58 @@ ensure_symlink() {
   log "linked $path -> $target"
 }
 
+prepare_skills_dir() {
+  local path="$HOME/.agents/skills"
+
+  if [[ -L "$path" ]]; then
+    local current
+    current="$(readlink "$path")"
+
+    # Replace the link created by older versions of this installer during migration.
+    if [[ "$current" == "$repo_dir/.agents/skills" ]]; then
+      rm -f "$path"
+      log "removed legacy skills link $path -> $current"
+    elif [[ "$force" -eq 1 ]]; then
+      rm -f "$path"
+      log "removed existing skills link $path -> $current"
+    else
+      warn "skipping skills because $path already links to $current (use --force to replace)"
+      return 1
+    fi
+  elif [[ -e "$path" && ! -d "$path" ]]; then
+    if [[ "$force" -eq 1 ]]; then
+      rm -rf "$path"
+      log "removed existing non-directory $path"
+    else
+      warn "skipping skills because $path already exists and is not a directory (use --force to replace)"
+      return 1
+    fi
+  fi
+
+  ensure_dir "$path"
+}
+
+link_skill_dir() {
+  local source_dir="$1"
+  local entry
+
+  for entry in "$source_dir"/*; do
+    [[ -e "$entry" || -L "$entry" ]] || continue
+    ensure_symlink "$HOME/.agents/skills/${entry##*/}" "$entry" || true
+  done
+}
+
 # Link .config entries into ~/.config
 ensure_dir "$HOME/.config" || true
 ensure_dir "$HOME/.agents" || true
 ensure_symlink "$HOME/.agents/AGENTS.md" "$repo_dir/.agents/AGENTS.md" || true
-ensure_symlink "$HOME/.agents/skills" "$repo_dir/.agents/skills" || true
+ensure_dir "$repo_dir/.skills/private" || true
+if prepare_skills_dir; then
+  link_skill_dir "$repo_dir/.skills/general"
+  link_skill_dir "$repo_dir/.skills/fermenting"
+  link_skill_dir "$repo_dir/.skills/deprecated"
+  link_skill_dir "$repo_dir/.skills/private"
+fi
 ensure_symlink "$HOME/.agents/prompts" "$repo_dir/.agents/prompts" || true
 ensure_symlink "$HOME/.scripts" "$repo_dir/.scripts" || true
 ensure_dir "$HOME/.config/herdr" || true
@@ -193,7 +240,7 @@ ensure_symlink "$codex_root/skills" "$HOME/.agents/skills" || true
 log ""
 log "install complete"
 log "  agents context: ~/.agents/AGENTS.md -> $repo_dir/.agents/AGENTS.md"
-log "  skills: ~/.agents/skills -> $repo_dir/.agents/skills"
+log "  skills: ~/.agents/skills/* <- $repo_dir/.skills/{general,fermenting,deprecated,private}/*"
 log "  prompts: ~/.agents/prompts -> $repo_dir/.agents/prompts"
 log "  scripts: ~/.scripts -> $repo_dir/.scripts"
 log "  herdr:   ~/.config/herdr/config.toml -> $repo_dir/.config/herdr/config.toml"

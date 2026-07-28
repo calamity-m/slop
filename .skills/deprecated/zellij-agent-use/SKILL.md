@@ -26,28 +26,28 @@ Prefer `scripts/ztui` over raw `zellij action` commands so pane targeting and ca
 1. Find or create the TUI pane:
 
 ```bash
-.agents/skills/zellij-agent-use/scripts/ztui panes
-.agents/skills/zellij-agent-use/scripts/ztui run --name tui-under-test -- cargo run
+~/.agents/skills/zellij-agent-use/scripts/ztui panes
+~/.agents/skills/zellij-agent-use/scripts/ztui run --name tui-under-test -- cargo run
 ```
 
 2. Capture the current viewport:
 
 ```bash
-.agents/skills/zellij-agent-use/scripts/ztui capture terminal_3
+~/.agents/skills/zellij-agent-use/scripts/ztui capture terminal_3
 ```
 
 3. Send input:
 
 ```bash
-.agents/skills/zellij-agent-use/scripts/ztui key terminal_3 Tab
-.agents/skills/zellij-agent-use/scripts/ztui text terminal_3 "filter text"
-.agents/skills/zellij-agent-use/scripts/ztui enter terminal_3
+~/.agents/skills/zellij-agent-use/scripts/ztui key terminal_3 Tab
+~/.agents/skills/zellij-agent-use/scripts/ztui text terminal_3 "filter text"
+~/.agents/skills/zellij-agent-use/scripts/ztui enter terminal_3
 ```
 
 4. Wait for an expected screen state when the TUI updates asynchronously:
 
 ```bash
-.agents/skills/zellij-agent-use/scripts/ztui wait terminal_3 "Expected text" --timeout 5
+~/.agents/skills/zellij-agent-use/scripts/ztui wait terminal_3 "Expected text" --timeout 5
 ```
 
 5. Capture again and inspect the visible state. Repeat until the workflow has been exercised.

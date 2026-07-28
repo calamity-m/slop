@@ -26,12 +26,12 @@ Review the conversation currently in context and extract knowledge worth persist
 
 2. For each candidate, read only the existing files relevant to that candidate to rule out duplication and pick a destination. Do not sweep every knowledge file up front. Depending on the candidate, that means some of:
    - `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules`, `.cursor/rules/*`
-   - Shared skills/agents: `.agents/skills/*/SKILL.md`, `.agents/agents/*.md`
+   - Shared skills/agents: `.skills/{general,fermenting,deprecated,private}/*/SKILL.md`, `.agents/agents/*.md`
    - Provider-specific docs and config: `.claude/agents/*.md`, `.claude/settings.json` (hooks), `.codex/agents/*.md`, `.pi/agent/prompts/*.md`
 
 3. Classify each candidate into exactly one destination:
    - **`AGENTS.md`** — short repo-wide convention, rule, verification habit, or architectural fact. Name the target section.
-   - **Shared skill/agent docs** — reusable workflow or role-specific knowledge under `.agents/skills/` or `.agents/agents/`, as a new skill or an adaptation of an existing one.
+   - **Shared skill/agent docs** — reusable workflow or role-specific knowledge under `.skills/<category>/` or `.agents/agents/`, as a new skill or an adaptation of an existing one.
    - **Provider-specific docs/config** — knowledge or automation that applies to one tool, e.g. `.claude/agents/*.md`, a hook in `.claude/settings.json`, `.codex/*`, or `.pi/*`.
    - **Nowhere** — already documented, too narrow, obvious from source, stale, sensitive, or low ROI.
 
