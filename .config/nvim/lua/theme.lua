@@ -11,6 +11,7 @@ M.themes = {
 	{ name = "Ember Soft", colorscheme = "ember-soft", ember_variant = "ember-soft" },
 	{ name = "Kanso Mist", colorscheme = "kanso-mist" },
 	{ name = "Komau", colorscheme = "komau" },
+	{ name = "Umber", colorscheme = "umber" },
 }
 
 local default_theme = M.themes[2]

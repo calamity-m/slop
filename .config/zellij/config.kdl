@@ -559,9 +559,135 @@ themes {
             player_10 0
         }
     }
+    umber {
+        text_unselected {
+            base 154 139 122         // fg      #9A8B7A
+            background 22 19 15      // black   #16130F
+            emphasis_0 130 87 109    // magenta #82576D
+            emphasis_1 109 87 130    // blue    #6D5782
+            emphasis_2 84 121 103    // green   #547967
+            emphasis_3 109 130 87    // yellow  #6D8257
+        }
+        text_selected {
+            base 22 19 15            // black   #16130F
+            background 109 87 130    // blue    #6D5782
+            emphasis_0 130 87 109    // magenta #82576D
+            emphasis_1 109 87 130    // blue    #6D5782
+            emphasis_2 84 121 103    // green   #547967
+            emphasis_3 109 130 87    // yellow  #6D8257
+        }
+        ribbon_selected {
+            base 22 19 15            // black   #16130F
+            background 130 87 109    // magenta #82576D
+            emphasis_0 121 101 81    // red     #796551
+            emphasis_1 109 130 87    // yellow  #6D8257
+            emphasis_2 109 87 130    // blue    #6D5782
+            emphasis_3 84 121 103    // green   #547967
+        }
+        ribbon_unselected {
+            base 154 139 122         // fg      #9A8B7A
+            background 76 71 68      // brightBlack #4C4744
+            emphasis_0 121 101 81    // red     #796551
+            emphasis_1 80 97 113     // cyan    #506171
+            emphasis_2 109 87 130    // blue    #6D5782
+            emphasis_3 130 87 109    // magenta #82576D
+        }
+        table_title {
+            base 84 121 103          // green   #547967  (active pane border, higher contrast)
+            background 0
+            emphasis_0 109 130 87    // yellow  #6D8257
+            emphasis_1 109 87 130    // blue    #6D5782
+            emphasis_2 84 121 103    // green   #547967
+            emphasis_3 130 87 109    // magenta #82576D
+        }
+        table_cell_selected {
+            base 22 19 15            // black   #16130F
+            background 109 87 130    // blue    #6D5782
+            emphasis_0 109 130 87    // yellow  #6D8257
+            emphasis_1 109 87 130    // blue    #6D5782
+            emphasis_2 84 121 103    // green   #547967
+            emphasis_3 130 87 109    // magenta #82576D
+        }
+        table_cell_unselected {
+            base 154 139 122         // fg      #9A8B7A
+            background 22 19 15      // black   #16130F
+            emphasis_0 109 130 87    // yellow  #6D8257
+            emphasis_1 109 87 130    // blue    #6D5782
+            emphasis_2 84 121 103    // green   #547967
+            emphasis_3 130 87 109    // magenta #82576D
+        }
+        list_selected {
+            base 22 19 15            // black   #16130F
+            background 109 87 130    // blue    #6D5782
+            emphasis_0 109 130 87    // yellow  #6D8257
+            emphasis_1 109 87 130    // blue    #6D5782
+            emphasis_2 84 121 103    // green   #547967
+            emphasis_3 130 87 109    // magenta #82576D
+        }
+        list_unselected {
+            base 154 139 122         // fg      #9A8B7A
+            background 22 19 15      // black   #16130F
+            emphasis_0 109 130 87    // yellow  #6D8257
+            emphasis_1 109 87 130    // blue    #6D5782
+            emphasis_2 84 121 103    // green   #547967
+            emphasis_3 130 87 109    // magenta #82576D
+        }
+        frame_selected {
+            base 130 87 109          // magenta #82576D  (active pane border)
+            background 0
+            emphasis_0 109 130 87    // yellow  #6D8257
+            emphasis_1 109 87 130    // blue    #6D5782
+            emphasis_2 84 121 103    // green   #547967
+            emphasis_3 0
+        }
+        frame_unselected {
+            base 76 71 68            // brightBlack #4C4744  (inactive pane border)
+            background 0
+            emphasis_0 109 130 87    // yellow  #6D8257
+            emphasis_1 109 87 130    // blue    #6D5782
+            emphasis_2 84 121 103    // green   #547967
+            emphasis_3 0
+        }
+        frame_highlight {
+            base 109 130 87          // yellow  #6D8257  (hovered pane, brighter highlight)
+            background 0
+            emphasis_0 130 87 109    // magenta #82576D
+            emphasis_1 109 130 87    // yellow  #6D8257
+            emphasis_2 109 130 87    // yellow  #6D8257
+            emphasis_3 109 130 87    // yellow  #6D8257
+        }
+        exit_code_success {
+            base 84 121 103          // green   #547967
+            background 0
+            emphasis_0 109 87 130    // blue    #6D5782
+            emphasis_1 22 19 15      // black   #16130F
+            emphasis_2 130 87 109    // magenta #82576D
+            emphasis_3 109 87 130    // blue    #6D5782
+        }
+        exit_code_error {
+            base 121 101 81          // red     #796551
+            background 0
+            emphasis_0 109 130 87    // yellow  #6D8257
+            emphasis_1 0
+            emphasis_2 0
+            emphasis_3 0
+        }
+        multiplayer_user_colors {
+            player_1 130 87 109      // magenta #82576D
+            player_2 109 87 130      // blue    #6D5782
+            player_3 0
+            player_4 109 130 87      // yellow  #6D8257
+            player_5 80 97 113       // cyan    #506171
+            player_6 0
+            player_7 121 101 81      // red     #796551
+            player_8 0
+            player_9 0
+            player_10 0
+        }
+    }
 }
 
-theme "kanso-mist"
+theme "umber"
  
 // Choose the base input mode of zellij.
 // Default: normal
