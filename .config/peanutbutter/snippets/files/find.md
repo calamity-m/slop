@@ -17,3 +17,12 @@ Uses `du` to calculate the full size of directories recursively, then sorts the 
 ```bash
 find <@path> -mindepth 1 -maxdepth 1 -exec du -sh -- {} + | sort -h
 ```
+
+## list directories by size
+
+Calculate the recursive size of each immediate subdirectory and sort from
+smallest to largest.
+
+```bash
+find <@path> -mindepth 1 -maxdepth 1 -type d -exec du -sh -- {} + | sort -h
+```
