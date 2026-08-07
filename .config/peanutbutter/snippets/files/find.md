@@ -1,6 +1,7 @@
 ---
 tags:
   - find
+  - tool
   - files
   - directories
 variables:

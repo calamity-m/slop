@@ -1,6 +1,7 @@
 ---
 tags:
   - rg
+  - tool
   - grep
   - files
   - directories

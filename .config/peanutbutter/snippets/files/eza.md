@@ -1,4 +1,7 @@
 ---
+tags:
+  - eza
+  - tool
 variables:
   sort:
     suggestions:

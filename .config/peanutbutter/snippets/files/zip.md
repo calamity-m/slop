@@ -1,4 +1,7 @@
 ---
+tags:
+  - zip
+  - tool
 variables:
   zip:
     command: rg . --files

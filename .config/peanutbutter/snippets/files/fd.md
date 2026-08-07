@@ -1,6 +1,7 @@
 ---
 tags:
   - fd
+  - tool
   - find
   - files
   - directories

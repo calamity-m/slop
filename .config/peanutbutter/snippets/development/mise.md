@@ -1,7 +1,7 @@
 ---
 tags:
   - mise
-  - tools
+  - tool
 ---
 
 # Mise Snippets

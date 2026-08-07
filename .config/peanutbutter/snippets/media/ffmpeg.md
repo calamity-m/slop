@@ -1,6 +1,7 @@
 ---
 tags:
   - ffmpeg
+  - tool
   - media
   - gif
   - images

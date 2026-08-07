@@ -1,4 +1,7 @@
 ---
+tags:
+  - tar
+  - tool
 variables:
   depth:
     suggestions:

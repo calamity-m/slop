@@ -1,3 +1,9 @@
+---
+tags:
+  - sed
+  - tool
+---
+
 # Sed Snippets
 
 ## Replace pattern in file

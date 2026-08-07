@@ -1,3 +1,10 @@
+---
+tags:
+  - docker
+  - tool
+  - containers
+---
+
 # Docker Snippets
 
 ## Docker free as much space as possible

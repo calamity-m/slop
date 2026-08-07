@@ -2,7 +2,7 @@
 tags:
   - figlet
   - ascii
-  - tools
+  - tool
 variables:
   text:
     default: Hello

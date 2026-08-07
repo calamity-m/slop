@@ -2,7 +2,7 @@
 tags:
   - jq
   - json
-  - tools
+  - tool
 variables:
   json_file:
     command: fd -e json .

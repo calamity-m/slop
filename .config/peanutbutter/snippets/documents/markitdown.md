@@ -1,6 +1,7 @@
 ---
 tags:
   - markitdown
+  - tool
   - documents
   - pdf
   - docx

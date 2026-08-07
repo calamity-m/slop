@@ -1,3 +1,9 @@
+---
+tags:
+  - ssh
+  - tool
+---
+
 # SSH Snippets
 
 ## SSH into server
