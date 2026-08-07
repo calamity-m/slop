@@ -8,10 +8,18 @@ tags:
 
 # Ripgrep
 
-## find files with extension(s)
+## Find files with a specific file type
 
 ```bash
-rg --files -g "*.{<@extension>,<@extension_two>}"
+rg --files -g '*.<@extension>'
+```
+
+## Find files matching multiple globs
+
+Each `-g` includes files matching that path glob.
+
+```bash
+rg --files -g '<@glob>' -g '<@glob_two>'
 ```
 
 ## List files in a directory that match a pattern
@@ -68,4 +76,15 @@ zero matches.
 
 ```bash
 rg -c <@pattern>
+```
+
+## Count unique matches across files
+
+Print only the text matched by the regex, combine matches from all files, and
+show each unique value with its total count, most frequent first. Make the
+regex match only the value to count, such as `systemStatus:\s*\K\w+`.
+PCRE2 mode (`-P`) allows `\K` to exclude the field name from each match.
+
+```bash
+rg -P --no-filename -o '<@pattern>' '<@directory:.>' | sort | uniq -c | sort -nr
 ```

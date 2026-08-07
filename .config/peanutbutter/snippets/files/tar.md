@@ -6,7 +6,7 @@ variables:
       - 2
       - 3
   tar:
-    command: rg . --files
+    command: rg --files -g '*.tar' -g '*.tar.gz'
 ---
 
 # Tar Snippets
@@ -23,12 +23,21 @@ tar -czvf <@out>.tar.gz <@src:rg . --files>
 tar czf <@out>.tar.gz -C <@directory> .
 ```
 
-## List tar contents
+## View files in tar
 
 List files inside a tar archive without extracting it.
 
 ```bash
 tar -tf <@tar>
+```
+
+## Extract files matching a regex
+
+Match the regex against each file's full path inside the archive, then extract
+matching files into the destination directory.
+
+```bash
+tar -tf <@tar> | rg <@regex> | tar -xvf <@tar> -C <@dest> --verbatim-files-from -T -
 ```
 
 ## Untar into directory
