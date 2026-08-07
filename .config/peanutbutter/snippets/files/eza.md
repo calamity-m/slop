@@ -34,6 +34,14 @@ Equivalent to the `ls -lsha` habit: `-l` uses long listing, `-a` includes hidden
 eza -laS --header --icons auto <@path>
 ```
 
+## eza list files and directories with total sizes
+
+`--total-size` calculates and displays the full size of each directory instead of only its directory-entry size.
+
+```bash
+eza -lah --total-size <@path>
+```
+
 ## eza list directories in a directory
 
 Example:
