@@ -21,6 +21,7 @@ variables:
       - "*.pdf"
       - "*.jpg"
       - "*.gif"
+      - "*.xml"
   branch:
     command: git branch --format='%(refname:short)'
   upstream_branch:
@@ -95,6 +96,14 @@ git lfs install
 ```bash
 git lfs track "<@pattern>"
 git add .gitattributes
+```
+
+## git migrate existing history to lfs by file type
+
+Rewrites every local ref so matching files in old commits use Git LFS. Run from a clean working tree with a backup; publishing the result requires force-pushing rewritten refs and coordinating with collaborators.
+
+```bash
+git lfs migrate import --everything --include="<@pattern>"
 ```
 
 ## git delete local branches not on remote
