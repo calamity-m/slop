@@ -1,136 +1,93 @@
 ---
 name: grill-me
-description: Stress-test a plan, design, or change request through structured sequential interviewing before any implementation begins. Use this skill whenever the user says "grill me", "stress-test this plan", "interview me", "challenge this design", asks you to surface hidden assumptions, or wants a critical pre-implementation check on what they have described. Also use it as a pre-draft step inside other planning skills (e.g. `bigplan`) when the brief is thin or ambiguous.
+description: Stress-test a plan, design, or change request through a decision-tree interview before implementation. Use when the user says "grill me", "stress-test this plan", "interview me", "challenge this design", asks to surface hidden assumptions, or presents a thin or ambiguous brief.
 ---
 
 # Grill Me
 
-## What this skill is for
+Interview the user relentlessly until you reach shared understanding. Model the work as a decision tree: each decision is a node; its answer activates, reshapes, or prunes the branches below it.
 
-Four goals, in this order:
+## Work the frontier
 
-1. **Reach shared understanding.** You and the user describe the same system in the same words.
-2. **Unearth hidden assumptions.** Anything the user is taking for granted that you would not, or vice versa.
-3. **Nail down terminology and language.** Make sure overloaded words ("user", "session", "job", "service", "client") mean one specific thing in the context of this work.
-4. **Separate need from want.** What is required for the work to succeed vs. what would be nice to have.
+The **frontier** is every unsettled decision whose prerequisites are settled—the questions you can ask now without guessing at earlier answers.
 
-A grilling that does not move the needle on at least one of these is a bad grilling.
+Ask one frontier question at a time. One answer may unlock many branches; add every eligible child to the frontier, then choose the next question. Recompute after every answer. Never follow a fixed questionnaire.
 
-## What this skill is **not** for
+When several questions are eligible, prefer the one that:
 
-Do not ask questions whose answers can be obtained by:
+1. determines whether large branches matter;
+2. most affects the goal, scope, risk, or irreversible choices;
+3. unlocks the most downstream decisions.
 
-- Reading the repository's `README.md`, `AGENTS.md`/`CLAUDE.md`, or visible config files.
-- Running a quick `ls`, `find`, or `git log` against the repo.
-- Opening one or two source files at the obvious entry point.
-- Checking lock/manifest files for language, framework, package versions.
-- Reading any document the user already linked in the conversation.
+A question that depends on another unsettled decision is not on the frontier. Do not infer answers for child decisions from their parent.
 
-If the answer is in the repo or in a doc that has been mentioned, **find it yourself** before grilling. Asking the user to recite their own README wastes their time and erodes trust in the skill.
+## Find facts; ask decisions
 
-When in doubt: do the cheapest available exploration first, then grill on what's left.
+Finding facts is your job. Read the conversation, supplied documents, repository instructions, relevant code, config, manifests, and history. Use available tools or exploration agents. Never ask the user to inspect a file, run a command, recite documentation, or research something you can establish.
 
-## Pre-flight (always)
+A pending fact blocks only its dependent branches. Work another frontier branch while it is unresolved.
 
-Before asking the first question:
+The decisions are the user's. Put every consequential choice to them, even when you have a strong recommendation. Safe, conventional, reversible implementation details may remain agent-owned.
 
-1. Read the repo orientation files (`README.md`, `AGENTS.md`, any `BIGPLAN.md`).
-2. Run a quick directory survey — top-level layout, the relevant subdirectory, manifest/lock files for tech stack.
-3. Note any document or URL the user has already shared in this conversation.
-4. Build a short internal list of:
-   - **Knowns** — facts you have established from the above.
-   - **Unknowns worth asking** — gaps that genuinely require the user to decide or disclose.
-   - **Assumptions you are tempted to make** — these are the prime candidates for grilling, since the user can confirm or correct them.
+## Ask sharply
 
-Skip the grill entirely if everything important is already explicit and consistent. Tell the user that and move on. A short "the brief is clear, no grill needed because X" is a valid output.
+Use this format:
 
-## The grill loop
+```markdown
+❓ **Q1** - **<question title>**: <one decision, with concise context and concrete choices>
 
-Ask the smallest useful batch of questions. Prefer **2–4 questions at a time** when the uncertainties are independent, and ask a single question only when the next question genuinely depends on the answer. Use any "ask question" or "interview" tools at your disposal.
-
-The recommended answer matters. It does three things at once:
-
-- Surfaces _your_ current assumption so the user can correct it cheaply.
-- Lets the user say "yes, that one" and move on quickly.
-- Forces you to actually think about the tradeoff rather than fish for input.
-
-After each batch, **revise your internal model** before composing the next batch. Do not pre-write a rigid questionnaire; later questions should reflect earlier answers.
-
-## What to ask about
-
-Lean on these four buckets, in roughly this order. Skip a bucket if the brief already nails it.
-
-### 1. Shared understanding
-
-- "When you say <X>, do you mean <A>, <B>, or something else?"
-- "What does 'done' look like for this work — what observable thing changes?"
-- "Who or what is the consumer of the output?"
-
-### 2. Assumptions
-
-- "I'm assuming <A>. Is that right?"
-- "If I had to pick between <approach 1> and <approach 2> right now, I'd pick <1> because <reason>. Push back?"
-- "I'm planning to leave <area> untouched — that fits your scope, right?"
-
-### 3. Terminology
-
-- Pick out any word the user has used more than once that could mean multiple things in the codebase. "session", "job", "user", "request", "service", "config", "agent" are common offenders.
-- Resolve them by quoting the user's sentence and asking which referent applies, or by offering the two most likely interpretations.
-
-### 4. Need vs want
-
-- "Is <feature/property> a hard requirement, or a nice-to-have?"
-- "If we had to ship in half the time, what would you cut?"
-- "What would make you reject the result outright?"
-
-## What good questions look like
-
-Good:
-
-> **Q3: When you say "the worker pulls jobs", do you mean a single long-lived process polling the queue, or a short-lived job per task spawned by a scheduler?**
->
-> Why I'm asking: terminology — "worker" reads either way in this repo, and the lifecycle affects the deliverable shape.
-> My recommended answer: long-lived poller, since `src/workers/runner.py` already loops on the queue.
-
-Bad:
-
-> **Q3: What language is this project in?**
-
-(answerable by `ls *.toml *.json` — do not ask)
-
-> **Q3: Tell me everything about the auth system.**
-
-(open-ended, batched, no recommended answer — useless)
-
-## Stopping criteria
-
-Stop grilling when **any** of these is true:
-
-- You can restate the plan in your own words and the user agrees with the restatement.
-- The remaining unknowns are implementation details a reasonable agent can decide during execution without unsaid constraints leaking in.
-- The user signals "enough, let's go" — respect it. Note any unresolved item explicitly so it surfaces in the plan or the issues log.
-
-## Output after grilling
-
-When the grill ends, produce a short **Shared Understanding** summary:
-
+➡️ <your recommended answer and brief reason>
 ```
+
+Number questions continuously.
+
+A frontier question may offer several paths, and its answer may spawn many branches. It must still settle one decision. Split unrelated or independently answerable choices into separate nodes.
+
+Prefer precise language, concrete tradeoffs, and decisive recommendations. Avoid broad prompts, throat-clearing, repeated context, and questions whose answers will not change the outcome.
+
+## Grow the tree
+
+Start from the user's request, not a generic checklist. Follow every consequential branch, including where relevant:
+
+- goal and observable success;
+- scope and non-goals;
+- ambiguous terms;
+- hard constraints versus preferences;
+- actors and ownership;
+- failure, security, and operational risk;
+- compatibility, migration, rollout, and reversibility;
+- tradeoffs the user must knowingly accept.
+
+After each answer:
+
+1. record it in concrete language;
+2. clarify any ambiguity before depending on it;
+3. activate relevant branches and prune irrelevant ones;
+4. add newly exposed assumptions, conflicts, and decisions;
+5. recompute the frontier and ask its highest-impact question.
+
+Relentless means leaving no consequential assumption silent, not manufacturing low-value questions.
+
+## Finish only when empty
+
+The grill is complete when the frontier is empty: every relevant decision is settled or pruned, every required fact is known, and no consequential assumption remains hidden.
+
+Summarize the result:
+
+```markdown
 ## Shared understanding
 
 - **Goal**: <one sentence>
-- **In scope**: <bulleted, concrete>
-- **Out of scope**: <bulleted, concrete>
-- **Key terms**: <term> = <definition>
-- **Assumptions confirmed**: <bulleted>
-- **Open questions deferred**: <bulleted, with a note on why deferring is safe>
+- **Success**: <observable outcomes>
+- **In scope**: <concrete bullets>
+- **Out of scope**: <concrete bullets>
+- **Key decisions**: <decision and rationale bullets>
+- **Terms**: <term = definition>
+- **Constraints and assumptions**: <confirmed bullets>
+- **Agent-owned choices**: <safe, reversible details, if any>
+- **Unresolved**: <items and consequences, or “None”>
 ```
 
-This summary is the deliverable of the grill. Whatever skill or workflow called you (e.g. `bigplan`) feeds this into its next step.
+Then ask one numbered confirmation question in the required format. Do not plan, draft, or implement until the user confirms shared understanding.
 
-## Example trigger phrases
-
-- "Grill me on this."
-- "Stress-test this plan before I commit to it."
-- "Interview me — I haven't thought this through."
-- "Challenge my assumptions here."
-- "Before we write code, poke holes in the plan."
+If the user stops early, respect it. Summarize the unresolved frontier and its consequences; do not claim completion.
