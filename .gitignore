@@ -11,6 +11,7 @@ nvim.log
 
 # Bashrc.d - ignore all except explicit files we want tracked in git
 .bashrc.d/*
+!.bashrc.d/agent-skills.sh
 !.bashrc.d/docker.sh
 !.bashrc.d/editor.sh
 !.bashrc.d/eza.sh

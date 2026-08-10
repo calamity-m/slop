@@ -1,0 +1,170 @@
+#!/usr/bin/env bash
+#
+# sync-agent-skills - reconcile categorized skill directories into the flat
+# ~/.agents/skills view that Pi, Claude Code, and Codex all read.
+#
+# Usage:
+#   sync-agent-skills [SOURCE_ROOT DEST_ROOT]
+#
+# With no arguments the script locates the repository through its own path:
+# ~/.scripts is a symlink to <repo>/.scripts, so SOURCE_ROOT defaults to
+# <repo>/.skills and DEST_ROOT to ~/.agents/skills. The explicit pair exists for
+# isolated testing and for overriding an unusual layout. Both roots must be
+# absolute, and DEST_ROOT must be a real directory rather than a symlink.
+#
+# Every <category>/<skill> directory under SOURCE_ROOT is linked as
+# DEST_ROOT/<skill>. Categories are whatever immediate non-hidden directories
+# exist, so adding a category needs no change here. Hidden entries on both sides
+# are ignored, which is what keeps Codex's DEST_ROOT/.system untouched.
+#
+# Ownership: a destination entry is managed if and only if it is a symlink whose
+# *literal* target begins with "SOURCE_ROOT/". Targets are deliberately never
+# canonicalized - the literal prefix is the ownership marker. Everything else in
+# DEST_ROOT is left in place and reported when it blocks a wanted name. The one
+# exception is a dangling symlink sitting on a wanted name: it is reclaimed,
+# which is what lets the tree heal itself after the repository is relocated.
+#
+# Duplicate skill basenames across categories are reported but never resolved:
+# any existing link stays as-is, because deleting on ambiguity would take a
+# working skill offline mid-move (copy-then-delete, a half-applied checkout).
+#
+# This runs on every interactive shell start, so it is silent unless something
+# needs attention, and it avoids forking in the scan path. Exit status is 0 on
+# success, 1 when a conflict was reported, and 2 for usage errors.
+#
+# Requires Bash 4+ (associative arrays) on Linux or WSL (GNU find, readlink -f).
+
+set -euo pipefail
+
+if [[ -z ${BASH_VERSINFO[0]:-} || ${BASH_VERSINFO[0]} -lt 4 ]]; then
+  printf 'sync-agent-skills: requires bash 4 or newer\n' >&2
+  exit 2
+fi
+
+status=0
+
+# Conflicts are reported rather than fixed; the nonzero exit is the signal.
+report() {
+  printf 'sync-agent-skills: %s\n' "$*" >&2
+  status=1
+}
+
+main() {
+  local source_root dest_root script_path scripts_dir
+
+  case $# in
+    0)
+      script_path="$(readlink -f "${BASH_SOURCE[0]}")"
+      scripts_dir="${script_path%/*}"
+      source_root="${scripts_dir%/*}/.skills"
+      dest_root="$HOME/.agents/skills"
+      ;;
+    2)
+      source_root="${1%/}"
+      dest_root="${2%/}"
+      ;;
+    *)
+      printf 'usage: sync-agent-skills [SOURCE_ROOT DEST_ROOT]\n' >&2
+      exit 2
+      ;;
+  esac
+
+  if [[ "$source_root" != /* || "$dest_root" != /* ]]; then
+    printf 'sync-agent-skills: SOURCE_ROOT and DEST_ROOT must be absolute paths\n' >&2
+    exit 2
+  fi
+
+  if [[ ! -d "$source_root" ]]; then
+    printf 'sync-agent-skills: source root %s is not a directory\n' "$source_root" >&2
+    exit 2
+  fi
+
+  # A symlinked destination would make the literal-prefix ownership rule and the
+  # managed links themselves resolve against a path the installer did not set up.
+  if [[ -L "$dest_root" || ! -d "$dest_root" ]]; then
+    printf 'sync-agent-skills: destination root %s must be a real directory\n' "$dest_root" >&2
+    exit 2
+  fi
+
+  # Scan sources with globs only; this is the hot path on every shell start.
+  local -A target_of=() sources_of=() duplicate=()
+  local category skill name
+  for category in "$source_root"/*/; do
+    [[ -d "$category" ]] || continue
+    for skill in "$category"*/; do
+      [[ -d "$skill" ]] || continue
+      skill="${skill%/}"
+      name="${skill##*/}"
+      if [[ -n "${target_of[$name]+set}" ]]; then
+        duplicate[$name]=1
+      fi
+      target_of[$name]="$skill"
+      sources_of[$name]+="  $skill"$'\n'
+    done
+  done
+
+  if (( ${#duplicate[@]} > 0 )); then
+    for name in "${!duplicate[@]}"; do
+      report "duplicate skill name '$name'; leaving $dest_root/$name as-is. sources:"
+      printf '%s' "${sources_of[$name]}" >&2
+    done
+  fi
+
+  # One find covers the whole destination; per-entry readlink would cost more
+  # forks than the startup budget allows.
+  local -A dest_link=()
+  local entry_name entry_target
+  while IFS= read -r -d '' entry_name && IFS= read -r -d '' entry_target; do
+    dest_link[$entry_name]="$entry_target"
+  done < <(find "$dest_root" -mindepth 1 -maxdepth 1 -type l ! -name '.*' -printf '%f\0%l\0')
+
+  # Drop managed links whose source vanished or whose category changed.
+  if (( ${#dest_link[@]} > 0 )); then
+    for name in "${!dest_link[@]}"; do
+      if [[ "${dest_link[$name]}" != "$source_root"/* ]]; then
+        continue
+      fi
+      if [[ -n "${duplicate[$name]+set}" ]]; then
+        continue
+      fi
+      if [[ -z "${target_of[$name]+set}" || "${target_of[$name]}" != "${dest_link[$name]}" ]]; then
+        rm -f "$dest_root/$name"
+      fi
+    done
+  fi
+
+  # Create or reclaim links for every unique skill.
+  local desired entry
+  if (( ${#target_of[@]} > 0 )); then
+    for name in "${!target_of[@]}"; do
+      if [[ -n "${duplicate[$name]+set}" ]]; then
+        continue
+      fi
+      desired="${target_of[$name]}"
+      entry="$dest_root/$name"
+
+      if [[ -L "$entry" ]]; then
+        if [[ "${dest_link[$name]:-}" == "$desired" ]]; then
+          continue
+        fi
+        # Sole adoption exception: a dangling link, e.g. one written under a
+        # previous repository path, is replaced rather than reported.
+        if [[ -e "$entry" ]]; then
+          report "$entry is a symlink to ${dest_link[$name]:-elsewhere} and is not managed here; leaving it in place"
+          continue
+        fi
+        rm -f "$entry"
+      elif [[ -e "$entry" ]]; then
+        report "$entry already exists and is not a symlink; leaving it in place"
+        continue
+      fi
+
+      ln -s "$desired" "$entry"
+    done
+  fi
+
+  return 0
+}
+
+main "$@"
+exit "$status"

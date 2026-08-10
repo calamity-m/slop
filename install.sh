@@ -11,7 +11,7 @@ Symlink dotfiles from this repository into $HOME.
 
 Creates:
   ~/.agents/AGENTS.md -> <repo>/.agents/AGENTS.md
-  ~/.agents/skills (directory populated from <repo>/.skills/{general,management,development,fermenting,deprecated,private}/*)
+  ~/.agents/skills (flat directory of <skill> links reconciled from <repo>/.skills/<category>/<skill>)
   ~/.config/herdr/config.toml -> <repo>/.config/herdr/config.toml
   ~/.config/jam       -> <repo>/.config/jam
   ~/.config/mise      -> <repo>/.config/mise
@@ -35,6 +35,17 @@ Tool-specific links:
   ${CODEX_HOME:-~/.codex}/skills    -> ~/.agents/skills
 
 Also installs:
+  ~/.bashrc.d/agent-skills.sh, which runs ~/.scripts/sync-agent-skills on every
+  interactive Bash start. Adding, removing, renaming, or moving a skill between
+  categories is therefore picked up by the next shell, with no install.sh rerun.
+  Run ~/.scripts/sync-agent-skills directly to pick changes up mid-session.
+
+  Only symlinks whose target is inside <repo>/.skills are managed. Anything else
+  in ~/.agents/skills, including the Codex-managed .system directory, is left
+  alone; a name collision is reported rather than resolved.
+
+Requires Bash 4+ on Linux or WSL. Per-shell skill reconciliation additionally
+assumes an existing ~/.bashrc that sources ~/.bashrc.d.
 
 The script is conservative by default and will not replace existing
 non-symlink files or directories unless --force is passed.
@@ -160,28 +171,19 @@ prepare_skills_dir() {
   ensure_dir "$path"
 }
 
-link_skill_dir() {
-  local source_dir="$1"
-  local entry
-
-  for entry in "$source_dir"/*; do
-    [[ -e "$entry" || -L "$entry" ]] || continue
-    ensure_symlink "$HOME/.agents/skills/${entry##*/}" "$entry" || true
-  done
-}
-
 # Link .config entries into ~/.config
 ensure_dir "$HOME/.config" || true
 ensure_dir "$HOME/.agents" || true
 ensure_symlink "$HOME/.agents/AGENTS.md" "$repo_dir/.agents/AGENTS.md" || true
 ensure_dir "$repo_dir/.skills/private" || true
 if prepare_skills_dir; then
-  link_skill_dir "$repo_dir/.skills/general"
-  link_skill_dir "$repo_dir/.skills/management"
-  link_skill_dir "$repo_dir/.skills/development"
-  link_skill_dir "$repo_dir/.skills/fermenting"
-  link_skill_dir "$repo_dir/.skills/deprecated"
-  link_skill_dir "$repo_dir/.skills/private"
+  # Same reconciler the per-shell hook runs, so a fresh clone is usable before
+  # the next shell starts. Conflicts are reported by the reconciler itself.
+  if "$repo_dir/.scripts/sync-agent-skills" "$repo_dir/.skills" "$HOME/.agents/skills"; then
+    log "ok skills reconciled into $HOME/.agents/skills"
+  else
+    warn "skill reconciliation reported conflicts; existing entries were left in place"
+  fi
 fi
 ensure_symlink "$HOME/.agents/prompts" "$repo_dir/.agents/prompts" || true
 ensure_symlink "$HOME/.scripts" "$repo_dir/.scripts" || true
@@ -242,7 +244,8 @@ ensure_symlink "$codex_root/skills" "$HOME/.agents/skills" || true
 log ""
 log "install complete"
 log "  agents context: ~/.agents/AGENTS.md -> $repo_dir/.agents/AGENTS.md"
-log "  skills: ~/.agents/skills/* <- $repo_dir/.skills/{general,management,development,fermenting,deprecated,private}/*"
+log "  skills: ~/.agents/skills/<skill> <- $repo_dir/.skills/<category>/<skill>"
+log "          reconciled on every interactive Bash start; run ~/.scripts/sync-agent-skills for mid-session pickup"
 log "  prompts: ~/.agents/prompts -> $repo_dir/.agents/prompts"
 log "  scripts: ~/.scripts -> $repo_dir/.scripts"
 log "  herdr:   ~/.config/herdr/config.toml -> $repo_dir/.config/herdr/config.toml"
