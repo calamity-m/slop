@@ -13,6 +13,8 @@ variables:
     default: https://
   output_file:
     default: output.txt
+  json_file:
+    command: rg --files -g '*.json'
   method:
     suggestions:
       - POST
@@ -55,6 +57,17 @@ curl -X <@method> \
   '<@url>' <<'JSON'
 <@json_body>
 JSON
+```
+
+## curl with json file as body
+
+Send a JSON file's contents as the request body, e.g. `payload.json`.
+
+```bash
+curl -X <@method> \
+  -H 'Content-Type: application/json' \
+  --data-binary @<@json_file> \
+  '<@url>'
 ```
 
 ## curl with form url encoded
