@@ -17,6 +17,7 @@ Creates:
   ~/.config/mise      -> <repo>/.config/mise
   ~/.config/nvim      -> <repo>/.config/nvim
   ~/.config/snippets  -> <repo>/.config/snippets
+  ~/.config/tmux      -> <repo>/.config/tmux
   ~/.config/tuicr     -> <repo>/.config/tuicr
   ~/.config/zellij       -> <repo>/.config/zellij
   ~/.config/peanutbutter -> <repo>/.config/peanutbutter
@@ -43,6 +44,10 @@ Also installs:
   Only symlinks whose target is inside <repo>/.skills are managed. Anything else
   in ~/.agents/skills, including the Codex-managed .system directory, is left
   alone; a name collision is reported rather than resolved.
+
+  ~/.local/share/tmux/plugins/tpm, cloned from github.com/tmux-plugins/tpm, plus
+  any plugin listed in .config/tmux/tmux.conf. These live outside the repo and
+  are not version pinned; update them with tmux's 'prefix + U'.
 
 Requires Bash 4+ on Linux or WSL. Per-shell skill reconciliation additionally
 assumes an existing ~/.bashrc that sources ~/.bashrc.d.
@@ -193,6 +198,7 @@ ensure_symlink "$HOME/.config/jam" "$repo_dir/.config/jam" || true
 ensure_symlink "$HOME/.config/mise" "$repo_dir/.config/mise" || true
 ensure_symlink "$HOME/.config/nvim" "$repo_dir/.config/nvim" || true
 ensure_symlink "$HOME/.config/snippets" "$repo_dir/.config/snippets" || true
+ensure_symlink "$HOME/.config/tmux" "$repo_dir/.config/tmux" || true
 ensure_symlink "$HOME/.config/tuicr" "$repo_dir/.config/tuicr" || true
 ensure_symlink "$HOME/.config/zellij" "$repo_dir/.config/zellij" || true
 ensure_symlink "$HOME/.config/peanutbutter" "$repo_dir/.config/peanutbutter" || true
@@ -210,6 +216,56 @@ if command -v mise >/dev/null 2>&1 && [[ -f "$HOME/.config/mise/config.toml" ]];
   mise trust "$HOME/.config/mise/config.toml" || true
   mise install
 fi
+
+# tmux plugins are managed by TPM, which is itself only a git checkout that
+# tmux.conf sources. Keep it out of the repo so plugin checkouts never show up
+# as working-tree noise; versions are deliberately unpinned and follow upstream.
+install_tpm() {
+  local plugin_path="$HOME/.local/share/tmux/plugins"
+  local tpm_path="$plugin_path/tpm"
+
+  if ! command -v git >/dev/null 2>&1; then
+    warn "skipping tpm because git is not available"
+    return 0
+  fi
+
+  if [[ -d "$tpm_path/.git" ]]; then
+    log "ok tpm already installed at $tpm_path"
+  elif [[ -e "$tpm_path" ]]; then
+    warn "skipping tpm because $tpm_path exists and is not a git checkout"
+    return 0
+  else
+    ensure_dir "$plugin_path" || return 0
+    if git clone --depth 1 https://github.com/tmux-plugins/tpm "$tpm_path"; then
+      log "cloned tpm into $tpm_path"
+    else
+      warn "failed to clone tpm into $tpm_path"
+      return 0
+    fi
+  fi
+
+  # Scripted equivalent of `prefix + I`, so a fresh clone comes up with plugins
+  # already present. tpm resolves its own path with `tmux start-server`, which is
+  # a no-op when a server is already running, so a pre-existing server from
+  # before this install would answer with a stale (or missing) plugin path. A
+  # private socket dir with $TMUX cleared forces a fresh server that has read the
+  # current tmux.conf, even when install.sh is run from inside tmux.
+  if command -v tmux >/dev/null 2>&1; then
+    local socket_dir
+    socket_dir="$(mktemp -d)"
+    if env -u TMUX TMUX_TMPDIR="$socket_dir" "$tpm_path/bin/install_plugins" >/dev/null; then
+      log "ok tmux plugins installed"
+    else
+      warn "tpm reported an error installing tmux plugins"
+    fi
+    env -u TMUX TMUX_TMPDIR="$socket_dir" tmux kill-server 2>/dev/null || true
+    rm -rf "$socket_dir"
+  else
+    warn "tpm installed, but tmux is not on PATH; run 'prefix + I' once tmux is available"
+  fi
+}
+
+install_tpm
 
 # Symlink ~/.bashrc.d
 ensure_symlink "$HOME/.bashrc.d" "$repo_dir/.bashrc.d" || true
@@ -253,6 +309,8 @@ log "  jam:    ~/.config/jam -> $repo_dir/.config/jam"
 log "  mise:   ~/.config/mise -> $repo_dir/.config/mise"
 log "  nvim:     ~/.config/nvim -> $repo_dir/.config/nvim"
 log "  snippets: ~/.config/snippets -> $repo_dir/.config/snippets"
+log "  tmux:     ~/.config/tmux -> $repo_dir/.config/tmux"
+log "  tmux plugins: ~/.local/share/tmux/plugins (tpm, unpinned; 'prefix + U' updates)"
 log "  tuicr:    ~/.config/tuicr -> $repo_dir/.config/tuicr"
 log "  vscode:   ~/.config/Code/User/snippets -> ~/.config/snippets"
 log "  zellij:        ~/.config/zellij -> $repo_dir/.config/zellij"
