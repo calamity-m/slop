@@ -1,0 +1,182 @@
+#!/usr/bin/env bash
+
+# Persistent tmux scratch terminal commands. Keybindings are intentionally left
+# to tmux.conf; pass '#{pane_id}' as the second argument from a binding.
+
+set -euo pipefail
+
+scratch_session="floating"
+last_session_option="@floating_terminal_last_session"
+last_client_option="@floating_terminal_last_client"
+
+usage() {
+  cat <<'EOF'
+Usage:
+  floating-terminal toggle [target-pane]
+  floating-terminal scratch-to-window
+  floating-terminal scratch-to-active-window
+  floating-terminal pane-to-scratch [target-pane]
+
+If target-pane is omitted, the command uses $TMUX_PANE. A tmux binding for
+`toggle` or `pane-to-scratch` should pass '#{pane_id}' explicitly so the command
+acts on the pane that invoked it.
+EOF
+}
+
+fail() {
+  printf 'floating-terminal: %s\n' "$*" >&2
+  exit 1
+}
+
+require_tmux() {
+  command -v tmux >/dev/null 2>&1 || fail "tmux is not installed"
+  [[ -n ${TMUX:-} ]] || fail "must be run inside tmux"
+}
+
+resolve_pane() {
+  local pane="${1:-${TMUX_PANE:-}}"
+
+  [[ -n $pane ]] || fail "target pane is required"
+  tmux display-message -p -t "$pane" '#{pane_id}' 2>/dev/null ||
+    fail "unknown target pane: $pane"
+}
+
+pane_format() {
+  local pane="$1"
+  local format="$2"
+
+  tmux display-message -p -t "$pane" "$format"
+}
+
+scratch_exists() {
+  tmux has-session -t "=$scratch_session" 2>/dev/null
+}
+
+remember_session() {
+  local pane="$1"
+  local session client
+
+  session="$(pane_format "$pane" '#{session_name}')"
+  client="$(pane_format "$pane" '#{client_name}')"
+  tmux set-option -gq "$last_session_option" "$session"
+  tmux set-option -gq "$last_client_option" "$client"
+}
+
+open_popup() {
+  local pane="$1"
+  local path="$2"
+
+  # display-popup expands tmux formats in its working directory.
+  path="${path//#/##}"
+  tmux popup -t "$pane" -d "$path" -x C -y C -w 70% -h 70% -E \
+    "tmux new-session -A -s '$scratch_session'"
+}
+
+toggle() {
+  local pane="$1"
+  local session client path
+
+  session="$(pane_format "$pane" '#{session_name}')"
+  if [[ $session == "$scratch_session" ]]; then
+    client="$(pane_format "$pane" '#{client_name}')"
+    [[ -n $client ]] || fail "could not find the popup client"
+    tmux detach-client -t "$client"
+    return
+  fi
+
+  path="$(pane_format "$pane" '#{pane_current_path}')"
+  remember_session "$pane"
+  open_popup "$pane" "$path"
+}
+
+promote_scratch() {
+  local focus="$1"
+  local destination source window client
+
+  scratch_exists || fail "scratch session '$scratch_session' does not exist"
+  destination="$(tmux show-option -gqv "$last_session_option")"
+  [[ -n $destination ]] || fail "no previous session has been recorded"
+  tmux has-session -t "=$destination" 2>/dev/null ||
+    fail "previous session '$destination' no longer exists"
+
+  source="$(tmux display-message -p -t "=$scratch_session:" '#{pane_id}')"
+  if [[ $focus == 1 ]]; then
+    window="$(tmux break-pane -d -P -F '#{window_id}' -s "$source" -t "=$destination:")"
+    client="$(tmux show-option -gqv "$last_client_option")"
+    if [[ -n $client ]] && tmux switch-client -c "$client" -t "$window"; then
+      return
+    fi
+    tmux select-window -t "$window"
+  else
+    tmux break-pane -d -s "$source" -t "=$destination:"
+  fi
+}
+
+pane_to_scratch() {
+  local pane="$1"
+  local session path
+
+  session="$(pane_format "$pane" '#{session_name}')"
+  [[ $session != "$scratch_session" ]] || fail "pane is already in the scratch session"
+  scratch_exists && fail "scratch session '$scratch_session' is already in use"
+
+  path="$(pane_format "$pane" '#{pane_current_path}')"
+  remember_session "$pane"
+  # tmux expands formats in both new-window and display-popup directories.
+  path="${path//#/##}"
+
+  # Keep the remembered session alive when its only pane is moved away.
+  if [[ $(pane_format "$pane" '#{session_windows}') == 1 ]] &&
+    [[ $(pane_format "$pane" '#{window_panes}') == 1 ]]; then
+    tmux new-window -d -t "=$session:" -c "$path"
+  fi
+
+  # select-pane -m toggles the mark, so clear any existing mark first.
+  tmux select-pane -M
+  tmux select-pane -m -t "$pane"
+
+  # The temporary pane runs join-pane, pulling the marked pane into the new
+  # scratch session. This mirrors the upstream plugin's "scratch must be free"
+  # limitation while making its intended current-pane conversion work.
+  if ! tmux popup -t "$pane" -d "$path" -x C -y C -w 70% -h 70% -E \
+    "tmux new-session -s '$scratch_session' 'tmux join-pane && tmux select-pane -M'"; then
+    tmux select-pane -M
+    return 1
+  fi
+
+  tmux select-pane -M
+}
+
+main() {
+  local action="${1:-}"
+  local pane
+
+  case "$action" in
+    -h | --help)
+      usage
+      ;;
+    toggle | pane-to-scratch)
+      require_tmux
+      pane="$(resolve_pane "${2:-}")"
+      if [[ $action == toggle ]]; then
+        toggle "$pane"
+      else
+        pane_to_scratch "$pane"
+      fi
+      ;;
+    scratch-to-window | scratch-to-active-window)
+      require_tmux
+      if [[ $action == scratch-to-window ]]; then
+        promote_scratch 0
+      else
+        promote_scratch 1
+      fi
+      ;;
+    *)
+      usage >&2
+      exit 2
+      ;;
+  esac
+}
+
+main "$@"
