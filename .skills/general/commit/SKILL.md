@@ -26,6 +26,12 @@ Write a body only when it adds useful context. Keep it short and direct.
 
 If unrelated changes are mixed together, split them into separate commits instead of hiding them behind a vague message.
 
+## Remote Git Operations
+
+- When running inside a sandbox, request execution outside the sandbox for Git commands that contact a remote, including `git push`, `git pull`, and `git fetch`.
+- Escalate these commands on the first attempt rather than waiting for a sandbox network or authentication failure.
+- Keep local-only Git commands inside the sandbox unless they independently require escalation.
+
 ## Message Rules
 
 - Require a subject of the form `<type>(scope): short`.
