@@ -15,6 +15,7 @@ keybinds clear-defaults=true {
         bind "-" { Resize "Decrease"; SwitchToMode "locked"; }
         bind "f" { ToggleFloatingPanes; SwitchToMode "locked"; }
         bind "n" { NewPane; SwitchToMode "locked"; }
+        bind "z" { ToggleFocusFullscreen; SwitchToMode "locked"; }
     }
     pane {
         bind "left" { MoveFocus "left"; }
