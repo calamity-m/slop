@@ -732,7 +732,10 @@ default_mode "locked"
 //   - true (default, enabled)
 //   - false
 // 
-pane_frames false
+// pane_frames false
+
+// Not docuiments but zellij 0.45 added this!
+pane_frame_style "titles"
  
 // When attaching to an existing session with other users,
 // should the session be mirrored (true)
