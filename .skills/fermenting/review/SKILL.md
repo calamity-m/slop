@@ -44,6 +44,15 @@ In both of the above examples, the proximate cause falls into a "local minima" o
 
 Ensure and validate that the code being proposed does not fall into this trap. An adversarial reviewer ensures to validate the ultimate cause before approving a potential solution.
 
+### Intentional and Unchanged Behavior Are Not Exemptions
+
+Treat the PR's stated tradeoffs, compatibility promises, and exclusions as claims to evaluate—not unquestionable constraints.
+
+- Separate implementation fidelity ("matches the specification") from semantic correctness ("the specification produces useful, coherent behavior").
+- Label defects as introduced, exposed, or pre-existing. Don't discard a relevant defect solely because it predates the change.
+- For ranking or heuristic changes, test representative competing outcomes under default configuration. Formula checks and custom-weight tests do not establish result quality.
+- Compatibility tests can faithfully preserve bugs. State what verification establishes and what remains untested.
+
 ### Spaghetti Trails
 
 Technical debt is easy to add, hard to remove. Technical debt mounts slowly, but becomes apparent all at once.
@@ -70,8 +79,8 @@ Both of these examples have causes of critical logic issues hidden inside of lar
 
 ## Findings
 
-An adversarial code review will naturally find issues, especially in large changesets. Do not allow critical findings to be drowned
-out by a flood of low-severity nitpicks. Never surface vague suggestions or untested and unsupported hypothesises.
+Findings are not required. Report only supported issues, but do not exempt deliberate design decisions from scrutiny.
+Do not allow critical findings to be drowned out by a flood of low-severity nitpicks. Never surface vague suggestions or untested and unsupported hypothesises.
 
 ## Review Output
 
