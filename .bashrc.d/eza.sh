@@ -9,7 +9,7 @@ unalias ls 2>/dev/null || true
 ls() {
   if [[ ${1-} == "-lsha" ]]; then
     shift
-    eza -laS --header --icons "$@"
+    eza -laSmgh@ --git --classify auto --total-size "$@"
   else
     command ls "$@"
   fi

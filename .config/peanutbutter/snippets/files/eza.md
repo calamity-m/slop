@@ -23,47 +23,49 @@ variables:
 
 # Eza Snippets
 
-## eza long list, hidden files, sorted
+## kitchen sink
 
 ```bash
-eza -lha -s <@sort>
+eza -laSmgh@ --git --classify auto --total-size <@path>
 ```
 
-## eza long list with hidden files and block sizes
+## sort files
 
-Equivalent to the `ls -lsha` habit: `-l` uses long listing, `-a` includes hidden files, and `-S` adds the allocated block-size column. `--header` labels the columns and `--icons` keeps the output consistent with the shell aliases.
+Sorts with the highest match at the bottom. To reverse, run with `-r`
 
 ```bash
-eza -laS --header --icons auto <@path>
+eza --long --total-size --accessed --modified --created --header --sort <@sort> <@path>
 ```
 
-## eza list files and directories with total sizes
+## sort directories by total size
 
-`--total-size` calculates and displays the full size of each directory instead of only its directory-entry size.
+Sorts just directories, with the highest match at the bottom. To reverse, run with `-r`.
+To include files, you can omit the `--only-dirs`, or for inversion - `--only-files`
 
 ```bash
-eza -lah --total-size <@path>
+eza -la --only-dirs --total-size --sort size
 ```
 
-## eza list directories in a directory
+## display column headers
 
-Example:
+the `-h` flag will provide header columns.
 
-```text
-.hidden-dir
-hello-world
-hi-there
+```bash
+eza -lh
 ```
+
+## list directories in a directory
 
 ```bash
 eza --oneline --only-dirs --all --git-ignore --ignore-glob .git <@directory>
 ```
 
-## eza list files and directories in a tree format
+## tree with eza
 
 - the `--icons` just displays nice icons
 - add `--group-directories-first` to display directories ahead of plain files
 - the `--tree` is what gives the nice tree output
+- the `--level` is what defines the depth
 - `-git-ignore` is pretty self explanatory
 
 Example:
@@ -82,5 +84,5 @@ Example:
 ```
 
 ```bash
-eza --tree --git-ignore --all --icons auto <@directory>
+eza --tree --git-ignore --all --icons auto --level 100 <@directory>
 ```
