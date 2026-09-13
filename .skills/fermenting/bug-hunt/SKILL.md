@@ -86,5 +86,3 @@ For example, a feature might work smoothly in test with quality-assurance data, 
 5. Report
    - Report to the user any found bugs, ordered in severity.
    - Triage found bugs for false-positives
-
-$ARGUMENTS

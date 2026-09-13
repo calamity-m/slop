@@ -107,5 +107,3 @@ Acceptable finding text (GOOD):
 - This function is fairly complex. Recommend simplifying to increase readability.
 - Code works here, but decomposing this method will allow for future extensibility.
 - The complexity here is hard to grasp without thorough reading. Recognising this is a difficult issue, a different approach may be wise to employ here.
-
-$ARGUMENTS

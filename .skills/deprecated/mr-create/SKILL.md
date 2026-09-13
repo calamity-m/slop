@@ -133,5 +133,3 @@ Do not add inline comments that restate the diff, apologize for code, preemptive
 
 - `references/github.md` - GitHub PR creation, templates, recent PRs, and line comments.
 - `references/gitlab.md` - GitLab MR creation, templates, recent MRs, and line discussions.
-
-$ARGUMENTS
