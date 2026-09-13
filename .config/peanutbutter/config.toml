@@ -53,6 +53,7 @@ ignore_file = ["test*", "fixtures/*"]
 disable = false
 
 [search]
+cross_field_matching = true
 frecency_weight = 100.0
 
 [search.frecency]
